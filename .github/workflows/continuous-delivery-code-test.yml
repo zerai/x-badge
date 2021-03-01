@@ -1,0 +1,45 @@
+name: Tests
+
+on:
+  push:
+
+
+  pull_request:
+    branches: [ main ]
+
+
+env:
+  #GITHUB_PAT: ${{ secrets.BADGE_SPERIMENTALE_GHA_PAT }}
+  PHP_EXTENSIONS: ctype, curl, gd, iconv, intl, opcache, openssl, mbstring, mysql, pdo_sqlite
+  PHP_EXTENSIONS_CACHE_KEY: cache-php-extensions-v1
+
+
+jobs:
+  env-vars:
+    name: Reveal env vars (PHP ${{ matrix.php }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php:
+          - '7.4'
+      fail-fast: true
+
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+
+      -
+        name: Reveal env vars
+        run: |
+          echo GITHUB_WORKFLOW   = $GITHUB_WORKFLOW
+          echo HOME              = $HOME
+          echo GITHUB_ACTION     = $GITHUB_ACTION
+          echo GITHUB_ACTIONS    = $GITHUB_ACTIONS
+          echo GITHUB_ACTOR      = $GITHUB_ACTOR
+          echo GITHUB_REPOSITORY = $GITHUB_REPOSITORY
+          echo GITHUB_EVENT_NAME = $GITHUB_EVENT_NAME
+          echo GITHUB_EVENT_PATH = $GITHUB_EVENT_PATH
+          echo GITHUB_WORKSPACE  = $GITHUB_WORKSPACE
+          echo GITHUB_SHA        = $GITHUB_SHA
+          echo GITHUB_REF        = $GITHUB_REF

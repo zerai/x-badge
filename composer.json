@@ -1,0 +1,32 @@
+{
+    "name": "zeri/badge-sperimentale",
+    "description": "badge sperimentale",
+    "type": "project",
+    "require": {
+        "php": "^7.4"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "zerai",
+            "email": "teclaizerai@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Badge\\": "badge/src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Badge\\Tests\\": "badge/tests/"
+        }
+    }
+}

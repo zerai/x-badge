@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-        "php": "^7.4"
+        "php": "^7.4",
+        "badges/poser": "^2.0"
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.4",

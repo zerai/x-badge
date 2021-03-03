@@ -4,12 +4,13 @@
          bootstrap="vendor/autoload.php"
          cacheResultFile="var/.phpunit.cache/test-results"
          executionOrder="depends,defects"
-         forceCoversAnnotation="true"
+         forceCoversAnnotation="false"
          beStrictAboutCoversAnnotation="false"
          beStrictAboutOutputDuringTests="true"
          beStrictAboutTodoAnnotatedTests="true"
          failOnRisky="true"
          failOnWarning="true"
+         colors="true"
          verbose="true">
     <testsuites>
         <testsuite name="default">

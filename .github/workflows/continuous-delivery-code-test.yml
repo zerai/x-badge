@@ -43,3 +43,70 @@ jobs:
           echo GITHUB_WORKSPACE  = $GITHUB_WORKSPACE
           echo GITHUB_SHA        = $GITHUB_SHA
           echo GITHUB_REF        = $GITHUB_REF
+
+
+  phpunit:
+    name: Code tests (PHP ${{ matrix.php }})
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        php:
+          - '7.4'
+        include:
+          - php: '7.4'
+            coverage: true
+      fail-fast: true
+
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Setup php extension cache environment
+        id: cache-php-extensions
+        uses: shivammathur/cache-extensions@v1
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
+
+      -
+        name: Cache PHP extensions
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.cache-php-extensions.outputs.dir }}
+          key: ${{ steps.cache-php-extensions.outputs.key }}
+          restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
+
+      -
+        name: setup-php
+        id: setup-php
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: ${{ env.PHP_EXTENSIONS }}
+          ini-values: date.timezone=Europe/Rome, memory_limit=-1
+          coverage: xdebug
+          tools: symfony
+
+      -
+        name: Get Composer Cache Directory
+        id: composer-cache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      -
+        name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      -
+        name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest --ansi --no-scripts
+
+      -
+        name: Run phpunit
+        run: ./vendor/bin/phpunit

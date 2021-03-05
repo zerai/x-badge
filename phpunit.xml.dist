@@ -12,16 +12,23 @@
          failOnWarning="true"
          colors="true"
          verbose="true">
+    
     <testsuites>
         <testsuite name="default">
-            <directory suffix="Test.php">badge/tests</directory>
+            <directory suffix="Test.php">./badge/tests</directory>
         </testsuite>
     </testsuites>
 
     <coverage cacheDirectory="var/.phpunit.cache/code-coverage"
               processUncoveredFiles="true">
         <include>
-            <directory suffix=".php">badge/src</directory>
+            <directory suffix=".php">./badge/src</directory>
         </include>
+        <exclude>
+            <directory>./badge/tests/Discovery</directory>
+        </exclude>
+        <report>
+            <text outputFile="php://stdout" showOnlySummary="true" />
+        </report>
     </coverage>
 </phpunit>

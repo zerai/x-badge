@@ -13,7 +13,7 @@ final class ColorTest extends TestCase
      * @test
      * @dataProvider invalidValueDataProvider
      */
-    public function cantBeCreadetWithInvalidValue(string $inputValue): void
+    public function cantBeCreatedWithInvalidValue(string $inputValue): void
     {
         self::expectException(InvalidArgumentException::class);
 
@@ -36,11 +36,11 @@ final class ColorTest extends TestCase
      * @test
      * @dataProvider rawValueDataProvider
      */
-    public function inputValuesSouldBeNormalized(string $inputValue, string $expectedNormalizedVerson): void
+    public function inputValueShouldBeNormalized(string $inputValue, string $expectedNormalizedVersion): void
     {
         $sut = new Color($inputValue);
 
-        self::assertEquals($expectedNormalizedVerson, $sut->value());
+        self::assertEquals($expectedNormalizedVersion, $sut->value());
     }
 
     /**

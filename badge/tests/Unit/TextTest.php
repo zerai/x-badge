@@ -36,7 +36,7 @@ final class TextTest extends TestCase
      * @test
      * @dataProvider rawValueDataProvider
      */
-    public function inputValuesSouldBeNormalized(string $inputValue, string $expectedNormalizedVerson): void
+    public function inputValueShouldBeNormalized(string $inputValue, string $expectedNormalizedVerson): void
     {
         $sut = new Text($inputValue);
 

@@ -6,6 +6,8 @@ use Webmozart\Assert\Assert;
 
 final class Color
 {
+    private const FIXED_LENGTH = 7;
+
     private string $value;
 
     public function __construct(string $value)
@@ -40,8 +42,9 @@ final class Color
         $data = $this->normalize($inputData);
 
         Assert::stringNotEmpty($data);
-        //Assert::minLength($data, (int) self::MIN_LENGTH);
-        //Assert::maxLength($data, (int) self::MAX_LENGTH);
+        Assert::length($data, self::FIXED_LENGTH, 'Color code should be 7 char long.');
+        Assert::startsWith($data, '#', 'Color code should start with \'#\'');
+        Assert::regex(\ltrim($data, '#'), '/^[0-9a-fA-F]{6}$/', 'Invalid hex color %s');
 
         return $data;
     }

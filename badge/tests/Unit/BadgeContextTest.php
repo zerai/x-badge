@@ -91,13 +91,13 @@ final class BadgeContextTest extends TestCase
         yield 'empty subject' => [[
             'subject' => 'foo',
             'subject-value' => '',
-            'color' => '000000',
+            'color' => '#000000',
         ]];
 
         yield 'empty subject-value' => [[
             'subject' => 'foo',
             'subject-value' => '',
-            'color' => '000000',
+            'color' => '#000000',
         ]];
 
         yield 'empty color' => [[

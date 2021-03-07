@@ -8,5 +8,5 @@ final class DefaultBadgeConfig
 
     public const SUBJECT_VALUE = '-';
 
-    public const COLOR = '7A7A7A';
+    public const COLOR = '#7A7A7A';
 }

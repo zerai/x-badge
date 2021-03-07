@@ -27,9 +27,11 @@ final class ColorTest extends TestCase
     {
         yield 'empty value' => [''];
 
-        //yield 'short value' => ['a'];
+        yield 'short value' => ['#aaa'];
 
-        //yield 'long value' => [\str_repeat('a', 100)];
+        yield 'long value' => [\str_repeat('a', 10)];
+
+        yield 'invalid hex.decimal color' => ['#zzzzzz'];
     }
 
     /**
@@ -48,8 +50,8 @@ final class ColorTest extends TestCase
      */
     public function rawValueDataProvider(): Generator
     {
-        yield 'space before' => ['   000000', '000000'];
+        yield 'space before' => ['   #000000', '#000000'];
 
-        yield 'space after' => ['000000   ', '000000'];
+        yield 'space after' => ['#000000   ', '#000000'];
     }
 }

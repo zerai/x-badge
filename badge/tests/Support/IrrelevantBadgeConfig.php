@@ -8,7 +8,7 @@ final class IrrelevantBadgeConfig
 
     public const SUBJECT_VALUE = 'irrelevant';
 
-    public const COLOR = '7B7B7B';
+    public const COLOR = '#FFFFFF';
 
     public const AS_CONSTRUCTOR_ARRAY = [
         'subject' => self::SUBJECT,

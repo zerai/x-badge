@@ -4,11 +4,11 @@ namespace Badge\Tests\Support;
 
 final class FakeBadgeConfig
 {
-    public const SUBJECT = 'irrelevant';
+    public const SUBJECT = 'fake';
 
-    public const SUBJECT_VALUE = 'irrelevant';
+    public const SUBJECT_VALUE = 'fake';
 
-    public const COLOR = '000000';
+    public const COLOR = '#000000';
 
     public const AS_CONSTRUCTOR_ARRAY = [
         'subject' => self::SUBJECT,

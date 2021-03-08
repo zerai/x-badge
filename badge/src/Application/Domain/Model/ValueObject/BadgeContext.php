@@ -75,12 +75,8 @@ final class BadgeContext
         ];
     }
 
-    public function equals(?self $other): bool
+    public function equals(self $other): bool
     {
-        if (! $other instanceof self) {
-            return false;
-        }
-
         if (! $this->subject->equals($other->subject)) {
             return false;
         }

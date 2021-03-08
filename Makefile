@@ -36,7 +36,7 @@ tests: ## Runs tests with phpunit/phpunit
 
 .PHONY: code-coverage
 code-coverage:  ## Collects coverage from running unit tests with phpunit/phpunit
-	vendor/bin/phpunit --coverage-text --coverage-html var/coverge/
+	vendor/bin/phpunit --coverage-text --coverage-html var/coverage/
 
 .PHONY: clear-cache
 clear-cache:  ## Clean all cache (phpunit)

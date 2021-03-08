@@ -43,12 +43,8 @@ final class SubjectValue
         );
     }
 
-    public function equals(?self $other): bool
+    public function equals(self $other): bool
     {
-        if (! $other instanceof self) {
-            return false;
-        }
-
         if (! $this->text->equals($other->text)) {
             return false;
         }

@@ -20,9 +20,9 @@ final class Color
         return $this->value;
     }
 
-    public function equals(?self $other): bool
+    public function equals(self $other): bool
     {
-        return $other !== null && $this->value === $other->value;
+        return $this->value === $other->value;
     }
 
     private function check(string $inputData): string

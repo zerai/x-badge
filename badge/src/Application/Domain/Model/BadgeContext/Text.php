@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Application\Domain\Model\ValueObject;
+namespace Badge\Application\Domain\Model\BadgeContext;
 
 use Webmozart\Assert\Assert;
 

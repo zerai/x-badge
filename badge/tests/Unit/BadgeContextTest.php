@@ -2,14 +2,14 @@
 
 namespace Badge\Tests\Unit;
 
+use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
+use Badge\Application\Domain\Model\BadgeContext\Color;
+use Badge\Application\Domain\Model\BadgeContext\Subject;
+use Badge\Application\Domain\Model\BadgeContext\SubjectValue;
+
+use Badge\Application\Domain\Model\BadgeContext\Text;
+
 use Badge\Application\Domain\Model\DefaultBadgeConfig;
-use Badge\Application\Domain\Model\ValueObject\BadgeContext;
-use Badge\Application\Domain\Model\ValueObject\Color;
-use Badge\Application\Domain\Model\ValueObject\Subject;
-
-use Badge\Application\Domain\Model\ValueObject\SubjectValue;
-
-use Badge\Application\Domain\Model\ValueObject\Text;
 use Badge\Tests\Support\FakeBadgeConfig;
 use Badge\Tests\Support\IrrelevantBadgeConfig;
 use Generator;

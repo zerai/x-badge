@@ -2,7 +2,7 @@
 
 namespace Badge\Tests\Unit;
 
-use Badge\Application\Domain\Model\ValueObject\SubjectValue;
+use Badge\Application\Domain\Model\BadgeContext\SubjectValue;
 use PHPUnit\Framework\TestCase;
 
 final class SubjectValueTest extends TestCase

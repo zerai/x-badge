@@ -2,7 +2,7 @@
 
 namespace Badge\Tests\Unit;
 
-use Badge\Application\Domain\Model\ValueObject\Text;
+use Badge\Application\Domain\Model\BadgeContext\Text;
 use Generator;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;

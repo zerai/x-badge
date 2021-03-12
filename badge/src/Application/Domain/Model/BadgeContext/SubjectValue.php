@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Application\Domain\Model\ValueObject;
+namespace Badge\Application\Domain\Model\BadgeContext;
 
 final class SubjectValue
 {
@@ -25,7 +25,7 @@ final class SubjectValue
     }
 
     /**
-     * @param array{'text': string, "color": string} $data
+     * @param array{text: string, color: string} $data
      */
     public static function fromArray(array $data): self
     {

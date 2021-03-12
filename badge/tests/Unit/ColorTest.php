@@ -2,7 +2,7 @@
 
 namespace Badge\Tests\Unit;
 
-use Badge\Application\Domain\Model\ValueObject\Color;
+use Badge\Application\Domain\Model\BadgeContext\Color;
 use Generator;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;

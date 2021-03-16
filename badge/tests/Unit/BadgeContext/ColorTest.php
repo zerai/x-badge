@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\Unit;
+namespace Badge\Tests\Unit\BadgeContext;
 
 use Badge\Application\Domain\Model\BadgeContext\Color;
 use Generator;

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\Unit;
+namespace Badge\Tests\Unit\BadgeContext;
 
 use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
 use Badge\Application\Domain\Model\BadgeContext\Color;
@@ -74,7 +74,7 @@ final class BadgeContextTest extends TestCase
     /**
      * @test
      * @dataProvider emptyValueDataProvider
-     * @param array{'subject': string, 'subject-value': string, "color": string} $constructionData
+     * @param array{subject: string, subject-value: string, color: string} $constructionData
      */
     public function cantBeCreatedfromArrayShouldThrowException(array $constructionData): void
     {

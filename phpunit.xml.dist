@@ -16,6 +16,8 @@
     <testsuites>
         <testsuite name="default">
             <directory suffix="Test.php">./badge/tests</directory>
+            <exclude>./badge/tests/Discovery</exclude>
+            <exclude>./badge/tests/Support/Learning</exclude>
         </testsuite>
     </testsuites>
 

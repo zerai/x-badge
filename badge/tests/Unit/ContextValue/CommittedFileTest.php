@@ -21,6 +21,30 @@ final class CommittedFileTest extends TestCase
     /**
      * @test
      */
+    public function canBeCreatedAsCommittedWithFactoryMethod(): void
+    {
+        self::assertInstanceOf(ContextualizableValue::class, CommittedFile::createAsCommitted());
+    }
+
+    /**
+     * @test
+     */
+    public function canBeCreatedAsUncommittedWithFactoryMethod(): void
+    {
+        self::assertInstanceOf(ContextualizableValue::class, CommittedFile::createAsUncommitted());
+    }
+
+    /**
+     * @test
+     */
+    public function canBeCreatedAsUndetectedWithFactoryMethod(): void
+    {
+        self::assertInstanceOf(ContextualizableValue::class, CommittedFile::createAsUndetected());
+    }
+
+    /**
+     * @test
+     */
     public function canReturnValueAsBadgeContext(): void
     {
         $sut = new CommittedFile('uncommitted');

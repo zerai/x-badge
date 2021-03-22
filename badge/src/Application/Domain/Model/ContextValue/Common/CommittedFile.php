@@ -21,6 +21,21 @@ class CommittedFile implements ContextualizableValue
         $this->value = $this->check($value);
     }
 
+    public static function createAsCommitted(): self
+    {
+        return new self('committed');
+    }
+
+    public static function createAsUncommitted(): self
+    {
+        return new self('uncommitted');
+    }
+
+    public static function createAsUndetected(): self
+    {
+        return new self('checking');
+    }
+
     public function value(): string
     {
         return $this->value;

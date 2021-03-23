@@ -12,6 +12,7 @@
     "require": {
         "php": "^7.4",
         "badges/poser": "^2.0",
+        "knplabs/packagist-api": "^1.7",
         "webmozart/assert": "^1.9"
     },
     "require-dev": {

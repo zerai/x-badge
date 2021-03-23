@@ -12,6 +12,7 @@
         
         <ignoreFiles>
             <directory name="vendor"/>
+            <directory name="badge/tests/Discovery"/>
         </ignoreFiles>
     </projectFiles>
     

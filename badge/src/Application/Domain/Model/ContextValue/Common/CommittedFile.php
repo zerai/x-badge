@@ -41,11 +41,6 @@ class CommittedFile implements ContextualizableValue
         return $this->value;
     }
 
-    public function equals(self $other): bool
-    {
-        return $this->value === $other->value;
-    }
-
     public function asBadgeValue(): string
     {
         return $this->value;

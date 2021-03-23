@@ -23,16 +23,19 @@ abstract class CommittedFile implements ContextualizableValue
 
     /**
      * @phpstan-ignore-next-line
+     * @psalm-suppress MissingReturnType
      */
     abstract public static function createAsCommitted();
 
     /**
      * @phpstan-ignore-next-line
+     * @psalm-suppress MissingReturnType
      */
     abstract public static function createAsUncommitted();
 
     /**
      * @phpstan-ignore-next-line
+     * @psalm-suppress MissingReturnType
      */
     abstract public static function createAsUndetected();
 

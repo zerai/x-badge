@@ -6,3 +6,5 @@ parameters:
 	paths:
 		- badge/src
 		- badge/tests
+	excludePaths:
+		- badge/tests/Discovery/*

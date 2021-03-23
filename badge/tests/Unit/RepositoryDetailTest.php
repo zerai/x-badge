@@ -109,7 +109,7 @@ final class RepositoryDetailTest extends TestCase
 
         self::assertEquals('gameoflife', $sut->repositoryName());
     }
-    
+
     /**
      * @test
      */

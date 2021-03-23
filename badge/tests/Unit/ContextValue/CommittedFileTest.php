@@ -3,7 +3,6 @@
 namespace Badge\Tests\Unit\ContextValue;
 
 use Badge\Application\Domain\Model\ContextualizableValue;
-use Badge\Application\Domain\Model\ContextValue\Common\CommittedFile;
 use Generator;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -15,7 +14,7 @@ final class CommittedFileTest extends TestCase
      */
     public function canBeCreated(): void
     {
-        self::assertInstanceOf(ContextualizableValue::class, new CommittedFile('committed'));
+        self::assertInstanceOf(ContextualizableValue::class, new DummyCommittedFile('committed'));
     }
 
     /**
@@ -23,7 +22,7 @@ final class CommittedFileTest extends TestCase
      */
     public function canBeCreatedAsCommittedWithFactoryMethod(): void
     {
-        self::assertInstanceOf(ContextualizableValue::class, CommittedFile::createAsCommitted());
+        self::assertInstanceOf(ContextualizableValue::class, DummyCommittedFile::createAsCommitted());
     }
 
     /**
@@ -31,7 +30,7 @@ final class CommittedFileTest extends TestCase
      */
     public function canBeCreatedAsUncommittedWithFactoryMethod(): void
     {
-        self::assertInstanceOf(ContextualizableValue::class, CommittedFile::createAsUncommitted());
+        self::assertInstanceOf(ContextualizableValue::class, DummyCommittedFile::createAsUncommitted());
     }
 
     /**
@@ -39,7 +38,7 @@ final class CommittedFileTest extends TestCase
      */
     public function canBeCreatedAsUndetectedWithFactoryMethod(): void
     {
-        self::assertInstanceOf(ContextualizableValue::class, CommittedFile::createAsUndetected());
+        self::assertInstanceOf(ContextualizableValue::class, DummyCommittedFile::createAsUndetected());
     }
 
     /**
@@ -47,7 +46,7 @@ final class CommittedFileTest extends TestCase
      */
     public function canReturnValueAsBadgeContext(): void
     {
-        $sut = new CommittedFile('uncommitted');
+        $sut = new DummyCommittedFile('uncommitted');
 
         self::assertEquals('uncommitted', $sut->asBadgeValue());
     }
@@ -60,7 +59,7 @@ final class CommittedFileTest extends TestCase
     {
         self::expectException(InvalidArgumentException::class);
 
-        new CommittedFile($input);
+        new DummyCommittedFile($input);
     }
 
     /**
@@ -78,7 +77,7 @@ final class CommittedFileTest extends TestCase
      */
     public function unformattedInputValueShouldBeNormaized(string $input, string $expectedOutput): void
     {
-        $sut = new CommittedFile($input);
+        $sut = new DummyCommittedFile($input);
 
         self::assertEquals($expectedOutput, $sut->value());
     }

@@ -6,7 +6,7 @@ use Badge\Application\Domain\Model\ContextualizableValue;
 use InvalidArgumentException;
 use Webmozart\Assert\Assert;
 
-class CommittedFile implements ContextualizableValue
+abstract class CommittedFile implements ContextualizableValue
 {
     private const ALLOWED_VALUES = [
         'committed',
@@ -21,20 +21,20 @@ class CommittedFile implements ContextualizableValue
         $this->value = $this->check($value);
     }
 
-    public static function createAsCommitted(): self
-    {
-        return new self('committed');
-    }
+    /**
+     * @phpstan-ignore-next-line
+     */
+    abstract public static function createAsCommitted();
 
-    public static function createAsUncommitted(): self
-    {
-        return new self('uncommitted');
-    }
+    /**
+     * @phpstan-ignore-next-line
+     */
+    abstract public static function createAsUncommitted();
 
-    public static function createAsUndetected(): self
-    {
-        return new self('checking');
-    }
+    /**
+     * @phpstan-ignore-next-line
+     */
+    abstract public static function createAsUndetected();
 
     public function value(): string
     {

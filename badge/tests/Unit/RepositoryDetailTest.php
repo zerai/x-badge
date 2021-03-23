@@ -34,7 +34,6 @@ final class RepositoryDetailTest extends TestCase
     /**
      * @test
      * @dataProvider invalidRepositoryUrlDataProvider
-     * @dataProvider unsupportedGitHostingServiceRepositoryUrlDataProvider
      */
     public function shouldThrowExceptionIfRepositoryUrlIsInvalid(string $repositoryUrl): void
     {
@@ -50,11 +49,21 @@ final class RepositoryDetailTest extends TestCase
     {
         yield 'empty string' => [''];
         yield 'not an url' => ['not an url string'];
-        yield 'not a supported gitHosting service url' => ['https://othergisthostingservice.org/user/reponame'];
         yield 'incomplete github url - only host' => ['https://github.com'];
         yield 'incomplete github url - only host and user' => ['https://github.com/user'];
         yield 'incomplete bitbucket url - only hosy' => ['https://bitbucket.org'];
         yield 'incomplete bitbucket url - only hosy and user' => ['https://bitbucket.org/user'];
+    }
+
+    /**
+     * @test
+     * @dataProvider unsupportedGitHostingServiceRepositoryUrlDataProvider
+     */
+    public function unsupportedGitHostingServiceShouldThrowException(string $repositoryUrl): void
+    {
+        self::expectException(InvalidArgumentException::class);
+
+        RepositoryDetail::fromRepositoryUrl($repositoryUrl);
     }
 
     /**

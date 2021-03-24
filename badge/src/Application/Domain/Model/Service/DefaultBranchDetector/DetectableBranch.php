@@ -4,7 +4,7 @@ namespace Badge\Application\Domain\Model\Service\DefaultBranchDetector;
 
 use Badge\Application\Domain\Model\RepositoryDetail;
 
-interface DefaultBranchDetector
+interface DetectableBranch
 {
     public function getDefaultBranch(RepositoryDetail $repositoryDetail): string;
 }

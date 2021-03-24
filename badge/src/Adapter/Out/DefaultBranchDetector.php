@@ -7,7 +7,7 @@ use Badge\Application\Domain\Model\Service\DefaultBranchDetector\DetectableBranc
 use Bitbucket\Client as BitbucketClient;
 use Github\Client as GithubClient;
 
-final class DefaultBranchDetector implements DetectableBranch
+class DefaultBranchDetector implements DetectableBranch
 {
     private GithubClient $githubClient;
 

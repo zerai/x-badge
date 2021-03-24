@@ -16,8 +16,8 @@ final class GitAttributesFile extends CommittedFile
         return new self('uncommitted');
     }
 
-    public static function createAsUndetected(): self
+    public static function createAsError(): self
     {
-        return new self('uncommitted');
+        return new self('checking');
     }
 }

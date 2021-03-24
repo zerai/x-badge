@@ -5,7 +5,6 @@ namespace Badge\Adapter\Out;
 use Badge\Application\Domain\Model\RepositoryDetail;
 use Badge\Application\Domain\Model\Service\DefaultBranchDetector\DetectableBranch;
 use Bitbucket\Client as BitbucketClient;
-use Github\Api\Repo;
 use Github\Client as GithubClient;
 
 final class DefaultBranchDetector implements DetectableBranch

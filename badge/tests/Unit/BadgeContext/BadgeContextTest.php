@@ -6,10 +6,7 @@ use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
 use Badge\Application\Domain\Model\BadgeContext\Color;
 use Badge\Application\Domain\Model\BadgeContext\Subject;
 use Badge\Application\Domain\Model\BadgeContext\SubjectValue;
-
 use Badge\Application\Domain\Model\BadgeContext\Text;
-
-use Badge\Application\Domain\Model\DefaultBadgeConfig;
 use Badge\Tests\Support\FakeBadgeConfig;
 use Badge\Tests\Support\IrrelevantBadgeConfig;
 use Generator;
@@ -18,16 +15,22 @@ use PHPUnit\Framework\TestCase;
 
 final class BadgeContextTest extends TestCase
 {
+    public const DEFAULT_BADGE_SUBJECT = '-';
+
+    public const DEFAULT_BADGE_SUBJECT_VALUE = '-';
+
+    public const DEFAULT_BADGE_COLOR = '#7A7A7A';
+
     /**
      * @test
      */
     public function canBeCreatedAsDefaultContext(): void
     {
-        $expectedSubject = new Subject(DefaultBadgeConfig::SUBJECT);
+        $expectedSubject = new Subject(self::DEFAULT_BADGE_SUBJECT);
         $expectedSubjectValue = SubjectValue::fromArray(
             [
-                'text' => DefaultBadgeConfig::SUBJECT_VALUE,
-                'color' => DefaultBadgeConfig::COLOR,
+                'text' => self::DEFAULT_BADGE_SUBJECT_VALUE,
+                'color' => self::DEFAULT_BADGE_COLOR,
             ]
         );
 

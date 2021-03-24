@@ -7,6 +7,8 @@ use Badge\Application\Domain\Model\BadgeContext\Color;
 use Badge\Application\Domain\Model\BadgeContext\Subject;
 use Badge\Application\Domain\Model\BadgeContext\SubjectValue;
 use Badge\Application\Domain\Model\BadgeContext\Text;
+use Badge\Application\Domain\Model\ContextualizableValue;
+use Badge\Application\Domain\Model\ContextValue\ComposerLockFile;
 use Badge\Tests\Support\FakeBadgeConfig;
 use Badge\Tests\Support\IrrelevantBadgeConfig;
 use Generator;
@@ -42,6 +44,53 @@ final class BadgeContextTest extends TestCase
         self::assertEquals($expectedSubjectValue, $sut->subjectValue());
         self::assertInstanceOf(Text::class, $sut->subjectValue()->text());
         self::assertInstanceOf(Color::class, $sut->subjectValue()->color());
+    }
+
+    /**
+     * @test
+     * @dataProvider committedComposerFileFileDataProvider
+     */
+    public function canBeCreatedAFromContextValue(ContextualizableValue $inputContext, array $expectedArray): void
+    {
+        $sut = BadgeContext::FromContextValue($inputContext);
+
+        $data = $sut->toArray();
+
+        self::assertIsArray($data);
+        self::assertArrayHasKey('subject', $data);
+        self::assertEquals($expectedArray['subject'], $data['subject']);
+        self::assertArrayHasKey('subject-value', $data);
+        self::assertEquals($expectedArray['subject-value'], $data['subject-value']);
+        self::assertArrayHasKey('color', $data);
+        self::assertEquals($expectedArray['color'], $data['color']);
+    }
+
+    public function committedComposerFileFileDataProvider(): Generator
+    {
+        yield 'committed .lock file' => [
+            ComposerLockFile::createAsCommitted(),
+            [
+                'subject' => '.lock',
+                'subject-value' => 'committed',
+                'color' => '#e60073',
+            ],
+        ];
+        yield 'uncommitted .lock file' => [
+            ComposerLockFile::createAsUncommitted(),
+            [
+                'subject' => '.lock',
+                'subject-value' => 'uncommitted',
+                'color' => '#99004d',
+            ],
+        ];
+        yield 'error .lock file' => [
+            ComposerLockFile::createAsError(),
+            [
+                'subject' => 'Error',
+                'subject-value' => 'checking',
+                'color' => '#aa0000',
+            ],
+        ];
     }
 
     /**

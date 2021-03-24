@@ -36,9 +36,9 @@ final class CommittedFileTest extends TestCase
     /**
      * @test
      */
-    public function canBeCreatedAsUndetectedWithFactoryMethod(): void
+    public function canBeCreatedAsErrorWithFactoryMethod(): void
     {
-        self::assertInstanceOf(ContextualizableValue::class, DummyCommittedFile::createAsUndetected());
+        self::assertInstanceOf(ContextualizableValue::class, DummyCommittedFile::createAsError());
     }
 
     /**

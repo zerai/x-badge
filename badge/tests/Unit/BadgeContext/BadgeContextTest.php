@@ -56,7 +56,6 @@ final class BadgeContextTest extends TestCase
 
         $data = $sut->toArray();
 
-        self::assertIsArray($data);
         self::assertArrayHasKey('subject', $data);
         self::assertEquals($expectedArray['subject'], $data['subject']);
         self::assertArrayHasKey('subject-value', $data);
@@ -65,6 +64,9 @@ final class BadgeContextTest extends TestCase
         self::assertEquals($expectedArray['color'], $data['color']);
     }
 
+    /**
+     * @psalm-return Generator<string, array{0: ComposerLockFile, 1: array{subject: string, subject-value: string, color: string}}, mixed, void>
+     */
     public function committedComposerFileFileDataProvider(): Generator
     {
         yield 'committed .lock file' => [

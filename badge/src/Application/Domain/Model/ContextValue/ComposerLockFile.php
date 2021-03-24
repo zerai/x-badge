@@ -38,10 +38,14 @@ final class ComposerLockFile extends CommittedFile implements RenderableValue
         return new self(self::LOCK_ERROR);
     }
 
+    /**
+     * @return string[]
+     *
+     * @psalm-return array{subject: string, subject-value: string, color: string}
+     */
     public function renderingProperties(): array
     {
         $subject = self::SUBJECT_ERROR;
-        $context = self::LOCK_ERROR;
         $color = self::COLOR_ERROR;
 
         if ($this->asBadgeValue() === 'committed') {

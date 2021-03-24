@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.6.2@bca09d74adc704c4eaee36a3c3e9d379e290fc3b">
+  <file src="badge/src/Adapter/Out/DefaultBranchDetector.php">
+    <MixedArrayAccess occurrences="1">
+      <code>$repoBitbucketData['mainbranch']['name']</code>
+    </MixedArrayAccess>
+  </file>
   <file src="badge/tests/Integration/PackagistRepositoryReaderTest.php">
     <DeprecatedMethod occurrences="2">
       <code>setMethods</code>

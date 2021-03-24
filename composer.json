@@ -12,7 +12,11 @@
     "require": {
         "php": "^7.4",
         "badges/poser": "^2.0",
+        "bitbucket/client": "^3.2",
+        "http-interop/http-factory-guzzle": "^1.0",
+        "knplabs/github-api": "^2.15",
         "knplabs/packagist-api": "^1.7",
+        "php-http/guzzle6-adapter": "^2.0",
         "webmozart/assert": "^1.9"
     },
     "require-dev": {

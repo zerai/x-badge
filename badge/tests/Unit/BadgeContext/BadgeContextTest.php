@@ -9,6 +9,7 @@ use Badge\Application\Domain\Model\BadgeContext\SubjectValue;
 use Badge\Application\Domain\Model\BadgeContext\Text;
 use Badge\Application\Domain\Model\ContextualizableValue;
 use Badge\Application\Domain\Model\ContextValue\ComposerLockFile;
+use Badge\Application\Domain\Model\ContextValue\GitAttributesFile;
 use Badge\Tests\Support\FakeBadgeConfig;
 use Badge\Tests\Support\IrrelevantBadgeConfig;
 use Generator;
@@ -48,7 +49,8 @@ final class BadgeContextTest extends TestCase
 
     /**
      * @test
-     * @dataProvider committedComposerFileFileDataProvider
+     * @dataProvider committedComposerFileDataProvider
+     * @dataProvider committedGitAttributesFileFileDataProvider
      */
     public function canBeCreatedAFromContextValue(ContextualizableValue $inputContext, array $expectedArray): void
     {
@@ -67,7 +69,7 @@ final class BadgeContextTest extends TestCase
     /**
      * @psalm-return Generator<string, array{0: ComposerLockFile, 1: array{subject: string, subject-value: string, color: string}}, mixed, void>
      */
-    public function committedComposerFileFileDataProvider(): Generator
+    public function committedComposerFileDataProvider(): Generator
     {
         yield 'committed .lock file' => [
             ComposerLockFile::createAsCommitted(),
@@ -87,6 +89,37 @@ final class BadgeContextTest extends TestCase
         ];
         yield 'error .lock file' => [
             ComposerLockFile::createAsError(),
+            [
+                'subject' => 'Error',
+                'subject-value' => 'checking',
+                'color' => '#aa0000',
+            ],
+        ];
+    }
+
+    /**
+     * @psalm-return Generator<string, array{0: GitAttributesFile, 1: array{subject: string, subject-value: string, color: string}}, mixed, void>
+     */
+    public function committedGitAttributesFileFileDataProvider(): Generator
+    {
+        yield 'committed .gitattributes file' => [
+            GitAttributesFile::createAsCommitted(),
+            [
+                'subject' => '.gitattributes',
+                'subject-value' => 'committed',
+                'color' => '#96d490',
+            ],
+        ];
+        yield 'uncommitted .gitattributes file' => [
+            GitAttributesFile::createAsUncommitted(),
+            [
+                'subject' => '.gitattributes',
+                'subject-value' => 'uncommitted',
+                'color' => '#ad6c4b',
+            ],
+        ];
+        yield 'error .gitattributes file' => [
+            GitAttributesFile::createAsError(),
             [
                 'subject' => 'Error',
                 'subject-value' => 'checking',

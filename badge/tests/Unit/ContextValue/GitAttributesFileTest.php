@@ -52,9 +52,9 @@ final class GitAttributesFileTest extends TestCase
     /**
      * @test
      */
-    public function canBeCreatedAsUndetectedWithFactoryMethod(): void
+    public function canBeCreatedAsErrorWithFactoryMethod(): void
     {
-        $sut = GitAttributesFile::createAsUndetected();
+        $sut = GitAttributesFile::createAsError();
 
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(CommittedFile::class, $sut);

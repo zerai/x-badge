@@ -37,7 +37,7 @@ abstract class CommittedFile implements ContextualizableValue
      * @phpstan-ignore-next-line
      * @psalm-suppress MissingReturnType
      */
-    abstract public static function createAsUndetected();
+    abstract public static function createAsError();
 
     public function value(): string
     {

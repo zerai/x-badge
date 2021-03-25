@@ -52,9 +52,9 @@ final class ComposerLockFileTest extends TestCase
     /**
      * @test
      */
-    public function canBeCreatedAsUndetectedWithFactoryMethod(): void
+    public function canBeCreatedAsErrorFactoryMethod(): void
     {
-        $sut = ComposerLockFile::createAsUndetected();
+        $sut = ComposerLockFile::createAsError();
 
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(CommittedFile::class, $sut);

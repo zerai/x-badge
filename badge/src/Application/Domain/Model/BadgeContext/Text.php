@@ -8,7 +8,7 @@ final class Text
 {
     private const MIN_LENGTH = 1;
 
-    private const MAX_LENGTH = 10;
+    private const MAX_LENGTH = 11;
 
     private string $value;
 

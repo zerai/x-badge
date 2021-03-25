@@ -2,10 +2,16 @@
 
 namespace Badge\Application\Domain\Model\BadgeContext;
 
-use Badge\Application\Domain\Model\DefaultBadgeConfig;
+use Badge\Application\Domain\Model\ContextualizableValue;
 
 final class BadgeContext
 {
+    public const DEFAULT_BADGE_SUBJECT = '-';
+
+    public const DEFAULT_BADGE_SUBJECT_VALUE = '-';
+
+    public const DEFAULT_BADGE_COLOR = '#7A7A7A';
+
     private Subject $subject;
 
     private SubjectValue $subjectValue;
@@ -19,12 +25,17 @@ final class BadgeContext
     public static function asDefault(): self
     {
         return new self(
-            new Subject(DefaultBadgeConfig::SUBJECT),
+            new Subject(self::DEFAULT_BADGE_SUBJECT),
             SubjectValue::fromArray([
-                'text' => DefaultBadgeConfig::SUBJECT_VALUE,
-                'color' => DefaultBadgeConfig::COLOR,
+                'text' => self::DEFAULT_BADGE_SUBJECT_VALUE,
+                'color' => self::DEFAULT_BADGE_COLOR,
             ])
         );
+    }
+
+    public static function fromContextValue(ContextualizableValue $value): self
+    {
+        return self::fromArray($value->renderingProperties());
     }
 
     public function subject(): Subject

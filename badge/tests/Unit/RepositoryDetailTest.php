@@ -94,9 +94,9 @@ final class RepositoryDetailTest extends TestCase
      */
     public function canDetectBitbucketHositingService(): void
     {
-        $sut = RepositoryDetail::fromRepositoryUrl(self::GITHUB_REPOSITORY_URL);
+        $sut = RepositoryDetail::fromRepositoryUrl(self::BITBUCKET_REPOSITORY_URL);
 
-        self::assertFalse($sut->isBitbucket());
+        self::assertTrue($sut->isBitbucket());
     }
 
     /**

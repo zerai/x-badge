@@ -3,6 +3,7 @@
 namespace Badge\Application\Domain\Service\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
+use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\DetectableComposerLock;
 
 final class ComposerLockProducer implements ContextProducer

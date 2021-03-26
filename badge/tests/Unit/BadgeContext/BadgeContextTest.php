@@ -51,6 +51,7 @@ final class BadgeContextTest extends TestCase
      * @test
      * @dataProvider committedComposerFileDataProvider
      * @dataProvider committedGitAttributesFileFileDataProvider
+     * @param array<mixed> $expectedArray
      */
     public function canBeCreatedAFromContextValue(ContextualizableValue $inputContext, array $expectedArray): void
     {

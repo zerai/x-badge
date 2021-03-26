@@ -35,6 +35,7 @@ final class BadgeContext
 
     public static function fromContextValue(ContextualizableValue $value): self
     {
+        /** @phpstan-ignore-next-line */
         return self::fromArray($value->renderingProperties());
     }
 

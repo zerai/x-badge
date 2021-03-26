@@ -59,6 +59,7 @@ final class ComposerLockProducerTest extends TestCase
     /**
      * @test
      * @dataProvider composerFileDataProvider
+     * @param array<mixed> $expectedArray
      */
     public function shouldProduceBadgeContextForACommittedComposerFile(int $httpFileStatus, array $expectedArray): void
     {
@@ -86,6 +87,9 @@ final class ComposerLockProducerTest extends TestCase
         self::assertEquals($expectedArray['color'], $data['color']);
     }
 
+    /**
+     * @psalm-return Generator<string, array{0: int, 1: array{subject: string, subject-value: string, color: string}}, mixed, void>
+     */
     public function composerFileDataProvider(): Generator
     {
         yield 'committed composer.lock' =>

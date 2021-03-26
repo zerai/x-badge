@@ -25,17 +25,17 @@ final class GitAttributesFile extends CommittedFile implements RenderableValue
 
     public static function createAsCommitted(): self
     {
-        return new self('committed');
+        return new self(self::GITATTRIBUTES_COMMITTED);
     }
 
     public static function createAsUncommitted(): self
     {
-        return new self('uncommitted');
+        return new self(self::GITATTRIBUTES_UNCOMMITTED);
     }
 
     public static function createAsError(): self
     {
-        return new self('checking');
+        return new self(self::GITATTRIBUTES_ERROR);
     }
 
     /**

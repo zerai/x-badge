@@ -3,12 +3,10 @@
 namespace Badge\Tests\Discovery\Mock;
 
 use Badge\Adapter\Out\CommittedFileChecker;
-
 use Badge\Adapter\Out\DefaultBranchDetector;
 use Badge\Application\Domain\Model\RepositoryDetail;
 use GuzzleHttp\ClientInterface;
 use PHPUnit\Framework\MockObject\MockObject;
-
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use RuntimeException;

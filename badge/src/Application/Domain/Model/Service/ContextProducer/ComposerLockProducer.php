@@ -1,10 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Application\Domain\Service\ContextProducer;
+namespace Badge\Application\Domain\Model\Service\ContextProducer;
+
+//namespace Badge\Application\Domain\Service\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
-use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
-use Badge\Application\Domain\Model\Service\ContextProducer\DetectableComposerLock;
+use Badge\Application\Domain\Model\ContextValue\ComposerLockFile;
 
 final class ComposerLockProducer implements ContextProducer
 {
@@ -22,10 +23,24 @@ final class ComposerLockProducer implements ContextProducer
     {
         try {
             $composerLockFileStatusCode = $this->committedFileDetector->detectComposerLock($packageName);
+
+            return $this->createFromFileStatusCode($composerLockFileStatusCode);
         } catch (\Throwable $th) {
-            //throw for http error on packagist
-            //throw for http error on GithubApi or BitBucketApi
-            //throw for http error on checking file in repository sourcecode
+            // log exception
+            return BadgeContext::asDefault();
         }
+    }
+
+    private function createFromFileStatusCode(int $fileStatusCode): BadgeContext
+    {
+        if ($fileStatusCode === 200) {
+            return BadgeContext::fromContextValue(ComposerLockFile::createAsCommitted());
+        }
+
+        if ($fileStatusCode === 404) {
+            return BadgeContext::fromContextValue(ComposerLockFile::createAsUncommitted());
+        }
+
+        return BadgeContext::fromContextValue(ComposerLockFile::createAsError());
     }
 }

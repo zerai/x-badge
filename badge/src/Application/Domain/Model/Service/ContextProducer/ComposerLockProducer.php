@@ -2,8 +2,6 @@
 
 namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
-//namespace Badge\Application\Domain\Service\ContextProducer;
-
 use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\ComposerLockFile;
 

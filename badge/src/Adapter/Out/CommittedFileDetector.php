@@ -23,4 +23,11 @@ final class CommittedFileDetector implements CommittedFileDetectorPort
 
         return $this->fileChecker->checkFile($repositoryDetail, 'composer.lock');
     }
+
+    public function detectGitAttributes(string $packageName): int
+    {
+        $repositoryDetail = $this->repositoryReader->readRepositoryDetail($packageName);
+
+        return $this->fileChecker->checkFile($repositoryDetail, '.gitattributes');
+    }
 }

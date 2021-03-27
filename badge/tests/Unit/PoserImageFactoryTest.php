@@ -39,7 +39,7 @@ final class PoserImageFactoryTest extends TestCase
 
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertInstanceOf(BadgeImage::class, $result);
-        self::assertEquals('default.svg', $result->getFileName());
+        self::assertEquals('default-badge.svg', $result->getFileName());
     }
 
     /**

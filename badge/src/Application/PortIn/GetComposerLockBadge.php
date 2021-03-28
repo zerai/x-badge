@@ -2,7 +2,9 @@
 
 namespace Badge\Application\PortIn;
 
+use Badge\Application\Image;
+
 interface GetComposerLockBadge
 {
-    public function getComposerLockBadge(string $packageName);
+    public function getComposerLockBadge(string $packageName): Image;
 }

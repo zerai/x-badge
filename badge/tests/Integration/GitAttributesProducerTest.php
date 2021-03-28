@@ -5,6 +5,7 @@ namespace Badge\Tests\Integration;
 use Badge\Adapter\Out\CommittedFileChecker;
 use Badge\Adapter\Out\CommittedFileDetector;
 use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
+use Badge\Application\Domain\Model\RenderableValue;
 use Badge\Application\Domain\Model\RepositoryDetail;
 use Badge\Application\Domain\Model\Service\ContextProducer\GitAttributesProducer;
 use Badge\Application\Domain\Model\Service\RepositoryReader\RepositoryDetailReader;
@@ -37,9 +38,6 @@ final class GitAttributesProducerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->markTestSkipped(
-            'Temp. remove...'
-          );
         $this->fileChecker = $this->getMockBuilder(CommittedFileChecker::class)
             ->disableOriginalConstructor()
             ->setMethods(['checkFile'])
@@ -74,9 +72,9 @@ final class GitAttributesProducerTest extends TestCase
 
         $result = $this->badgeContextProducer->contextFor('phpunit/phpunit');
 
-        $data = $result->toArray();
+        $data = $result->renderingProperties();
 
-        self::assertInstanceOf(BadgeContext::class, $result);
+        self::assertInstanceOf(RenderableValue::class, $result);
         self::assertArrayHasKey('subject', $data);
         self::assertEquals($expectedArray['subject'], $data['subject']);
         self::assertArrayHasKey('subject-value', $data);

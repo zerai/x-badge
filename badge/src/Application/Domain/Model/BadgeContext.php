@@ -2,7 +2,7 @@
 
 namespace Badge\Application\Domain\Model;
 
-interface RenderableValue
+interface BadgeContext
 {
     /**
      * @return string[]

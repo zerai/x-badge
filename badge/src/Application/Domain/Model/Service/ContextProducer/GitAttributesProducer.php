@@ -2,8 +2,8 @@
 
 namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
+use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\GitAttributesFile;
-use Badge\Application\Domain\Model\RenderableValue;
 
 final class GitAttributesProducer implements ContextProducer
 {
@@ -17,7 +17,7 @@ final class GitAttributesProducer implements ContextProducer
         $this->committedFileDetector = $committedFileDetector;
     }
 
-    public function contextFor(string $packageName): RenderableValue
+    public function contextFor(string $packageName): BadgeContext
     {
         try {
             $gitAttributesFileStatusCode = $this->committedFileDetector->detectGitAttributes($packageName);
@@ -29,7 +29,7 @@ final class GitAttributesProducer implements ContextProducer
         }
     }
 
-    private function createFromFileStatusCode(int $fileStatusCode): RenderableValue
+    private function createFromFileStatusCode(int $fileStatusCode): BadgeContext
     {
         if ($fileStatusCode === 200) {
             return GitAttributesFile::createAsCommitted();

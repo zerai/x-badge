@@ -4,7 +4,7 @@ namespace Badge\Tests\Integration;
 
 use Badge\Adapter\Out\CommittedFileChecker;
 use Badge\Adapter\Out\CommittedFileDetector;
-use Badge\Application\Domain\Model\RenderableValue;
+use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\RepositoryDetail;
 use Badge\Application\Domain\Model\Service\ContextProducer\GitAttributesProducer;
 use Badge\Application\Domain\Model\Service\RepositoryReader\RepositoryDetailReader;
@@ -73,7 +73,7 @@ final class GitAttributesProducerTest extends TestCase
 
         $data = $result->renderingProperties();
 
-        self::assertInstanceOf(RenderableValue::class, $result);
+        self::assertInstanceOf(BadgeContext::class, $result);
         self::assertArrayHasKey('subject', $data);
         self::assertEquals($expectedArray['subject'], $data['subject']);
         self::assertArrayHasKey('subject-value', $data);

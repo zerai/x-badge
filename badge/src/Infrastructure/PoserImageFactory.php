@@ -3,7 +3,7 @@
 namespace Badge\Infrastructure;
 
 use Badge\Application\BadgeImage;
-use Badge\Application\Domain\Model\RenderableValue;
+use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Image;
 use Badge\Application\ImageFactory;
 use PUGX\Poser\Poser;
@@ -27,7 +27,7 @@ final class PoserImageFactory implements ImageFactory
         $this->generator = $generator;
     }
 
-    public function createImageFromContext(RenderableValue $badgeContext): Image
+    public function createImageFromContext(BadgeContext $badgeContext): Image
     {
         $renderingProperties = $badgeContext->renderingProperties();
 
@@ -55,13 +55,13 @@ final class PoserImageFactory implements ImageFactory
         return BadgeImage::create($this->imageName(), (string) $poserImage);
     }
 
-    private function imageName(RenderableValue $value = null): string
+    private function imageName(BadgeContext $badgeContext = null): string
     {
-        if ($value === null) {
+        if ($badgeContext === null) {
             return 'default-badge' . '.' . self::DEFAULT_FORMAT;
         }
 
-        $renderingProperties = $value->renderingProperties();
+        $renderingProperties = $badgeContext->renderingProperties();
 
         return \sprintf(
             '%s-%s-%s.%s',

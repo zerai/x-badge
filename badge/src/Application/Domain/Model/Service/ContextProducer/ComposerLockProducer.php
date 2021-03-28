@@ -2,8 +2,8 @@
 
 namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
+use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\ComposerLockFile;
-use Badge\Application\Domain\Model\RenderableValue;
 
 final class ComposerLockProducer implements ContextProducer
 {
@@ -17,7 +17,7 @@ final class ComposerLockProducer implements ContextProducer
         $this->committedFileDetector = $committedFileDetector;
     }
 
-    public function contextFor(string $packageName): RenderableValue
+    public function contextFor(string $packageName): BadgeContext
     {
         try {
             $composerLockFileStatusCode = $this->committedFileDetector->detectComposerLock($packageName);
@@ -29,7 +29,7 @@ final class ComposerLockProducer implements ContextProducer
         }
     }
 
-    private function createFromFileStatusCode(int $fileStatusCode): RenderableValue
+    private function createFromFileStatusCode(int $fileStatusCode): BadgeContext
     {
         if ($fileStatusCode === 200) {
             return ComposerLockFile::createAsCommitted();

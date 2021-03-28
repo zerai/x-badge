@@ -2,11 +2,9 @@
 
 namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
-use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
-use Badge\Application\Domain\Model\RenderableValue;
+use Badge\Application\Domain\Model\BadgeContext;
 
 interface ContextProducer
 {
-    //public function contextFor(string $packageName): BadgeContext;
-    public function contextFor(string $packageName): RenderableValue;
+    public function contextFor(string $packageName): BadgeContext;
 }

@@ -3,9 +3,9 @@
 namespace Badge\Tests\Integration;
 
 use Badge\Application\BadgeImage;
+use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\ComposerLockFile;
 use Badge\Application\Domain\Model\ContextValue\GitAttributesFile;
-use Badge\Application\Domain\Model\RenderableValue;
 use Badge\Application\Image;
 use Badge\Infrastructure\PoserImageFactory;
 use Generator;
@@ -47,9 +47,9 @@ final class PoserImageFactoryTest extends TestCase
      * @dataProvider renderableCommittedFileDataProvider
      * @param string $expectedFileName
      */
-    public function canCreateImageFromContext(RenderableValue $context, $expectedFileName): void
+    public function canCreateImageFromContext(BadgeContext $badgeContext, $expectedFileName): void
     {
-        $result = $this->imageFactory->createImageFromContext($context);
+        $result = $this->imageFactory->createImageFromContext($badgeContext);
 
         self::assertInstanceOf(Image::class, $result);
         self::assertInstanceOf(BadgeImage::class, $result);
@@ -57,7 +57,7 @@ final class PoserImageFactoryTest extends TestCase
     }
 
     /**
-     * @psalm-return Generator<string,  array{0: RenderableValue, 1: string}>
+     * @psalm-return Generator<string,  array{0: BadgeContext, 1: string}>
      */
     public function renderableCommittedFileDataProvider(): Generator
     {

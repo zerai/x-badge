@@ -2,11 +2,11 @@
 
 namespace Badge\Application;
 
-use Badge\Application\Domain\Model\RenderableValue;
+use Badge\Application\Domain\Model\BadgeContext;
 
 interface ImageFactory
 {
-    public function createImageFromContext(RenderableValue $badgeContext): Image;
+    public function createImageFromContext(BadgeContext $badgeContext): Image;
 
     public function createImageForDefaultBadge(): Image;
 }

@@ -2,7 +2,6 @@
 
 namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
-use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\GitAttributesFile;
 use Badge\Application\Domain\Model\RenderableValue;
 

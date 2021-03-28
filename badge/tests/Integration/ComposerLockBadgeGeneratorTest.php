@@ -2,21 +2,20 @@
 
 namespace Badge\Tests\Integration;
 
-use PUGX\Poser\Poser;
-use RuntimeException;
-use Badge\Application\Image;
-use PHPUnit\Framework\TestCase;
-use Badge\Application\BadgeImage;
-use Badge\Application\ImageFactory;
-use PUGX\Poser\Render\SvgFlatRender;
-use PUGX\Poser\Render\SvgPlasticRender;
-use PUGX\Poser\Render\SvgFlatSquareRender;
-use Badge\Infrastructure\PoserImageFactory;
-use PHPUnit\Framework\MockObject\MockObject;
-use Badge\Application\Usecase\ComposerLockBadgeGenerator;
 use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\ComposerLockFile;
 use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
+use Badge\Application\Image;
+use Badge\Application\ImageFactory;
+use Badge\Application\Usecase\ComposerLockBadgeGenerator;
+use Badge\Infrastructure\PoserImageFactory;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
+use PUGX\Poser\Poser;
+use PUGX\Poser\Render\SvgFlatRender;
+use PUGX\Poser\Render\SvgFlatSquareRender;
+use PUGX\Poser\Render\SvgPlasticRender;
+use RuntimeException;
 
 final class ComposerLockBadgeGeneratorTest extends TestCase
 {
@@ -45,17 +44,6 @@ final class ComposerLockBadgeGeneratorTest extends TestCase
             ->getMock();
 
         $this->useCase = new ComposerLockBadgeGenerator($this->contextProducer, $this->imageFactory);
-    }
-
-    private function setUpImageFactory(): PoserImageFactory
-    {
-        $poserGenerator = new Poser([
-            new SvgFlatRender(),
-            new SvgFlatSquareRender(),
-            new SvgPlasticRender(),
-        ]);
-
-        return new PoserImageFactory($poserGenerator);
     }
 
     /**
@@ -100,5 +88,16 @@ final class ComposerLockBadgeGeneratorTest extends TestCase
 
         self::assertInstanceOf(Image::class, $result);
         self::assertEquals('default-badge.svg', $result->getFileName());
+    }
+
+    private function setUpImageFactory(): PoserImageFactory
+    {
+        $poserGenerator = new Poser([
+            new SvgFlatRender(),
+            new SvgFlatSquareRender(),
+            new SvgPlasticRender(),
+        ]);
+
+        return new PoserImageFactory($poserGenerator);
     }
 }

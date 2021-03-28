@@ -4,7 +4,8 @@ namespace Badge\Tests\Integration;
 
 use Badge\Adapter\Out\CommittedFileChecker;
 use Badge\Adapter\Out\CommittedFileDetector;
-use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
+
+use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\RepositoryDetail;
 use Badge\Application\Domain\Model\Service\ContextProducer\ComposerLockProducer;
 use Badge\Application\Domain\Model\Service\RepositoryReader\RepositoryDetailReader;
@@ -76,7 +77,7 @@ final class ComposerLockProducerTest extends TestCase
 
         $result = $this->badgeContextProducer->contextFor('phpunit/phpunit');
 
-        $data = $result->toArray();
+        $data = $result->renderingProperties();
 
         self::assertInstanceOf(BadgeContext::class, $result);
         self::assertArrayHasKey('subject', $data);

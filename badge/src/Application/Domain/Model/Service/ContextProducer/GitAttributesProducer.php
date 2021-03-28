@@ -2,7 +2,7 @@
 
 namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
-use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
+use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\GitAttributesFile;
 
 final class GitAttributesProducer implements ContextProducer
@@ -25,20 +25,20 @@ final class GitAttributesProducer implements ContextProducer
             return $this->createFromFileStatusCode($gitAttributesFileStatusCode);
         } catch (\Throwable $th) {
             // log exception
-            return BadgeContext::asDefault();
+            throw $th;
         }
     }
 
     private function createFromFileStatusCode(int $fileStatusCode): BadgeContext
     {
         if ($fileStatusCode === 200) {
-            return BadgeContext::fromContextValue(GitAttributesFile::createAsCommitted());
+            return GitAttributesFile::createAsCommitted();
         }
 
         if ($fileStatusCode === 404) {
-            return BadgeContext::fromContextValue(GitAttributesFile::createAsUncommitted());
+            return GitAttributesFile::createAsUncommitted();
         }
 
-        return BadgeContext::fromContextValue(GitAttributesFile::createAsError());
+        return GitAttributesFile::createAsError();
     }
 }

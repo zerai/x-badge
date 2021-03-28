@@ -2,7 +2,7 @@
 
 namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
-use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
+use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\ComposerLockFile;
 
 final class ComposerLockProducer implements ContextProducer
@@ -25,20 +25,20 @@ final class ComposerLockProducer implements ContextProducer
             return $this->createFromFileStatusCode($composerLockFileStatusCode);
         } catch (\Throwable $th) {
             // log exception
-            return BadgeContext::asDefault();
+            throw $th;
         }
     }
 
     private function createFromFileStatusCode(int $fileStatusCode): BadgeContext
     {
         if ($fileStatusCode === 200) {
-            return BadgeContext::fromContextValue(ComposerLockFile::createAsCommitted());
+            return ComposerLockFile::createAsCommitted();
         }
 
         if ($fileStatusCode === 404) {
-            return BadgeContext::fromContextValue(ComposerLockFile::createAsUncommitted());
+            return ComposerLockFile::createAsUncommitted();
         }
 
-        return BadgeContext::fromContextValue(ComposerLockFile::createAsError());
+        return ComposerLockFile::createAsError();
     }
 }

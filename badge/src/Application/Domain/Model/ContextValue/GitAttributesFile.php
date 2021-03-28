@@ -2,10 +2,10 @@
 
 namespace Badge\Application\Domain\Model\ContextValue;
 
+use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\Common\CommittedFile;
-use Badge\Application\Domain\Model\RenderableValue;
 
-final class GitAttributesFile extends CommittedFile implements RenderableValue
+final class GitAttributesFile extends CommittedFile implements BadgeContext
 {
     private const COLOR_COMMITTED = '#96d490';
 

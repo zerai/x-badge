@@ -3,6 +3,7 @@
 namespace Badge\Application\Usecase;
 
 use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
+use Badge\Application\Image;
 use Badge\Application\ImageFactory;
 use Badge\Application\PortIn\GetComposerLockBadge;
 
@@ -18,7 +19,7 @@ final class ComposerLockBadgeGenerator implements GetComposerLockBadge
         $this->imageFactory = $imageFactory;
     }
 
-    public function getComposerLockBadge(string $packageName)
+    public function getComposerLockBadge(string $packageName): Image
     {
         try {
             $badgeImage = $this->imageFactory->createImageFromContext(

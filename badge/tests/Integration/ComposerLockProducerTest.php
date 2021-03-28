@@ -86,8 +86,6 @@ final class ComposerLockProducerTest extends TestCase
         //self::assertInstanceOf(BadgeContext::class, $result);
 
         self::assertInstanceOf(RenderableValue::class, $result);
-        
-        
         self::assertArrayHasKey('subject', $data);
         self::assertEquals($expectedArray['subject'], $data['subject']);
         self::assertArrayHasKey('subject-value', $data);

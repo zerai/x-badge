@@ -3,6 +3,7 @@
 namespace Badge\Adapter\Out;
 
 use Badge\Application\Domain\Model\RepositoryDetail;
+use Badge\Application\Domain\Model\Service\DefaultBranchDetector\DetectableBranch;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
 use RuntimeException;
@@ -21,9 +22,9 @@ class CommittedFileChecker
 
     private ClientInterface $httpClient;
 
-    private DefaultBranchDetector $branchDetector;
+    private DetectableBranch $branchDetector;
 
-    public function __construct(ClientInterface $httpClient, DefaultBranchDetector $branchDetector)
+    public function __construct(ClientInterface $httpClient, DetectableBranch $branchDetector)
     {
         $this->httpClient = $httpClient;
         $this->branchDetector = $branchDetector;

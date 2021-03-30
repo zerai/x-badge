@@ -28,6 +28,7 @@
         </include>
         <exclude>
             <directory>./badge/tests/Discovery</directory>
+            <directory>./badge/src/Infrastructure/FakePackagistServer</directory>
         </exclude>
         <report>
             <text outputFile="php://stdout" showOnlySummary="true" />

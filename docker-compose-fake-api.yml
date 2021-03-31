@@ -9,3 +9,11 @@ services:
     volumes:
       - ./badge/src/Infrastructure/FakePackagistServer:/srv/app:cached
     entrypoint: ["php", "-S", "0.0.0.0:80", "/srv/app/router.php"]
+
+  fake_github_server:
+    image: php:7.4-alpine
+    ports:
+      - "8081:80"
+    volumes:
+      - ./badge/src/Infrastructure/FakeGithubServer:/srv/app:cached
+    entrypoint: ["php", "-S", "0.0.0.0:80", "/srv/app/router.php"]

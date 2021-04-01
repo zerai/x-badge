@@ -25,9 +25,9 @@ if (\preg_match('#^/' . 'repos/seldaek/monolog' . '$#', $pathInfo) > 0) {
     exit;
 }
 
-if (\preg_match('#^/' . 'repos/sebastian/bergmann' . '$#', $pathInfo) > 0) {
+if (\preg_match('#^/' . 'repos/sebastianbergmann/phpunit' . '$#', $pathInfo) > 0) {
     \header('Content-Type: application/json');
-    echo \file_get_contents(__DIR__ . '/repository-sebastian-bergmann.json');
+    echo \file_get_contents(__DIR__ . '/repository-sebastianbergmann-phpunit.json');
     exit;
 }
 

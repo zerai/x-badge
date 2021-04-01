@@ -29,18 +29,27 @@ class ComposerLockRequestTest extends TestCase
         self::assertStringContainsString('committed', $badgeImage->getFileName());
     }
 
+    /**
+     * @psalm-return Generator<int, array{0: string}, mixed, void>
+     */
     public function packageWithCommittedComposerLockFile(): Generator
     {
         yield ['phpunit/phpunit'];
         yield ['phpunit/php-code-coverage'];
     }
 
+    /**
+     * @psalm-return Generator<int, array{0: string}, mixed, void>
+     */
     public function packageWithUncommittedComposerLockFile(): Generator
     {
         yield ['phpunit/phpunit'];
         yield ['phpunit/php-code-coverage'];
     }
 
+    /**
+     * @psalm-return Generator<int, array{0: string}, mixed, void>
+     */
     public function packageWithCommittedGitAttributesFile(): Generator
     {
         yield ['phpunit/phpunit'];

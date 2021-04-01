@@ -14,12 +14,12 @@ use PHPUnit\Framework\TestCase;
 final class DefaultBranchDetectorTest extends TestCase
 {
     /**
-     * @var GithubClient|MockObject
+     * @var MockObject & GithubClient
      */
     private $githubClient;
 
     /**
-     * @var BitbucketClient|MockObject
+     * @var MockObject & BitbucketClient
      */
     private $bitbucketClient;
 
@@ -29,12 +29,13 @@ final class DefaultBranchDetectorTest extends TestCase
     {
         $this->githubClient = $this->getMockBuilder(GithubClient::class)
             ->disableOriginalConstructor()
-            ->setMethods(['show', 'api', 'getHttpClient', 'getLastResponse', 'get'])
+            ->onlyMethods(['api'])
+            ->addMethods(['show', 'get'])
             ->getMock();
 
         $this->bitbucketClient = $this->getMockBuilder(BitbucketClient::class)
             ->disableOriginalConstructor()
-            ->setMethods(['workspaces', 'getHttpClient'])
+            ->onlyMethods(['workspaces', 'getHttpClient'])
             ->getMock();
 
         $this->defaultBranchDetector = new DefaultBranchDetector(

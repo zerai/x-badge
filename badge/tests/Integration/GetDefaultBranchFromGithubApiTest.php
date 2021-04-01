@@ -16,12 +16,12 @@ use PHPUnit\Framework\TestCase;
 final class GetDefaultBranchFromGithubApiTest extends TestCase
 {
     /**
-     * @var GithubClient|null
+     * @var GithubClient
      */
     private $githubClient;
 
     /**
-     * @var BitbucketClient|null
+     * @var BitbucketClient
      */
     private $bitbucketClient;
 
@@ -53,7 +53,7 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
 
         $result = $detector->getDefaultBranch($repositoryDetail);
 
-        self::assertIsString($result);
+        self::assertNotEmpty($result);
     }
 
     /**
@@ -70,6 +70,6 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
 
         $result = $detector->getDefaultBranch($repositoryDetail);
 
-        self::assertIsString($result);
+        self::assertNotEmpty($result);
     }
 }

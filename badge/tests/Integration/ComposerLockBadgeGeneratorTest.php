@@ -20,12 +20,12 @@ use RuntimeException;
 final class ComposerLockBadgeGeneratorTest extends TestCase
 {
     /**
-     * @var ImageFactory|MockObject
+     * @var ImageFactory
      */
     private $imageFactory;
 
     /**
-     * @var ContextProducer|MockObject
+     * @var ContextProducer & MockObject
      */
     private $contextProducer;
 

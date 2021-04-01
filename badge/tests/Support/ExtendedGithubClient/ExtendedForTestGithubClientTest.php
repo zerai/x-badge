@@ -45,6 +45,6 @@ final class ExtendedForTestGithubClientTest extends TestCase
 
         $response = $extendedClient->repos()->show('sebastianbergmann', 'phpunit');
 
-        self::assertIsArray($response);
+        self::assertNotEmpty($response);
     }
 }

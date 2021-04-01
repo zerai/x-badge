@@ -32,11 +32,11 @@ stan:  # Runs a static analysis (phpstan/phpstan)
 
 .PHONY: tests
 tests: ## Runs tests with phpunit/phpunit
-	vendor/bin/phpunit
+	vendor/bin/phpunit --testsuite unit,integration,acceptance,support
 
 .PHONY: code-coverage
 code-coverage:  ## Collects coverage from running unit tests with phpunit/phpunit
-	vendor/bin/phpunit --coverage-text --coverage-html var/coverage/
+	vendor/bin/phpunit --testsuite unit,integration,acceptance --coverage-text --coverage-html var/coverage/
 
 .PHONY: clear-cache
 clear-cache:  ## Clean all cache (phpunit)

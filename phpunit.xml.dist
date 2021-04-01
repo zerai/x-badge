@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.5/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         cacheResultFile="var/.phpunit.cache/test-results"
+         executionOrder="depends,defects"
+         forceCoversAnnotation="false"
+         beStrictAboutCoversAnnotation="false"
+         beStrictAboutOutputDuringTests="true"
+         beStrictAboutTodoAnnotatedTests="true"
+         failOnRisky="true"
+         failOnWarning="true"
+         colors="true"
+         verbose="true">
+    <php>
+        <!-- ###+ fake github api server ### -->
+        <env name="FAKE_GITHUB_API_URI" value="http://127.0.0.1:8081"/>
+        <!-- ###- fake github api server ### -->
+    </php>
+    <testsuites>
+        <testsuite name="acceptance">
+            <directory suffix="Test.php">./badge/tests/Acceptance</directory>
+        </testsuite>
+        <testsuite name="e2e">
+            <directory suffix="Test.php">./badge/tests/E2E</directory>
+        </testsuite>
+        <testsuite name="integration">
+            <directory suffix="Test.php">./badge/tests/Integration</directory>
+        </testsuite>
+        <testsuite name="support">
+            <directory suffix="Test.php">./badge/tests/Support</directory>
+        </testsuite>
+        <testsuite name="unit">
+            <directory suffix="Test.php">./badge/tests/Unit</directory>
+        </testsuite>
+    </testsuites>
+    <groups>
+        <exclude>
+            <group>slow</group>
+            <group>io-network</group>
+        </exclude>
+    </groups>
+
+    <coverage cacheDirectory="var/.phpunit.cache/code-coverage"
+              processUncoveredFiles="true">
+        <include>
+            <directory suffix=".php">./badge/src</directory>
+        </include>
+        <exclude>
+            <directory>./badge/tests/Discovery</directory>
+            <directory>./badge/src/Infrastructure/FakePackagistServer</directory>
+            <directory>./badge/src/Infrastructure/FakeGithubServer</directory>
+        </exclude>
+        <report>
+            <text outputFile="php://stdout" showOnlySummary="true" />
+        </report>
+    </coverage>
+</phpunit>

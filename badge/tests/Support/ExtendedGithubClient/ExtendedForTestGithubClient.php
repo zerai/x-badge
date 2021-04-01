@@ -7,6 +7,7 @@ use Github\HttpClient\Builder;
 use Github\HttpClient\Plugin\GithubExceptionThrower;
 use Github\HttpClient\Plugin\History;
 use Http\Discovery\UriFactoryDiscovery;
+use InvalidArgumentException;
 
 class ExtendedForTestGithubClient extends Client
 {
@@ -31,8 +32,11 @@ class ExtendedForTestGithubClient extends Client
      * @param string|null  $apiVersion
      * @param string|null  $enterpriseUrl
      */
-    public function __construct(string $testBaseUri = 'http://127.0.0.1', Builder $httpClientBuilder = null, $apiVersion = null, $enterpriseUrl = null)
+    public function __construct(string $fakeServerBaseUri = '', Builder $httpClientBuilder = null, $apiVersion = null, $enterpriseUrl = null)
     {
+        if ($fakeServerBaseUri === '') {
+            throw new InvalidArgumentException('ExtendedGithubClient error: empty URI is not allowed.');
+        }
         $this->responseHistory = new History();
         $this->httpClientBuilder = $builder = $httpClientBuilder ?: new Builder();
 
@@ -40,7 +44,7 @@ class ExtendedForTestGithubClient extends Client
         $builder->addPlugin(new \Http\Client\Common\Plugin\HistoryPlugin($this->responseHistory));
         $builder->addPlugin(new \Http\Client\Common\Plugin\RedirectPlugin());
         /** @psalm-suppress DeprecatedClass */
-        $builder->addPlugin(new \Http\Client\Common\Plugin\AddHostPlugin(UriFactoryDiscovery::find()->createUri($testBaseUri)));
+        $builder->addPlugin(new \Http\Client\Common\Plugin\AddHostPlugin(UriFactoryDiscovery::find()->createUri($fakeServerBaseUri)));
         $builder->addPlugin(new \Http\Client\Common\Plugin\HeaderDefaultsPlugin([
             'User-Agent' => 'php-github-api (http://github.com/KnpLabs/php-github-api)',
         ]));

@@ -2,14 +2,16 @@
 
 namespace Badge\Tests\Support\ExtendedGithubClient;
 
+use Badge\Infrastructure\Env;
 use Github\Exception\RuntimeException;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @group io-network
+ */
 final class ExtendedForTestGithubClientTest extends TestCase
 {
-    private const FAKE_GITHUB_API_SERVER = '127.0.0.1:8081';
-
     /**
      * @test
      */
@@ -29,7 +31,7 @@ final class ExtendedForTestGithubClientTest extends TestCase
         self::expectException(RuntimeException::class);
         self::expectExceptionMessage('Page not found');
 
-        $extendedClient = new ExtendedForTestGithubClient(self::FAKE_GITHUB_API_SERVER);
+        $extendedClient = new ExtendedForTestGithubClient(Env::get('FAKE_GITHUB_API_URI'));
 
         $extendedClient->repos()->show('foo', 'bar');
     }
@@ -39,7 +41,7 @@ final class ExtendedForTestGithubClientTest extends TestCase
      */
     public function canReturnAStubedResponseForKnownRepository(): void
     {
-        $extendedClient = new ExtendedForTestGithubClient(self::FAKE_GITHUB_API_SERVER);
+        $extendedClient = new ExtendedForTestGithubClient(Env::get('FAKE_GITHUB_API_URI'));
 
         $response = $extendedClient->repos()->show('sebastianbergmann', 'phpunit');
 

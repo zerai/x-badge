@@ -2,8 +2,9 @@
 
 namespace Badge\Application;
 
+use Badge\Application\PortIn\CreateSuggestersBadge;
 use Badge\Application\PortIn\GetComposerLockBadge;
 
-interface BadgeApplicationInterface extends GetComposerLockBadge
+interface BadgeApplicationInterface extends GetComposerLockBadge, CreateSuggestersBadge
 {
 }

@@ -5,14 +5,17 @@ namespace Badge\Infrastructure;
 use Badge\Adapter\Out\CommittedFileChecker;
 use Badge\Adapter\Out\CommittedFileDetector;
 use Badge\Adapter\Out\DefaultBranchDetector;
+use Badge\Adapter\Out\PackagistContextValueReader;
 use Badge\Adapter\Out\PackagistRepositoryReader;
 use Badge\Application\BadgeApplication;
 use Badge\Application\BadgeApplicationInterface;
 use Badge\Application\Domain\Model\Service\ContextProducer\ComposerLockProducer;
+use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer;
 use Badge\Application\Domain\Model\Service\DefaultBranchDetector\DetectableBranch;
 use Badge\Application\Domain\Model\Service\RepositoryReader\RepositoryDetailReader;
 use Badge\Application\ImageFactory;
 use Badge\Application\Usecase\ComposerLockBadgeGenerator;
+use Badge\Application\Usecase\SuggestersBadgeGenerator;
 use Bitbucket\Client as BitbucketClient;
 use Github\Client as GithubClient;
 use GuzzleHttp\ClientInterface as GuzzleHttpClient;
@@ -40,11 +43,18 @@ abstract class ServiceContainer
 
     protected ?ComposerLockBadgeGenerator $composerLockUseCase = null;
 
+    protected ?PackagistContextValueReader $contextValueReader = null;
+
+    protected ?SuggestersProducer $suggestersProducer = null;
+
+    protected ?SuggestersBadgeGenerator $suggestersUseCase = null;
+
     public function application(): BadgeApplicationInterface
     {
         if ($this->application === null) {
             $this->application = new BadgeApplication(
                 $this->composerLockUseCase(),
+                $this->suggestersUseCase(),
             );
         }
 
@@ -136,6 +146,40 @@ abstract class ServiceContainer
         }
 
         return $this->composerLockUseCase;
+    }
+
+    protected function contextValueReader(): PackagistContextValueReader
+    {
+        if ($this->contextValueReader === null) {
+            $this->contextValueReader = new PackagistContextValueReader(
+                $this->packagistApiClient()
+            );
+        }
+
+        return $this->contextValueReader;
+    }
+
+    protected function suggestersProducer(): SuggestersProducer
+    {
+        if ($this->suggestersProducer === null) {
+            $this->suggestersProducer = new SuggestersProducer(
+                $this->contextValueReader()
+            );
+        }
+
+        return $this->suggestersProducer;
+    }
+
+    protected function suggestersUseCase(): SuggestersBadgeGenerator
+    {
+        if ($this->suggestersUseCase === null) {
+            $this->suggestersUseCase = new SuggestersBadgeGenerator(
+                $this->suggestersProducer(),
+                $this->imageFactory()
+            );
+        }
+
+        return $this->suggestersUseCase;
     }
 
     abstract protected function packagistApiClient(): PackagistClient;

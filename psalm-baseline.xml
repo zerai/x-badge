@@ -5,31 +5,6 @@
       <code>$repoBitbucketData['mainbranch']['name']</code>
     </MixedArrayAccess>
   </file>
-  <file src="badge/tests/Integration/CommittedFileCheckerTest.php">
-    <DeprecatedMethod occurrences="1">
-      <code>setMethods</code>
-    </DeprecatedMethod>
-    <MixedMethodCall occurrences="10">
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>method</code>
-      <code>will</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-    </MixedMethodCall>
-    <PossiblyUndefinedMethod occurrences="6">
-      <code>expects</code>
-      <code>expects</code>
-      <code>expects</code>
-      <code>expects</code>
-      <code>expects</code>
-      <code>expects</code>
-    </PossiblyUndefinedMethod>
-  </file>
   <file src="badge/tests/Integration/ComposerLockProducerTest.php">
     <DeprecatedMethod occurrences="1">
       <code>setMethods</code>

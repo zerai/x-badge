@@ -22,12 +22,12 @@ final class CommittedFileCheckerTest extends TestCase
     private const GITHUB_REPOSITORY_URL = 'https://github.com/foo/bar';
 
     /**
-     * @var ClientInterface|MockObject
+     * @var ClientInterface & MockObject
      */
     private $httpClient;
 
     /**
-     * @var DefaultBranchDetector|MockObject
+     * @var DefaultBranchDetector & MockObject
      */
     private $branchDetector;
 
@@ -128,7 +128,7 @@ final class CommittedFileCheckerTest extends TestCase
     {
         return $this->getMockBuilder($className)
             ->disableOriginalConstructor()
-            ->setMethods($methods)
+            ->onlyMethods($methods)
             ->getMock();
     }
 }

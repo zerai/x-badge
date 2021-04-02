@@ -5,14 +5,6 @@
       <code>$repoBitbucketData['mainbranch']['name']</code>
     </MixedArrayAccess>
   </file>
-  <file src="badge/src/Application/Domain/Model/BadgeContext/BadgeContext.php">
-    <MixedArgument occurrences="1">
-      <code>$value-&gt;renderingProperties()</code>
-    </MixedArgument>
-    <UndefinedInterfaceMethod occurrences="1">
-      <code>renderingProperties</code>
-    </UndefinedInterfaceMethod>
-  </file>
   <file src="badge/tests/Integration/CommittedFileCheckerTest.php">
     <DeprecatedMethod occurrences="1">
       <code>setMethods</code>
@@ -52,6 +44,17 @@
       <code>expects</code>
       <code>expects</code>
     </PossiblyUndefinedMethod>
+  </file>
+  <file src="badge/tests/Integration/DefaultBranchDetectorTest.php">
+    <DeprecatedMethod occurrences="1">
+      <code>setMethods</code>
+    </DeprecatedMethod>
+  </file>
+  <file src="badge/tests/Integration/GetDefaultBranchFromGithubApiTest.php">
+    <PossiblyNullPropertyAssignmentValue occurrences="2">
+      <code>null</code>
+      <code>null</code>
+    </PossiblyNullPropertyAssignmentValue>
   </file>
   <file src="badge/tests/Integration/GitAttributesProducerTest.php">
     <DeprecatedMethod occurrences="1">

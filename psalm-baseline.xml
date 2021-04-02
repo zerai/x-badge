@@ -46,17 +46,4 @@
       <code>expects</code>
     </PossiblyUndefinedMethod>
   </file>
-  <file src="badge/tests/Integration/PackagistRepositoryReaderTest.php">
-    <DeprecatedMethod occurrences="2">
-      <code>setMethods</code>
-      <code>setMethods</code>
-    </DeprecatedMethod>
-    <MixedMethodCall occurrences="2">
-      <code>method</code>
-      <code>willReturn</code>
-    </MixedMethodCall>
-    <PossiblyUndefinedMethod occurrences="1">
-      <code>expects</code>
-    </PossiblyUndefinedMethod>
-  </file>
 </files>

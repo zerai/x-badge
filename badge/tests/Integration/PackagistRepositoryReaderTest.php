@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 final class PackagistRepositoryReaderTest extends TestCase
 {
     /**
-     * @var PackagistClient|MockObject
+     * @var PackagistClient & MockObject
      */
     private $packagistClient;
 
@@ -25,7 +25,7 @@ final class PackagistRepositoryReaderTest extends TestCase
     {
         $this->packagistClient = $this->getMockBuilder(PackagistClient::class)
             ->disableOriginalConstructor()
-            ->setMethods(['get'])
+            ->onlyMethods(['get'])
             ->getMock();
 
         $this->repositoryReader = new PackagistRepositoryReader($this->packagistClient);
@@ -72,7 +72,7 @@ final class PackagistRepositoryReaderTest extends TestCase
     {
         return $this->getMockBuilder($className)
             ->disableOriginalConstructor()
-            ->setMethods($methods)
+            ->onlyMethods($methods)
             ->getMock();
     }
 }

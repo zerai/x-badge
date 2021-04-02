@@ -31,19 +31,4 @@
       <code>null</code>
     </PossiblyNullPropertyAssignmentValue>
   </file>
-  <file src="badge/tests/Integration/GitAttributesProducerTest.php">
-    <DeprecatedMethod occurrences="1">
-      <code>setMethods</code>
-    </DeprecatedMethod>
-    <MixedMethodCall occurrences="4">
-      <code>method</code>
-      <code>method</code>
-      <code>willReturn</code>
-      <code>willReturn</code>
-    </MixedMethodCall>
-    <PossiblyUndefinedMethod occurrences="2">
-      <code>expects</code>
-      <code>expects</code>
-    </PossiblyUndefinedMethod>
-  </file>
 </files>

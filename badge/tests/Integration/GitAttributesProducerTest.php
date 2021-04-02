@@ -21,12 +21,12 @@ final class GitAttributesProducerTest extends TestCase
     private const STATUS_ERROR = 500;
 
     /**
-     * @var CommittedFileChecker|MockObject
+     * @var CommittedFileChecker & MockObject
      */
     private $fileChecker;
 
     /**
-     * @var RepositoryDetailReader|MockObject
+     * @var RepositoryDetailReader & MockObject
      */
     private $repositoryReader;
 
@@ -39,7 +39,7 @@ final class GitAttributesProducerTest extends TestCase
     {
         $this->fileChecker = $this->getMockBuilder(CommittedFileChecker::class)
             ->disableOriginalConstructor()
-            ->setMethods(['checkFile'])
+            ->onlyMethods(['checkFile'])
             ->getMock();
 
         $this->repositoryReader = $this->getMockBuilder(RepositoryDetailReader::class)
@@ -58,7 +58,8 @@ final class GitAttributesProducerTest extends TestCase
      */
     public function shouldProduceBadgeContextForAGitattributesFile(int $httpFileStatus, array $expectedArray): void
     {
-        $this->fileChecker->expects($this->once())
+        $this->fileChecker
+            ->expects($this->once())
             ->method('checkFile')
             ->willReturn($httpFileStatus);
 

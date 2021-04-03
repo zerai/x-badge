@@ -1,6 +1,16 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Property Badge\\\\Tests\\\\Acceptance\\\\AcceptanceTestCase\\:\\:\\$application \\(Badge\\\\Application\\\\BadgeApplicationInterface\\) does not accept null\\.$#"
+			count: 1
+			path: badge/tests/Acceptance/AcceptanceTestCase.php
+
+		-
+			message: "#^Unreachable statement \\- code above always terminates\\.$#"
+			count: 1
+			path: badge/tests/Acceptance/ComposerLockUseCaseTest.php
+
+		-
 			message: "#^Unreachable statement \\- code above always terminates\\.$#"
 			count: 1
 			path: badge/tests/E2E/ComposerLockRequestTest.php

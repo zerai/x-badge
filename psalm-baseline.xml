@@ -5,6 +5,11 @@
       <code>$repoBitbucketData['mainbranch']['name']</code>
     </MixedArrayAccess>
   </file>
+  <file src="badge/tests/Acceptance/AcceptanceTestCase.php">
+    <PossiblyNullPropertyAssignmentValue occurrences="1">
+      <code>null</code>
+    </PossiblyNullPropertyAssignmentValue>
+  </file>
   <file src="badge/tests/Integration/DefaultBranchDetectorTest.php">
     <DeprecatedMethod occurrences="1">
       <code>setMethods</code>

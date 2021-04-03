@@ -115,6 +115,6 @@ jobs:
         name: Run support test
         run: ./vendor/bin/phpunit --testsuite support
 
-        -
+      -
         name: Run integration test
         run: ./vendor/bin/phpunit --testsuite integration

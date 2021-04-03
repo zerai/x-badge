@@ -123,7 +123,7 @@ jobs:
 
       -
         name: Run webserver
-        run: symfony server:start --port=8080 --dir=badge/src/Infrastructure/FakePackagistServer --daemon --no-tls
+        run: symfony server:start --port=8082 --dir=badge/src/Infrastructure/FakePackagistServer --daemon --no-tls
       -
         name: Run integration test
         run: ./vendor/bin/phpunit --testsuite integration

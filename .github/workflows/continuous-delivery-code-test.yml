@@ -123,13 +123,14 @@ jobs:
 
       -
         name: Run webserver
-        run: symfony server:start --port=8082 --dir=badge/src/Infrastructure/FakePackagistServer --daemon --no-tls
+        run: symfony server:start --port=8082 --dir=badge/tests/Acceptance/FakeAllInOneApiServer --daemon --no-tls
+
       -
         name: Run integration test
         run: ./vendor/bin/phpunit --testsuite integration
-        env:
-          FAKE_ALL_IN_ONE_API_URI: http://127.0.0.1:8080
 
       -
         name: Run acceptance test
-        run: ./vendor/bin/phpunit --testsuite acceptance 
+        run: ./vendor/bin/phpunit --testsuite acceptance
+        env:
+          FAKE_ALL_IN_ONE_API_URI: http://127.0.0.1:8082

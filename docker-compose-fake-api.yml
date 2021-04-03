@@ -17,3 +17,11 @@ services:
     volumes:
       - ./badge/src/Infrastructure/FakeGithubServer:/srv/app:cached
     entrypoint: ["php", "-S", "0.0.0.0:80", "/srv/app/router.php"]
+
+  fake_server_acceptance_test:
+    image: php:7.4-alpine
+    ports:
+      - "8082:80"
+    volumes:
+      - ./badge/tests/Acceptance/FakeAllInOneApiServer:/srv/app:cached
+    entrypoint: ["php", "-S", "0.0.0.0:80", "/srv/app/router.php"]

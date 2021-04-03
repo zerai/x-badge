@@ -16,6 +16,10 @@
         <!-- ###+ fake github api server ### -->
         <env name="FAKE_GITHUB_API_URI" value="http://127.0.0.1:8081"/>
         <!-- ###- fake github api server ### -->
+
+        <!-- ###+ fake packagist|github|bitbucket api server ### -->
+        <env name="FAKE_ALL_IN_ONE_API_URI" value="http://127.0.0.1:8082"/>
+        <!-- ###- fake packagist|github|bitbucket api server ### -->
     </php>
     <testsuites>
         <testsuite name="acceptance">

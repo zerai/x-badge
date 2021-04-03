@@ -118,3 +118,7 @@ jobs:
       -
         name: Run integration test
         run: ./vendor/bin/phpunit --testsuite integration
+
+      -
+        name: Run acceptance test
+        run: ./vendor/bin/phpunit --testsuite acceptance 

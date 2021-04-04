@@ -16,6 +16,7 @@ use Badge\Application\Domain\Model\Service\DefaultBranchDetector\DetectableBranc
 use Badge\Application\Domain\Model\Service\RepositoryReader\RepositoryDetailReader;
 use Badge\Application\ImageFactory;
 use Badge\Application\Usecase\ComposerLockBadgeGenerator;
+use Badge\Application\Usecase\DependentsBadgeGenerator;
 use Badge\Application\Usecase\SuggestersBadgeGenerator;
 use Bitbucket\Client as BitbucketClient;
 use Github\Client as GithubClient;
@@ -51,6 +52,8 @@ abstract class ServiceContainer
     protected ?SuggestersBadgeGenerator $suggestersUseCase = null;
 
     protected ?DependentsProducer $dependentsProducer = null;
+
+    protected ?DependentsBadgeGenerator $dependentsUseCase = null;
 
     public function application(): BadgeApplicationInterface
     {
@@ -194,6 +197,18 @@ abstract class ServiceContainer
         }
 
         return $this->dependentsProducer;
+    }
+
+    protected function dependentsUseCase(): DependentsBadgeGenerator
+    {
+        if ($this->dependentsUseCase === null) {
+            $this->dependentsUseCase = new DependentsBadgeGenerator(
+                $this->dependentsProducer(),
+                $this->imageFactory()
+            );
+        }
+
+        return $this->dependentsUseCase;
     }
 
     abstract protected function packagistApiClient(): PackagistClient;

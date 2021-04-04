@@ -5,7 +5,7 @@ namespace Badge\Application\Domain\Model\ContextValue;
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\Common\PostFixCount;
 
-final class MontlyDownloads extends PostFixCount implements BadgeContext
+final class MonthlyDownloads extends PostFixCount implements BadgeContext
 {
     private const COLOR = '007ec6';
 

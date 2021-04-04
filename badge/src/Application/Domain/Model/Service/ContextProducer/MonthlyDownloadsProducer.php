@@ -3,7 +3,7 @@
 namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\ContextValue\MontlyDownloads;
+use Badge\Application\Domain\Model\ContextValue\MonthlyDownloads;
 
 final class MonthlyDownloadsProducer implements ContextProducer
 {
@@ -20,7 +20,7 @@ final class MonthlyDownloadsProducer implements ContextProducer
     public function contextFor(string $packageName): BadgeContext
     {
         try {
-            return new MontlyDownloads($this->monthlyDownloadsReader->readMonthlyDownloads($packageName));
+            return new MonthlyDownloads($this->monthlyDownloadsReader->readMonthlyDownloads($packageName));
         } catch (\Exception $e) {
             throw $e;
         }

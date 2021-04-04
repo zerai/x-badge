@@ -6,11 +6,11 @@ use Badge\Application\Domain\Model\BadgeContext;
 
 use Badge\Application\Domain\Model\ContextualizableValue;
 use Badge\Application\Domain\Model\ContextValue\Common\PostFixCount;
-use Badge\Application\Domain\Model\ContextValue\MontlyDownloads;
+use Badge\Application\Domain\Model\ContextValue\MonthlyDownloads;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-final class MontlyDownloadsTest extends TestCase
+final class MonthlyDownloadsTest extends TestCase
 {
     private const COLOR = '007ec6';
 
@@ -23,12 +23,12 @@ final class MontlyDownloadsTest extends TestCase
     {
         $inputValue = 10;
 
-        $sut = new MontlyDownloads($inputValue);
+        $sut = new MonthlyDownloads($inputValue);
 
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(BadgeContext::class, $sut);
         self::assertInstanceOf(PostFixCount::class, $sut);
-        self::assertInstanceOf(MontlyDownloads::class, $sut);
+        self::assertInstanceOf(MonthlyDownloads::class, $sut);
     }
 
     /**
@@ -40,7 +40,7 @@ final class MontlyDownloadsTest extends TestCase
 
         $inputValue = -10;
 
-        new MontlyDownloads($inputValue);
+        new MonthlyDownloads($inputValue);
     }
 
     /**
@@ -50,7 +50,7 @@ final class MontlyDownloadsTest extends TestCase
     {
         $inputValue = 10;
 
-        $sut = new MontlyDownloads($inputValue);
+        $sut = new MonthlyDownloads($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('10 this month', $sut->asBadgeValue());
@@ -69,7 +69,7 @@ final class MontlyDownloadsTest extends TestCase
 
         $inputValue = 10;
 
-        $sut = new MontlyDownloads($inputValue);
+        $sut = new MonthlyDownloads($inputValue);
 
         self::assertEquals($expectedRenderingProperties, $sut->renderingProperties());
     }
@@ -81,7 +81,7 @@ final class MontlyDownloadsTest extends TestCase
     {
         $inputValue = 0;
 
-        $sut = new MontlyDownloads($inputValue);
+        $sut = new MonthlyDownloads($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('1 this month', $sut->asBadgeValue());
@@ -98,7 +98,7 @@ final class MontlyDownloadsTest extends TestCase
      */
     public function testGoodNumberToTextConversion(int $input, string $output): void
     {
-        $result = (new MontlyDownloads($input))->asBadgeValue();
+        $result = (new MonthlyDownloads($input))->asBadgeValue();
 
         $this->assertEquals($output, $result);
     }

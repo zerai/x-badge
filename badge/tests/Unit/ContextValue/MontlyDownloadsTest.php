@@ -10,7 +10,7 @@ use Badge\Application\Domain\Model\ContextValue\MontlyDownloads;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-final class MontlyDownloadTest extends TestCase
+final class MontlyDownloadsTest extends TestCase
 {
     private const COLOR = '007ec6';
 

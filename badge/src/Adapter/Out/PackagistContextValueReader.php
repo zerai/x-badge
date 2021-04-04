@@ -28,4 +28,15 @@ final class PackagistContextValueReader implements ContextValueReader
 
         return $package->getSuggesters();
     }
+
+    /**
+     * @param string $packageName full package name "[vendor]/[package]"
+     */
+    public function readDependents(string $packageName): int
+    {
+        /** @var Package $package */
+        $package = $this->packagistClient->get($packageName);
+
+        return $package->getDependents();
+    }
 }

@@ -51,4 +51,29 @@ final class PackagistContextValueReaderTest extends TestCase
 
         self::assertEquals($expectedSuggesters, $result);
     }
+
+    /**
+     * @test
+     */
+    public function shouldReadADependentsValue(): void
+    {
+        $expectedDependents = 5;
+        $package = $this->getMockBuilder(Package::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getDependents'])
+            ->getMock();
+
+        $package->expects($this->once())
+            ->method('getDependents')
+            ->willReturn($expectedDependents);
+
+        $this->packagistClient
+            ->expects($this->once())
+            ->method('get')
+            ->willReturn($package);
+
+        $result = $this->packagistContextValueReader->readDependents('irrelevant/irrelevant');
+
+        self::assertEquals($expectedDependents, $result);
+    }
 }

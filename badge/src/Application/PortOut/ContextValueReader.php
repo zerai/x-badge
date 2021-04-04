@@ -2,8 +2,9 @@
 
 namespace Badge\Application\PortOut;
 
+use Badge\Application\Domain\Model\Service\ContextProducer\DependentsReader;
 use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersReader;
 
-interface ContextValueReader extends SuggestersReader
+interface ContextValueReader extends SuggestersReader, DependentsReader
 {
 }

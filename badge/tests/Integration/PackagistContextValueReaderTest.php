@@ -111,4 +111,38 @@ final class PackagistContextValueReaderTest extends TestCase
 
         self::assertEquals($expectedTotalDownloads, $result);
     }
+
+    /**
+     * @test
+     */
+    public function shouldReadAMonthlyDownloadsValue(): void
+    {
+        $expectedTotalDownloads = 5;
+
+        $downloads = $this->getMockBuilder(Downloads::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getMonthly'])
+            ->getMock();
+        $downloads->expects($this->once())
+            ->method('getMonthly')
+            ->willReturn($expectedTotalDownloads);
+
+        $package = $this->getMockBuilder(Package::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getDownloads'])
+            ->getMock();
+
+        $package->expects($this->once())
+            ->method('getDownloads')
+            ->willReturn($downloads);
+
+        $this->packagistClient
+            ->expects($this->once())
+            ->method('get')
+            ->willReturn($package);
+
+        $result = $this->packagistContextValueReader->readMonthlyDownloads('irrelevant/irrelevant');
+
+        self::assertEquals($expectedTotalDownloads, $result);
+    }
 }

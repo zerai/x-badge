@@ -5,12 +5,12 @@ namespace Badge\Tests\Unit\UseCase;
 use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
 use Badge\Application\Image;
 use Badge\Application\ImageFactory;
-use Badge\Application\Usecase\TotalDownloadsBadgeGenerator;
+use Badge\Application\Usecase\MonthlyDownloadsBadgeGenerator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
-final class TotalDownloadsBadgeGeneratorTest extends TestCase
+final class MonthlyDownloadsBadgeGeneratorTest extends TestCase
 {
     /**
      * @var ContextProducer & MockObject
@@ -22,7 +22,7 @@ final class TotalDownloadsBadgeGeneratorTest extends TestCase
      */
     private $imageFactory;
 
-    private TotalDownloadsBadgeGenerator $useCase;
+    private MonthlyDownloadsBadgeGenerator $useCase;
 
     protected function setUp(): void
     {
@@ -33,7 +33,7 @@ final class TotalDownloadsBadgeGeneratorTest extends TestCase
         $this->imageFactory = $this->getMockBuilder(ImageFactory::class)
             ->getMock();
 
-        $this->useCase = new TotalDownloadsBadgeGenerator($this->contextProducer, $this->imageFactory);
+        $this->useCase = new MonthlyDownloadsBadgeGenerator($this->contextProducer, $this->imageFactory);
     }
 
     /**
@@ -49,7 +49,7 @@ final class TotalDownloadsBadgeGeneratorTest extends TestCase
             ->expects($this->never())
             ->method('createImageForDefaultBadge');
 
-        $result = $this->useCase->createTotalDownloadsBadge('irrelevant/irrelevant');
+        $result = $this->useCase->createMonthlyDownloadsBadge('irrelevant/irrelevant');
 
         self::assertInstanceOf(Image::class, $result);
     }
@@ -68,7 +68,7 @@ final class TotalDownloadsBadgeGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('createImageForDefaultBadge');
 
-        $result = $this->useCase->createTotalDownloadsBadge('irrelevant/irrelevant');
+        $result = $this->useCase->createMonthlyDownloadsBadge('irrelevant/irrelevant');
 
         self::assertInstanceOf(Image::class, $result);
     }

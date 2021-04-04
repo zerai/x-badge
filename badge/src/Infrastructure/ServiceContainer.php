@@ -19,6 +19,7 @@ use Badge\Application\Domain\Model\Service\RepositoryReader\RepositoryDetailRead
 use Badge\Application\ImageFactory;
 use Badge\Application\Usecase\ComposerLockBadgeGenerator;
 use Badge\Application\Usecase\DependentsBadgeGenerator;
+use Badge\Application\Usecase\MonthlyDownloadsBadgeGenerator;
 use Badge\Application\Usecase\SuggestersBadgeGenerator;
 use Badge\Application\Usecase\TotalDownloadsBadgeGenerator;
 use Bitbucket\Client as BitbucketClient;
@@ -63,6 +64,8 @@ abstract class ServiceContainer
     protected ?TotalDownloadsBadgeGenerator $totalDownloadsUseCase = null;
 
     protected ?MonthlyDownloadsProducer $monthlyDownloadsProducer = null;
+
+    protected ?MonthlyDownloadsBadgeGenerator $monthlyDownloadsUseCase = null;
 
     public function application(): BadgeApplicationInterface
     {
@@ -254,6 +257,18 @@ abstract class ServiceContainer
         }
 
         return $this->monthlyDownloadsProducer;
+    }
+
+    protected function monthlyDownloadsUseCase(): MonthlyDownloadsBadgeGenerator
+    {
+        if ($this->monthlyDownloadsUseCase === null) {
+            $this->monthlyDownloadsUseCase = new MonthlyDownloadsBadgeGenerator(
+                $this->monthlyDownloadsProducer(),
+                $this->imageFactory()
+            );
+        }
+
+        return $this->monthlyDownloadsUseCase;
     }
 
     abstract protected function packagistApiClient(): PackagistClient;

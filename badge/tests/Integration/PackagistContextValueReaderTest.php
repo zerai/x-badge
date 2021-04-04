@@ -5,6 +5,7 @@ namespace Badge\Tests\Integration;
 use Badge\Adapter\Out\PackagistContextValueReader;
 use Packagist\Api\Client;
 use Packagist\Api\Result\Package;
+use Packagist\Api\Result\Package\Downloads;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -75,5 +76,39 @@ final class PackagistContextValueReaderTest extends TestCase
         $result = $this->packagistContextValueReader->readDependents('irrelevant/irrelevant');
 
         self::assertEquals($expectedDependents, $result);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldReadATotalDownloadsValue(): void
+    {
+        $expectedTotalDownloads = 5;
+
+        $downloads = $this->getMockBuilder(Downloads::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getTotal'])
+            ->getMock();
+        $downloads->expects($this->once())
+            ->method('getTotal')
+            ->willReturn($expectedTotalDownloads);
+
+        $package = $this->getMockBuilder(Package::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getDownloads'])
+            ->getMock();
+
+        $package->expects($this->once())
+            ->method('getDownloads')
+            ->willReturn($downloads);
+
+        $this->packagistClient
+            ->expects($this->once())
+            ->method('get')
+            ->willReturn($package);
+
+        $result = $this->packagistContextValueReader->readTotalDownloads('irrelevant/irrelevant');
+
+        self::assertEquals($expectedTotalDownloads, $result);
     }
 }

@@ -39,4 +39,12 @@ final class PackagistContextValueReader implements ContextValueReader
 
         return $package->getDependents();
     }
+
+    public function readTotalDownloads(string $packageName): int
+    {
+        /** @var Package $package */
+        $package = $this->packagistClient->get($packageName);
+
+        return $package->getDownloads()->getTotal();
+    }
 }

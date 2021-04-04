@@ -47,6 +47,16 @@ if (\preg_match('#^/' . 'packages/irrelevantvendor/package-with-zero-suggesters'
     exit;
 }
 
+/**
+ *  Dependents usecase responses
+ */
+
+if (\preg_match('#^/' . 'packages/irrelevantvendor/package-with-zero-dependents' . '\.json$#', $pathInfo) > 0) {
+    \header('Content-Type: application/json');
+    echo \file_get_contents(__DIR__ . '/package-with-zero-dependents.json');
+    exit;
+}
+
 
 \header('HTTP/1.0 404 Not Found');
 echo 'Page not found';

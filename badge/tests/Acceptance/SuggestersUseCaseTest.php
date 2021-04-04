@@ -31,6 +31,7 @@ final class SuggestersUseCaseTest extends AcceptanceTestCase
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasColor(self::COLOR, $result));
+        self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
     }
 
     /**
@@ -53,6 +54,7 @@ final class SuggestersUseCaseTest extends AcceptanceTestCase
 
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertFalse(self::isDefaultBadgeImage($result));
+        self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
     }
 
     public static function isDefaultBadgeImage(Image $value): bool

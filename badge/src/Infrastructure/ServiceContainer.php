@@ -19,6 +19,7 @@ use Badge\Application\ImageFactory;
 use Badge\Application\Usecase\ComposerLockBadgeGenerator;
 use Badge\Application\Usecase\DependentsBadgeGenerator;
 use Badge\Application\Usecase\SuggestersBadgeGenerator;
+use Badge\Application\Usecase\TotalDownloadsBadgeGenerator;
 use Bitbucket\Client as BitbucketClient;
 use Github\Client as GithubClient;
 use GuzzleHttp\ClientInterface as GuzzleHttpClient;
@@ -57,6 +58,8 @@ abstract class ServiceContainer
     protected ?DependentsBadgeGenerator $dependentsUseCase = null;
 
     protected ?TotalDownloadsProducer $totalDownloadsProducer = null;
+
+    protected ?TotalDownloadsBadgeGenerator $totalDownloadsUseCase = null;
 
     public function application(): BadgeApplicationInterface
     {
@@ -224,6 +227,18 @@ abstract class ServiceContainer
         }
 
         return $this->totalDownloadsProducer;
+    }
+
+    protected function totalDownloadsUseCase(): TotalDownloadsBadgeGenerator
+    {
+        if ($this->totalDownloadsUseCase === null) {
+            $this->totalDownloadsUseCase = new TotalDownloadsBadgeGenerator(
+                $this->totalDownloadsProducer(),
+                $this->imageFactory()
+            );
+        }
+
+        return $this->totalDownloadsUseCase;
     }
 
     abstract protected function packagistApiClient(): PackagistClient;

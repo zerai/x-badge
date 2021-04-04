@@ -31,6 +31,7 @@ final class DependentsUseCaseTest extends AcceptanceTestCase
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasColor(self::COLOR, $result));
+        self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
     }
 
     /**
@@ -38,7 +39,7 @@ final class DependentsUseCaseTest extends AcceptanceTestCase
      */
     public function createDefaultBadgeIfError(): void
     {
-        $result = $this->application->createSuggestersBadge('notexist/package');
+        $result = $this->application->createDependentsBadge('notexist/package');
 
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertTrue(self::isDefaultBadgeImage($result));
@@ -49,10 +50,12 @@ final class DependentsUseCaseTest extends AcceptanceTestCase
      */
     public function createABadgeForAPackageWithZeroDependents(): void
     {
-        $result = $this->application->createSuggestersBadge('irrelevantvendor/package-with-zero-dependents');
+        $result = $this->application->createDependentsBadge('irrelevantvendor/package-with-zero-dependents');
 
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertFalse(self::isDefaultBadgeImage($result));
+        self::assertTrue(self::badgeImageHasColor(self::COLOR, $result));
+        self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
     }
 
     public static function isDefaultBadgeImage(Image $value): bool

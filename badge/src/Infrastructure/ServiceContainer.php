@@ -74,7 +74,8 @@ abstract class ServiceContainer
                 $this->composerLockUseCase(),
                 $this->suggestersUseCase(),
                 $this->dependentsUseCase(),
-                $this->totalDownloadsUseCase()
+                $this->totalDownloadsUseCase(),
+                $this->monthlyDownloadsUseCase(),
             );
         }
 

@@ -3,6 +3,7 @@
 namespace Badge\Application;
 
 use Badge\Application\PortIn\CreateDependentsBadge;
+use Badge\Application\PortIn\CreateMonthlyDownloadsBadge;
 use Badge\Application\PortIn\CreateSuggestersBadge;
 use Badge\Application\PortIn\CreateTotalDownloadsBadge;
 use Badge\Application\PortIn\GetComposerLockBadge;
@@ -17,16 +18,20 @@ final class BadgeApplication implements BadgeApplicationInterface
 
     private CreateTotalDownloadsBadge $totalDownloadUseCase;
 
+    private CreateMonthlyDownloadsBadge $monthlyDownloadsUseCase;
+
     public function __construct(
         GetComposerLockBadge $composerLockUseCase,
         CreateSuggestersBadge $suggestersUseCase,
         CreateDependentsBadge $dependentsUseCase,
-        CreateTotalDownloadsBadge $totalDownloadUseCase
+        CreateTotalDownloadsBadge $totalDownloadUseCase,
+        CreateMonthlyDownloadsBadge $monthlyDownloadsUseCase
     ) {
         $this->composerLockUseCase = $composerLockUseCase;
         $this->suggestersUseCase = $suggestersUseCase;
         $this->dependentsUseCase = $dependentsUseCase;
         $this->totalDownloadUseCase = $totalDownloadUseCase;
+        $this->monthlyDownloadsUseCase = $monthlyDownloadsUseCase;
     }
 
     public function getComposerLockBadge(string $packageName): Image
@@ -47,5 +52,10 @@ final class BadgeApplication implements BadgeApplicationInterface
     public function createTotalDownloadsBadge(string $packageName): Image
     {
         return $this->totalDownloadUseCase->createTotalDownloadsBadge($packageName);
+    }
+
+    public function createMonthlyDownloadsBadge(string $packageName): Image
+    {
+        return $this->monthlyDownloadsUseCase->createMonthlyDownloadsBadge($packageName);
     }
 }

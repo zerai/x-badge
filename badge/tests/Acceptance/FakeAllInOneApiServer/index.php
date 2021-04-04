@@ -67,5 +67,16 @@ if (\preg_match('#^/' . 'packages/irrelevantvendor/package-with-zero-total-downl
     exit;
 }
 
+/**
+ *  MonthlyDownloads usecase responses
+ */
+
+if (\preg_match('#^/' . 'packages/irrelevantvendor/package-with-zero-monthly-downloads' . '\.json$#', $pathInfo) > 0) {
+    \header('Content-Type: application/json');
+    echo \file_get_contents(__DIR__ . '/package-with-zero-monthly-downloads.json');
+    exit;
+}
+
+
 \header('HTTP/1.0 404 Not Found');
 echo 'Page not found';

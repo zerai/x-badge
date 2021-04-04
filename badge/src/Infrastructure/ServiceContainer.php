@@ -12,6 +12,7 @@ use Badge\Application\BadgeApplicationInterface;
 use Badge\Application\Domain\Model\Service\ContextProducer\ComposerLockProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\DependentsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer;
+use Badge\Application\Domain\Model\Service\ContextProducer\TotalDownloadsProducer;
 use Badge\Application\Domain\Model\Service\DefaultBranchDetector\DetectableBranch;
 use Badge\Application\Domain\Model\Service\RepositoryReader\RepositoryDetailReader;
 use Badge\Application\ImageFactory;
@@ -54,6 +55,8 @@ abstract class ServiceContainer
     protected ?DependentsProducer $dependentsProducer = null;
 
     protected ?DependentsBadgeGenerator $dependentsUseCase = null;
+
+    protected ?TotalDownloadsProducer $totalDownloadsProducer = null;
 
     public function application(): BadgeApplicationInterface
     {
@@ -210,6 +213,17 @@ abstract class ServiceContainer
         }
 
         return $this->dependentsUseCase;
+    }
+
+    protected function totalDownloadsProducer(): TotalDownloadsProducer
+    {
+        if ($this->totalDownloadsProducer === null) {
+            $this->totalDownloadsProducer = new TotalDownloadsProducer(
+                $this->contextValueReader()
+            );
+        }
+
+        return $this->totalDownloadsProducer;
     }
 
     abstract protected function packagistApiClient(): PackagistClient;

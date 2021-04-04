@@ -61,6 +61,7 @@ abstract class ServiceContainer
             $this->application = new BadgeApplication(
                 $this->composerLockUseCase(),
                 $this->suggestersUseCase(),
+                $this->dependentsUseCase()
             );
         }
 

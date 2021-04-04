@@ -10,6 +10,7 @@ use Badge\Adapter\Out\PackagistRepositoryReader;
 use Badge\Application\BadgeApplication;
 use Badge\Application\BadgeApplicationInterface;
 use Badge\Application\Domain\Model\Service\ContextProducer\ComposerLockProducer;
+use Badge\Application\Domain\Model\Service\ContextProducer\DependentsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer;
 use Badge\Application\Domain\Model\Service\DefaultBranchDetector\DetectableBranch;
 use Badge\Application\Domain\Model\Service\RepositoryReader\RepositoryDetailReader;
@@ -48,6 +49,8 @@ abstract class ServiceContainer
     protected ?SuggestersProducer $suggestersProducer = null;
 
     protected ?SuggestersBadgeGenerator $suggestersUseCase = null;
+
+    protected ?DependentsProducer $dependentsProducer = null;
 
     public function application(): BadgeApplicationInterface
     {
@@ -180,6 +183,17 @@ abstract class ServiceContainer
         }
 
         return $this->suggestersUseCase;
+    }
+
+    protected function dependentsProducer(): DependentsProducer
+    {
+        if ($this->dependentsProducer === null) {
+            $this->dependentsProducer = new DependentsProducer(
+                $this->contextValueReader()
+            );
+        }
+
+        return $this->dependentsProducer;
     }
 
     abstract protected function packagistApiClient(): PackagistClient;

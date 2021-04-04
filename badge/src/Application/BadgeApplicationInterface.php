@@ -4,8 +4,9 @@ namespace Badge\Application;
 
 use Badge\Application\PortIn\CreateDependentsBadge;
 use Badge\Application\PortIn\CreateSuggestersBadge;
+use Badge\Application\PortIn\CreateTotalDownloadsBadge;
 use Badge\Application\PortIn\GetComposerLockBadge;
 
-interface BadgeApplicationInterface extends GetComposerLockBadge, CreateSuggestersBadge, CreateDependentsBadge
+interface BadgeApplicationInterface extends GetComposerLockBadge, CreateSuggestersBadge, CreateDependentsBadge, CreateTotalDownloadsBadge
 {
 }

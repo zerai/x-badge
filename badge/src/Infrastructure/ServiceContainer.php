@@ -19,6 +19,7 @@ use Badge\Application\Domain\Model\Service\DefaultBranchDetector\DetectableBranc
 use Badge\Application\Domain\Model\Service\RepositoryReader\RepositoryDetailReader;
 use Badge\Application\ImageFactory;
 use Badge\Application\Usecase\ComposerLockBadgeGenerator;
+use Badge\Application\Usecase\DailyDownloadsBadgeGenerator;
 use Badge\Application\Usecase\DependentsBadgeGenerator;
 use Badge\Application\Usecase\MonthlyDownloadsBadgeGenerator;
 use Badge\Application\Usecase\SuggestersBadgeGenerator;
@@ -69,6 +70,8 @@ abstract class ServiceContainer
     protected ?MonthlyDownloadsBadgeGenerator $monthlyDownloadsUseCase = null;
 
     protected ?DailyDownloadsProducer $dailyDownloadsProducer = null;
+
+    protected ?DailyDownloadsBadgeGenerator $dailyDownloadsUseCase = null;
 
     public function application(): BadgeApplicationInterface
     {
@@ -284,6 +287,18 @@ abstract class ServiceContainer
         }
 
         return $this->dailyDownloadsProducer;
+    }
+
+    protected function dailyDownloadsUseCase(): DailyDownloadsBadgeGenerator
+    {
+        if ($this->dailyDownloadsUseCase === null) {
+            $this->dailyDownloadsUseCase = new DailyDownloadsBadgeGenerator(
+                $this->dailyDownloadsProducer(),
+                $this->imageFactory()
+            );
+        }
+
+        return $this->dailyDownloadsUseCase;
     }
 
     abstract protected function packagistApiClient(): PackagistClient;

@@ -7,13 +7,20 @@ use Badge\Adapter\Out\CommittedFileDetector;
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\RepositoryDetail;
 use Badge\Application\Domain\Model\Service\ContextProducer\ComposerLockProducer;
+use Badge\Application\Domain\Model\Service\DefaultBranchDetector\DetectableBranch;
 use Badge\Application\Domain\Model\Service\RepositoryReader\RepositoryDetailReader;
 use Generator;
+use GuzzleHttp\ClientInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ResponseInterface;
 
 final class ComposerLockProducerTest extends TestCase
 {
+    private const GITHUB_REPOSITORY_PREFIX = 'blob';
+
+    private const BITBUCKET_REPOSITORY_PREFIX = 'src';
+
     private const STATUS_COMMITTED = 200;
 
     private const STATUS_UNCOMMITTED = 404;
@@ -21,19 +28,19 @@ final class ComposerLockProducerTest extends TestCase
     private const STATUS_ERROR = 500;
 
     /**
-     * @var CommittedFileChecker & MockObject
+     * @var ClientInterface & MockObject
      */
-    private $fileChecker;
+    private $httpClient;
+
+    /**
+     * @var DetectableBranch & MockObject
+     */
+    private $defaultBranchDetector;
 
     /**
      * @var RepositoryDetailReader & MockObject
      */
     private $repositoryReader;
-
-    /**
-     * @var CommittedFileDetector
-     */
-    private $composerLockDetector;
 
     /**
      * @var ComposerLockProducer
@@ -42,18 +49,21 @@ final class ComposerLockProducerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->fileChecker = $this->getMockBuilder(CommittedFileChecker::class)
+        $this->httpClient = $this->getMockBuilder(ClientInterface::class)
+            ->getMock();
+
+        $this->defaultBranchDetector = $this->getMockBuilder(DetectableBranch::class)
             ->disableOriginalConstructor()
-            ->onlyMethods(['checkFile'])
             ->getMock();
 
         $this->repositoryReader = $this->getMockBuilder(RepositoryDetailReader::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->composerLockDetector = new CommittedFileDetector($this->repositoryReader, $this->fileChecker);
+        $fileChecker = new CommittedFileChecker($this->httpClient, $this->defaultBranchDetector);
+        $detector = new CommittedFileDetector($this->repositoryReader, $fileChecker);
 
-        $this->badgeContextProducer = new ComposerLockProducer($this->composerLockDetector);
+        $this->badgeContextProducer = new ComposerLockProducer($detector);
     }
 
     /**
@@ -61,20 +71,91 @@ final class ComposerLockProducerTest extends TestCase
      * @dataProvider composerFileDataProvider
      * @param array<mixed> $expectedArray
      */
-    public function shouldProduceBadgeContextForACommittedComposerFile(int $httpFileStatus, array $expectedArray): void
+    public function shouldProduceAComposerLockBadgeContextForAPackageHostedOnGitHub(int $httpFileStatus = 200, array $expectedArray = []): void
     {
-        $this->fileChecker->expects($this->once())
-            ->method('checkFile')
-            ->willReturn($httpFileStatus);
+        $aBranchName = 'mybranch';
+        $aPackageUrl = 'https://github.com/irrelevantvendor/irrelevantpackagename';
 
-        $aFakeRepositoryDetail = RepositoryDetail::fromRepositoryUrl('https://github.com/foo/bar');
+        $expectedTargetCommittedFileUrl = \sprintf('%s/%s/%s/%s', $aPackageUrl, self::GITHUB_REPOSITORY_PREFIX, $aBranchName, 'composer.lock');
+        $aFakeRepositoryDetail = RepositoryDetail::fromRepositoryUrl($aPackageUrl);
 
         $this->repositoryReader
             ->expects($this->once())
             ->method('readRepositoryDetail')
             ->willReturn($aFakeRepositoryDetail);
 
-        $result = $this->badgeContextProducer->contextFor('phpunit/phpunit');
+        $this->defaultBranchDetector
+            ->expects($this->once())
+            ->method('getDefaultBranch')
+            ->with($aFakeRepositoryDetail)
+            ->willReturn($aBranchName);
+
+        $response = $this->createMockWithoutInvokingTheOriginalConstructor(
+            ResponseInterface::class,
+            ['getStatusCode', 'withStatus', 'getReasonPhrase', 'getProtocolVersion', 'withProtocolVersion', 'getHeaders', 'hasHeader', 'getHeader', 'getHeaderLine', 'withHeader', 'withAddedHeader', 'withoutHeader', 'getBody', 'withBody']
+        );
+        $response->expects($this->once())
+            ->method('getStatusCode')
+            ->willReturn($httpFileStatus);
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('request')
+            ->with('HEAD', $expectedTargetCommittedFileUrl)
+            ->willReturn($response);
+
+        $result = $this->badgeContextProducer->contextFor('irrelevant/irrelevant');
+
+        $data = $result->renderingProperties();
+
+        self::assertInstanceOf(BadgeContext::class, $result);
+        self::assertArrayHasKey('subject', $data);
+        self::assertEquals($expectedArray['subject'], $data['subject']);
+        self::assertArrayHasKey('subject-value', $data);
+        self::assertEquals($expectedArray['subject-value'], $data['subject-value']);
+        self::assertArrayHasKey('color', $data);
+        self::assertEquals($expectedArray['color'], $data['color']);
+    }
+
+    /**
+     * @test
+     * @dataProvider composerFileDataProvider
+     * @param array<mixed> $expectedArray
+     */
+    public function shouldProduceAComposerLockBadgeContextForAPackageHostedOnBitbucket(int $httpFileStatus, array $expectedArray): void
+    {
+        $aBranchName = 'mybranch';
+        $aPackageUrl = 'https://bitbucket.org/irrelevantvendor/irrelevantpackagename';
+
+        $expectedTargetCommittedFileUrl = \sprintf('%s/%s/%s/%s', $aPackageUrl, self::BITBUCKET_REPOSITORY_PREFIX, $aBranchName, 'composer.lock');
+        $aFakeRepositoryDetail = RepositoryDetail::fromRepositoryUrl($aPackageUrl);
+
+        $this->repositoryReader
+            ->expects($this->once())
+            ->method('readRepositoryDetail')
+            ->willReturn($aFakeRepositoryDetail);
+
+        $this->defaultBranchDetector
+            ->expects($this->once())
+            ->method('getDefaultBranch')
+            ->with($aFakeRepositoryDetail)
+            ->willReturn($aBranchName);
+
+        $response = $this->createMockWithoutInvokingTheOriginalConstructor(
+            ResponseInterface::class,
+            ['getStatusCode', 'withStatus', 'getReasonPhrase', 'getProtocolVersion', 'withProtocolVersion', 'getHeaders', 'hasHeader', 'getHeader', 'getHeaderLine', 'withHeader', 'withAddedHeader', 'withoutHeader', 'getBody', 'withBody']
+        );
+        $response->expects($this->once())
+            ->method('getStatusCode')
+            ->willReturn($httpFileStatus);
+
+        $this->httpClient
+            ->expects($this->once())
+            ->method('request')
+            ->with('HEAD', $expectedTargetCommittedFileUrl)
+            ->willReturn($response);
+
+        $result = $this->badgeContextProducer->contextFor('irrelevant/irrelevant');
 
         $data = $result->renderingProperties();
 
@@ -119,5 +200,17 @@ final class ComposerLockProducerTest extends TestCase
                 'color' => '#aa0000',
             ],
         ];
+    }
+
+    /**
+     * @param array<string> $methods
+     * @psalm-param class-string $className
+     */
+    private function createMockWithoutInvokingTheOriginalConstructor(string $className, array $methods = []): MockObject
+    {
+        return $this->getMockBuilder($className)
+            ->disableOriginalConstructor()
+            ->onlyMethods($methods)
+            ->getMock();
     }
 }

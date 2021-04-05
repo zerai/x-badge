@@ -1,17 +1,15 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\Unit;
+namespace Badge\Tests\Unit\Domain\ContextValue;
 
 use Badge\Application\Domain\Model\BadgeContext;
-
 use Badge\Application\Domain\Model\ContextualizableValue;
 use Badge\Application\Domain\Model\ContextValue\Common\PostFixCount;
-
-use Badge\Application\Domain\Model\ContextValue\DailyDownloads;
+use Badge\Application\Domain\Model\ContextValue\MonthlyDownloads;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-final class DailyDownloadsTest extends TestCase
+final class MonthlyDownloadsTest extends TestCase
 {
     private const COLOR = '007ec6';
 
@@ -24,12 +22,12 @@ final class DailyDownloadsTest extends TestCase
     {
         $inputValue = 10;
 
-        $sut = new DailyDownloads($inputValue);
+        $sut = new MonthlyDownloads($inputValue);
 
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(BadgeContext::class, $sut);
         self::assertInstanceOf(PostFixCount::class, $sut);
-        self::assertInstanceOf(DailyDownloads::class, $sut);
+        self::assertInstanceOf(MonthlyDownloads::class, $sut);
     }
 
     /**
@@ -41,7 +39,7 @@ final class DailyDownloadsTest extends TestCase
 
         $inputValue = -10;
 
-        new DailyDownloads($inputValue);
+        new MonthlyDownloads($inputValue);
     }
 
     /**
@@ -51,10 +49,10 @@ final class DailyDownloadsTest extends TestCase
     {
         $inputValue = 10;
 
-        $sut = new DailyDownloads($inputValue);
+        $sut = new MonthlyDownloads($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
-        self::assertEquals('10 today', $sut->asBadgeValue());
+        self::assertEquals('10 this month', $sut->asBadgeValue());
     }
 
     /**
@@ -64,13 +62,13 @@ final class DailyDownloadsTest extends TestCase
     {
         $expectedRenderingProperties = [
             'subject' => self::SUBJECT,
-            'subject-value' => '10 today',
+            'subject-value' => '10 this month',
             'color' => self::COLOR,
         ];
 
         $inputValue = 10;
 
-        $sut = new DailyDownloads($inputValue);
+        $sut = new MonthlyDownloads($inputValue);
 
         self::assertEquals($expectedRenderingProperties, $sut->renderingProperties());
     }
@@ -82,10 +80,10 @@ final class DailyDownloadsTest extends TestCase
     {
         $inputValue = 0;
 
-        $sut = new DailyDownloads($inputValue);
+        $sut = new MonthlyDownloads($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
-        self::assertEquals('1 today', $sut->asBadgeValue());
+        self::assertEquals('1 this month', $sut->asBadgeValue());
     }
 
     /**
@@ -99,7 +97,7 @@ final class DailyDownloadsTest extends TestCase
      */
     public function testGoodNumberToTextConversion(int $input, string $output): void
     {
-        $result = (new DailyDownloads($input))->asBadgeValue();
+        $result = (new MonthlyDownloads($input))->asBadgeValue();
 
         $this->assertEquals($output, $result);
     }
@@ -112,16 +110,16 @@ final class DailyDownloadsTest extends TestCase
     public static function getGoodNumberToConvert(): array
     {
         return [
-            [0,             '1 today'],
-            [1,             '1 today'],
-            [16,            '16 today'],
-            [199,           '199 today'],
-            [1012,          '1.01 k today'],
-            [1212,          '1.21 k today'],
-            [1999,          '2 k today'],
-            [1003000,       '1 M today'],
-            [9001003000,    '9 G today'],
-            [9001003000000, '9 T today'],
+            [0,             '1 this month'],
+            [1,             '1 this month'],
+            [16,            '16 this month'],
+            [199,           '199 this month'],
+            [1012,          '1.01 k this month'],
+            [1212,          '1.21 k this month'],
+            [1999,          '2 k this month'],
+            [1003000,       '1 M this month'],
+            [9001003000,    '9 G this month'],
+            [9001003000000, '9 T this month'],
         ];
     }
 }

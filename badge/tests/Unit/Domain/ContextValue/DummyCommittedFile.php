@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\Unit\ContextValue;
+namespace Badge\Tests\Unit\Domain\ContextValue;
 
 use Badge\Application\Domain\Model\ContextValue\Common\CommittedFile;
 

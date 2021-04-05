@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\Unit;
+namespace Badge\Tests\Unit\Domain;
 
 use Badge\Application\Domain\Model\RepositoryDetail;
 use Generator;

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\Discovery\Mock;
+namespace Badge\Tests\Unit\Adapter;
 
 use Badge\Adapter\Out\CommittedFileChecker;
 use Badge\Adapter\Out\DefaultBranchDetector;

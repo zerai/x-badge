@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\Unit\ServiceContainer;
+namespace Badge\Tests\Unit\Infrastructure\ServiceContainer;
 
 use Badge\Application\BadgeApplicationInterface;
 use Badge\Infrastructure\ProductionServiceContainer;

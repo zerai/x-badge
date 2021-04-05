@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\Integration;
+namespace Badge\Tests\Unit\Adapter;
 
 use Badge\Adapter\Out\DefaultBranchDetector;
 use Badge\Application\Domain\Model\RepositoryDetail;

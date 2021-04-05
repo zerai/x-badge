@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\Integration;
+namespace Badge\Tests\Unit\Application\UseCase;
 
 use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\ComposerLockFile;

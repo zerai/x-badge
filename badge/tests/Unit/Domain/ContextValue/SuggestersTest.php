@@ -1,19 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\Unit\ContextValue;
+namespace Badge\Tests\Unit\Domain\ContextValue;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextualizableValue;
 use Badge\Application\Domain\Model\ContextValue\Common\BaseCount;
-use Badge\Application\Domain\Model\ContextValue\Dependents;
+use Badge\Application\Domain\Model\ContextValue\Suggesters;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-final class DependentsTest extends TestCase
+final class SuggestersTest extends TestCase
 {
     private const COLOR = '007ec6';
 
-    private const SUBJECT = 'dependents';
+    private const SUBJECT = 'suggesters';
 
     /**
      * @test
@@ -22,12 +22,12 @@ final class DependentsTest extends TestCase
     {
         $inputValue = 10;
 
-        $sut = new Dependents($inputValue);
+        $sut = new Suggesters($inputValue);
 
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(BadgeContext::class, $sut);
         self::assertInstanceOf(BaseCount::class, $sut);
-        self::assertInstanceOf(Dependents::class, $sut);
+        self::assertInstanceOf(Suggesters::class, $sut);
     }
 
     /**
@@ -39,7 +39,7 @@ final class DependentsTest extends TestCase
 
         $inputValue = -10;
 
-        new Dependents($inputValue);
+        new Suggesters($inputValue);
     }
 
     /**
@@ -48,8 +48,7 @@ final class DependentsTest extends TestCase
     public function canReturnValueAsBadgeContext(): void
     {
         $inputValue = 10;
-
-        $sut = new Dependents($inputValue);
+        $sut = new Suggesters($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('10', $sut->asBadgeValue());
@@ -67,8 +66,7 @@ final class DependentsTest extends TestCase
         ];
 
         $inputValue = 10;
-
-        $sut = new Dependents($inputValue);
+        $sut = new Suggesters($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('10', $sut->asBadgeValue());
@@ -82,8 +80,7 @@ final class DependentsTest extends TestCase
     public function zeroValueIsNormalizedAsOne(): void
     {
         $inputValue = 0;
-
-        $sut = new Dependents($inputValue);
+        $sut = new Suggesters($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('1', $sut->asBadgeValue());
@@ -100,7 +97,7 @@ final class DependentsTest extends TestCase
      */
     public function testGoodNumberToTextConversion(int $input, string $output): void
     {
-        $sut = new Dependents($input);
+        $sut = new Suggesters($input);
 
         $this->assertEquals($output, $sut->asBadgeValue());
     }

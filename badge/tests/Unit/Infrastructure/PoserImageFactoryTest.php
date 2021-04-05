@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\Integration;
+namespace Badge\Tests\Unit\Infrastructure;
 
 use Badge\Application\BadgeImage;
 use Badge\Application\Domain\Model\BadgeContext;

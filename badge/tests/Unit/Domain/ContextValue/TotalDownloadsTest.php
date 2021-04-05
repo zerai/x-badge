@@ -1,19 +1,20 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\Unit\ContextValue;
+namespace Badge\Tests\Unit\Domain\ContextValue;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextualizableValue;
 use Badge\Application\Domain\Model\ContextValue\Common\BaseCount;
 use Badge\Application\Domain\Model\ContextValue\Suggesters;
+use Badge\Application\Domain\Model\ContextValue\TotalDownloads;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-final class SuggestersTest extends TestCase
+final class TotalDownloadsTest extends TestCase
 {
     private const COLOR = '007ec6';
 
-    private const SUBJECT = 'suggesters';
+    private const SUBJECT = 'downloads';
 
     /**
      * @test
@@ -22,12 +23,12 @@ final class SuggestersTest extends TestCase
     {
         $inputValue = 10;
 
-        $sut = new Suggesters($inputValue);
+        $sut = new TotalDownloads($inputValue);
 
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(BadgeContext::class, $sut);
         self::assertInstanceOf(BaseCount::class, $sut);
-        self::assertInstanceOf(Suggesters::class, $sut);
+        self::assertInstanceOf(TotalDownloads::class, $sut);
     }
 
     /**
@@ -39,7 +40,7 @@ final class SuggestersTest extends TestCase
 
         $inputValue = -10;
 
-        new Suggesters($inputValue);
+        new TotalDownloads($inputValue);
     }
 
     /**
@@ -48,7 +49,7 @@ final class SuggestersTest extends TestCase
     public function canReturnValueAsBadgeContext(): void
     {
         $inputValue = 10;
-        $sut = new Suggesters($inputValue);
+        $sut = new TotalDownloads($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('10', $sut->asBadgeValue());
@@ -66,7 +67,7 @@ final class SuggestersTest extends TestCase
         ];
 
         $inputValue = 10;
-        $sut = new Suggesters($inputValue);
+        $sut = new TotalDownloads($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('10', $sut->asBadgeValue());

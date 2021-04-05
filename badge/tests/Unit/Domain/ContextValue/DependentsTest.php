@@ -1,20 +1,19 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\Unit;
+namespace Badge\Tests\Unit\Domain\ContextValue;
 
 use Badge\Application\Domain\Model\BadgeContext;
-
 use Badge\Application\Domain\Model\ContextualizableValue;
-use Badge\Application\Domain\Model\ContextValue\Common\PostFixCount;
-use Badge\Application\Domain\Model\ContextValue\MonthlyDownloads;
+use Badge\Application\Domain\Model\ContextValue\Common\BaseCount;
+use Badge\Application\Domain\Model\ContextValue\Dependents;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-final class MonthlyDownloadsTest extends TestCase
+final class DependentsTest extends TestCase
 {
     private const COLOR = '007ec6';
 
-    private const SUBJECT = 'downloads';
+    private const SUBJECT = 'dependents';
 
     /**
      * @test
@@ -23,12 +22,12 @@ final class MonthlyDownloadsTest extends TestCase
     {
         $inputValue = 10;
 
-        $sut = new MonthlyDownloads($inputValue);
+        $sut = new Dependents($inputValue);
 
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(BadgeContext::class, $sut);
-        self::assertInstanceOf(PostFixCount::class, $sut);
-        self::assertInstanceOf(MonthlyDownloads::class, $sut);
+        self::assertInstanceOf(BaseCount::class, $sut);
+        self::assertInstanceOf(Dependents::class, $sut);
     }
 
     /**
@@ -40,7 +39,7 @@ final class MonthlyDownloadsTest extends TestCase
 
         $inputValue = -10;
 
-        new MonthlyDownloads($inputValue);
+        new Dependents($inputValue);
     }
 
     /**
@@ -50,10 +49,10 @@ final class MonthlyDownloadsTest extends TestCase
     {
         $inputValue = 10;
 
-        $sut = new MonthlyDownloads($inputValue);
+        $sut = new Dependents($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
-        self::assertEquals('10 this month', $sut->asBadgeValue());
+        self::assertEquals('10', $sut->asBadgeValue());
     }
 
     /**
@@ -63,13 +62,16 @@ final class MonthlyDownloadsTest extends TestCase
     {
         $expectedRenderingProperties = [
             'subject' => self::SUBJECT,
-            'subject-value' => '10 this month',
+            'subject-value' => '10',
             'color' => self::COLOR,
         ];
 
         $inputValue = 10;
 
-        $sut = new MonthlyDownloads($inputValue);
+        $sut = new Dependents($inputValue);
+
+        self::assertIsString($sut->asBadgeValue());
+        self::assertEquals('10', $sut->asBadgeValue());
 
         self::assertEquals($expectedRenderingProperties, $sut->renderingProperties());
     }
@@ -81,10 +83,10 @@ final class MonthlyDownloadsTest extends TestCase
     {
         $inputValue = 0;
 
-        $sut = new MonthlyDownloads($inputValue);
+        $sut = new Dependents($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
-        self::assertEquals('1 this month', $sut->asBadgeValue());
+        self::assertEquals('1', $sut->asBadgeValue());
     }
 
     /**
@@ -98,29 +100,29 @@ final class MonthlyDownloadsTest extends TestCase
      */
     public function testGoodNumberToTextConversion(int $input, string $output): void
     {
-        $result = (new MonthlyDownloads($input))->asBadgeValue();
+        $sut = new Dependents($input);
 
-        $this->assertEquals($output, $result);
+        $this->assertEquals($output, $sut->asBadgeValue());
     }
 
     /**
-     * @return (int|string)[][]
+     * @return array<int, array<int, int|string>>
      *
      * @psalm-return array{0: array{0: int, 1: string}}
      */
     public static function getGoodNumberToConvert(): array
     {
         return [
-            [0,             '1 this month'],
-            [1,             '1 this month'],
-            [16,            '16 this month'],
-            [199,           '199 this month'],
-            [1012,          '1.01 k this month'],
-            [1212,          '1.21 k this month'],
-            [1999,          '2 k this month'],
-            [1003000,       '1 M this month'],
-            [9001003000,    '9 G this month'],
-            [9001003000000, '9 T this month'],
+            [0,             '1'],
+            [1,             '1'],
+            [16,            '16'],
+            [199,           '199'],
+            [1012,          '1.01 k'],
+            [1212,          '1.21 k'],
+            [1999,          '2 k'],
+            [1003000,       '1 M'],
+            [9001003000,    '9 G'],
+            [9001003000000, '9 T'],
         ];
     }
 }

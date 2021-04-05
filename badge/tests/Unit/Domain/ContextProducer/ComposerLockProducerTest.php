@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\Integration;
+namespace Badge\Tests\Unit\Domain\ContextProducer;
 
 use Badge\Adapter\Out\CommittedFileChecker;
 use Badge\Adapter\Out\CommittedFileDetector;
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\RepositoryDetail;
-use Badge\Application\Domain\Model\Service\ContextProducer\GitAttributesProducer;
+use Badge\Application\Domain\Model\Service\ContextProducer\ComposerLockProducer;
 use Badge\Application\Domain\Model\Service\RepositoryReader\RepositoryDetailReader;
 use Generator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-final class GitAttributesProducerTest extends TestCase
+final class ComposerLockProducerTest extends TestCase
 {
     private const STATUS_COMMITTED = 200;
 
@@ -31,7 +31,12 @@ final class GitAttributesProducerTest extends TestCase
     private $repositoryReader;
 
     /**
-     * @var GitAttributesProducer
+     * @var CommittedFileDetector
+     */
+    private $composerLockDetector;
+
+    /**
+     * @var ComposerLockProducer
      */
     private $badgeContextProducer;
 
@@ -46,20 +51,19 @@ final class GitAttributesProducerTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $gitAttributesFileDetector = new CommittedFileDetector($this->repositoryReader, $this->fileChecker);
+        $this->composerLockDetector = new CommittedFileDetector($this->repositoryReader, $this->fileChecker);
 
-        $this->badgeContextProducer = new GitAttributesProducer($gitAttributesFileDetector);
+        $this->badgeContextProducer = new ComposerLockProducer($this->composerLockDetector);
     }
 
     /**
      * @test
-     * @dataProvider gitattributesFileDataProvider
+     * @dataProvider composerFileDataProvider
      * @param array<mixed> $expectedArray
      */
-    public function shouldProduceBadgeContextForAGitattributesFile(int $httpFileStatus, array $expectedArray): void
+    public function shouldProduceBadgeContextForACommittedComposerFile(int $httpFileStatus, array $expectedArray): void
     {
-        $this->fileChecker
-            ->expects($this->once())
+        $this->fileChecker->expects($this->once())
             ->method('checkFile')
             ->willReturn($httpFileStatus);
 
@@ -86,27 +90,27 @@ final class GitAttributesProducerTest extends TestCase
     /**
      * @psalm-return Generator<string, array{0: int, 1: array{subject: string, subject-value: string, color: string}}, mixed, void>
      */
-    public function gitattributesFileDataProvider(): Generator
+    public function composerFileDataProvider(): Generator
     {
-        yield 'committed .gitattributes' =>
+        yield 'committed composer.lock' =>
             [
                 self::STATUS_COMMITTED,
                 [
-                    'subject' => '.gitattributes',
+                    'subject' => '.lock',
                     'subject-value' => 'committed',
-                    'color' => '#96d490',
+                    'color' => '#e60073',
                 ],
             ];
-        yield 'uncommitted .gitattributes' =>
+        yield 'uncommitted composer.lock' =>
         [
             self::STATUS_UNCOMMITTED,
             [
-                'subject' => '.gitattributes',
+                'subject' => '.lock',
                 'subject-value' => 'uncommitted',
-                'color' => '#ad6c4b',
+                'color' => '#99004d',
             ],
         ];
-        yield 'error .gitattributes' =>
+        yield 'error composer.lock' =>
         [
             self::STATUS_ERROR,
             [

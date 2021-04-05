@@ -1,0 +1,11 @@
+{
+    "require": {
+        "infection/infection": "^0.21.5"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    }
+}

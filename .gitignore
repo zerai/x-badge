@@ -4,5 +4,7 @@
 /var/
 /tools/*/vendor/
 
+infection.json
+
 
 

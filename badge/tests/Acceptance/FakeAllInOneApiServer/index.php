@@ -77,6 +77,17 @@ if (\preg_match('#^/' . 'packages/irrelevantvendor/package-with-zero-monthly-dow
     exit;
 }
 
+/**
+ *  DailyDownloads usecase responses
+ */
+
+if (\preg_match('#^/' . 'packages/irrelevantvendor/package-with-zero-daily-downloads' . '\.json$#', $pathInfo) > 0) {
+    \header('Content-Type: application/json');
+    echo \file_get_contents(__DIR__ . '/package-with-zero-daily-downloads.json');
+    exit;
+}
+
+
 
 \header('HTTP/1.0 404 Not Found');
 echo 'Page not found';

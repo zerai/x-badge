@@ -10,6 +10,7 @@ use Badge\Adapter\Out\PackagistRepositoryReader;
 use Badge\Application\BadgeApplication;
 use Badge\Application\BadgeApplicationInterface;
 use Badge\Application\Domain\Model\Service\ContextProducer\ComposerLockProducer;
+use Badge\Application\Domain\Model\Service\ContextProducer\DailyDownloadsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\DependentsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\MonthlyDownloadsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer;
@@ -66,6 +67,8 @@ abstract class ServiceContainer
     protected ?MonthlyDownloadsProducer $monthlyDownloadsProducer = null;
 
     protected ?MonthlyDownloadsBadgeGenerator $monthlyDownloadsUseCase = null;
+
+    protected ?DailyDownloadsProducer $dailyDownloadsProducer = null;
 
     public function application(): BadgeApplicationInterface
     {
@@ -270,6 +273,17 @@ abstract class ServiceContainer
         }
 
         return $this->monthlyDownloadsUseCase;
+    }
+
+    protected function dailyDownloadsProducer(): DailyDownloadsProducer
+    {
+        if ($this->dailyDownloadsProducer === null) {
+            $this->dailyDownloadsProducer = new DailyDownloadsProducer(
+                $this->contextValueReader()
+            );
+        }
+
+        return $this->dailyDownloadsProducer;
     }
 
     abstract protected function packagistApiClient(): PackagistClient;

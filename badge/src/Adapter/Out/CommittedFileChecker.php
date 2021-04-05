@@ -50,13 +50,11 @@ class CommittedFileChecker
 
         try {
             $defaultBranch = $this->branchDetector->getDefaultBranch($repositoryDetail);
-        } catch (\Throwable $th) {
-            //throw $th;
-            // log exception
+        } catch (\Exception $exception) {
             return self::STATUS_ERROR;
         }
 
-        $targetFileUrl = $repositoryDetail->repositoryUrl() . '/' . $repositoryPrefix . '/' . $defaultBranch . '/' . $filePath;
+        $targetFileUrl = \sprintf('%s/%s/%s/%s', $repositoryDetail->repositoryUrl(), $repositoryPrefix, $defaultBranch, $filePath);
 
         $fileStatus = $this->doRequest($targetFileUrl);
 

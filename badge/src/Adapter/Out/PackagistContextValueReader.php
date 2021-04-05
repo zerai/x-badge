@@ -55,4 +55,12 @@ final class PackagistContextValueReader implements ContextValueReader
 
         return $package->getDownloads()->getMonthly();
     }
+
+    public function readDailyDownloads(string $packageName): int
+    {
+        /** @var Package $package */
+        $package = $this->packagistClient->get($packageName);
+
+        return $package->getDownloads()->getDaily();
+    }
 }

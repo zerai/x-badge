@@ -82,6 +82,7 @@ abstract class ServiceContainer
                 $this->dependentsUseCase(),
                 $this->totalDownloadsUseCase(),
                 $this->monthlyDownloadsUseCase(),
+                $this->dailyDownloadsUseCase()
             );
         }
 

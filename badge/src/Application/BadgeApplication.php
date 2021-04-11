@@ -8,6 +8,7 @@ use Badge\Application\PortIn\CreateMonthlyDownloadsBadge;
 use Badge\Application\PortIn\CreateStableVersionBadge;
 use Badge\Application\PortIn\CreateSuggestersBadge;
 use Badge\Application\PortIn\CreateTotalDownloadsBadge;
+use Badge\Application\PortIn\CreateUnstableVersionBadge;
 use Badge\Application\PortIn\GetComposerLockBadge;
 
 final class BadgeApplication implements BadgeApplicationInterface
@@ -26,6 +27,8 @@ final class BadgeApplication implements BadgeApplicationInterface
 
     private CreateStableVersionBadge $stableVersionUseCase;
 
+    private CreateUnstableVersionBadge $unstableVersionUseCase;
+
     public function __construct(
         GetComposerLockBadge $composerLockUseCase,
         CreateSuggestersBadge $suggestersUseCase,
@@ -33,7 +36,8 @@ final class BadgeApplication implements BadgeApplicationInterface
         CreateTotalDownloadsBadge $totalDownloadUseCase,
         CreateMonthlyDownloadsBadge $monthlyDownloadsUseCase,
         CreateDailyDownloadsBadge $dailyDownloadsUseCase,
-        CreateStableVersionBadge $stableVersionUseCase
+        CreateStableVersionBadge $stableVersionUseCase,
+        CreateUnstableVersionBadge $unstableVersionUseCase
     ) {
         $this->composerLockUseCase = $composerLockUseCase;
         $this->suggestersUseCase = $suggestersUseCase;
@@ -42,6 +46,7 @@ final class BadgeApplication implements BadgeApplicationInterface
         $this->monthlyDownloadsUseCase = $monthlyDownloadsUseCase;
         $this->dailyDownloadsUseCase = $dailyDownloadsUseCase;
         $this->stableVersionUseCase = $stableVersionUseCase;
+        $this->unstableVersionUseCase = $unstableVersionUseCase;
     }
 
     public function getComposerLockBadge(string $packageName): Image
@@ -77,5 +82,10 @@ final class BadgeApplication implements BadgeApplicationInterface
     public function createStableVersionBadge(string $packageName): Image
     {
         return $this->stableVersionUseCase->createStableVersionBadge($packageName);
+    }
+
+    public function CreateUnstableVersionBadge(string $packageName): Image
+    {
+        return $this->unstableVersionUseCase->CreateUnstableVersionBadge($packageName);
     }
 }

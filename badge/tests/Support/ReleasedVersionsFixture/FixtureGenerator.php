@@ -11,7 +11,7 @@ function generateFileFixtureForpackage(string $packageName, string $filename): v
 {
     $packagistClient = new Client();
 
-    /** @psalm-suppress all */
+    /** @phpstan-ignore-next-line */ /** @psalm-suppress all */
     $version = $packagistClient->get($packageName)->getVersions();
 
     $string_data = \serialize($version);

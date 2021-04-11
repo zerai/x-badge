@@ -5,6 +5,7 @@ namespace Badge\Application;
 use Badge\Application\PortIn\CreateDailyDownloadsBadge;
 use Badge\Application\PortIn\CreateDependentsBadge;
 use Badge\Application\PortIn\CreateMonthlyDownloadsBadge;
+use Badge\Application\PortIn\CreateStableVersionBadge;
 use Badge\Application\PortIn\CreateSuggestersBadge;
 use Badge\Application\PortIn\CreateTotalDownloadsBadge;
 use Badge\Application\PortIn\GetComposerLockBadge;
@@ -23,13 +24,16 @@ final class BadgeApplication implements BadgeApplicationInterface
 
     private CreateDailyDownloadsBadge $dailyDownloadsUseCase;
 
+    private CreateStableVersionBadge $stableVersionUseCase;
+
     public function __construct(
         GetComposerLockBadge $composerLockUseCase,
         CreateSuggestersBadge $suggestersUseCase,
         CreateDependentsBadge $dependentsUseCase,
         CreateTotalDownloadsBadge $totalDownloadUseCase,
         CreateMonthlyDownloadsBadge $monthlyDownloadsUseCase,
-        CreateDailyDownloadsBadge $dailyDownloadsUseCase
+        CreateDailyDownloadsBadge $dailyDownloadsUseCase,
+        CreateStableVersionBadge $stableVersionUseCase
     ) {
         $this->composerLockUseCase = $composerLockUseCase;
         $this->suggestersUseCase = $suggestersUseCase;
@@ -37,6 +41,7 @@ final class BadgeApplication implements BadgeApplicationInterface
         $this->totalDownloadUseCase = $totalDownloadUseCase;
         $this->monthlyDownloadsUseCase = $monthlyDownloadsUseCase;
         $this->dailyDownloadsUseCase = $dailyDownloadsUseCase;
+        $this->stableVersionUseCase = $stableVersionUseCase;
     }
 
     public function getComposerLockBadge(string $packageName): Image
@@ -67,5 +72,10 @@ final class BadgeApplication implements BadgeApplicationInterface
     public function createDailyDownloadsBadge(string $packageName): Image
     {
         return $this->dailyDownloadsUseCase->createDailyDownloadsBadge($packageName);
+    }
+
+    public function createStableVersionBadge(string $packageName): Image
+    {
+        return $this->stableVersionUseCase->createStableVersionBadge($packageName);
     }
 }

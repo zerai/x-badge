@@ -13,6 +13,7 @@ use Badge\Application\Domain\Model\Service\ContextProducer\ComposerLockProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\DailyDownloadsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\DependentsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\MonthlyDownloadsProducer;
+use Badge\Application\Domain\Model\Service\ContextProducer\StableVersionProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\TotalDownloadsProducer;
 use Badge\Application\Domain\Model\Service\DefaultBranchDetector\DetectableBranch;
@@ -72,6 +73,8 @@ abstract class ServiceContainer
     protected ?DailyDownloadsProducer $dailyDownloadsProducer = null;
 
     protected ?DailyDownloadsBadgeGenerator $dailyDownloadsUseCase = null;
+
+    protected ?StableVersionProducer $stableVersionProducer = null;
 
     public function application(): BadgeApplicationInterface
     {
@@ -300,6 +303,17 @@ abstract class ServiceContainer
         }
 
         return $this->dailyDownloadsUseCase;
+    }
+
+    protected function stableVersionProducer(): StableVersionProducer
+    {
+        if ($this->stableVersionProducer === null) {
+            $this->stableVersionProducer = new StableVersionProducer(
+                $this->contextValueReader()
+            );
+        }
+
+        return $this->stableVersionProducer;
     }
 
     abstract protected function packagistApiClient(): PackagistClient;

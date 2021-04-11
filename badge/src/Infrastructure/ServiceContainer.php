@@ -23,6 +23,7 @@ use Badge\Application\Usecase\ComposerLockBadgeGenerator;
 use Badge\Application\Usecase\DailyDownloadsBadgeGenerator;
 use Badge\Application\Usecase\DependentsBadgeGenerator;
 use Badge\Application\Usecase\MonthlyDownloadsBadgeGenerator;
+use Badge\Application\Usecase\StableVersionBadgeGenerator;
 use Badge\Application\Usecase\SuggestersBadgeGenerator;
 use Badge\Application\Usecase\TotalDownloadsBadgeGenerator;
 use Bitbucket\Client as BitbucketClient;
@@ -75,6 +76,8 @@ abstract class ServiceContainer
     protected ?DailyDownloadsBadgeGenerator $dailyDownloadsUseCase = null;
 
     protected ?StableVersionProducer $stableVersionProducer = null;
+
+    protected ?StableVersionBadgeGenerator $stableVersionUseCase = null;
 
     public function application(): BadgeApplicationInterface
     {
@@ -314,6 +317,18 @@ abstract class ServiceContainer
         }
 
         return $this->stableVersionProducer;
+    }
+
+    protected function stableVersionUseCase(): StableVersionBadgeGenerator
+    {
+        if ($this->stableVersionUseCase === null) {
+            $this->stableVersionUseCase = new StableVersionBadgeGenerator(
+                $this->stableVersionProducer(),
+                $this->imageFactory()
+            );
+        }
+
+        return $this->stableVersionUseCase;
     }
 
     abstract protected function packagistApiClient(): PackagistClient;

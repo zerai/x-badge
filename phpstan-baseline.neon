@@ -7,6 +7,11 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$versions of static method Badge\\\\Infrastructure\\\\ReleasedVersions\\:\\:fromApiData\\(\\) expects array\\<array\\<Packagist\\\\Api\\\\Result\\\\Package\\\\Version\\>\\>, array\\<Packagist\\\\Api\\\\Result\\\\Package\\\\Version\\> given\\.$#"
+			count: 2
+			path: badge/src/Adapter/Out/PackagistContextValueReader.php
+
+		-
+			message: "#^Method Badge\\\\Adapter\\\\Out\\\\PackagistContextValueReader\\:\\:readUnstableVersion\\(\\) should return string but returns string\\|null\\.$#"
 			count: 1
 			path: badge/src/Adapter/Out/PackagistContextValueReader.php
 
@@ -42,6 +47,6 @@ parameters:
 
 		-
 			message: "#^Unreachable statement \\- code above always terminates\\.$#"
-			count: 1
+			count: 2
 			path: badge/tests/Unit/Adapter/PackagistContextValueReaderTest.php
 

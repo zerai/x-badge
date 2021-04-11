@@ -6,14 +6,17 @@
     </MixedArrayAccess>
   </file>
   <file src="badge/src/Adapter/Out/PackagistContextValueReader.php">
-    <InvalidArgument occurrences="1">
+    <InvalidArgument occurrences="2">
+      <code>$package-&gt;getVersions()</code>
       <code>$package-&gt;getVersions()</code>
     </InvalidArgument>
-    <InvalidNullableReturnType occurrences="1">
+    <InvalidNullableReturnType occurrences="2">
+      <code>string</code>
       <code>string</code>
     </InvalidNullableReturnType>
-    <NullableReturnStatement occurrences="1">
+    <NullableReturnStatement occurrences="2">
       <code>ReleasedVersions::fromApiData($package-&gt;getVersions())-&gt;stableVersion()</code>
+      <code>ReleasedVersions::fromApiData($package-&gt;getVersions())-&gt;unstableVersion()</code>
     </NullableReturnStatement>
   </file>
   <file src="badge/src/Infrastructure/ReleasedVersions.php">

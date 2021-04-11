@@ -27,4 +27,4 @@ php FixtureGenerator
 
 3) Copiare il nuovo file nella directory di test 'badge/tests/Unit/Infrastructure/ReleasedVersions'
 
-4) Aggiornare il metodo 'loadFixtureForPackage', aggiornare i/il data provider necessari/o.
+4) Aggiornare il metodo 'loadFixtureForPackage', aggiornare i/il data provider necessari/o. in ReleasedVersionsTest.

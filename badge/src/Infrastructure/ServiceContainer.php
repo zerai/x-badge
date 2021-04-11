@@ -16,6 +16,7 @@ use Badge\Application\Domain\Model\Service\ContextProducer\MonthlyDownloadsProdu
 use Badge\Application\Domain\Model\Service\ContextProducer\StableVersionProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\TotalDownloadsProducer;
+use Badge\Application\Domain\Model\Service\ContextProducer\UnstableVersionProducer;
 use Badge\Application\Domain\Model\Service\DefaultBranchDetector\DetectableBranch;
 use Badge\Application\Domain\Model\Service\RepositoryReader\RepositoryDetailReader;
 use Badge\Application\ImageFactory;
@@ -78,6 +79,8 @@ abstract class ServiceContainer
     protected ?StableVersionProducer $stableVersionProducer = null;
 
     protected ?StableVersionBadgeGenerator $stableVersionUseCase = null;
+
+    protected ?UnstableVersionProducer $unstableVersionProducer = null;
 
     public function application(): BadgeApplicationInterface
     {
@@ -330,6 +333,17 @@ abstract class ServiceContainer
         }
 
         return $this->stableVersionUseCase;
+    }
+
+    protected function unstableVersionProducer(): UnstableVersionProducer
+    {
+        if ($this->unstableVersionProducer === null) {
+            $this->unstableVersionProducer = new UnstableVersionProducer(
+                $this->contextValueReader()
+            );
+        }
+
+        return $this->unstableVersionProducer;
     }
 
     abstract protected function packagistApiClient(): PackagistClient;

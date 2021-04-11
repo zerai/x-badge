@@ -27,6 +27,7 @@ use Badge\Application\Usecase\MonthlyDownloadsBadgeGenerator;
 use Badge\Application\Usecase\StableVersionBadgeGenerator;
 use Badge\Application\Usecase\SuggestersBadgeGenerator;
 use Badge\Application\Usecase\TotalDownloadsBadgeGenerator;
+use Badge\Application\Usecase\UnstableVersionBadgeGenerator;
 use Bitbucket\Client as BitbucketClient;
 use Github\Client as GithubClient;
 use GuzzleHttp\ClientInterface as GuzzleHttpClient;
@@ -81,6 +82,8 @@ abstract class ServiceContainer
     protected ?StableVersionBadgeGenerator $stableVersionUseCase = null;
 
     protected ?UnstableVersionProducer $unstableVersionProducer = null;
+
+    protected ?UnstableVersionBadgeGenerator $unstableVersionUseCase = null;
 
     public function application(): BadgeApplicationInterface
     {
@@ -344,6 +347,18 @@ abstract class ServiceContainer
         }
 
         return $this->unstableVersionProducer;
+    }
+
+    protected function unstableVersionUseCase(): UnstableVersionBadgeGenerator
+    {
+        if ($this->unstableVersionUseCase === null) {
+            $this->unstableVersionUseCase = new UnstableVersionBadgeGenerator(
+                $this->stableVersionProducer(),
+                $this->imageFactory()
+            );
+        }
+
+        return $this->unstableVersionUseCase;
     }
 
     abstract protected function packagistApiClient(): PackagistClient;

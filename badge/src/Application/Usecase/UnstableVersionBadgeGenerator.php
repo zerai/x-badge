@@ -19,7 +19,7 @@ final class UnstableVersionBadgeGenerator implements CreateUnstableVersionBadge
         $this->imageFactory = $poserImageFactory;
     }
 
-    public function CreateUnstableVersionBadge(string $packageName): Image
+    public function createUnstableVersionBadge(string $packageName): Image
     {
         try {
             $badgeContext = $this->contextProducer->contextFor($packageName);

@@ -49,7 +49,7 @@ final class UnstableVersionBadgeGeneratorTest extends TestCase
             ->expects($this->never())
             ->method('createImageForDefaultBadge');
 
-        $result = $this->useCase->CreateUnstableVersionBadge('irrelevant/irrelevant');
+        $result = $this->useCase->createUnstableVersionBadge('irrelevant/irrelevant');
 
         self::assertInstanceOf(Image::class, $result);
     }
@@ -68,7 +68,7 @@ final class UnstableVersionBadgeGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('createImageForDefaultBadge');
 
-        $result = $this->useCase->CreateUnstableVersionBadge('irrelevant/irrelevant');
+        $result = $this->useCase->createUnstableVersionBadge('irrelevant/irrelevant');
 
         self::assertInstanceOf(Image::class, $result);
     }

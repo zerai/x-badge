@@ -26,7 +26,7 @@ final class UnstableVersionUseCaseTest extends AcceptanceTestCase
      */
     public function createABadgeForAPackage(): void
     {
-        $result = $this->application->CreateUnstableVersionBadge('badges/poser');
+        $result = $this->application->createUnstableVersionBadge('badges/poser');
 
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertFalse(self::isDefaultBadgeImage($result));
@@ -39,7 +39,7 @@ final class UnstableVersionUseCaseTest extends AcceptanceTestCase
      */
     public function createDefaultBadgeIfError(): void
     {
-        $result = $this->application->CreateUnstableVersionBadge('notexist/package');
+        $result = $this->application->createUnstableVersionBadge('notexist/package');
 
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertTrue(self::isDefaultBadgeImage($result));
@@ -50,7 +50,7 @@ final class UnstableVersionUseCaseTest extends AcceptanceTestCase
      */
     public function createABadgeForAPackageWithUnstableVersion(): void
     {
-        $result = $this->application->CreateUnstableVersionBadge('irrelevantvendor/package-with-zero-suggesters');
+        $result = $this->application->createUnstableVersionBadge('irrelevantvendor/package-with-zero-suggesters');
 
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertFalse(self::isDefaultBadgeImage($result));

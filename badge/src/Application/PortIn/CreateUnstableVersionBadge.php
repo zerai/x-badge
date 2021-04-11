@@ -6,5 +6,5 @@ use Badge\Application\Image;
 
 interface CreateUnstableVersionBadge
 {
-    public function CreateUnstableVersionBadge(string $package): Image;
+    public function CreateUnstableVersionBadge(string $packageName): Image;
 }

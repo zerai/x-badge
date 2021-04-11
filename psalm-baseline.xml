@@ -5,6 +5,17 @@
       <code>$repoBitbucketData['mainbranch']['name']</code>
     </MixedArrayAccess>
   </file>
+  <file src="badge/src/Adapter/Out/PackagistContextValueReader.php">
+    <InvalidArgument occurrences="1">
+      <code>$package-&gt;getVersions()</code>
+    </InvalidArgument>
+    <InvalidNullableReturnType occurrences="1">
+      <code>string</code>
+    </InvalidNullableReturnType>
+    <NullableReturnStatement occurrences="1">
+      <code>ReleasedVersions::fromApiData($package-&gt;getVersions())-&gt;stableVersion()</code>
+    </NullableReturnStatement>
+  </file>
   <file src="badge/src/Infrastructure/ReleasedVersions.php">
     <InvalidArgument occurrences="1">
       <code>\usort($versions, [$this, 'comparator'])</code>

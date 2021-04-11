@@ -354,7 +354,7 @@ abstract class ServiceContainer
     {
         if ($this->unstableVersionUseCase === null) {
             $this->unstableVersionUseCase = new UnstableVersionBadgeGenerator(
-                $this->stableVersionProducer(),
+                $this->unstableVersionProducer(),
                 $this->imageFactory()
             );
         }

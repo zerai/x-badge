@@ -6,6 +6,7 @@ use Badge\Adapter\Out\PackagistContextValueReader;
 use Packagist\Api\Client;
 use Packagist\Api\Result\Package;
 use Packagist\Api\Result\Package\Downloads;
+use Packagist\Api\Result\Package\Version;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -178,5 +179,53 @@ final class PackagistContextValueReaderTest extends TestCase
         $result = $this->packagistContextValueReader->readDailyDownloads('irrelevant/irrelevant');
 
         self::assertEquals($expectedDailyDownloads, $result);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldReadAVersionValue(): void
+    {
+        self::markTestIncomplete();
+
+        $expectedVersion = 'v0.1.0';
+
+        $anUnstableVersionString = 'v0.1.0-beta';
+
+        $aStableVersion = $this->getMockBuilder(Version::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getVersion'])
+            ->getMock();
+
+        $anUnstableVersion = $this->getMockBuilder(Version::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getVersion'])
+            ->getMock();
+
+        $aStableVersion->expects($this->once())
+            ->method('getVersion')
+            ->willReturn($expectedVersion);
+
+        $anUnstableVersion->expects($this->once())
+            ->method('getVersion')
+            ->willReturn($anUnstableVersionString);
+
+        $package = $this->getMockBuilder(Package::class)
+            ->disableOriginalConstructor()
+            ->onlyMethods(['getVersions'])
+            ->getMock();
+
+        $package->expects($this->once())
+            ->method('getVersions')
+            ->willReturn($aStableVersion, $anUnstableVersion);
+
+        $this->packagistClient
+            ->expects($this->once())
+            ->method('get')
+            ->willReturn($package);
+
+        $result = $this->packagistContextValueReader->readStableVersion('irrelevant/irrelevant');
+
+        self::assertEquals($expectedVersion, $result);
     }
 }

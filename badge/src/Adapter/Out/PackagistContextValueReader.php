@@ -3,6 +3,7 @@
 namespace Badge\Adapter\Out;
 
 use Badge\Application\PortOut\ContextValueReader;
+use Badge\Infrastructure\ReleasedVersions;
 use Packagist\Api\Client;
 use Packagist\Api\Result\Package;
 
@@ -62,5 +63,13 @@ final class PackagistContextValueReader implements ContextValueReader
         $package = $this->packagistClient->get($packageName);
 
         return $package->getDownloads()->getDaily();
+    }
+
+    public function readStableVersion(string $packageName): string
+    {
+        /** @var Package $package */
+        $package = $this->packagistClient->get($packageName);
+
+        return ReleasedVersions::fromApiData([$package->getVersions()])->stableVersion();
     }
 }

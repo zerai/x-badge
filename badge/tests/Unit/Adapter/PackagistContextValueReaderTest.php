@@ -217,7 +217,7 @@ final class PackagistContextValueReaderTest extends TestCase
 
         $package->expects($this->once())
             ->method('getVersions')
-            ->willReturn($aStableVersion, $anUnstableVersion);
+            ->willReturn([$aStableVersion, $anUnstableVersion]);
 
         $this->packagistClient
             ->expects($this->once())

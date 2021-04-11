@@ -70,6 +70,6 @@ final class PackagistContextValueReader implements ContextValueReader
         /** @var Package $package */
         $package = $this->packagistClient->get($packageName);
 
-        return ReleasedVersions::fromApiData([$package->getVersions()])->stableVersion();
+        return ReleasedVersions::fromApiData($package->getVersions())->stableVersion();
     }
 }

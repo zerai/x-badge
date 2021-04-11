@@ -5,6 +5,21 @@
       <code>$repoBitbucketData['mainbranch']['name']</code>
     </MixedArrayAccess>
   </file>
+  <file src="badge/src/Infrastructure/ReleasedVersions.php">
+    <InvalidArgument occurrences="1">
+      <code>\usort($versions, [$this, 'comparator'])</code>
+    </InvalidArgument>
+    <MixedArgument occurrences="1">
+      <code>$this-&gt;{'getLatest' . $functionName . 'VersionNormalized'}()</code>
+    </MixedArgument>
+    <MixedReturnTypeCoercion occurrences="2">
+      <code>$extra['branch-alias']</code>
+      <code>array&lt;string, string&gt;|null</code>
+    </MixedReturnTypeCoercion>
+    <RedundantConditionGivenDocblockType occurrences="1">
+      <code>$extra !== null</code>
+    </RedundantConditionGivenDocblockType>
+  </file>
   <file src="badge/tests/Acceptance/AcceptanceTestCase.php">
     <PossiblyNullPropertyAssignmentValue occurrences="1">
       <code>null</code>
@@ -20,5 +35,10 @@
     <DeprecatedMethod occurrences="1">
       <code>setMethods</code>
     </DeprecatedMethod>
+  </file>
+  <file src="badge/tests/Unit/Infrastructure/ReleasedVersions/ReleasedVersionsTest.php">
+    <MixedInferredReturnType occurrences="1">
+      <code>array&lt;array&lt;Version&gt;&gt;</code>
+    </MixedInferredReturnType>
   </file>
 </files>

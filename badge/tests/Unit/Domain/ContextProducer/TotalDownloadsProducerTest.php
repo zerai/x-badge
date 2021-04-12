@@ -7,7 +7,6 @@ use Badge\Application\Domain\Model\Service\ContextProducer\TotalDownloadsProduce
 use Badge\Application\Domain\Model\Service\ContextProducer\TotalDownloadsReader;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use RuntimeException;
 
 final class TotalDownloadsProducerTest extends TestCase
 {
@@ -42,20 +41,5 @@ final class TotalDownloadsProducerTest extends TestCase
         $result = $this->producer->contextFor('irrelevant/irrelevant');
 
         self::assertInstanceOf(BadgeContext::class, $result);
-    }
-
-    /**
-     * @test
-     */
-    public function shouldRethrowException(): void
-    {
-        self::expectException(RuntimeException::class);
-
-        $this->contextReader
-            ->expects($this->once())
-            ->method('readTotalDownloads')
-            ->will($this->throwException(new RuntimeException('An exception')));
-
-        $result = $this->producer->contextFor('irrelevant/irrelevant');
     }
 }

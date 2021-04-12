@@ -21,10 +21,10 @@ class ComposerLockRequestTest extends TestCase
      * @test
      * @dataProvider packageWithCommittedComposerLockFile
      */
-    public function getComposerLockBadge(string $packageName): void
+    public function createComposerLockBadge(string $packageName): void
     {
         self::markTestIncomplete('Completare last-mile code.... controller e framework stuff.');
-        $badgeImage = $this->application->getComposerLockBadge($packageName);
+        $badgeImage = $this->application->createComposerLockBadge($packageName);
 
         self::assertStringContainsString('committed', $badgeImage->getFileName());
     }

@@ -20,6 +20,6 @@ final class ComposerLockUseCaseTest extends AcceptanceTestCase
     public function canCreateABadge(): void
     {
         self::markTestIncomplete('Configurare Fake Servers Github|bitbucket...');
-        $result = $this->application->getComposerLockBadge('phpunit/phpunit');
+        $result = $this->application->createComposerLockBadge('phpunit/phpunit');
     }
 }

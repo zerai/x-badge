@@ -6,5 +6,5 @@ use Badge\Application\Image;
 
 interface CreateComposerLockBadge
 {
-    public function getComposerLockBadge(string $packageName): Image;
+    public function createComposerLockBadge(string $packageName): Image;
 }

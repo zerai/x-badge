@@ -19,7 +19,7 @@ final class ComposerLockBadgeGenerator implements CreateComposerLockBadge
         $this->imageFactory = $imageFactory;
     }
 
-    public function getComposerLockBadge(string $packageName): Image
+    public function createComposerLockBadge(string $packageName): Image
     {
         try {
             $badgeImage = $this->imageFactory->createImageFromContext(

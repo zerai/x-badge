@@ -62,7 +62,7 @@ final class ComposerLockBadgeGeneratorTest extends TestCase
         // $this->imageFactory->expects($this->once())
         //     ->method('createImageFromContext');
 
-        $result = $this->useCase->getComposerLockBadge($aPackageName);
+        $result = $this->useCase->createComposerLockBadge($aPackageName);
 
         self::assertInstanceOf(Image::class, $result);
         self::assertEquals('lock-committed-e60073.svg', $result->getFileName());
@@ -84,7 +84,7 @@ final class ComposerLockBadgeGeneratorTest extends TestCase
         // $this->imageFactory->expects($this->once())
         //     ->method('createImageForDefaultBadge');
 
-        $result = $this->useCase->getComposerLockBadge($aPackageName);
+        $result = $this->useCase->createComposerLockBadge($aPackageName);
 
         self::assertInstanceOf(Image::class, $result);
         self::assertEquals('default-badge.svg', $result->getFileName());

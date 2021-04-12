@@ -49,9 +49,9 @@ final class BadgeApplication implements BadgeApplicationInterface
         $this->unstableVersionUseCase = $unstableVersionUseCase;
     }
 
-    public function getComposerLockBadge(string $packageName): Image
+    public function createComposerLockBadge(string $packageName): Image
     {
-        return $this->composerLockUseCase->getComposerLockBadge($packageName);
+        return $this->composerLockUseCase->createComposerLockBadge($packageName);
     }
 
     public function createSuggestersBadge(string $packageName): Image

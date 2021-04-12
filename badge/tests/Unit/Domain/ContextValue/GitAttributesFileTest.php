@@ -28,7 +28,7 @@ final class GitAttributesFileTest extends TestCase
     /**
      * @test
      */
-    public function canBeCreatedAsCommittedWithFactoryMethod(): void
+    public function canBeCreatedAsCommitted(): void
     {
         $sut = GitAttributesFile::createAsCommitted();
 
@@ -40,7 +40,7 @@ final class GitAttributesFileTest extends TestCase
     /**
      * @test
      */
-    public function canBeCreatedAsUncommittedWithFactoryMethod(): void
+    public function canBeCreatedAsUncommitted(): void
     {
         $sut = GitAttributesFile::createAsUncommitted();
 
@@ -52,7 +52,7 @@ final class GitAttributesFileTest extends TestCase
     /**
      * @test
      */
-    public function canBeCreatedAsErrorWithFactoryMethod(): void
+    public function canBeCreatedAsError(): void
     {
         $sut = GitAttributesFile::createAsError();
 

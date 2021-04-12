@@ -10,6 +10,13 @@ use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersReader;
 use Badge\Application\Domain\Model\Service\ContextProducer\TotalDownloadsReader;
 use Badge\Application\Domain\Model\Service\ContextProducer\UnstableVersionReader;
 
-interface ContextValueReader extends SuggestersReader, DependentsReader, TotalDownloadsReader, MonthlyDownloadsReader, DailyDownloadsReader, StableVersionReader, UnstableVersionReader
+interface ContextValueReader extends
+SuggestersReader,
+DependentsReader,
+TotalDownloadsReader,
+MonthlyDownloadsReader,
+DailyDownloadsReader,
+StableVersionReader,
+UnstableVersionReader
 {
 }

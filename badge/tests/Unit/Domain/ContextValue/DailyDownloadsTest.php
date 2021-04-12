@@ -45,7 +45,7 @@ final class DailyDownloadsTest extends TestCase
     /**
      * @test
      */
-    public function canReturnValueAsBadgeContext(): void
+    public function shouldReturnValueAsBadgeContext(): void
     {
         $inputValue = 10;
 
@@ -58,7 +58,7 @@ final class DailyDownloadsTest extends TestCase
     /**
      * @test
      */
-    public function canReturnTheRenderingProperties(): void
+    public function shouldReturnTheRenderingProperties(): void
     {
         $expectedRenderingProperties = [
             'subject' => self::SUBJECT,

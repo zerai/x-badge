@@ -46,7 +46,7 @@ final class TotalDownloadsTest extends TestCase
     /**
      * @test
      */
-    public function canReturnValueAsBadgeContext(): void
+    public function shouldReturnValueAsBadgeContext(): void
     {
         $inputValue = 10;
         $sut = new TotalDownloads($inputValue);
@@ -58,7 +58,7 @@ final class TotalDownloadsTest extends TestCase
     /**
      * @test
      */
-    public function canReturnTheRenderingProperties(): void
+    public function shouldReturnTheRenderingProperties(): void
     {
         $expectedRenderingProperties = [
             'subject' => self::SUBJECT,

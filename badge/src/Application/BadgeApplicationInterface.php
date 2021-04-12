@@ -11,6 +11,14 @@ use Badge\Application\PortIn\CreateTotalDownloadsBadge;
 use Badge\Application\PortIn\CreateUnstableVersionBadge;
 use Badge\Application\PortIn\GetComposerLockBadge;
 
-interface BadgeApplicationInterface extends GetComposerLockBadge, CreateSuggestersBadge, CreateDependentsBadge, CreateTotalDownloadsBadge, CreateMonthlyDownloadsBadge, CreateDailyDownloadsBadge, CreateStableVersionBadge, CreateUnstableVersionBadge
+interface BadgeApplicationInterface extends
+GetComposerLockBadge,
+CreateSuggestersBadge,
+CreateDependentsBadge,
+CreateTotalDownloadsBadge,
+CreateMonthlyDownloadsBadge,
+CreateDailyDownloadsBadge,
+CreateStableVersionBadge,
+CreateUnstableVersionBadge
 {
 }

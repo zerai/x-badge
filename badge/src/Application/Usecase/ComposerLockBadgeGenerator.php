@@ -5,9 +5,9 @@ namespace Badge\Application\Usecase;
 use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
 use Badge\Application\Image;
 use Badge\Application\ImageFactory;
-use Badge\Application\PortIn\GetComposerLockBadge;
+use Badge\Application\PortIn\CreateComposerLockBadge;
 
-final class ComposerLockBadgeGenerator implements GetComposerLockBadge
+final class ComposerLockBadgeGenerator implements CreateComposerLockBadge
 {
     private ContextProducer $contextProducer;
 

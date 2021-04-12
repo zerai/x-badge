@@ -4,7 +4,7 @@ namespace Badge\Application\PortIn;
 
 use Badge\Application\Image;
 
-interface GetComposerLockBadge
+interface CreateComposerLockBadge
 {
     public function getComposerLockBadge(string $packageName): Image;
 }

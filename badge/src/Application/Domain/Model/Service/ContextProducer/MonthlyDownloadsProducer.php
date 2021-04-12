@@ -7,10 +7,7 @@ use Badge\Application\Domain\Model\ContextValue\MonthlyDownloads;
 
 final class MonthlyDownloadsProducer implements ContextProducer
 {
-    /**
-     * @var MonthlyDownloadsReader
-     */
-    private $monthlyDownloadsReader;
+    private MonthlyDownloadsReader $monthlyDownloadsReader;
 
     public function __construct(MonthlyDownloadsReader $monthlyDownloadsReader)
     {

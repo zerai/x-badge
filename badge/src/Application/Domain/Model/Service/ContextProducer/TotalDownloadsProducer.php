@@ -7,10 +7,7 @@ use Badge\Application\Domain\Model\ContextValue\TotalDownloads;
 
 final class TotalDownloadsProducer implements ContextProducer
 {
-    /**
-     * @var TotalDownloadsReader
-     */
-    private $totalDownloadReader;
+    private TotalDownloadsReader $totalDownloadReader;
 
     public function __construct(TotalDownloadsReader $totalDownloadReader)
     {

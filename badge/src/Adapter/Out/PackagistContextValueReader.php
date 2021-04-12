@@ -9,10 +9,7 @@ use Packagist\Api\Result\Package;
 
 final class PackagistContextValueReader implements ContextValueReader
 {
-    /**
-     * @var Client
-     */
-    private $packagistClient;
+    private Client $packagistClient;
 
     public function __construct(Client $packagistClient)
     {

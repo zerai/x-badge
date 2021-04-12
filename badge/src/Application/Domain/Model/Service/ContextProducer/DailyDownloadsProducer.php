@@ -7,10 +7,7 @@ use Badge\Application\Domain\Model\ContextValue\DailyDownloads;
 
 final class DailyDownloadsProducer implements ContextProducer
 {
-    /**
-     * @var DailyDownloadsReader
-     */
-    private $dailyDownloadsReader;
+    private DailyDownloadsReader $dailyDownloadsReader;
 
     public function __construct(DailyDownloadsReader $dailyDownloadsReader)
     {

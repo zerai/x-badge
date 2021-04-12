@@ -7,10 +7,7 @@ use Badge\Application\Domain\Model\ContextValue\GitAttributesFile;
 
 final class GitAttributesProducer implements ContextProducer
 {
-    /**
-     * @var DetectableGitAttributes
-     */
-    private $committedFileDetector;
+    private DetectableGitAttributes $committedFileDetector;
 
     public function __construct(DetectableGitAttributes $committedFileDetector)
     {

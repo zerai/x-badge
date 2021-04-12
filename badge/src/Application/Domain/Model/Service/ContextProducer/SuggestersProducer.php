@@ -7,10 +7,7 @@ use Badge\Application\Domain\Model\ContextValue\Suggesters;
 
 final class SuggestersProducer implements ContextProducer
 {
-    /**
-     * @var SuggestersReader
-     */
-    private $suggestersReader;
+    private SuggestersReader $suggestersReader;
 
     public function __construct(SuggestersReader $suggestersReader)
     {

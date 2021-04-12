@@ -6,7 +6,7 @@ use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextualizableValue;
 use Webmozart\Assert\Assert;
 
-final class Version implements ContextualizableValue, BadgeContext
+final class StableVersion implements ContextualizableValue, BadgeContext
 {
     private const COLOR_STABLE = '28a3df';
 

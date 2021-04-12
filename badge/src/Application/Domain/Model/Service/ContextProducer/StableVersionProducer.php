@@ -3,7 +3,7 @@
 namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\ContextValue\Version;
+use Badge\Application\Domain\Model\ContextValue\StableVersion;
 
 final class StableVersionProducer implements ContextProducer
 {
@@ -20,7 +20,7 @@ final class StableVersionProducer implements ContextProducer
     public function contextFor(string $packageName): BadgeContext
     {
         try {
-            return Version::fromString($this->stableVersionReader->readStableVersion($packageName));
+            return StableVersion::fromString($this->stableVersionReader->readStableVersion($packageName));
         } catch (\Exception $e) {
             throw $e;
         }

@@ -4,7 +4,7 @@ namespace Badge\Tests\Unit\Domain\ContextValue;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextualizableValue;
-use Badge\Application\Domain\Model\ContextValue\Version;
+use Badge\Application\Domain\Model\ContextValue\StableVersion;
 use Generator;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -22,7 +22,7 @@ final class VersionTest extends TestCase
      */
     public function canBeCreated(): void
     {
-        $sut = Version::fromString('v0.0.1');
+        $sut = StableVersion::fromString('v0.0.1');
 
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(BadgeContext::class, $sut);
@@ -33,7 +33,7 @@ final class VersionTest extends TestCase
      */
     public function canBeCreatedWithNoRelease(): void
     {
-        $sut = Version::withNoRelease();
+        $sut = StableVersion::withNoRelease();
 
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(BadgeContext::class, $sut);
@@ -47,7 +47,7 @@ final class VersionTest extends TestCase
     {
         self::expectException(InvalidArgumentException::class);
 
-        Version::fromString($input);
+        StableVersion::fromString($input);
     }
 
     /**
@@ -65,7 +65,7 @@ final class VersionTest extends TestCase
      */
     public function unformattedInputValueShouldBeNormaized(string $input, string $expectedOutput): void
     {
-        $sut = Version::fromString($input);
+        $sut = StableVersion::fromString($input);
 
         self::assertEquals($expectedOutput, $sut->asBadgeValue());
     }
@@ -94,7 +94,7 @@ final class VersionTest extends TestCase
             'color' => self::COLOR_STABLE,
         ];
 
-        $data = Version::fromString($input)->renderingProperties();
+        $data = StableVersion::fromString($input)->renderingProperties();
 
         self::assertArrayHasKey('subject', $data);
         self::assertEquals($expectedRenderingProperties['subject'], $data['subject']);
@@ -115,7 +115,7 @@ final class VersionTest extends TestCase
             'color' => self::COLOR_STABLE,
         ];
 
-        $data = Version::withNoRelease()->renderingProperties();
+        $data = StableVersion::withNoRelease()->renderingProperties();
 
         self::assertArrayHasKey('subject', $data);
         self::assertEquals($expectedRenderingProperties['subject'], $data['subject']);

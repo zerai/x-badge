@@ -7,6 +7,7 @@ use Generator;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Application\Domain\Model\ContextValue\Common\CommittedFile */
 final class CommittedFileTest extends TestCase
 {
     /**

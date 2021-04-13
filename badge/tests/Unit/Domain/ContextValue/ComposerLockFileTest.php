@@ -7,6 +7,7 @@ use Badge\Application\Domain\Model\ContextValue\Common\CommittedFile;
 use Badge\Application\Domain\Model\ContextValue\ComposerLockFile;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Application\Domain\Model\ContextValue\ComposerLockFile */
 final class ComposerLockFileTest extends TestCase
 {
     /**

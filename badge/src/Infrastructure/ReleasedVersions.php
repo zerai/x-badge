@@ -63,7 +63,7 @@ final class ReleasedVersions
      * (c) Nils Adermann <naderman@naderman.de>
      * Jordi Boggiano <j.boggiano@seld.be>
      */
-    public static function parseStability(string $version): string
+    private static function parseStability(string $version): string
     {
         $version = \preg_replace('{#.+$}i', '', $version) ?? '';
 

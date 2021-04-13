@@ -9,6 +9,7 @@ use Badge\Application\Domain\Model\ContextValue\Dependents;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Application\Domain\Model\ContextValue\Dependents */
 final class DependentsTest extends TestCase
 {
     private const COLOR = '007ec6';

@@ -9,6 +9,7 @@ use Badge\Application\Domain\Model\ContextValue\Suggesters;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Application\Domain\Model\ContextValue\Suggesters */
 final class SuggestersTest extends TestCase
 {
     private const COLOR = '007ec6';

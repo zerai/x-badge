@@ -9,6 +9,7 @@ use Generator;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Application\Domain\Model\ContextValue\UnstableVersion */
 final class UnstableVersionTest extends TestCase
 {
     private const COLOR_UNSTABLE = 'e68718';

@@ -10,6 +10,7 @@ use Badge\Application\Domain\Model\ContextValue\TotalDownloads;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Application\Domain\Model\ContextValue\TotalDownloads */
 final class TotalDownloadsTest extends TestCase
 {
     private const COLOR = '007ec6';

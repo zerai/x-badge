@@ -7,6 +7,7 @@ use Badge\Application\Domain\Model\ContextValue\Common\CommittedFile;
 use Badge\Application\Domain\Model\ContextValue\GitAttributesFile;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Application\Domain\Model\ContextValue\GitAttributesFile */
 final class GitAttributesFileTest extends TestCase
 {
     /**

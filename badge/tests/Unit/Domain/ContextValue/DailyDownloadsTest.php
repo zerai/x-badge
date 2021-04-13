@@ -9,6 +9,7 @@ use Badge\Application\Domain\Model\ContextValue\DailyDownloads;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Application\Domain\Model\ContextValue\DailyDownloads */
 final class DailyDownloadsTest extends TestCase
 {
     private const COLOR = '007ec6';

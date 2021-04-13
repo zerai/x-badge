@@ -19,7 +19,12 @@
         "perMutator": "var\/infection\/per-mutator.md"
     },
     "mutators": {
-        "@default": true
+        "@default": true,
+        "ProtectedVisibility": {
+            "ignore": [
+                "Badge\\Infrastructure\\ServiceContainer"
+            ]
+        }
     },
     "minMsi": 65,
     "minCoveredMsi": 70,

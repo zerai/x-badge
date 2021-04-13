@@ -88,39 +88,15 @@ final class MonthlyDownloadsTest extends TestCase
     }
 
     /**
-     * stessi valori di conversione usati nel test pugx/badge-poser
-     *
-     * @link https://github.com/PUGX/badge-poser/blob/23f5ce009c4367006f3a6d61f12d331c918c32f3/tests/Badge/Service/TextNormalizerTest.php#L58
+     * @test
      */
-
-    /**
-     * @dataProvider getGoodNumberToConvert
-     */
-    public function testGoodNumberToTextConversion(int $input, string $output): void
+    public function shouldApplyNumberNormalization(): void
     {
-        $result = (new MonthlyDownloads($input))->asBadgeValue();
+        $inputValue = 9001003000000;
 
-        $this->assertEquals($output, $result);
-    }
+        $sut = new MonthlyDownloads($inputValue);
 
-    /**
-     * @return (int|string)[][]
-     *
-     * @psalm-return array{0: array{0: int, 1: string}}
-     */
-    public static function getGoodNumberToConvert(): array
-    {
-        return [
-            [0,             '1 this month'],
-            [1,             '1 this month'],
-            [16,            '16 this month'],
-            [199,           '199 this month'],
-            [1012,          '1.01 k this month'],
-            [1212,          '1.21 k this month'],
-            [1999,          '2 k this month'],
-            [1003000,       '1 M this month'],
-            [9001003000,    '9 G this month'],
-            [9001003000000, '9 T this month'],
-        ];
+        self::assertIsString($sut->asBadgeValue());
+        self::assertEquals('9 T this month', $sut->asBadgeValue());
     }
 }

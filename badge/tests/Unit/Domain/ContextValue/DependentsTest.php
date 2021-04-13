@@ -91,39 +91,15 @@ final class DependentsTest extends TestCase
     }
 
     /**
-     * stessi valori di conversione usati nel test pugx/badge-poser
-     *
-     * @link https://github.com/PUGX/badge-poser/blob/23f5ce009c4367006f3a6d61f12d331c918c32f3/tests/Badge/Service/TextNormalizerTest.php#L58
+     * @test
      */
-
-    /**
-     * @dataProvider getGoodNumberToConvert
-     */
-    public function testGoodNumberToTextConversion(int $input, string $output): void
+    public function shouldApplyNumberNormalization(): void
     {
-        $sut = new Dependents($input);
+        $inputValue = 9001003000000;
 
-        $this->assertEquals($output, $sut->asBadgeValue());
-    }
+        $sut = new Dependents($inputValue);
 
-    /**
-     * @return array<int, array<int, int|string>>
-     *
-     * @psalm-return array{0: array{0: int, 1: string}}
-     */
-    public static function getGoodNumberToConvert(): array
-    {
-        return [
-            [0,             '1'],
-            [1,             '1'],
-            [16,            '16'],
-            [199,           '199'],
-            [1012,          '1.01 k'],
-            [1212,          '1.21 k'],
-            [1999,          '2 k'],
-            [1003000,       '1 M'],
-            [9001003000,    '9 G'],
-            [9001003000000, '9 T'],
-        ];
+        self::assertIsString($sut->asBadgeValue());
+        self::assertEquals('9 T', $sut->asBadgeValue());
     }
 }

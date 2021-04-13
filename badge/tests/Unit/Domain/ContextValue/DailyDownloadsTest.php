@@ -88,39 +88,15 @@ final class DailyDownloadsTest extends TestCase
     }
 
     /**
-     * stessi valori di conversione usati nel test pugx/badge-poser
-     *
-     * @link https://github.com/PUGX/badge-poser/blob/23f5ce009c4367006f3a6d61f12d331c918c32f3/tests/Badge/Service/TextNormalizerTest.php#L58
+     * @test
      */
-
-    /**
-     * @dataProvider getGoodNumberToConvert
-     */
-    public function testGoodNumberToTextConversion(int $input, string $output): void
+    public function shouldApplyNumberNormalization(): void
     {
-        $result = (new DailyDownloads($input))->asBadgeValue();
+        $inputValue = 9001003000000;
 
-        $this->assertEquals($output, $result);
-    }
+        $sut = new DailyDownloads($inputValue);
 
-    /**
-     * @return (int|string)[][]
-     *
-     * @psalm-return array{0: array{0: int, 1: string}}
-     */
-    public static function getGoodNumberToConvert(): array
-    {
-        return [
-            [0,             '1 today'],
-            [1,             '1 today'],
-            [16,            '16 today'],
-            [199,           '199 today'],
-            [1012,          '1.01 k today'],
-            [1212,          '1.21 k today'],
-            [1999,          '2 k today'],
-            [1003000,       '1 M today'],
-            [9001003000,    '9 G today'],
-            [9001003000000, '9 T today'],
-        ];
+        self::assertIsString($sut->asBadgeValue());
+        self::assertEquals('9 T today', $sut->asBadgeValue());
     }
 }

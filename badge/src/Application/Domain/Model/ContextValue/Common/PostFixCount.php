@@ -7,6 +7,8 @@ use Webmozart\Assert\Assert;
 
 abstract class PostFixCount implements ContextualizableValue
 {
+    use  CountNormalizerTrait;
+
     private int $value;
 
     private string $suffix = '';
@@ -26,18 +28,6 @@ abstract class PostFixCount implements ContextualizableValue
         return $this->normalize($this->value) . $this->suffix();
     }
 
-    public function normalize(int $number, int $precision = 2): string
-    {
-        $number = $this->normalizeNumber($number);
-        $units = ['', ' k', ' M', ' G', ' T'];
-        $pow = \floor(($number ? \log($number) : 0) / \log(1000));
-        $pow = \min($pow, \count($units) - 1);
-        $number /= 1000 ** $pow;
-
-        /** @psalm-suppress all */
-        return \round($number, $precision) . $units[$pow];
-    }
-
     abstract protected function suffix(): string;
 
     private function validate(int $inputData): int
@@ -45,17 +35,5 @@ abstract class PostFixCount implements ContextualizableValue
         Assert::greaterThanEq($inputData, 0);
 
         return $inputData;
-    }
-
-    /**
-     * REMOVE ACCORPARE CON IL METHOD normalize
-     *
-     * ask hidden domain rule?
-     */
-    private function normalizeNumber(int $number): float
-    {
-        $number = (float) $number;
-
-        return \max($number, 1);
     }
 }

@@ -50,6 +50,21 @@
       <code>setMethods</code>
     </DeprecatedMethod>
   </file>
+  <file src="badge/tests/Unit/Domain/CountNormalizerTraitTest.php">
+    <InvalidPropertyAssignmentValue occurrences="1">
+      <code>$this-&gt;getMockForTrait(CountNormalizerTrait::class)</code>
+    </InvalidPropertyAssignmentValue>
+    <InvalidScalarArgument occurrences="1">
+      <code>CountNormalizerTrait::class</code>
+    </InvalidScalarArgument>
+    <MixedAssignment occurrences="1">
+      <code>$result</code>
+    </MixedAssignment>
+    <UndefinedDocblockClass occurrences="2">
+      <code>$this-&gt;countNormalizerTrait</code>
+      <code>CountNormalizerTrait &amp; MockObject</code>
+    </UndefinedDocblockClass>
+  </file>
   <file src="badge/tests/Unit/Infrastructure/ReleasedVersions/ReleasedVersionsTest.php">
     <MixedInferredReturnType occurrences="1">
       <code>array&lt;array&lt;Version&gt;&gt;</code>

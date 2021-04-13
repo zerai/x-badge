@@ -5,7 +5,6 @@ namespace Badge\Tests\Unit\Domain\ContextValue;
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextualizableValue;
 use Badge\Application\Domain\Model\ContextValue\Common\BaseCount;
-use Badge\Application\Domain\Model\ContextValue\Suggesters;
 use Badge\Application\Domain\Model\ContextValue\TotalDownloads;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -82,7 +81,7 @@ final class TotalDownloadsTest extends TestCase
     public function zeroValueIsNormalizedAsOne(): void
     {
         $inputValue = 0;
-        $sut = new Suggesters($inputValue);
+        $sut = new TotalDownloads($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('1', $sut->asBadgeValue());
@@ -99,7 +98,7 @@ final class TotalDownloadsTest extends TestCase
      */
     public function testGoodNumberToTextConversion(int $input, string $output): void
     {
-        $sut = new Suggesters($input);
+        $sut = new TotalDownloads($input);
 
         $this->assertEquals($output, $sut->asBadgeValue());
     }

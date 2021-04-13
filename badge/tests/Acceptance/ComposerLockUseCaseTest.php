@@ -2,6 +2,7 @@
 
 namespace Badge\Tests\Acceptance;
 
+/** @covers \Badge\Application\Usecase\ComposerLockBadgeGenerator */
 final class ComposerLockUseCaseTest extends AcceptanceTestCase
 {
     protected function setUp(): void

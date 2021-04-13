@@ -7,6 +7,7 @@ use Generator;
 use Packagist\Api\Result\Package\Version;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Infrastructure\ReleasedVersions */
 final class ReleasedVersionsTest extends TestCase
 {
     /**

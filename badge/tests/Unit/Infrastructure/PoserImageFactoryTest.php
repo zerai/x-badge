@@ -15,6 +15,7 @@ use PUGX\Poser\Render\SvgFlatRender;
 use PUGX\Poser\Render\SvgFlatSquareRender;
 use PUGX\Poser\Render\SvgPlasticRender;
 
+/** @covers \Badge\Infrastructure\PoserImageFactory */
 final class PoserImageFactoryTest extends TestCase
 {
     private PoserImageFactory $imageFactory;

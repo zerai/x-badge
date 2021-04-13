@@ -15,6 +15,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 
+/** @covers \Badge\Application\Domain\Model\Service\ContextProducer\ComposerLockProducer */
 final class ComposerLockProducerTest extends TestCase
 {
     private const GITHUB_REPOSITORY_PREFIX = 'blob';

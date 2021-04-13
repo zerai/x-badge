@@ -7,6 +7,7 @@ use Generator;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Application\Domain\Model\RepositoryDetail */
 final class RepositoryDetailTest extends TestCase
 {
     private const GITHUB_REPOSITORY_URL = 'https://github.com/sebastianbergmann/phpunit';

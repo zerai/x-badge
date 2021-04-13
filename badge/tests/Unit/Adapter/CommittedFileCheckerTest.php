@@ -11,6 +11,9 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
 
+/**
+ * @covers \Badge\Adapter\Out\CommittedFileChecker
+ */
 final class CommittedFileCheckerTest extends TestCase
 {
     private const STATUS_COMMITTED = 200;

@@ -5,6 +5,7 @@ namespace Badge\Tests\Acceptance;
 use Badge\Application\BadgeImage;
 use Badge\Application\Image;
 
+/** @covers \Badge\Application\Usecase\DependentsBadgeGenerator */
 final class DependentsUseCaseTest extends AcceptanceTestCase
 {
     private const COLOR = '007ec6';

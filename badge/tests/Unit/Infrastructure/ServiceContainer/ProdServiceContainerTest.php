@@ -6,6 +6,7 @@ use Badge\Application\BadgeApplicationInterface;
 use Badge\Infrastructure\ProductionServiceContainer;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Infrastructure\ProductionServiceContainer */
 final class ProdServiceContainerTest extends TestCase
 {
     /**

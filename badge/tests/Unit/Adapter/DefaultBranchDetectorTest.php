@@ -11,6 +11,9 @@ use Github\Client as GithubClient;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @covers \Badge\Adapter\Out\DefaultBranchDetector
+ */
 final class DefaultBranchDetectorTest extends TestCase
 {
     /**

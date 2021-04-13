@@ -10,6 +10,7 @@ use Packagist\Api\Result\Package\Version;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Adapter\Out\PackagistContextValueReader */
 final class PackagistContextValueReaderTest extends TestCase
 {
     /**

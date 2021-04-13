@@ -8,6 +8,7 @@ use Badge\Application\Domain\Model\Service\ContextProducer\MonthlyDownloadsReade
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Application\Domain\Model\Service\ContextProducer\MonthlyDownloadsProducer */
 final class MonthlyDownloadsProducerTest extends TestCase
 {
     /**

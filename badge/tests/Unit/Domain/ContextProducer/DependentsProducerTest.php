@@ -8,6 +8,7 @@ use Badge\Application\Domain\Model\Service\ContextProducer\DependentsReader;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Application\Domain\Model\Service\ContextProducer\DependentsProducer */
 final class DependentsProducerTest extends TestCase
 {
     /**

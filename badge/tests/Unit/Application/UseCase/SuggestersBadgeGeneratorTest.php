@@ -10,6 +10,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
+/** @covers \Badge\Application\Usecase\SuggestersBadgeGenerator */
 final class SuggestersBadgeGeneratorTest extends TestCase
 {
     /**

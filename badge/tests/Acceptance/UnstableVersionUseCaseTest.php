@@ -5,6 +5,7 @@ namespace Badge\Tests\Acceptance;
 use Badge\Application\BadgeImage;
 use Badge\Application\Image;
 
+/** @covers \Badge\Application\Usecase\UnstableVersionBadgeGenerator */
 final class UnstableVersionUseCaseTest extends AcceptanceTestCase
 {
     private const COLOR_UNSTABLE = 'e68718';

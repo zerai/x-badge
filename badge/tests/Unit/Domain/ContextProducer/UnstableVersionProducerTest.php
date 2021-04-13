@@ -8,6 +8,7 @@ use Badge\Application\Domain\Model\Service\ContextProducer\UnstableVersionReader
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Application\Domain\Model\Service\ContextProducer\UnstableVersionProducer */
 final class UnstableVersionProducerTest extends TestCase
 {
     /**

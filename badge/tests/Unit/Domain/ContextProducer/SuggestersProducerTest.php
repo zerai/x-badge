@@ -8,6 +8,7 @@ use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersReader;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer */
 final class SuggestersProducerTest extends TestCase
 {
     /**

@@ -5,6 +5,7 @@ namespace Badge\Tests\Acceptance;
 use Badge\Application\BadgeImage;
 use Badge\Application\Image;
 
+/** @covers \Badge\Application\Usecase\StableVersionBadgeGenerator */
 final class StableVersionUseCaseTest extends AcceptanceTestCase
 {
     private const COLOR_STABLE = '28a3df';

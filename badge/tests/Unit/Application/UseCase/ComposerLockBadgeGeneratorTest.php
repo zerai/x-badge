@@ -17,6 +17,7 @@ use PUGX\Poser\Render\SvgFlatSquareRender;
 use PUGX\Poser\Render\SvgPlasticRender;
 use RuntimeException;
 
+/** @covers \Badge\Application\Usecase\ComposerLockBadgeGenerator */
 final class ComposerLockBadgeGeneratorTest extends TestCase
 {
     /**

@@ -5,6 +5,7 @@ namespace Badge\Tests\Acceptance;
 use Badge\Application\BadgeImage;
 use Badge\Application\Image;
 
+/** @covers \Badge\Application\Usecase\DailyDownloadsBadgeGenerator */
 final class DailyDownloadsUseCaseTest extends AcceptanceTestCase
 {
     private const COLOR = '007ec6';

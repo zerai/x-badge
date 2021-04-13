@@ -10,17 +10,29 @@ use PHPUnit\Framework\TestCase;
 /** @covers \Badge\Application\Domain\Model\ContextValue\ComposerLockFile */
 final class ComposerLockFileTest extends TestCase
 {
+    private const COLOR_COMMITTED = '#e60073';
+
+    private const COLOR_UNCOMMITTED = '#99004d';
+
+    private const COLOR_ERROR = '#aa0000';
+
+    private const LOCK_COMMITTED = 'committed';
+
+    private const LOCK_UNCOMMITTED = 'uncommitted';
+
+    private const LOCK_ERROR = 'checking';
+
+    private const SUBJECT = '.lock';
+
+    private const SUBJECT_ERROR = 'Error';
+
     /**
      * @test
      */
-    public function canBeCreated(): void
+    public function canBeCreatedAsCommitted(): void
     {
-        $sut = new ComposerLockFile('committed');
-        self::assertInstanceOf(ContextualizableValue::class, $sut);
-        self::assertInstanceOf(CommittedFile::class, $sut);
-        self::assertInstanceOf(ComposerLockFile::class, $sut);
-
         $sut = ComposerLockFile::createAsCommitted();
+
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(CommittedFile::class, $sut);
         self::assertInstanceOf(ComposerLockFile::class, $sut);
@@ -29,19 +41,23 @@ final class ComposerLockFileTest extends TestCase
     /**
      * @test
      */
-    public function canBeCreatedAsCommittedWithFactoryMethod(): void
+    public function shouldReturnRenderingPropertiesOfAComposerLockCommittedFile(): void
     {
-        $sut = ComposerLockFile::createAsCommitted();
+        $expectedRenderingProperties = [
+            'subject' => self::SUBJECT,
+            'subject-value' => self::LOCK_COMMITTED,
+            'color' => self::COLOR_COMMITTED,
+        ];
 
-        self::assertInstanceOf(ContextualizableValue::class, $sut);
-        self::assertInstanceOf(CommittedFile::class, $sut);
-        self::assertInstanceOf(ComposerLockFile::class, $sut);
+        $renderingProperties = ComposerLockFile::createAsCommitted()->renderingProperties();
+
+        self::assertEquals($expectedRenderingProperties, $renderingProperties);
     }
 
     /**
      * @test
      */
-    public function canBeCreatedAsUncommittedWithFactoryMethod(): void
+    public function canBeCreatedAsUncommitted(): void
     {
         $sut = ComposerLockFile::createAsUncommitted();
 
@@ -53,12 +69,44 @@ final class ComposerLockFileTest extends TestCase
     /**
      * @test
      */
-    public function canBeCreatedAsErrorFactoryMethod(): void
+    public function shouldReturnRenderingPropertiesOfAComposerLockUncommittedFile(): void
+    {
+        $expectedRenderingProperties = [
+            'subject' => self::SUBJECT,
+            'subject-value' => self::LOCK_UNCOMMITTED,
+            'color' => self::COLOR_UNCOMMITTED,
+        ];
+
+        $renderingProperties = ComposerLockFile::createAsUncommitted()->renderingProperties();
+
+        self::assertEquals($expectedRenderingProperties, $renderingProperties);
+    }
+
+    /**
+     * @test
+     */
+    public function canBeCreatedAsError(): void
     {
         $sut = ComposerLockFile::createAsError();
 
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(CommittedFile::class, $sut);
         self::assertInstanceOf(ComposerLockFile::class, $sut);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldReturnRenderingPropertiesOfAComposerLockWithError(): void
+    {
+        $expectedRenderingProperties = [
+            'subject' => self::SUBJECT_ERROR,
+            'subject-value' => self::LOCK_ERROR,
+            'color' => self::COLOR_ERROR,
+        ];
+
+        $renderingProperties = ComposerLockFile::createAsError()->renderingProperties();
+
+        self::assertEquals($expectedRenderingProperties, $renderingProperties);
     }
 }

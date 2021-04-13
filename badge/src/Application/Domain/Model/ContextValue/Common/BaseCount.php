@@ -21,7 +21,8 @@ abstract class BaseCount implements ContextualizableValue
 
     public function normalize(int $number, int $precision = 2): string
     {
-        $number = $this->normalizeNumber($number);
+        //$number = $this->normalizeNumber($number);
+        $number = \max((float) $number, 1);
         $units = ['', ' k', ' M', ' G', ' T'];
         $pow = \floor(($number ? \log($number) : 0) / \log(1000));
         $pow = \min($pow, \count($units) - 1);
@@ -45,8 +46,10 @@ abstract class BaseCount implements ContextualizableValue
      */
     private function normalizeNumber(int $number): float
     {
-        $number = (float) $number;
+        // $number = (float) $number;
 
-        return \max($number, 1);
+        // return \max($number, 1);
+
+        return $number;
     }
 }

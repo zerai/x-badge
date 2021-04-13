@@ -10,21 +10,21 @@ use PHPUnit\Framework\TestCase;
 /** @covers \Badge\Application\Domain\Model\ContextValue\GitAttributesFile */
 final class GitAttributesFileTest extends TestCase
 {
-    /**
-     * @test
-     */
-    public function canBeCreated(): void
-    {
-        $sut = new GitAttributesFile('committed');
-        self::assertInstanceOf(ContextualizableValue::class, $sut);
-        self::assertInstanceOf(CommittedFile::class, $sut);
-        self::assertInstanceOf(GitAttributesFile::class, $sut);
+    private const COLOR_COMMITTED = '#96d490';
 
-        $sut = GitAttributesFile::createAsCommitted();
-        self::assertInstanceOf(ContextualizableValue::class, $sut);
-        self::assertInstanceOf(CommittedFile::class, $sut);
-        self::assertInstanceOf(GitAttributesFile::class, $sut);
-    }
+    private const COLOR_UNCOMMITTED = '#ad6c4b';
+
+    private const COLOR_ERROR = '#aa0000';
+
+    private const GITATTRIBUTES_COMMITTED = 'committed';
+
+    private const GITATTRIBUTES_UNCOMMITTED = 'uncommitted';
+
+    private const GITATTRIBUTES_ERROR = 'checking';
+
+    private const SUBJECT = '.gitattributes';
+
+    private const SUBJECT_ERROR = 'Error';
 
     /**
      * @test
@@ -36,6 +36,22 @@ final class GitAttributesFileTest extends TestCase
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(CommittedFile::class, $sut);
         self::assertInstanceOf(GitAttributesFile::class, $sut);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldReturnRenderingPropertiesOfAGitattributesCommittedFile(): void
+    {
+        $expectedRenderingProperties = [
+            'subject' => self::SUBJECT,
+            'subject-value' => self::GITATTRIBUTES_COMMITTED,
+            'color' => self::COLOR_COMMITTED,
+        ];
+
+        $renderingProperties = GitAttributesFile::createAsCommitted()->renderingProperties();
+
+        self::assertEquals($expectedRenderingProperties, $renderingProperties);
     }
 
     /**
@@ -53,6 +69,22 @@ final class GitAttributesFileTest extends TestCase
     /**
      * @test
      */
+    public function shouldReturnRenderingPropertiesOfAGitattributesUncommittedFile(): void
+    {
+        $expectedRenderingProperties = [
+            'subject' => self::SUBJECT,
+            'subject-value' => self::GITATTRIBUTES_UNCOMMITTED,
+            'color' => self::COLOR_UNCOMMITTED,
+        ];
+
+        $renderingProperties = GitAttributesFile::createAsUncommitted()->renderingProperties();
+
+        self::assertEquals($expectedRenderingProperties, $renderingProperties);
+    }
+
+    /**
+     * @test
+     */
     public function canBeCreatedAsError(): void
     {
         $sut = GitAttributesFile::createAsError();
@@ -60,5 +92,21 @@ final class GitAttributesFileTest extends TestCase
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(CommittedFile::class, $sut);
         self::assertInstanceOf(GitAttributesFile::class, $sut);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldReturnRenderingPropertiesOfAGitattributesWithErrorFile(): void
+    {
+        $expectedRenderingProperties = [
+            'subject' => self::SUBJECT_ERROR,
+            'subject-value' => self::GITATTRIBUTES_ERROR,
+            'color' => self::COLOR_ERROR,
+        ];
+
+        $renderingProperties = GitAttributesFile::createAsError()->renderingProperties();
+
+        self::assertEquals($expectedRenderingProperties, $renderingProperties);
     }
 }

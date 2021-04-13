@@ -7,6 +7,8 @@ use Webmozart\Assert\Assert;
 
 abstract class BaseCount implements ContextualizableValue
 {
+    use  CountNormalizerTrait;
+
     private int $value;
 
     public function __construct(int $value)
@@ -17,18 +19,6 @@ abstract class BaseCount implements ContextualizableValue
     public function asBadgeValue(): string
     {
         return $this->normalize($this->value);
-    }
-
-    public function normalize(int $number, int $precision = 2): string
-    {
-        $number = \max((float) $number, 1);
-        $units = ['', ' k', ' M', ' G', ' T'];
-        $pow = \floor(($number ? \log($number) : 0) / \log(1000));
-        $pow = \min($pow, \count($units) - 1);
-        $number /= 1000 ** $pow;
-
-        /** @psalm-suppress all */
-        return \round($number, $precision) . $units[$pow];
     }
 
     private function validate(int $inputData): int

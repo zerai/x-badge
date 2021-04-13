@@ -21,7 +21,6 @@ abstract class BaseCount implements ContextualizableValue
 
     public function normalize(int $number, int $precision = 2): string
     {
-        //$number = $this->normalizeNumber($number);
         $number = \max((float) $number, 1);
         $units = ['', ' k', ' M', ' G', ' T'];
         $pow = \floor(($number ? \log($number) : 0) / \log(1000));
@@ -37,19 +36,5 @@ abstract class BaseCount implements ContextualizableValue
         Assert::greaterThanEq($inputData, 0);
 
         return $inputData;
-    }
-
-    /**
-     * REMOVE ACCORPARE CON IL METHOD normalize
-     *
-     * ask hidden domain rule?
-     */
-    private function normalizeNumber(int $number): float
-    {
-        // $number = (float) $number;
-
-        // return \max($number, 1);
-
-        return $number;
     }
 }

@@ -5,6 +5,7 @@ namespace Badge\Tests\PHPUnitExtension;
 use Generator;
 use PHPUnit\Framework\TestCase;
 
+/** @covers \Badge\Tests\PHPUnitExtension\IsUncommittedComposerLockFileBadgeContext */
 final class IsUncommittedComposerLockFileBadgeContextTest extends TestCase
 {
     private const COLOR_UNCOMMITTED = '#99004d';
@@ -13,7 +14,7 @@ final class IsUncommittedComposerLockFileBadgeContextTest extends TestCase
 
     private const SUBJECT = '.lock';
 
-    private $constraint;
+    private IsUncommittedComposerLockFileBadgeContext $constraint;
 
     protected function setUp(): void
     {
@@ -37,6 +38,7 @@ final class IsUncommittedComposerLockFileBadgeContextTest extends TestCase
     /**
      * @test
      * @dataProvider invalidTypeDataProvider
+     * @param array<mixed> $input
      */
     public function invalidArgument($input): void
     {
@@ -59,12 +61,16 @@ final class IsUncommittedComposerLockFileBadgeContextTest extends TestCase
      * @dataProvider invalidArrayDataProvider
      * @dataProvider invalidKeysInArrayDataProvider
      * @dataProvider invalidValueInArrayDataProvider
+     * @param array<mixed> $input
      */
     public function shouldBeFalseForInvalidArray($input): void
     {
         $this->assertFalse($this->constraint->matches($input));
     }
 
+    /**
+     * @return Generators<mixed>
+     */
     public function invalidArrayDataProvider(): Generator
     {
         yield [[]];

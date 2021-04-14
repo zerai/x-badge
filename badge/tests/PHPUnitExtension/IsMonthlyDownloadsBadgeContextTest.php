@@ -5,20 +5,20 @@ namespace Badge\Tests\PHPUnitExtension;
 use Generator;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Tests\PHPUnitExtension\IsCommittedComposerLockFileBadgeContext */
-final class IsCommittedComposerLockFileBadgeContextTest extends TestCase
+/** @covers \Badge\Tests\PHPUnitExtension\IsMonthlyDownloadsBadgeContext */
+final class IsMonthlyDownloadsBadgeContextTest extends TestCase
 {
-    private const COLOR_COMMITTED = '#e60073';
+    private const COLOR = '007ec6';
 
-    private const LOCK_COMMITTED = 'committed';
+    private const SUBJECT = 'downloads';
 
-    private const SUBJECT = '.lock';
+    private const SUFFIX = ' this month';
 
-    private IsCommittedComposerLockFileBadgeContext $constraint;
+    private IsMonthlyDownloadsBadgeContext $constraint;
 
     protected function setUp(): void
     {
-        $this->constraint = new IsCommittedComposerLockFileBadgeContext();
+        $this->constraint = new IsMonthlyDownloadsBadgeContext();
     }
 
     /**
@@ -28,8 +28,8 @@ final class IsCommittedComposerLockFileBadgeContextTest extends TestCase
     {
         $validArray = [
             'subject' => self::SUBJECT,
-            'subject-value' => self::LOCK_COMMITTED,
-            'color' => self::COLOR_COMMITTED,
+            'subject-value' => '50 this month',
+            'color' => self::COLOR,
         ];
 
         $this->assertTrue($this->constraint->matches($validArray));

@@ -48,6 +48,12 @@ jobs:
   phpunit:
     name: Code tests (PHP ${{ matrix.php }})
     runs-on: ubuntu-20.04
+    # services:
+    #   all-in-one-api-server-stub:
+    #     image: php:7.4-alpine
+    #     ports:
+    #       - 8888/tcp
+    #     options: --volumes ${{ github.workspace }}/badge/tests/Acceptance/FakeAllInOneApiServer:/srv/app --entrypoint "php -S 0.0.0.0:80 /srv/app/router.php"
 
     strategy:
       matrix:
@@ -108,5 +114,23 @@ jobs:
         run: composer install --prefer-dist --no-progress --no-suggest --ansi --no-scripts
 
       -
-        name: Run phpunit
-        run: ./vendor/bin/phpunit
+        name: Run unit test
+        run: ./vendor/bin/phpunit --testsuite unit
+
+      -
+        name: Run support test
+        run: ./vendor/bin/phpunit --testsuite support
+
+      -
+        name: Run webserver
+        run: symfony server:start --port=8082 --dir=badge/tests/Acceptance/FakeAllInOneApiServer --daemon --no-tls
+
+      -
+        name: Run integration test
+        run: ./vendor/bin/phpunit --testsuite integration
+
+      -
+        name: Run acceptance test
+        run: ./vendor/bin/phpunit --testsuite acceptance
+        env:
+          FAKE_ALL_IN_ONE_API_URI: http://127.0.0.1:8082

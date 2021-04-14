@@ -3,6 +3,7 @@
 namespace Badge\Adapter\Out;
 
 use Badge\Application\Domain\Model\RepositoryDetail;
+use Badge\Application\Domain\Model\Service\DefaultBranchDetector\DetectableBranch;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
 use RuntimeException;
@@ -21,9 +22,9 @@ class CommittedFileChecker
 
     private ClientInterface $httpClient;
 
-    private DefaultBranchDetector $branchDetector;
+    private DetectableBranch $branchDetector;
 
-    public function __construct(ClientInterface $httpClient, DefaultBranchDetector $branchDetector)
+    public function __construct(ClientInterface $httpClient, DetectableBranch $branchDetector)
     {
         $this->httpClient = $httpClient;
         $this->branchDetector = $branchDetector;
@@ -49,13 +50,11 @@ class CommittedFileChecker
 
         try {
             $defaultBranch = $this->branchDetector->getDefaultBranch($repositoryDetail);
-        } catch (\Throwable $th) {
-            //throw $th;
-            // log exception
+        } catch (\Exception $exception) {
             return self::STATUS_ERROR;
         }
 
-        $targetFileUrl = $repositoryDetail->repositoryUrl() . '/' . $repositoryPrefix . '/' . $defaultBranch . '/' . $filePath;
+        $targetFileUrl = \sprintf('%s/%s/%s/%s', $repositoryDetail->repositoryUrl(), $repositoryPrefix, $defaultBranch, $filePath);
 
         $fileStatus = $this->doRequest($targetFileUrl);
 

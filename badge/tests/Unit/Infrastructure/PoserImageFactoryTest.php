@@ -2,21 +2,21 @@
 
 namespace Badge\Tests\Unit\Infrastructure;
 
-use Generator;
-use PUGX\Poser\Poser;
-use Badge\Application\Image;
-use PHPUnit\Framework\TestCase;
 use Badge\Application\BadgeImage;
-use PUGX\Poser\Render\SvgFlatRender;
-use PUGX\Poser\Render\SvgPlasticRender;
-use PUGX\Poser\Render\SvgFlatSquareRender;
-use Badge\Infrastructure\PoserImageFactory;
 use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\ContextValue\DailyDownloads;
-use Badge\Application\Domain\Model\ContextValue\TotalDownloads;
 use Badge\Application\Domain\Model\ContextValue\ComposerLockFile;
-use Badge\Application\Domain\Model\ContextValue\MonthlyDownloads;
+use Badge\Application\Domain\Model\ContextValue\DailyDownloads;
 use Badge\Application\Domain\Model\ContextValue\GitAttributesFile;
+use Badge\Application\Domain\Model\ContextValue\MonthlyDownloads;
+use Badge\Application\Domain\Model\ContextValue\TotalDownloads;
+use Badge\Application\Image;
+use Badge\Infrastructure\PoserImageFactory;
+use Generator;
+use PHPUnit\Framework\TestCase;
+use PUGX\Poser\Poser;
+use PUGX\Poser\Render\SvgFlatRender;
+use PUGX\Poser\Render\SvgFlatSquareRender;
+use PUGX\Poser\Render\SvgPlasticRender;
 
 /** @covers \Badge\Infrastructure\PoserImageFactory */
 final class PoserImageFactoryTest extends TestCase

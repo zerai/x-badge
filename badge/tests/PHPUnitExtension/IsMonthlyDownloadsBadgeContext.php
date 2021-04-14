@@ -14,7 +14,7 @@ final class IsMonthlyDownloadsBadgeContext extends Constraint
 
     public function toString(): string
     {
-        return 'is a DailyDownload BadgeContext.';
+        return 'is a MonthlyDownload BadgeContext.';
     }
 
     public function matches($other): bool

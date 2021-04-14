@@ -9,3 +9,4 @@ parameters:
 		- badge/tests
 	excludePaths:
 		- badge/tests/Discovery/*
+		- badge/tests/PHPUnitExtension/*

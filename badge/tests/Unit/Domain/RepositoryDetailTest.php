@@ -36,7 +36,7 @@ final class RepositoryDetailTest extends TestCase
      * @test
      * @dataProvider invalidRepositoryUrlDataProvider
      */
-    public function shouldThrowExceptionIfRepositoryUrlIsInvalid(string $repositoryUrl): void
+    public function invalidRepositoryUrlshouldThrowException(string $repositoryUrl): void
     {
         self::expectException(InvalidArgumentException::class);
 

@@ -1,20 +1,20 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\PHPUnitExtension;
+namespace Badge\Tests\PHPUnitExtension\Assertions;
 
 use PHPUnit\Framework\Constraint\Constraint;
 
-final class IsUncommittedComposerLockFileBadgeContext extends Constraint
+final class IsMonthlyDownloadsBadgeContext extends Constraint
 {
-    private const SUBJECT = '.lock';
+    private const COLOR = '007ec6';
 
-    private const LOCK_UNCOMMITTED = 'uncommitted';
+    private const SUBJECT = 'downloads';
 
-    private const COLOR_UNCOMMITTED = '#99004d';
+    private const SUFFIX = ' this month';
 
     public function toString(): string
     {
-        return 'is uncommitted ComposerLockFile BadgeContext.';
+        return 'is a MonthlyDownload BadgeContext.';
     }
 
     public function matches($other): bool
@@ -31,11 +31,11 @@ final class IsUncommittedComposerLockFileBadgeContext extends Constraint
             return false;
         }
 
-        if ($other['subject-value'] !== self::LOCK_UNCOMMITTED) {
+        if (\substr($other['subject-value'], -11) !== self::SUFFIX) {
             return false;
         }
 
-        if ($other['color'] !== self::COLOR_UNCOMMITTED) {
+        if ($other['color'] !== self::COLOR) {
             return false;
         }
 

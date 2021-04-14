@@ -1,22 +1,22 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\PHPUnitExtension;
+namespace Badge\Tests\PHPUnitExtension\Assertions;
 
 use Generator;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Tests\PHPUnitExtension\IsDependentsBadgeContext */
-final class IsDependentsBadgeContextTest extends TestCase
+/** @covers \Badge\Tests\PHPUnitExtension\Assertions\IsSuggestersBadgeContext */
+final class IsSuggestersBadgeContextTest extends TestCase
 {
     private const COLOR = '007ec6';
 
-    private const SUBJECT = 'dependents';
+    private const SUBJECT = 'suggesters';
 
-    private IsDependentsBadgeContext $constraint;
+    private IsSuggestersBadgeContext $constraint;
 
     protected function setUp(): void
     {
-        $this->constraint = new IsDependentsBadgeContext();
+        $this->constraint = new IsSuggestersBadgeContext();
     }
 
     /**

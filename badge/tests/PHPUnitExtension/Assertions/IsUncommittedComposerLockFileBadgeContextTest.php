@@ -1,24 +1,24 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\PHPUnitExtension;
+namespace Badge\Tests\PHPUnitExtension\Assertions;
 
 use Generator;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Tests\PHPUnitExtension\IsCommittedComposerLockFileBadgeContext */
-final class IsCommittedComposerLockFileBadgeContextTest extends TestCase
+/** @covers \Badge\Tests\PHPUnitExtension\Assertions\IsUncommittedComposerLockFileBadgeContext */
+final class IsUncommittedComposerLockFileBadgeContextTest extends TestCase
 {
-    private const COLOR_COMMITTED = '#e60073';
+    private const COLOR_UNCOMMITTED = '#99004d';
 
-    private const LOCK_COMMITTED = 'committed';
+    private const LOCK_UNCOMMITTED = 'uncommitted';
 
     private const SUBJECT = '.lock';
 
-    private IsCommittedComposerLockFileBadgeContext $constraint;
+    private IsUncommittedComposerLockFileBadgeContext $constraint;
 
     protected function setUp(): void
     {
-        $this->constraint = new IsCommittedComposerLockFileBadgeContext();
+        $this->constraint = new IsUncommittedComposerLockFileBadgeContext();
     }
 
     /**
@@ -28,8 +28,8 @@ final class IsCommittedComposerLockFileBadgeContextTest extends TestCase
     {
         $validArray = [
             'subject' => self::SUBJECT,
-            'subject-value' => self::LOCK_COMMITTED,
-            'color' => self::COLOR_COMMITTED,
+            'subject-value' => self::LOCK_UNCOMMITTED,
+            'color' => self::COLOR_UNCOMMITTED,
         ];
 
         $this->assertTrue($this->constraint->matches($validArray));
@@ -68,6 +68,9 @@ final class IsCommittedComposerLockFileBadgeContextTest extends TestCase
         $this->assertFalse($this->constraint->matches($input));
     }
 
+    /**
+     * @return Generators<mixed>
+     */
     public function invalidArrayDataProvider(): Generator
     {
         yield [[]];

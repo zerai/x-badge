@@ -1,18 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\PHPUnitExtension;
+namespace Badge\Tests\PHPUnitExtension\Assertions;
 
 use PHPUnit\Framework\Constraint\Constraint;
 
-final class IsTotalDownloadsBadgeContext extends Constraint
+final class IsDependentsBadgeContext extends Constraint
 {
     private const COLOR = '007ec6';
 
-    private const SUBJECT = 'downloads';
+    private const SUBJECT = 'dependents';
 
     public function toString(): string
     {
-        return 'is a TotalDownload BadgeContext.';
+        return 'is a Dependents BadgeContext.';
     }
 
     public function matches($other): bool

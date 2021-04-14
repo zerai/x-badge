@@ -1,24 +1,22 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\PHPUnitExtension;
+namespace Badge\Tests\PHPUnitExtension\Assertions;
 
 use Generator;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Tests\PHPUnitExtension\IsMonthlyDownloadsBadgeContext */
-final class IsMonthlyDownloadsBadgeContextTest extends TestCase
+/** @covers \Badge\Tests\PHPUnitExtension\Assertions\IsDependentsBadgeContext */
+final class IsDependentsBadgeContextTest extends TestCase
 {
     private const COLOR = '007ec6';
 
-    private const SUBJECT = 'downloads';
+    private const SUBJECT = 'dependents';
 
-    private const SUFFIX = ' this month';
-
-    private IsMonthlyDownloadsBadgeContext $constraint;
+    private IsDependentsBadgeContext $constraint;
 
     protected function setUp(): void
     {
-        $this->constraint = new IsMonthlyDownloadsBadgeContext();
+        $this->constraint = new IsDependentsBadgeContext();
     }
 
     /**
@@ -28,7 +26,7 @@ final class IsMonthlyDownloadsBadgeContextTest extends TestCase
     {
         $validArray = [
             'subject' => self::SUBJECT,
-            'subject-value' => '50 this month',
+            'subject-value' => 'irrelevant',
             'color' => self::COLOR,
         ];
 

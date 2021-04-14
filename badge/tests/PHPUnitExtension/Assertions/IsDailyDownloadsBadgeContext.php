@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\PHPUnitExtension;
+namespace Badge\Tests\PHPUnitExtension\Assertions;
 
 use PHPUnit\Framework\Constraint\Constraint;
 

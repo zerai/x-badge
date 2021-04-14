@@ -1,18 +1,20 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\PHPUnitExtension;
+namespace Badge\Tests\PHPUnitExtension\Assertions;
 
 use PHPUnit\Framework\Constraint\Constraint;
 
-final class IsDependentsBadgeContext extends Constraint
+final class IsCommittedComposerLockFileBadgeContext extends Constraint
 {
-    private const COLOR = '007ec6';
+    private const SUBJECT = '.lock';
 
-    private const SUBJECT = 'dependents';
+    private const LOCK_COMMITTED = 'committed';
+
+    private const COLOR_COMMITTED = '#e60073';
 
     public function toString(): string
     {
-        return 'is a Dependents BadgeContext.';
+        return 'is committed ComposerLockFile BadgeContext.';
     }
 
     public function matches($other): bool
@@ -29,7 +31,11 @@ final class IsDependentsBadgeContext extends Constraint
             return false;
         }
 
-        if ($other['color'] !== self::COLOR) {
+        if ($other['subject-value'] !== self::LOCK_COMMITTED) {
+            return false;
+        }
+
+        if ($other['color'] !== self::COLOR_COMMITTED) {
             return false;
         }
 

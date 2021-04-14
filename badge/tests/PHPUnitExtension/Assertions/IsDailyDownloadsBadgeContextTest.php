@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\PHPUnitExtension;
+namespace Badge\Tests\PHPUnitExtension\Assertions;
 
 use Generator;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Tests\PHPUnitExtension\IsDailyDownloadsBadgeContext */
+/** @covers \Badge\Tests\PHPUnitExtension\Assertions\IsDailyDownloadsBadgeContext */
 final class IsDailyDownloadsBadgeContextTest extends TestCase
 {
     private const COLOR = '007ec6';

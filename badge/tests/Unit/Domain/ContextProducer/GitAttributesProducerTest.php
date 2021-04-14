@@ -169,38 +169,6 @@ final class GitAttributesProducerTest extends TestCase
         self::assertEquals($expectedArray['color'], $data['color']);
     }
 
-    // /**
-    //  * @test
-    //  * @dataProvider gitattributesFileDataProvider
-    //  * @param array<mixed> $expectedArray
-    //  */
-    // public function shouldProduceBadgeContextForAGitattributesFile(int $httpFileStatus, array $expectedArray): void
-    // {
-    //     $this->fileChecker
-    //         ->expects($this->once())
-    //         ->method('checkFile')
-    //         ->willReturn($httpFileStatus);
-
-    //     $aFakeRepositoryDetail = RepositoryDetail::fromRepositoryUrl('https://github.com/foo/bar');
-
-    //     $this->repositoryReader
-    //         ->expects($this->once())
-    //         ->method('readRepositoryDetail')
-    //         ->willReturn($aFakeRepositoryDetail);
-
-    //     $result = $this->badgeContextProducer->contextFor('phpunit/phpunit');
-
-    //     $data = $result->renderingProperties();
-
-    //     self::assertInstanceOf(BadgeContext::class, $result);
-    //     self::assertArrayHasKey('subject', $data);
-    //     self::assertEquals($expectedArray['subject'], $data['subject']);
-    //     self::assertArrayHasKey('subject-value', $data);
-    //     self::assertEquals($expectedArray['subject-value'], $data['subject-value']);
-    //     self::assertArrayHasKey('color', $data);
-    //     self::assertEquals($expectedArray['color'], $data['color']);
-    // }
-
     /**
      * @psalm-return Generator<string, array{0: int, 1: array{subject: string, subject-value: string, color: string}}, mixed, void>
      */

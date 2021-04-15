@@ -5,12 +5,15 @@ namespace Badge\Tests\Unit\ContextProducer;
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\Service\ContextProducer\UnstableVersionProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\UnstableVersionReader;
+use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /** @covers \Badge\Application\Domain\Model\Service\ContextProducer\UnstableVersionProducer */
 final class UnstableVersionProducerTest extends TestCase
 {
+    use BadgeContextAssertionsTrait;
+
     /**
      * @var UnstableVersionReader & MockObject
      */

@@ -9,6 +9,7 @@ use Badge\Application\Domain\Model\RepositoryDetail;
 use Badge\Application\Domain\Model\Service\ContextProducer\ComposerLockProducer;
 use Badge\Application\Domain\Model\Service\DefaultBranchDetector\DetectableBranch;
 use Badge\Application\Domain\Model\Service\RepositoryReader\RepositoryDetailReader;
+use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use Generator;
 use GuzzleHttp\ClientInterface;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -18,6 +19,8 @@ use Psr\Http\Message\ResponseInterface;
 /** @covers \Badge\Application\Domain\Model\Service\ContextProducer\ComposerLockProducer */
 final class ComposerLockProducerTest extends TestCase
 {
+    use BadgeContextAssertionsTrait;
+
     private const GITHUB_REPOSITORY_PREFIX = 'blob';
 
     private const BITBUCKET_REPOSITORY_PREFIX = 'src';
@@ -70,9 +73,8 @@ final class ComposerLockProducerTest extends TestCase
     /**
      * @test
      * @dataProvider composerFileDataProvider
-     * @param array<mixed> $expectedArray
      */
-    public function shouldProduceAComposerLockBadgeContextForAPackageHostedOnGitHub(int $httpFileStatus = 200, array $expectedArray = []): void
+    public function shouldProduceAComposerLockBadgeContextForAPackageHostedOnGitHub(int $httpFileStatus = 200, string $assertionToCall): void
     {
         $aBranchName = 'mybranch';
         $aPackageUrl = 'https://github.com/irrelevantvendor/irrelevantpackagename';
@@ -107,23 +109,15 @@ final class ComposerLockProducerTest extends TestCase
 
         $result = $this->badgeContextProducer->contextFor('irrelevant/irrelevant');
 
-        $data = $result->renderingProperties();
-
         self::assertInstanceOf(BadgeContext::class, $result);
-        self::assertArrayHasKey('subject', $data);
-        self::assertEquals($expectedArray['subject'], $data['subject']);
-        self::assertArrayHasKey('subject-value', $data);
-        self::assertEquals($expectedArray['subject-value'], $data['subject-value']);
-        self::assertArrayHasKey('color', $data);
-        self::assertEquals($expectedArray['color'], $data['color']);
+        self::{$assertionToCall}($result->renderingProperties());
     }
 
     /**
      * @test
      * @dataProvider composerFileDataProvider
-     * @param array<mixed> $expectedArray
      */
-    public function shouldProduceAComposerLockBadgeContextForAPackageHostedOnBitbucket(int $httpFileStatus, array $expectedArray): void
+    public function shouldProduceAComposerLockBadgeContextForAPackageHostedOnBitbucket(int $httpFileStatus, string $assertionToCall): void
     {
         $aBranchName = 'mybranch';
         $aPackageUrl = 'https://bitbucket.org/irrelevantvendor/irrelevantpackagename';
@@ -158,48 +152,29 @@ final class ComposerLockProducerTest extends TestCase
 
         $result = $this->badgeContextProducer->contextFor('irrelevant/irrelevant');
 
-        $data = $result->renderingProperties();
-
         self::assertInstanceOf(BadgeContext::class, $result);
-        self::assertArrayHasKey('subject', $data);
-        self::assertEquals($expectedArray['subject'], $data['subject']);
-        self::assertArrayHasKey('subject-value', $data);
-        self::assertEquals($expectedArray['subject-value'], $data['subject-value']);
-        self::assertArrayHasKey('color', $data);
-        self::assertEquals($expectedArray['color'], $data['color']);
+        self::{$assertionToCall}($result->renderingProperties());
     }
 
     /**
-     * @psalm-return Generator<string, array{0: int, 1: array{subject: string, subject-value: string, color: string}}, mixed, void>
+     * @psalm-return Generator<string, array{0: int, 1: string}, mixed, void>
      */
     public function composerFileDataProvider(): Generator
     {
         yield 'committed composer.lock' =>
             [
                 self::STATUS_COMMITTED,
-                [
-                    'subject' => '.lock',
-                    'subject-value' => 'committed',
-                    'color' => '#e60073',
-                ],
+                'assertIsCommittedComposerLockFileBadgeContext',
             ];
         yield 'uncommitted composer.lock' =>
         [
             self::STATUS_UNCOMMITTED,
-            [
-                'subject' => '.lock',
-                'subject-value' => 'uncommitted',
-                'color' => '#99004d',
-            ],
+            'assertIsUncommittedComposerLockFileBadgeContext',
         ];
         yield 'error composer.lock' =>
         [
             self::STATUS_ERROR,
-            [
-                'subject' => 'Error',
-                'subject-value' => 'checking',
-                'color' => '#aa0000',
-            ],
+            'assertIsErrorComposerLockFileBadgeContext',
         ];
     }
 

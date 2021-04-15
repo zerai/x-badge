@@ -5,12 +5,15 @@ namespace Badge\Tests\Unit\ContextProducer;
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersReader;
+use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /** @covers \Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer */
 final class SuggestersProducerTest extends TestCase
 {
+    use BadgeContextAssertionsTrait;
+
     /**
      * @var SuggestersReader & MockObject
      */
@@ -42,5 +45,6 @@ final class SuggestersProducerTest extends TestCase
         $result = $this->producer->contextFor('irrelevant/irrelevant');
 
         self::assertInstanceOf(BadgeContext::class, $result);
+        self::assertIsSuggestersBadgeContext($result->renderingProperties());
     }
 }

@@ -5,12 +5,15 @@ namespace Badge\Tests\Unit\ContextProducer;
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\Service\ContextProducer\DailyDownloadsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\DailyDownloadsReader;
+use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /** @covers \Badge\Application\Domain\Model\Service\ContextProducer\DailyDownloadsProducer */
 final class DailyDownloadsProducerTest extends TestCase
 {
+    use BadgeContextAssertionsTrait;
+
     /**
      * @var DailyDownloadsReader & MockObject
      */
@@ -42,5 +45,6 @@ final class DailyDownloadsProducerTest extends TestCase
         $result = $this->producer->contextFor('irrelevant/irrelevant');
 
         self::assertInstanceOf(BadgeContext::class, $result);
+        self::assertIsDailyDownloadsBadgeContext($result->renderingProperties());
     }
 }

@@ -66,9 +66,16 @@ final class PoserImageFactory implements ImageFactory
         return \sprintf(
             '%s-%s-%s.%s',
             \trim($renderingProperties['subject'], '.'),
-            $renderingProperties['subject-value'],
+            $this->cleanName($renderingProperties['subject-value']),
             \trim($renderingProperties['color'], '#'),
             self::DEFAULT_FORMAT
         );
+    }
+
+    private function cleanName(string $value): string
+    {
+        $value = \str_replace('.', '-', $value);
+
+        return \str_replace(' ', '-', $value);
     }
 }

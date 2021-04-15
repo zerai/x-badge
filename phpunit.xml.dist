@@ -22,6 +22,9 @@
         <!-- ###- fake packagist|github|bitbucket api server ### -->
     </php>
     <testsuites>
+        <testsuite name="phpunit-extension">
+            <directory suffix="Test.php">./badge/tests/PHPUnitExtension</directory>
+        </testsuite>
         <testsuite name="acceptance">
             <directory suffix="Test.php">./badge/tests/Acceptance</directory>
         </testsuite>
@@ -51,6 +54,7 @@
             <directory suffix=".php">./badge/src</directory>
         </include>
         <exclude>
+            <directory>./badge/tests/PHPUnitExtension</directory>
             <directory>./badge/tests/Discovery</directory>
             <directory>./badge/src/Infrastructure/FakePackagistServer</directory>
             <directory>./badge/src/Infrastructure/FakeGithubServer</directory>

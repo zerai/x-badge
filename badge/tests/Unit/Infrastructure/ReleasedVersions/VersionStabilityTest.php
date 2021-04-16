@@ -46,9 +46,9 @@ final class VersionStabilityTest extends TestCase
     public static function versionAndStabilityDataProvider(): array
     {
         return [
-            ['1.0.0', 'stable'],
-            ['1.1.0', 'stable'],
-            ['2.0.0', 'stable'],
+            ['1.0.0', 'Stable'],
+            ['1.1.0', 'Stable'],
+            ['2.0.0', 'Stable'],
             ['3.0.x-dev', 'dev'],
             ['v3.0.0-RC1', 'RC'],
             ['2.3.x-dev', 'dev'],
@@ -59,8 +59,8 @@ final class VersionStabilityTest extends TestCase
             ['v2.3.0-rc2', 'RC'],
             ['v2.3.0-RC1', 'RC'],
             ['v2.3.0-BETA2', 'beta'],
-            ['v2.1.10', 'stable'],
-            ['v2.2.1', 'stable'],
+            ['v2.1.10', 'Stable'],
+            ['v2.2.1', 'Stable'],
             ['0.1.0-alpha1', 'alpha'],
             ['0.1.0-alpha', 'alpha'],
         ];

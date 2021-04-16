@@ -8,6 +8,9 @@ final class VersionStability
 {
     private const MODIFIER_REGEX = '[._-]?(?:(stable|beta|b|RC|alpha|a|patch|pl|p)(?:[.-]?(\d+))?)?([.-]?dev)?';
 
+    private const STABLE = 'Stable';
+    private const UNSTABLE = 'Unstable';
+
     private string $version;
 
     private function __construct(string $version)
@@ -45,7 +48,7 @@ final class VersionStability
             }
         }
 
-        return 'stable';
+        return self::STABLE;
     }
 
     private function validate(string $input): string

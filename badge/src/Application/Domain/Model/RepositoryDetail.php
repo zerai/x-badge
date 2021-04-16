@@ -8,7 +8,11 @@ final class RepositoryDetail
 {
     private const GITHUB_SOURCE = 'github.com';
 
+    private const GITHUB_REPOSITORY_PREFIX = 'blob';
+
     private const BITBUCKET_SOURCE = 'bitbucket.org';
+
+    private const BITBUCKET_REPOSITORY_PREFIX = 'src';
 
     private string $value;
 
@@ -42,6 +46,11 @@ final class RepositoryDetail
         \preg_match('/(https)(:\/\/|@)([^\/:]+)[\/:]([^\/:]+)\/(.+)$/', $this->value, $matches);
 
         return $matches[4];
+    }
+
+    public function repositoryPrefix(): string
+    {
+        return $repositoryPrefix = $this->isGitHub() ? self::GITHUB_REPOSITORY_PREFIX : self::BITBUCKET_REPOSITORY_PREFIX;
     }
 
     public function repositoryName(): string

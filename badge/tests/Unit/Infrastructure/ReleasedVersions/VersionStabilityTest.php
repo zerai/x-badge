@@ -3,6 +3,7 @@
 namespace Badge\Tests\Unit\Infrastructure\ReleasedVersions;
 
 use Badge\Infrastructure\VersionStability;
+use Generator;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
@@ -11,12 +12,22 @@ final class VersionStabilityTest extends TestCase
 {
     /**
      * @test
+     * @dataProvider invalidVersionStringDataProvider
      */
-    public function emptyVersionInConstructorShouldThrowException(): void
+    public function emptyVersionInConstructorShouldThrowException(string $version): void
     {
         self::expectException(InvalidArgumentException::class);
 
-        VersionStability::fromString('');
+        VersionStability::fromString($version);
+    }
+
+    /**
+     * @psalm-return Generator<string, array{0: string}>
+     */
+    public function invalidVersionStringDataProvider(): Generator
+    {
+        yield 'empty version' => [''];
+        yield 'too short version' => ['0.1'];
     }
 
     /**

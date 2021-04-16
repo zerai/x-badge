@@ -6,6 +6,8 @@ use InvalidArgumentException;
 
 final class VersionStability
 {
+    private const MIN_LENGHT = 5;
+
     private const MODIFIER_REGEX = '[._-]?(?:(stable|beta|b|RC|alpha|a|patch|pl|p)(?:[.-]?(\d+))?)?([.-]?dev)?';
 
     private string $version;
@@ -52,6 +54,10 @@ final class VersionStability
     {
         if ($input === '') {
             throw new InvalidArgumentException(\sprintf('Error: %s s not a valid version', $input));
+        }
+
+        if (\strlen($input) < self::MIN_LENGHT) {
+            throw new InvalidArgumentException(\sprintf('Error: the provided version: %s is too short', $input));
         }
 
         return $input;

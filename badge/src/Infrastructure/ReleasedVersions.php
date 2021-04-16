@@ -133,7 +133,7 @@ final class ReleasedVersions
             }
 
             $functionName = 'Unstable';
-            if (self::parseStability($currentVersionName) === 'stable') {
+            if (VersionStability::fromString($currentVersionName)->detect() === 'stable') {
                 $functionName = 'Stable';
             }
 

@@ -10,10 +10,6 @@ use RuntimeException;
 
 class CommittedFileChecker
 {
-    private const GITHUB_REPOSITORY_PREFIX = 'blob';
-
-    private const BITBUCKET_REPOSITORY_PREFIX = 'src';
-
     private const STATUS_COMMITTED = 200;
 
     private const STATUS_UNCOMMITTED = 404;
@@ -38,23 +34,19 @@ class CommittedFileChecker
     {
         $result = self::STATUS_ERROR;
 
-        $repositoryPrefix = '';
-
-        if ($repositoryDetail->isGitHub()) {
-            $repositoryPrefix = self::GITHUB_REPOSITORY_PREFIX;
-        }
-
-        if ($repositoryDetail->isBitbucket()) {
-            $repositoryPrefix = self::BITBUCKET_REPOSITORY_PREFIX;
-        }
-
         try {
             $defaultBranch = $this->branchDetector->getDefaultBranch($repositoryDetail);
         } catch (\Exception $exception) {
             return self::STATUS_ERROR;
         }
 
-        $targetFileUrl = \sprintf('%s/%s/%s/%s', $repositoryDetail->repositoryUrl(), $repositoryPrefix, $defaultBranch, $filePath);
+        $targetFileUrl = \sprintf(
+            '%s/%s/%s/%s',
+            $repositoryDetail->repositoryUrl(),
+            $repositoryDetail->repositoryPrefix(),
+            $defaultBranch,
+            $filePath
+        );
 
         $fileStatus = $this->doRequest($targetFileUrl);
 

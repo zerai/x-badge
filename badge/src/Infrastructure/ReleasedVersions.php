@@ -132,17 +132,14 @@ final class ReleasedVersions
                 $currentVersionName = $aliases[$currentVersionName];
             }
 
-            $functionName = 'Unstable';
-            if (self::parseStability($currentVersionName) === 'stable') {
-                $functionName = 'Stable';
-            }
+            $functionName = VersionStability::fromString($currentVersionName)->detect();
 
             /**
              * START CODICE AGGIUNTO:
              *
              * Fix exception all'inizio del loop, la funzione \version_compare()
-             * vuole 2 argomenti di tipo Version,
-             * ma al primo ciclo $this->{'getLatest' . $functionName . 'VersionNormalized'}()
+             * vuole 2 argomenti di tipo string version,
+             * ma al primo ciclo il secondo argomento $this->{'getLatest' . $functionName . 'VersionNormalized'}()
              * e sempre null.
              */
             if (null === $this->{'getLatest' . $functionName . 'VersionNormalized'}()) {

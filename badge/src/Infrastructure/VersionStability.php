@@ -28,23 +28,23 @@ final class VersionStability
         $version = \preg_replace('{#.+$}i', '', $this->version) ?? '';
 
         if (\substr($version, 0, 4) === 'dev-' || \substr($version, -4) === '-dev') {
-            return 'dev';
+            return self::UNSTABLE;
         }
 
         \preg_match('{' . self::MODIFIER_REGEX . '$}i', \strtolower($version), $match);
         if (! empty($match[3])) {
-            return 'dev';
+            return self::UNSTABLE;
         }
 
         if (! empty($match[1])) {
             if ($match[1] === 'beta' || $match[1] === 'b') {
-                return 'beta';
+                return self::UNSTABLE;
             }
             if ($match[1] === 'alpha' || $match[1] === 'a') {
-                return 'alpha';
+                return self::UNSTABLE;
             }
             if ($match[1] === 'rc') {
-                return 'RC';
+                return self::UNSTABLE;
             }
         }
 

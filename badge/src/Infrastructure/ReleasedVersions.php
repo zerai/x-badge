@@ -133,10 +133,6 @@ final class ReleasedVersions
             }
 
             $functionName = VersionStability::fromString($currentVersionName)->detect();
-            //$functionName = 'Unstable';
-            // if (VersionStability::fromString($currentVersionName)->detect() === 'stable') {
-            //     $functionName = 'Stable';
-            // }
 
             /**
              * START CODICE AGGIUNTO:

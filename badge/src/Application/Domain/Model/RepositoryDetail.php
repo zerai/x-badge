@@ -8,7 +8,11 @@ final class RepositoryDetail
 {
     private const GITHUB_SOURCE = 'github.com';
 
+    private const GITHUB_REPOSITORY_PREFIX = 'blob';
+
     private const BITBUCKET_SOURCE = 'bitbucket.org';
+
+    private const BITBUCKET_REPOSITORY_PREFIX = 'src';
 
     private string $value;
 

@@ -48,6 +48,11 @@ final class RepositoryDetail
         return $matches[4];
     }
 
+    public function repositoryPrefix(): string
+    {
+        return $repositoryPrefix = $this->isGitHub() ? self::GITHUB_REPOSITORY_PREFIX : self::BITBUCKET_REPOSITORY_PREFIX;
+    }
+
     public function repositoryName(): string
     {
         \preg_match('/(https)(:\/\/|@)([^\/:]+)[\/:]([^\/:]+)\/(.+)$/', $this->value, $matches);

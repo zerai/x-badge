@@ -129,4 +129,24 @@ final class RepositoryDetailTest extends TestCase
 
         self::assertEquals('https://github.com/turing/gameoflife', $sut->repositoryUrl());
     }
+
+    /**
+     * @test
+     * @dataProvider repositoryPrefixDataProvider
+     */
+    public function shouldReturnTheRepositoryPrefix(string $aPackageUrl, string $expectedRepositoryPrefix): void
+    {
+        $repositoryPrefix = RepositoryDetail::fromRepositoryUrl($aPackageUrl)->repositoryPrefix();
+
+        self::assertEquals($expectedRepositoryPrefix, $repositoryPrefix);
+    }
+
+    /**
+     * @return Generator<string, array<int, string>>
+     */
+    public function repositoryPrefixDataProvider(): Generator
+    {
+        yield 'a package on github' => ['https://github.com/irrelevantvendor/irrelevant', 'blob'];
+        yield 'a package on bitbucket' => ['https://bitbucket.org/irrelevantvendor/irrelevant', 'src'];
+    }
 }

@@ -24,7 +24,6 @@ final class StableVersionBadgeGenerator implements CreateStableVersionBadge
         try {
             $badgeContext = $this->contextProducer->contextFor($packageName);
         } catch (\Throwable $exception) {
-            // log throw $th;
             return $this->imageFactory->createImageForDefaultBadge();
         }
 

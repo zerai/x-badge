@@ -21,7 +21,6 @@ final class ComposerLockProducer implements ContextProducer
 
             return $this->createFromFileStatusCode($composerLockFileStatusCode);
         } catch (\Throwable $exception) {
-            // log exception
             throw $exception;
         }
     }

@@ -21,7 +21,6 @@ final class GitAttributesProducer implements ContextProducer
 
             return $this->createFromFileStatusCode($gitAttributesFileStatusCode);
         } catch (\Throwable $exception) {
-            // log exception
             throw $exception;
         }
     }

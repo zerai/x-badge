@@ -25,7 +25,7 @@ final class ComposerLockBadgeGenerator implements CreateComposerLockBadge
             $badgeImage = $this->imageFactory->createImageFromContext(
                 $this->contextProducer->contextFor($packageName)
             );
-        } catch (\Throwable $th) {
+        } catch (\Throwable $exception) {
             $badgeImage = $this->imageFactory->createImageForDefaultBadge();
         }
 

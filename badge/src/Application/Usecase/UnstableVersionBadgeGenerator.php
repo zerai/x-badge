@@ -23,7 +23,7 @@ final class UnstableVersionBadgeGenerator implements CreateUnstableVersionBadge
     {
         try {
             $badgeContext = $this->contextProducer->contextFor($packageName);
-        } catch (\Throwable $th) {
+        } catch (\Throwable $exception) {
             return $this->imageFactory->createImageForDefaultBadge();
         }
 

@@ -20,7 +20,7 @@ final class GitAttributesProducer implements ContextProducer
             $gitAttributesFileStatusCode = $this->committedFileDetector->detectGitAttributes($packageName);
 
             return $this->createFromFileStatusCode($gitAttributesFileStatusCode);
-        } catch (\Throwable $th) {
+        } catch (\Throwable $exception) {
             // log exception
             throw $th;
         }

@@ -11,6 +11,11 @@ final class Dependents extends BaseCount implements BadgeContext
 
     private const SUBJECT = 'dependents';
 
+    public static function withCount(int $value)
+    {
+        return new self($value);
+    }
+
     /**
      * @return string[]
      *

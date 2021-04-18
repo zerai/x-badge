@@ -23,7 +23,7 @@ final class DependentsTest extends TestCase
     {
         $inputValue = 10;
 
-        $sut = new Dependents($inputValue);
+        $sut = Dependents::withCount($inputValue);
 
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(BadgeContext::class, $sut);
@@ -40,7 +40,7 @@ final class DependentsTest extends TestCase
 
         $inputValue = -10;
 
-        new Dependents($inputValue);
+        Dependents::withCount($inputValue);
     }
 
     /**
@@ -50,7 +50,7 @@ final class DependentsTest extends TestCase
     {
         $inputValue = 10;
 
-        $sut = new Dependents($inputValue);
+        $sut = Dependents::withCount($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('10', $sut->asBadgeValue());
@@ -69,7 +69,7 @@ final class DependentsTest extends TestCase
 
         $inputValue = 10;
 
-        $sut = new Dependents($inputValue);
+        $sut = Dependents::withCount($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('10', $sut->asBadgeValue());
@@ -84,7 +84,7 @@ final class DependentsTest extends TestCase
     {
         $inputValue = 0;
 
-        $sut = new Dependents($inputValue);
+        $sut = Dependents::withCount($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('1', $sut->asBadgeValue());
@@ -97,7 +97,7 @@ final class DependentsTest extends TestCase
     {
         $inputValue = 9001003000000;
 
-        $sut = new Dependents($inputValue);
+        $sut = Dependents::withCount($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('9 T', $sut->asBadgeValue());

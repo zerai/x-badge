@@ -65,11 +65,6 @@ final class ReleasedVersions
         return $this->latestUnstableVersionNormalized;
     }
 
-    private function getLicense(): ?string
-    {
-        return $this->license;
-    }
-
     private function calculateLatestVersions(): self
     {
         $versions = $this->versions;

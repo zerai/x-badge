@@ -17,7 +17,7 @@ final class DailyDownloadsProducer implements ContextProducer
     public function contextFor(string $packageName): BadgeContext
     {
         try {
-            return new DailyDownloads($this->dailyDownloadsReader->readDailyDownloads($packageName));
+            return DailyDownloads::withCount($this->dailyDownloadsReader->readDailyDownloads($packageName));
         } catch (\Exception $e) {
             throw $e;
         }

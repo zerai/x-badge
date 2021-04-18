@@ -4,7 +4,6 @@ namespace Badge\Tests\Unit\Domain\ContextValue;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextualizableValue;
-use Badge\Application\Domain\Model\ContextValue\Common\PostFixCount;
 use Badge\Application\Domain\Model\ContextValue\DailyDownloads;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;

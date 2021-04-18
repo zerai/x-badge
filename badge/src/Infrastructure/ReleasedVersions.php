@@ -55,11 +55,6 @@ final class ReleasedVersions
         return $this->license;
     }
 
-    private function getLatestUnstableVersion(): ?string
-    {
-        return $this->latestUnstableVersion;
-    }
-
     private function getLatestStableVersionNormalized(): ?string
     {
         return $this->latestStableVersionNormalized;

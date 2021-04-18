@@ -21,8 +21,9 @@ abstract class BaseCount implements ContextualizableValue
     }
 
     /**
-     * @psalm-suppress MissingReturnType
+     * @psalm-suppress all
      */
+    /* @phpstan-ignore-next-line */
     abstract public static function withCount(int $value);
 
     public function asBadgeValue(): string

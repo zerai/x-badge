@@ -43,6 +43,7 @@ final class DailyDownloadsTest extends TestCase
 
     /**
      * @test
+     * @covers \Badge\Application\Domain\Model\ContextValue\Common\BaseCount::asBadgeValue
      */
     public function shouldReturnValueAsBadgeContext(): void
     {

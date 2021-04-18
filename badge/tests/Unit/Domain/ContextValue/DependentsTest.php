@@ -18,6 +18,8 @@ final class DependentsTest extends TestCase
 
     /**
      * @test
+     * @covers \Badge\Application\Domain\Model\ContextValue\Common\BaseCount::__construct
+     * @covers \Badge\Application\Domain\Model\ContextValue\Common\BaseCount::validate
      */
     public function canBeCreated(): void
     {
@@ -33,6 +35,7 @@ final class DependentsTest extends TestCase
 
     /**
      * @test
+     * @covers \Badge\Application\Domain\Model\ContextValue\Common\BaseCount::validate
      */
     public function negativeNumbersShouldThrowException(): void
     {
@@ -45,6 +48,7 @@ final class DependentsTest extends TestCase
 
     /**
      * @test
+     * @covers \Badge\Application\Domain\Model\ContextValue\Common\BaseCount::asBadgeValue
      */
     public function shouldReturnValueAsBadgeContext(): void
     {

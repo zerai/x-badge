@@ -107,8 +107,8 @@ final class PoserImageFactoryTest extends TestCase
      */
     public function renderableSuggestersDataProvider(): Generator
     {
-        yield 'a suggesters' => [new Suggesters(10), 'suggesters-10-007ec6.svg'];
-        yield 'a suggesters with normalized counter ' => [new Suggesters(100588), 'suggesters-100-59-k-007ec6.svg'];
+        yield 'a suggesters' => [Suggesters::withCount(10), 'suggesters-10-007ec6.svg'];
+        yield 'a suggesters with normalized counter ' => [Suggesters::withCount(100588), 'suggesters-100-59-k-007ec6.svg'];
     }
 
     /**

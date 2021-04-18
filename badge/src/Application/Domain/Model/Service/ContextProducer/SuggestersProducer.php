@@ -17,7 +17,7 @@ final class SuggestersProducer implements ContextProducer
     public function contextFor(string $packageName): BadgeContext
     {
         try {
-            return new Suggesters($this->suggestersReader->readSuggesters($packageName));
+            return Suggesters::withCount($this->suggestersReader->readSuggesters($packageName));
         } catch (\Exception $e) {
             throw $e;
         }

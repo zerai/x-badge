@@ -98,8 +98,8 @@ final class PoserImageFactoryTest extends TestCase
      */
     public function renderableDependentsDataProvider(): Generator
     {
-        yield 'a dependents' => [new Dependents(10), 'dependents-10-007ec6.svg'];
-        yield 'a dependents with normalized counter ' => [new Dependents(100588), 'dependents-100-59-k-007ec6.svg'];
+        yield 'a dependents' => [Dependents::withCount(10), 'dependents-10-007ec6.svg'];
+        yield 'a dependents with normalized counter ' => [Dependents::withCount(100588), 'dependents-100-59-k-007ec6.svg'];
     }
 
     /**

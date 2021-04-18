@@ -13,12 +13,22 @@ final class BadgeImageTest extends TestCase
     /**
      * @test
      */
-    public function canBeCreated(): void
+    public function shouldReturnTheImageFileName(): void
     {
         $image = BadgeImage::create('a-filename.svg', 'a-content');
 
         self::assertEquals('a-filename.svg', $image->getFileName());
+    }
+
+    /**
+     * @test
+     */
+    public function shouldReturnTheImageContent(): void
+    {
+        $image = BadgeImage::create('a-filename.svg', 'a-content');
+
         self::assertEquals('a-content', $image->getContent());
+        self::assertEquals('a-content', $image->__toString());
     }
 
     /**

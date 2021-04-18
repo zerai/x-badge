@@ -11,6 +11,11 @@ final class TotalDownloads extends BaseCount implements BadgeContext
 
     private const SUBJECT = 'downloads';
 
+    public static function withCount(int $value): self
+    {
+        return new self($value);
+    }
+
     /**
      * @return string[]
      *

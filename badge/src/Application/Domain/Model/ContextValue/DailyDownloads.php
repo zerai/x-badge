@@ -3,15 +3,20 @@
 namespace Badge\Application\Domain\Model\ContextValue;
 
 use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\ContextValue\Common\PostFixCount;
+use Badge\Application\Domain\Model\ContextValue\Common\BaseCount;
 
-final class DailyDownloads extends PostFixCount implements BadgeContext
+final class DailyDownloads extends BaseCount implements BadgeContext
 {
     private const COLOR = '007ec6';
 
     private const SUBJECT = 'downloads';
 
-    private string $suffix = ' today';
+    private const SUFFIX = 'today';
+
+    public static function withCount(int $value): self
+    {
+        return new self($value, self::SUFFIX);
+    }
 
     /**
      * @return string[]
@@ -25,10 +30,5 @@ final class DailyDownloads extends PostFixCount implements BadgeContext
             'subject-value' => $this->asBadgeValue(),
             'color' => self::COLOR,
         ];
-    }
-
-    protected function suffix(): string
-    {
-        return $this->suffix;
     }
 }

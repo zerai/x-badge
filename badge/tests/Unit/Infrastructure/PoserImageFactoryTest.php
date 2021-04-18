@@ -89,8 +89,8 @@ final class PoserImageFactoryTest extends TestCase
         yield 'a total download with normalized counter ' => [TotalDownloads::withCount(100588), 'downloads-100-59-k-007ec6.svg'];
         yield 'a monthly download' => [new MonthlyDownloads(10), 'downloads-10-this-month-007ec6.svg'];
         yield 'a monthly download with normalized counter' => [new MonthlyDownloads(1032555), 'downloads-1-03-M-this-month-007ec6.svg'];
-        yield 'a daily download' => [new DailyDownloads(10), 'downloads-10-today-007ec6.svg'];
-        yield 'a daily download with normalized counter' => [new DailyDownloads(320860055), 'downloads-320-86-M-today-007ec6.svg'];
+        yield 'a daily download' => [DailyDownloads::withCount(10), 'downloads-10-today-007ec6.svg'];
+        yield 'a daily download with normalized counter' => [DailyDownloads::withCount(320860055), 'downloads-320-86-M-today-007ec6.svg'];
     }
 
     /**

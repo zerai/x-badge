@@ -23,11 +23,10 @@ final class DailyDownloadsTest extends TestCase
     {
         $inputValue = 10;
 
-        $sut = new DailyDownloads($inputValue);
+        $sut = DailyDownloads::withCount($inputValue);
 
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(BadgeContext::class, $sut);
-        self::assertInstanceOf(PostFixCount::class, $sut);
         self::assertInstanceOf(DailyDownloads::class, $sut);
     }
 
@@ -40,7 +39,7 @@ final class DailyDownloadsTest extends TestCase
 
         $inputValue = -10;
 
-        new DailyDownloads($inputValue);
+        DailyDownloads::withCount($inputValue);
     }
 
     /**
@@ -50,7 +49,7 @@ final class DailyDownloadsTest extends TestCase
     {
         $inputValue = 10;
 
-        $sut = new DailyDownloads($inputValue);
+        $sut = DailyDownloads::withCount($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('10 today', $sut->asBadgeValue());
@@ -69,7 +68,7 @@ final class DailyDownloadsTest extends TestCase
 
         $inputValue = 10;
 
-        $sut = new DailyDownloads($inputValue);
+        $sut = DailyDownloads::withCount($inputValue);
 
         self::assertEquals($expectedRenderingProperties, $sut->renderingProperties());
     }
@@ -81,7 +80,7 @@ final class DailyDownloadsTest extends TestCase
     {
         $inputValue = 0;
 
-        $sut = new DailyDownloads($inputValue);
+        $sut = DailyDownloads::withCount($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('1 today', $sut->asBadgeValue());
@@ -94,7 +93,7 @@ final class DailyDownloadsTest extends TestCase
     {
         $inputValue = 9001003000000;
 
-        $sut = new DailyDownloads($inputValue);
+        $sut = DailyDownloads::withCount($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('9 T today', $sut->asBadgeValue());

@@ -20,6 +20,8 @@ abstract class BaseCount implements ContextualizableValue
         $this->suffix = $suffix;
     }
 
+    abstract public static function withCount(int $value);
+
     public function asBadgeValue(): string
     {
         /** @psalm-suppress PossiblyNullArgument */

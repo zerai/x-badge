@@ -2,12 +2,12 @@
 
 namespace Badge\Tests\Unit\Domain\ContextValue;
 
-use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\ContextualizableValue;
-use Badge\Application\Domain\Model\ContextValue\Common\PostFixCount;
-use Badge\Application\Domain\Model\ContextValue\MonthlyDownloads;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
+use Badge\Application\Domain\Model\BadgeContext;
+use Badge\Application\Domain\Model\ContextualizableValue;
+use Badge\Application\Domain\Model\ContextValue\Common\BaseCount;
+use Badge\Application\Domain\Model\ContextValue\MonthlyDownloads;
 
 /** @covers \Badge\Application\Domain\Model\ContextValue\MonthlyDownloads */
 final class MonthlyDownloadsTest extends TestCase
@@ -23,11 +23,11 @@ final class MonthlyDownloadsTest extends TestCase
     {
         $inputValue = 10;
 
-        $sut = new MonthlyDownloads($inputValue);
+        $sut = MonthlyDownloads::withCount($inputValue);
 
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(BadgeContext::class, $sut);
-        self::assertInstanceOf(PostFixCount::class, $sut);
+        self::assertInstanceOf(BaseCount::class, $sut);
         self::assertInstanceOf(MonthlyDownloads::class, $sut);
     }
 
@@ -40,7 +40,7 @@ final class MonthlyDownloadsTest extends TestCase
 
         $inputValue = -10;
 
-        new MonthlyDownloads($inputValue);
+        MonthlyDownloads::withCount($inputValue);
     }
 
     /**
@@ -50,7 +50,7 @@ final class MonthlyDownloadsTest extends TestCase
     {
         $inputValue = 10;
 
-        $sut = new MonthlyDownloads($inputValue);
+        $sut = MonthlyDownloads::withCount($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('10 this month', $sut->asBadgeValue());
@@ -69,7 +69,7 @@ final class MonthlyDownloadsTest extends TestCase
 
         $inputValue = 10;
 
-        $sut = new MonthlyDownloads($inputValue);
+        $sut = MonthlyDownloads::withCount($inputValue);
 
         self::assertEquals($expectedRenderingProperties, $sut->renderingProperties());
     }
@@ -81,7 +81,7 @@ final class MonthlyDownloadsTest extends TestCase
     {
         $inputValue = 0;
 
-        $sut = new MonthlyDownloads($inputValue);
+        $sut = MonthlyDownloads::withCount($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('1 this month', $sut->asBadgeValue());
@@ -94,7 +94,7 @@ final class MonthlyDownloadsTest extends TestCase
     {
         $inputValue = 9001003000000;
 
-        $sut = new MonthlyDownloads($inputValue);
+        $sut = MonthlyDownloads::withCount($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('9 T this month', $sut->asBadgeValue());

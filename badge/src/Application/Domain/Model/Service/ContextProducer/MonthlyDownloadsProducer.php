@@ -17,7 +17,7 @@ final class MonthlyDownloadsProducer implements ContextProducer
     public function contextFor(string $packageName): BadgeContext
     {
         try {
-            return new MonthlyDownloads($this->monthlyDownloadsReader->readMonthlyDownloads($packageName));
+            return MonthlyDownloads::withCount($this->monthlyDownloadsReader->readMonthlyDownloads($packageName));
         } catch (\Exception $e) {
             throw $e;
         }

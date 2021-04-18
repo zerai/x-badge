@@ -3,15 +3,20 @@
 namespace Badge\Application\Domain\Model\ContextValue;
 
 use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\ContextValue\Common\PostFixCount;
+use Badge\Application\Domain\Model\ContextValue\Common\BaseCount;
 
-final class MonthlyDownloads extends PostFixCount implements BadgeContext
+final class MonthlyDownloads extends BaseCount implements BadgeContext
 {
     private const COLOR = '007ec6';
 
     private const SUBJECT = 'downloads';
 
-    private string $suffix = ' this month';
+    private const SUFFIX = 'this month';
+
+    public static function withCount(int $value): self
+    {
+        return new self($value, self::SUFFIX);
+    }
 
     /**
      * @return string[]

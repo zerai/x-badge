@@ -13,7 +13,7 @@ abstract class BaseCount implements ContextualizableValue
 
     private ?string $suffix = null;
 
-    public function __construct(int $value, string $suffix = '')
+    protected function __construct(int $value, string $suffix = '')
     {
         $this->value = $this->validate($value);
 

@@ -31,9 +31,4 @@ final class MonthlyDownloads extends BaseCount implements BadgeContext
             'color' => self::COLOR,
         ];
     }
-
-    protected function suffix(): string
-    {
-        return $this->suffix;
-    }
 }

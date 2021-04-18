@@ -2,12 +2,12 @@
 
 namespace Badge\Tests\Unit\Domain\ContextValue;
 
-use InvalidArgumentException;
-use PHPUnit\Framework\TestCase;
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextualizableValue;
 use Badge\Application\Domain\Model\ContextValue\Common\BaseCount;
 use Badge\Application\Domain\Model\ContextValue\MonthlyDownloads;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 
 /** @covers \Badge\Application\Domain\Model\ContextValue\MonthlyDownloads */
 final class MonthlyDownloadsTest extends TestCase

@@ -1,0 +1,47 @@
+<?php declare(strict_types=1);
+
+namespace Badge\Tests\Unit\Application;
+
+use Badge\Application\BadgeImage;
+use Generator;
+use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
+
+/** @covers \Badge\Application\BadgeImage */
+final class BadgeImageTest extends TestCase
+{
+    /**
+     * @test
+     */
+    public function canBeCreated(): void
+    {
+        $image = BadgeImage::create('a-filename.svg', 'a-content');
+
+        self::assertEquals('a-filename.svg', $image->getFileName());
+        self::assertEquals('a-content', $image->getContent());
+    }
+
+    /**
+     * @test
+     * @dataProvider invalidImageDataProvider
+     */
+    public function invalidValuesInconstructorShouldThrowException(string $aFileName, string $aFileContent): void
+    {
+        self::expectException(InvalidArgumentException::class);
+
+        BadgeImage::create($aFileName, $aFileContent);
+    }
+
+    /**
+     * @return Generator<string, array<int, string>>
+     */
+    public function invalidImageDataProvider(): Generator
+    {
+        yield 'empty file name' => ['', 'a-content'];
+        yield 'empty content' => ['a-filename.svg', ''];
+        yield 'invald extension in file name' => ['invalid-extension.txt', 'a-content'];
+        yield 'invald char (.) in file name' => ['invalid.extension.svg', 'a-content'];
+        yield 'invald char (#) in file name' => ['invalid#extension.svg', 'a-content'];
+        yield 'invald char (_) in file name' => ['invalid_extension.svg', 'a-content'];
+    }
+}

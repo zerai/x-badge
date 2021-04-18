@@ -2,6 +2,8 @@
 
 namespace Badge\Application;
 
+use InvalidArgumentException;
+
 class BadgeImage implements Image
 {
     private string $name;
@@ -10,6 +12,7 @@ class BadgeImage implements Image
 
     private function __construct(string $name, string $content)
     {
+        $this->validate($name, $content);
         $this->name = $name;
         $this->content = $content;
     }
@@ -35,5 +38,18 @@ class BadgeImage implements Image
     public function getFileName(): string
     {
         return $this->name;
+    }
+
+    private function validate(string $name, string $content): void
+    {
+        if ($name === '') {
+            throw new InvalidArgumentException('Error: image with empty name not allowed');
+        }
+        if ($content === '') {
+            throw new InvalidArgumentException('Error: image with empty content not allowed');
+        }
+        if (! \preg_match('/^[a-z0-9-]+\.svg$/', $name)) {
+            throw new InvalidArgumentException(\sprintf('Error: %s is not a valid filename', $name));
+        }
     }
 }

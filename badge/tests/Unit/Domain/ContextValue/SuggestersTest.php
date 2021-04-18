@@ -23,7 +23,7 @@ final class SuggestersTest extends TestCase
     {
         $inputValue = 10;
 
-        $sut = new Suggesters($inputValue);
+        $sut = Suggesters::withCount($inputValue);
 
         self::assertInstanceOf(ContextualizableValue::class, $sut);
         self::assertInstanceOf(BadgeContext::class, $sut);
@@ -40,7 +40,7 @@ final class SuggestersTest extends TestCase
 
         $inputValue = -10;
 
-        new Suggesters($inputValue);
+        Suggesters::withCount($inputValue);
     }
 
     /**
@@ -49,7 +49,7 @@ final class SuggestersTest extends TestCase
     public function shouldReturnValueAsBadgeContext(): void
     {
         $inputValue = 10;
-        $sut = new Suggesters($inputValue);
+        $sut = Suggesters::withCount($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('10', $sut->asBadgeValue());
@@ -67,7 +67,7 @@ final class SuggestersTest extends TestCase
         ];
 
         $inputValue = 10;
-        $sut = new Suggesters($inputValue);
+        $sut = Suggesters::withCount($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('10', $sut->asBadgeValue());
@@ -81,7 +81,7 @@ final class SuggestersTest extends TestCase
     public function zeroValueIsNormalizedAsOne(): void
     {
         $inputValue = 0;
-        $sut = new Suggesters($inputValue);
+        $sut = Suggesters::withCount($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('1', $sut->asBadgeValue());
@@ -94,7 +94,7 @@ final class SuggestersTest extends TestCase
     {
         $inputValue = 9001003000000;
 
-        $sut = new Suggesters($inputValue);
+        $sut = Suggesters::withCount($inputValue);
 
         self::assertIsString($sut->asBadgeValue());
         self::assertEquals('9 T', $sut->asBadgeValue());

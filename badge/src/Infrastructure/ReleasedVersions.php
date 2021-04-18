@@ -55,42 +55,6 @@ final class ReleasedVersions
         return $this->license;
     }
 
-    /**
-     * Returns the stability of a version.
-     *
-     * This function is part of Composer.
-     *
-     * (c) Nils Adermann <naderman@naderman.de>
-     * Jordi Boggiano <j.boggiano@seld.be>
-     */
-    private static function parseStability(string $version): string
-    {
-        $version = \preg_replace('{#.+$}i', '', $version) ?? '';
-
-        if (\substr($version, 0, 4) === 'dev-' || \substr($version, -4) === '-dev') {
-            return 'dev';
-        }
-
-        \preg_match('{' . self::$modifierRegex . '$}i', \strtolower($version), $match);
-        if (! empty($match[3])) {
-            return 'dev';
-        }
-
-        if (! empty($match[1])) {
-            if ($match[1] === 'beta' || $match[1] === 'b') {
-                return 'beta';
-            }
-            if ($match[1] === 'alpha' || $match[1] === 'a') {
-                return 'alpha';
-            }
-            if ($match[1] === 'rc') {
-                return 'RC';
-            }
-        }
-
-        return 'stable';
-    }
-
     private function getLatestStableVersion(): ?string
     {
         return $this->latestStableVersion;

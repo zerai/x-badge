@@ -17,7 +17,7 @@ final class TotalDownloadsProducer implements ContextProducer
     public function contextFor(string $packageName): BadgeContext
     {
         try {
-            return new TotalDownloads($this->totalDownloadReader->readTotalDownloads($packageName));
+            return TotalDownloads::withCount($this->totalDownloadReader->readTotalDownloads($packageName));
         } catch (\Exception $e) {
             throw $e;
         }

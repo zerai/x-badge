@@ -85,8 +85,8 @@ final class PoserImageFactoryTest extends TestCase
      */
     public function renderableDownloadDataProvider(): Generator
     {
-        yield 'a total download' => [new TotalDownloads(10), 'downloads-10-007ec6.svg'];
-        yield 'a total download with normalized counter ' => [new TotalDownloads(100588), 'downloads-100-59-k-007ec6.svg'];
+        yield 'a total download' => [TotalDownloads::withCount(10), 'downloads-10-007ec6.svg'];
+        yield 'a total download with normalized counter ' => [TotalDownloads::withCount(100588), 'downloads-100-59-k-007ec6.svg'];
         yield 'a monthly download' => [new MonthlyDownloads(10), 'downloads-10-this-month-007ec6.svg'];
         yield 'a monthly download with normalized counter' => [new MonthlyDownloads(1032555), 'downloads-1-03-M-this-month-007ec6.svg'];
         yield 'a daily download' => [new DailyDownloads(10), 'downloads-10-today-007ec6.svg'];

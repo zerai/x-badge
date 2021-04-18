@@ -13,13 +13,16 @@ abstract class BaseCount implements ContextualizableValue
 
     private ?string $suffix = null;
 
-    protected function __construct(int $value, string $suffix = '')
+    public function __construct(int $value, string $suffix = '')
     {
         $this->value = $this->validate($value);
 
         $this->suffix = $suffix;
     }
 
+    /**
+     * @psalm-suppress MissingReturnType
+     */
     abstract public static function withCount(int $value);
 
     public function asBadgeValue(): string

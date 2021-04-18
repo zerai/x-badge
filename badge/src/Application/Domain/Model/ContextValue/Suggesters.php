@@ -11,7 +11,7 @@ final class Suggesters extends BaseCount implements BadgeContext
 
     private const SUBJECT = 'suggesters';
 
-    public static function withCount(int $value)
+    public static function withCount(int $value): self
     {
         return new self($value);
     }

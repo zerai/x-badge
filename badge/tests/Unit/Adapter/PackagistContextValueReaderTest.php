@@ -252,7 +252,6 @@ final class PackagistContextValueReaderTest extends TestCase
             ->method('getVersionNormalized')
             ->willReturn($expectedUnstableVersion);
 
-
         $aStableVersion = $this->getMockBuilder(Version::class)
             ->disableOriginalConstructor()
             ->onlyMethods(['getVersion', 'getVersionNormalized'])

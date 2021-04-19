@@ -185,30 +185,32 @@ final class PackagistContextValueReaderTest extends TestCase
     /**
      * @test
      */
-    public function shouldReadAVersionValue(): void
+    public function shouldReadAStableVersionValue(): void
     {
-        self::markTestIncomplete();
-
-        $expectedVersion = 'v0.1.0';
+        $expectedStableVersion = 'v0.1.0';
 
         $anUnstableVersionString = 'v0.1.0-beta';
 
         $aStableVersion = $this->getMockBuilder(Version::class)
             ->disableOriginalConstructor()
-            ->onlyMethods(['getVersion'])
+            ->onlyMethods(['getVersion', 'getVersionNormalized'])
             ->getMock();
+        $aStableVersion->expects($this->once())
+            ->method('getVersion')
+            ->willReturn($expectedStableVersion);
+        $aStableVersion->expects($this->once())
+            ->method('getVersionNormalized')
+            ->willReturn($expectedStableVersion);
 
         $anUnstableVersion = $this->getMockBuilder(Version::class)
             ->disableOriginalConstructor()
-            ->onlyMethods(['getVersion'])
+            ->onlyMethods(['getVersion', 'getVersionNormalized'])
             ->getMock();
-
-        $aStableVersion->expects($this->once())
-            ->method('getVersion')
-            ->willReturn($expectedVersion);
-
         $anUnstableVersion->expects($this->once())
             ->method('getVersion')
+            ->willReturn($anUnstableVersionString);
+        $anUnstableVersion->expects($this->once())
+            ->method('getVersionNormalized')
             ->willReturn($anUnstableVersionString);
 
         $package = $this->getMockBuilder(Package::class)
@@ -227,7 +229,7 @@ final class PackagistContextValueReaderTest extends TestCase
 
         $result = $this->packagistContextValueReader->readStableVersion('irrelevant/irrelevant');
 
-        self::assertEquals($expectedVersion, $result);
+        self::assertEquals($expectedStableVersion, $result);
     }
 
     /**

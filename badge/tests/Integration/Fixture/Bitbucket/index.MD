@@ -1,6 +1,6 @@
 # Bitbucket API Mock
 
-## Aggiungere/aggiornare packagist fixture
+## Aggiungere/aggiornare bitbucket fixture
 
 Eseguire il comando 'wget' con l'url del package nella relativa directory
 

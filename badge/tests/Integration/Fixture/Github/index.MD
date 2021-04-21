@@ -1,6 +1,6 @@
 # Github API Mock
 
-## Aggiungere/aggiornare packagist fixture
+## Aggiungere/aggiornare github fixture
 
 Eseguire il comando 'wget' con l'url del package nella relativa directory
 

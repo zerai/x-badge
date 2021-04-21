@@ -25,3 +25,7 @@ services:
     volumes:
       - ./badge/tests/Acceptance/FakeAllInOneApiServer:/srv/app:cached
     entrypoint: ["php", "-S", "0.0.0.0:80", "/srv/app/index.php"]
+  api_mock_server:
+    image: mockserver/mockserver
+    ports:
+      - "8888:1080"

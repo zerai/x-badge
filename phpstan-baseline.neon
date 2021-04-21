@@ -31,16 +31,6 @@ parameters:
 			path: badge/tests/E2E/ComposerLockRequestTest.php
 
 		-
-			message: "#^Property Badge\\\\Tests\\\\Integration\\\\GetDefaultBranchFromGithubApiTest\\:\\:\\$githubClient \\(Github\\\\Client\\) does not accept null\\.$#"
-			count: 1
-			path: badge/tests/Integration/GetDefaultBranchFromGithubApiTest.php
-
-		-
-			message: "#^Property Badge\\\\Tests\\\\Integration\\\\GetDefaultBranchFromGithubApiTest\\:\\:\\$bitbucketClient \\(Bitbucket\\\\Client\\) does not accept null\\.$#"
-			count: 1
-			path: badge/tests/Integration/GetDefaultBranchFromGithubApiTest.php
-
-		-
 			message: "#^Unreachable statement \\- code above always terminates\\.$#"
 			count: 1
 			path: badge/tests/Unit/Adapter/DefaultBranchDetectorTest.php

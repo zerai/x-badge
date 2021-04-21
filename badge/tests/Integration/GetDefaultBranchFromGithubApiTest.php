@@ -42,13 +42,6 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
         $this->bitbucketClient = $client;
     }
 
-    protected function tearDown(): void
-    {
-        $this->githubClient = null;
-
-        $this->bitbucketClient = null;
-    }
-
     /**
      * @test
      * @dataProvider githubRepositoryUrlDataprovider

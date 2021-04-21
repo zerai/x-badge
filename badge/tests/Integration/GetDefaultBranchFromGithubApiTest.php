@@ -19,15 +19,9 @@ use RuntimeException;
  */
 final class GetDefaultBranchFromGithubApiTest extends TestCase
 {
-    /**
-     * @var GithubClient
-     */
-    private $githubClient;
+    private GithubClient $githubClient;
 
-    /**
-     * @var BitbucketClient
-     */
-    private $bitbucketClient;
+    private BitbucketClient $bitbucketClient;
 
     public static function setUpBeforeClass(): void
     {
@@ -79,7 +73,6 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
      */
     public function canReadTheDefaltBrancheFromBitbucketbApi(string $repositoryUrl): void
     {
-        //self::markTestSkipped();
         $detector = new DefaultBranchDetector(
             $this->githubClient,
             $this->bitbucketClient,

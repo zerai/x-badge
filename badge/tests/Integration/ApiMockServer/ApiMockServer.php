@@ -54,6 +54,49 @@ class ApiMockServer
         }
     }
 
+    public static function loadGithubFixtureForPackage(string $endpoint, string $jsonResponse): void
+    {
+        $expectetionTemplate = '
+            {
+                "httpRequest" : {
+                    "method" : "GET",
+                    "path" : "%s"
+                },
+                "httpResponse" : {
+                    "statusCode": 200,
+                    "body" : %s
+                }
+            }'
+        ;
+
+        $expectationDataRequest = \trim(\sprintf($expectetionTemplate, $endpoint, $jsonResponse));
+
+        $ch = \curl_init();
+
+        \curl_setopt($ch, CURLOPT_URL, self::expectationEndpoint());
+        \curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        \curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+        \curl_setopt($ch, CURLOPT_POSTFIELDS, $expectationDataRequest);
+
+        $headers = [];
+        $headers[] = 'Content-Type: application/x-www-form-urlencoded';
+        \curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        try {
+            $result = \curl_exec($ch);
+            if (\curl_errno($ch)) {
+                self::reset();
+
+                throw new RuntimeException('ApiMockServer error: ' . \curl_error($ch));
+            }
+            \curl_close($ch);
+        } catch (\Throwable $th) {
+            \curl_close($ch);
+
+            throw $th;
+        }
+    }
+
     public static function reset(): void
     {
         $ch = \curl_init();

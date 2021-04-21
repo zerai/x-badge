@@ -2,16 +2,20 @@
 
 namespace Badge\Tests\Integration;
 
+use Generator;
+use RuntimeException;
+use Badge\Infrastructure\Env;
+use PHPUnit\Framework\TestCase;
+use Github\Client as GithubClient;
+use Bitbucket\Client as BitbucketClient;
 use Badge\Adapter\Out\DefaultBranchDetector;
 use Badge\Application\Domain\Model\RepositoryDetail;
-use Badge\Infrastructure\Env;
+use Badge\Tests\Integration\ApiMockServer\ApiMockServer;
 use Badge\Tests\Support\ExtendedGithubClient\ExtendedForTestGithubClient;
-use Bitbucket\Client as BitbucketClient;
-use Github\Client as GithubClient;
-use PHPUnit\Framework\TestCase;
 
 /**
  * @group io-network
+ * @covers \Badge\Adapter\Out\DefaultBranchDetector
  */
 final class GetDefaultBranchFromGithubApiTest extends TestCase
 {
@@ -25,9 +29,19 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
      */
     private $bitbucketClient;
 
+    public static function setUpBeforeClass(): void
+    {
+        self::loadFixtureToApiMockServer();
+    }
+
+    public static function tearDownAfterClass(): void
+    {
+        ApiMockServer::reset();
+    }
+    
     protected function setUp(): void
     {
-        $this->githubClient = new ExtendedForTestGithubClient(Env::get('FAKE_GITHUB_API_URI'));
+        $this->githubClient = new ExtendedForTestGithubClient(Env::get('API_MOCK_SERVER'));
 
         $this->bitbucketClient = new BitbucketClient();
     }
@@ -41,16 +55,16 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
 
     /**
      * @test
+     * @dataProvider githubRepositoryUrlDataprovider
      */
-    public function canReadTheDefaltBrancheFromGithubApi(): void
+    public function canReadTheDefaltBrancheFromGithubApi(string $repositoryUrl): void
     {
-        self::markTestSkipped();
         $detector = new DefaultBranchDetector(
             $this->githubClient,
             $this->bitbucketClient,
         );
 
-        $repositoryDetail = RepositoryDetail::fromRepositoryUrl('https://github.com/badges/poser');
+        $repositoryDetail = RepositoryDetail::fromRepositoryUrl($repositoryUrl);
 
         $result = $detector->getDefaultBranch($repositoryDetail);
 
@@ -73,5 +87,41 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
         $result = $detector->getDefaultBranch($repositoryDetail);
 
         self::assertNotEmpty($result);
+    }
+
+    /**
+     * @return Generator<string, array<int, string>>
+     */
+    public function githubRepositoryUrlDataprovider(): Generator
+    {
+        yield 'repository badges/poser' => ['https://github.com/badges/poser'];
+        yield 'repository doctrine/collections' => ['https://github.com/doctrine/collections'];
+        yield 'repository seldaek/monolog' => ['https://github.com/seldaek/monolog'];
+    }
+
+    private static function loadFixtureToApiMockServer(): void
+    {
+        ApiMockServer::loadPackagistFixtureForPackage(
+            '/repos/badges/poser',
+            self::getFixtureContent(__DIR__ . '/Fixture/Github/repository-badges-poser.json')
+        );
+        ApiMockServer::loadPackagistFixtureForPackage(
+            '/repos/doctrine/collections',
+            self::getFixtureContent(__DIR__ . '/Fixture/Github/repository-doctrine-collections.json')
+        );
+        ApiMockServer::loadPackagistFixtureForPackage(
+            '/repos/seldaek/monolog',
+            self::getFixtureContent(__DIR__ . '/Fixture/Github/repository-seldaek-monolog.json')
+        );
+    }
+
+    private static function getFixtureContent(string $fixtureFile): string
+    {
+        if (! \file_exists($fixtureFile)) {
+            throw new RuntimeException(\sprintf('Fixture file: %s not found.', $fixtureFile));
+        }
+
+        /** @phpstan-ignore-next-line */
+        return \file_get_contents($fixtureFile);
     }
 }

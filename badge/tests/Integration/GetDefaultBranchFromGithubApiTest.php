@@ -43,7 +43,9 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
     {
         $this->githubClient = new ExtendedForTestGithubClient(Env::get('API_MOCK_SERVER'));
 
-        $this->bitbucketClient = new BitbucketClient();
+        $client = new BitbucketClient();
+        $client->setUrl(Env::get('API_MOCK_SERVER'));
+        $this->bitbucketClient = $client;
     }
 
     protected function tearDown(): void
@@ -73,16 +75,17 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
 
     /**
      * @test
+     * @dataProvider bitbucketRepositoryUrlDataprovider
      */
-    public function canReadTheDefaltBrancheFromBitbucketbApi(): void
+    public function canReadTheDefaltBrancheFromBitbucketbApi($repositoryUrl): void
     {
-        self::markTestSkipped();
+        //self::markTestSkipped();
         $detector = new DefaultBranchDetector(
             $this->githubClient,
             $this->bitbucketClient,
         );
 
-        $repositoryDetail = RepositoryDetail::fromRepositoryUrl('https://github.com/badges/poser');
+        $repositoryDetail = RepositoryDetail::fromRepositoryUrl($repositoryUrl);
 
         $result = $detector->getDefaultBranch($repositoryDetail);
 
@@ -99,6 +102,16 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
         yield 'repository seldaek/monolog' => ['https://github.com/seldaek/monolog'];
     }
 
+    /**
+     * @return Generator<string, array<int, string>>
+     */
+    public function bitbucketRepositoryUrlDataprovider(): Generator
+    {
+        yield 'repository rickymcalister/instagram-php-wrapper' => ['https://bitbucket.org/rickymcalister/instagram-php-wrapper'];
+        yield 'repository axtens/php-bignum' => ['https://bitbucket.org/axtens/php-bignum'];
+        yield 'repository masnun/php-feeds' => ['https://bitbucket.org/masnun/php-feeds'];
+    }
+
     private static function loadFixtureToApiMockServer(): void
     {
         ApiMockServer::loadPackagistFixtureForPackage(
@@ -113,6 +126,20 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
             '/repos/seldaek/monolog',
             self::getFixtureContent(__DIR__ . '/Fixture/Github/repository-seldaek-monolog.json')
         );
+
+        ApiMockServer::loadPackagistFixtureForPackage(
+            '/2.0/repositories/rickymcalister/instagram-php-wrapper',
+            self::getFixtureContent(__DIR__ . '/Fixture/Bitbucket/repository-rickymcalister-instagram-php-wrapper.json')
+        );
+        ApiMockServer::loadPackagistFixtureForPackage(
+            '/2.0/repositories/axtens/php-bignum',
+            self::getFixtureContent(__DIR__ . '/Fixture/Bitbucket/repository-axtens-php-bignum.json')
+        );
+        ApiMockServer::loadPackagistFixtureForPackage(
+            '/2.0/repositories/masnun/php-feeds',
+            self::getFixtureContent(__DIR__ . '/Fixture/Bitbucket/repository-axtens-php-bignum.json')
+        );
+
     }
 
     private static function getFixtureContent(string $fixtureFile): string

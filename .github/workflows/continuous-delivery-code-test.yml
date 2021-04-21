@@ -52,7 +52,7 @@ jobs:
       api-mock-server:
         image: mockserver/mockserver
         ports:
-          - 8888/tcp
+          - 1080/tcp
 
     strategy:
       matrix:
@@ -130,8 +130,10 @@ jobs:
 
       -
         name: Run integration test
-        run: ./vendor/bin/phpunit --testsuite integration
-
+        run: ./vendor/bin/phpunit --testsuite integration --group io-network
+        env:
+          API_MOCK_SERVER: http://127.0.0.1:${{ job.services.api-mock-server.ports[1080] }}
+          FAKE_ALL_IN_ONE_API_URI: http://127.0.0.1:8082
       -
         name: Run acceptance test
         run: ./vendor/bin/phpunit --testsuite acceptance

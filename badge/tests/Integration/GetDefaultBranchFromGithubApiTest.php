@@ -44,6 +44,7 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
      */
     public function canReadTheDefaltBrancheFromGithubApi(): void
     {
+        self::markTestSkipped();
         $detector = new DefaultBranchDetector(
             $this->githubClient,
             $this->bitbucketClient,
@@ -61,6 +62,7 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
      */
     public function canReadTheDefaltBrancheFromBitbucketbApi(): void
     {
+        self::markTestSkipped();
         $detector = new DefaultBranchDetector(
             $this->githubClient,
             $this->bitbucketClient,

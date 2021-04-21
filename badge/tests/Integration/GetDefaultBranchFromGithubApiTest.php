@@ -2,16 +2,16 @@
 
 namespace Badge\Tests\Integration;
 
-use Generator;
-use RuntimeException;
-use Badge\Infrastructure\Env;
-use PHPUnit\Framework\TestCase;
-use Github\Client as GithubClient;
-use Bitbucket\Client as BitbucketClient;
 use Badge\Adapter\Out\DefaultBranchDetector;
 use Badge\Application\Domain\Model\RepositoryDetail;
+use Badge\Infrastructure\Env;
 use Badge\Tests\Integration\ApiMockServer\ApiMockServer;
 use Badge\Tests\Support\ExtendedGithubClient\ExtendedForTestGithubClient;
+use Bitbucket\Client as BitbucketClient;
+use Generator;
+use Github\Client as GithubClient;
+use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 /**
  * @group io-network
@@ -38,7 +38,7 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
     {
         ApiMockServer::reset();
     }
-    
+
     protected function setUp(): void
     {
         $this->githubClient = new ExtendedForTestGithubClient(Env::get('API_MOCK_SERVER'));
@@ -77,7 +77,7 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
      * @test
      * @dataProvider bitbucketRepositoryUrlDataprovider
      */
-    public function canReadTheDefaltBrancheFromBitbucketbApi($repositoryUrl): void
+    public function canReadTheDefaltBrancheFromBitbucketbApi(string $repositoryUrl): void
     {
         //self::markTestSkipped();
         $detector = new DefaultBranchDetector(
@@ -139,7 +139,6 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
             '/2.0/repositories/masnun/php-feeds',
             self::getFixtureContent(__DIR__ . '/Fixture/Bitbucket/repository-axtens-php-bignum.json')
         );
-
     }
 
     private static function getFixtureContent(string $fixtureFile): string

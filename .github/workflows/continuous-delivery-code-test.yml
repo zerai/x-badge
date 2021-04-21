@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-20.04
     services:
       api-mock-server:
-        image: mockserver/mockserver
+        image: mockserver/mockserver:mockserver-5.11.2
         ports:
           - 1080/tcp
 

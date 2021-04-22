@@ -2,14 +2,6 @@ version: '3.4'
 
 services:
 
-  fake_packagist_server:
-    image: php:7.4-alpine
-    ports:
-      - "8080:80"
-    volumes:
-      - ./badge/src/Infrastructure/FakePackagistServer:/srv/app:cached
-    entrypoint: ["php", "-S", "0.0.0.0:80", "/srv/app/router.php"]
-
   fake_github_server:
     image: php:7.4-alpine
     ports:
@@ -25,6 +17,7 @@ services:
     volumes:
       - ./badge/tests/Acceptance/FakeAllInOneApiServer:/srv/app:cached
     entrypoint: ["php", "-S", "0.0.0.0:80", "/srv/app/index.php"]
+
   api_mock_server:
     image: mockserver/mockserver:mockserver-5.11.2
     ports:

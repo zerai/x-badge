@@ -15,6 +15,7 @@
             <directory name="vendor"/>
             <directory name="badge/tests/Discovery"/>
             <directory name="badge/tests/PHPUnitExtension"/>
+            <directory name="badge/tests/Support/DomainBuilder"/>
         </ignoreFiles>
     </projectFiles>
     

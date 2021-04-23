@@ -10,3 +10,4 @@ parameters:
 	excludePaths:
 		- badge/tests/Discovery/*
 		- badge/tests/PHPUnitExtension/*
+		- badge/tests/Support/DomainBuilder/*

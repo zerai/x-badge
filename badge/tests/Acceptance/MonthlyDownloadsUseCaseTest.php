@@ -4,6 +4,7 @@ namespace Badge\Tests\Acceptance;
 
 use Badge\Application\BadgeImage;
 use Badge\Application\Image;
+use Badge\Tests\Support\DomainBuilder\PackagistBuilder\PackagistBuilder;
 
 /** @covers \Badge\Application\Usecase\MonthlyDownloadsBadgeGenerator */
 final class MonthlyDownloadsUseCaseTest extends AcceptanceTestCase
@@ -25,8 +26,13 @@ final class MonthlyDownloadsUseCaseTest extends AcceptanceTestCase
     /**
      * @test
      */
-    public function createABadgeForAPackage(): void
+    public function createAMonthlyDownloadsBadgeForAPackage(): void
     {
+        PackagistBuilder::withVendorAndProjectName('badges', 'poser')
+            ->addBitbucketAsHostingServiceProvider()
+            ->addMonthlyDownloads(100)
+            ->build();
+
         $result = $this->application->createMonthlyDownloadsBadge('badges/poser');
 
         self::assertInstanceOf(BadgeImage::class, $result);
@@ -38,9 +44,15 @@ final class MonthlyDownloadsUseCaseTest extends AcceptanceTestCase
     /**
      * @test
      */
-    public function createDefaultBadgeIfError(): void
+    public function createDefaultBadgeWhenRetrieveAn404HttpError(): void
     {
-        $result = $this->application->createMonthlyDownloadsBadge('notexist/package');
+        PackagistBuilder::withVendorAndProjectName('notexist', 'unkwown-project')
+            ->addBitbucketAsHostingServiceProvider()
+            ->addMonthlyDownloads(500)
+            ->addHttpStatusCode(404)
+            ->build();
+
+        $result = $this->application->createMonthlyDownloadsBadge('notexist/unkwown-project');
 
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertTrue(self::isDefaultBadgeImage($result));
@@ -49,8 +61,30 @@ final class MonthlyDownloadsUseCaseTest extends AcceptanceTestCase
     /**
      * @test
      */
-    public function createABadgeForAPackageWithZeroTotalDownloads(): void
+    public function createDefaultBadgeWhenRetrieveAn500HttpError(): void
     {
+        PackagistBuilder::withVendorAndProjectName('notexist', 'unkwown-project')
+            ->addBitbucketAsHostingServiceProvider()
+            ->addMonthlyDownloads(500)
+            ->addHttpStatusCode(500)
+            ->build();
+
+        $result = $this->application->createMonthlyDownloadsBadge('notexist/unkwown-project');
+
+        self::assertInstanceOf(BadgeImage::class, $result);
+        self::assertTrue(self::isDefaultBadgeImage($result));
+    }
+
+    /**
+     * @test
+     */
+    public function createAMonthlyDownloadsBadgeForAPackageWithZeroTotalDownloads(): void
+    {
+        PackagistBuilder::withVendorAndProjectName('irrelevantvendor', 'package-with-zero-monthly-downloads')
+            ->addBitbucketAsHostingServiceProvider()
+            ->addMonthlyDownloads(0)
+            ->build();
+
         $result = $this->application->createMonthlyDownloadsBadge('irrelevantvendor/package-with-zero-monthly-downloads');
 
         self::assertInstanceOf(BadgeImage::class, $result);

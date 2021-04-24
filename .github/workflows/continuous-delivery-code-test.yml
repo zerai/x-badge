@@ -138,4 +138,4 @@ jobs:
         name: Run acceptance test
         run: ./vendor/bin/phpunit --testsuite acceptance
         env:
-          FAKE_ALL_IN_ONE_API_URI: http://127.0.0.1:8082
+          API_MOCK_SERVER: http://127.0.0.1:${{ job.services.api-mock-server.ports[1080] }}

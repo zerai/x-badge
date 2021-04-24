@@ -31,7 +31,7 @@ final class ServiceContainerForAcceptanceTesting extends ServiceContainer
     {
         if ($this->packagistClient === null) {
             $clientForAcceptanceTest = new packagistClient();
-            $clientForAcceptanceTest->setPackagistUrl(Env::get('FAKE_ALL_IN_ONE_API_URI'));
+            $clientForAcceptanceTest->setPackagistUrl(Env::get('API_MOCK_SERVER'));
             $this->packagistClient = $clientForAcceptanceTest;
         }
 

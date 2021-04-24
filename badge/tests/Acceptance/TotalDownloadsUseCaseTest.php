@@ -4,6 +4,7 @@ namespace Badge\Tests\Acceptance;
 
 use Badge\Application\BadgeImage;
 use Badge\Application\Image;
+use Badge\Tests\Support\DomainBuilder\PackagistBuilder\PackagistBuilder;
 
 /** @covers \Badge\Application\Usecase\TotalDownloadsBadgeGenerator */
 final class TotalDownloadsUseCaseTest extends AcceptanceTestCase
@@ -25,9 +26,14 @@ final class TotalDownloadsUseCaseTest extends AcceptanceTestCase
     /**
      * @test
      */
-    public function createABadgeForAPackage(): void
+    public function createATotalDownloadsBadgeForAPackage(): void
     {
-        $result = $this->application->createTotalDownloadsBadge('badges/poser');
+        PackagistBuilder::withVendorAndProjectName('doctrine', 'collections')
+            ->addBitbucketAsHostingServiceProvider()
+            ->addTotalDownloads(100)
+            ->build();
+
+        $result = $this->application->createTotalDownloadsBadge('doctrine/collections');
 
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertFalse(self::isDefaultBadgeImage($result));
@@ -38,9 +44,15 @@ final class TotalDownloadsUseCaseTest extends AcceptanceTestCase
     /**
      * @test
      */
-    public function createDefaultBadgeIfError(): void
+    public function createDefaultBadgeWhenRetrieveAn404HttpError(): void
     {
-        $result = $this->application->createTotalDownloadsBadge('notexist/package');
+        PackagistBuilder::withVendorAndProjectName('notexist', 'unkwown-project')
+            ->addBitbucketAsHostingServiceProvider()
+            ->addTotalDownloads(50000)
+            ->addHttpStatusCode(404)
+            ->build();
+
+        $result = $this->application->createTotalDownloadsBadge('notexist/unkwown-project');
 
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertTrue(self::isDefaultBadgeImage($result));
@@ -49,9 +61,31 @@ final class TotalDownloadsUseCaseTest extends AcceptanceTestCase
     /**
      * @test
      */
-    public function createABadgeForAPackageWithZeroTotalDownloads(): void
+    public function createDefaultBadgeWhenRetrieveAn500HttpError(): void
     {
-        $result = $this->application->createTotalDownloadsBadge('irrelevantvendor/package-with-zero-total-downloads');
+        PackagistBuilder::withVendorAndProjectName('notexist', 'unkwown-project')
+            ->addBitbucketAsHostingServiceProvider()
+            ->addTotalDownloads(5768500)
+            ->addHttpStatusCode(500)
+            ->build();
+
+        $result = $this->application->createTotalDownloadsBadge('notexist/unkwown-project');
+
+        self::assertInstanceOf(BadgeImage::class, $result);
+        self::assertTrue(self::isDefaultBadgeImage($result));
+    }
+
+    /**
+     * @test
+     */
+    public function createATotalDownloadsBadgeForAPackageWithZeroTotalDownloads(): void
+    {
+        PackagistBuilder::withVendorAndProjectName('phpunit', 'package-with-zero-total-downloads')
+            ->addGithubAsHostingServiceProvider()
+            ->addTotalDownloads(0)
+            ->build();
+
+        $result = $this->application->createTotalDownloadsBadge('phpunit/package-with-zero-total-downloads');
 
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertFalse(self::isDefaultBadgeImage($result));

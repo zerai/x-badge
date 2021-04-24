@@ -4,6 +4,7 @@ namespace Badge\Tests\Acceptance;
 
 use Badge\Application\BadgeImage;
 use Badge\Application\Image;
+use Badge\Tests\Support\DomainBuilder\PackagistBuilder\PackagistBuilder;
 
 /** @covers \Badge\Application\Usecase\DependentsBadgeGenerator */
 final class DependentsUseCaseTest extends AcceptanceTestCase
@@ -25,8 +26,13 @@ final class DependentsUseCaseTest extends AcceptanceTestCase
     /**
      * @test
      */
-    public function createABadgeForAPackage(): void
+    public function createADependentsBadgeForAPackage(): void
     {
+        PackagistBuilder::withVendorAndProjectName('badges', 'poser')
+            ->addBitbucketAsHostingServiceProvider()
+            ->addDependents(500)
+            ->build();
+
         $result = $this->application->createDependentsBadge('badges/poser');
 
         self::assertInstanceOf(BadgeImage::class, $result);
@@ -38,9 +44,15 @@ final class DependentsUseCaseTest extends AcceptanceTestCase
     /**
      * @test
      */
-    public function createDefaultBadgeIfError(): void
+    public function createDefaultBadgeWhenRetrieveA404HttpError(): void
     {
-        $result = $this->application->createDependentsBadge('notexist/package');
+        PackagistBuilder::withVendorAndProjectName('irrelevanvendor', 'unknown-package')
+            ->addBitbucketAsHostingServiceProvider()
+            ->addDependents(500)
+            ->addHttpStatusCode(404)
+            ->build();
+
+        $result = $this->application->createDependentsBadge('irrelevanvendor/unknown-package');
 
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertTrue(self::isDefaultBadgeImage($result));
@@ -49,9 +61,31 @@ final class DependentsUseCaseTest extends AcceptanceTestCase
     /**
      * @test
      */
-    public function createABadgeForAPackageWithZeroDependents(): void
+    public function createDefaultBadgeWhenRetrieveA500HttpError(): void
     {
-        $result = $this->application->createDependentsBadge('irrelevantvendor/package-with-zero-dependents');
+        PackagistBuilder::withVendorAndProjectName('irrelevanvendor', 'unknown-package')
+            ->addBitbucketAsHostingServiceProvider()
+            ->addDependents(500)
+            ->addHttpStatusCode(500)
+            ->build();
+
+        $result = $this->application->createDependentsBadge('irrelevanvendor/unknown-package');
+
+        self::assertInstanceOf(BadgeImage::class, $result);
+        self::assertTrue(self::isDefaultBadgeImage($result));
+    }
+
+    /**
+     * @test
+     */
+    public function createADependentsBadgeForAPackageWithZeroDependents(): void
+    {
+        PackagistBuilder::withVendorAndProjectName('badges', 'poser')
+            ->addBitbucketAsHostingServiceProvider()
+            ->addDependents(0)
+            ->build();
+
+        $result = $this->application->createDependentsBadge('badges/poser');
 
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertFalse(self::isDefaultBadgeImage($result));

@@ -330,7 +330,7 @@ final class PackagistData
             'suggesters' => $this->suggesters,
             'repository' => $this->repository,
             'downloads' => [
-                'totals' => $this->totals,
+                'total' => $this->totals,
                 'monthly' => $this->monthly,
                 'daily' => $this->daily,
             ],

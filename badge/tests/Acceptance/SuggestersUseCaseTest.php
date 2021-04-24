@@ -4,6 +4,7 @@ namespace Badge\Tests\Acceptance;
 
 use Badge\Application\BadgeImage;
 use Badge\Application\Image;
+use Badge\Tests\Support\DomainBuilder\PackagistBuilder\PackagistBuilder;
 
 /** @covers \Badge\Application\Usecase\SuggestersBadgeGenerator */
 final class SuggestersUseCaseTest extends AcceptanceTestCase
@@ -25,8 +26,13 @@ final class SuggestersUseCaseTest extends AcceptanceTestCase
     /**
      * @test
      */
-    public function createABadgeForAPackage(): void
+    public function createASuggestersBadgeForAPackage(): void
     {
+        PackagistBuilder::withVendorAndProjectName('badges', 'poser')
+            ->addBitbucketAsHostingServiceProvider()
+            ->addSuggesters(100000)
+            ->build();
+
         $result = $this->application->createSuggestersBadge('badges/poser');
 
         self::assertInstanceOf(BadgeImage::class, $result);
@@ -38,9 +44,15 @@ final class SuggestersUseCaseTest extends AcceptanceTestCase
     /**
      * @test
      */
-    public function createDefaultBadgeIfError(): void
+    public function createDefaultBadgeWhenRetrieveAn404HttpError(): void
     {
-        $result = $this->application->createSuggestersBadge('notexist/package');
+        PackagistBuilder::withVendorAndProjectName('notexist', 'unkwown-project')
+            ->addBitbucketAsHostingServiceProvider()
+            ->addSuggesters(500)
+            ->addHttpStatusCode(404)
+            ->build();
+
+        $result = $this->application->createSuggestersBadge('notexist/unkwown-project');
 
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertTrue(self::isDefaultBadgeImage($result));
@@ -49,8 +61,30 @@ final class SuggestersUseCaseTest extends AcceptanceTestCase
     /**
      * @test
      */
-    public function createABadgeForAPackageWithZeroSuggesters(): void
+    public function createDefaultBadgeWhenRetrieveAn500HttpError(): void
     {
+        PackagistBuilder::withVendorAndProjectName('notexist', 'unkwown-project')
+            ->addBitbucketAsHostingServiceProvider()
+            ->addSuggesters(500)
+            ->addHttpStatusCode(500)
+            ->build();
+
+        $result = $this->application->createSuggestersBadge('notexist/unkwown-project');
+
+        self::assertInstanceOf(BadgeImage::class, $result);
+        self::assertTrue(self::isDefaultBadgeImage($result));
+    }
+
+    /**
+     * @test
+     */
+    public function createASuggestersBadgeForAPackageWithZeroSuggesters(): void
+    {
+        PackagistBuilder::withVendorAndProjectName('irrelevantvendor', 'package-with-zero-suggesters')
+            ->addGithubAsHostingServiceProvider()
+            ->addSuggesters(0)
+            ->build();
+
         $result = $this->application->createSuggestersBadge('irrelevantvendor/package-with-zero-suggesters');
 
         self::assertInstanceOf(BadgeImage::class, $result);

@@ -4,6 +4,8 @@ namespace Badge\Tests\Support\DomainBuilder\PackagistBuilder;
 
 use Badge\Tests\Support\DomainBuilder\ApiMockServer\ApiMockServer;
 use Badge\Tests\Support\DomainBuilder\Data\PackagistData;
+use Badge\Tests\Support\DomainBuilder\Data\Version;
+use DateTimeImmutable;
 use RuntimeException;
 
 final class PackagistBuilder implements PackagistBuilderInterface
@@ -77,6 +79,27 @@ final class PackagistBuilder implements PackagistBuilderInterface
                 ->withRepository(
                     \sprintf('https://bitbucket.org/%s', $this->packagistData->name())
                 );
+
+        return new self($this->packagistData);
+    }
+
+    public function addReleasedVersion(string $version): PackagistBuilderInterface
+    {
+        $versions = $this->packagistData->versions();
+
+        $newVersion = new Version(
+            $this->packagistData->name(),
+            $version,
+            $version,
+            'MIT',
+            new DateTimeImmutable('now')
+        );
+
+        $versions[] = $newVersion;
+
+        $this->packagistData =
+            $this->packagistData
+                ->withVersions($versions);
 
         return new self($this->packagistData);
     }

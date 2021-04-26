@@ -1,7 +1,13 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Badge\Tests\Support\DomainBuilder\Data;
 
+/**
+ * null
+ * @codeCoverageIgnore
+ */
 final class PackagistData
 {
     private string $name;
@@ -18,8 +24,16 @@ final class PackagistData
 
     private string $repository;
 
+    /**
+     * @return list<Version>
+     */
+    private array $versions;
+
     private int $httpStatusCode;
 
+    /**
+     * @param list<Version> $versions
+     */
     public function __construct(
         string $name = 'irrelevant',
         int $dependents = 0,
@@ -28,6 +42,7 @@ final class PackagistData
         int $monthly = 0,
         int $daily = 0,
         string $repository = '',
+        array $versions = [],
         int $httpStatusCode = 200
     ) {
         $this->name = $name;
@@ -37,6 +52,7 @@ final class PackagistData
         $this->monthly = $monthly;
         $this->daily = $daily;
         $this->repository = $repository;
+        $this->versions = $versions;
         $this->httpStatusCode = $httpStatusCode;
     }
 
@@ -55,6 +71,7 @@ final class PackagistData
             $this->monthly,
             $this->daily,
             $this->repository,
+            $this->versions,
             $this->httpStatusCode
         );
     }
@@ -74,6 +91,7 @@ final class PackagistData
             $this->monthly,
             $this->daily,
             $this->repository,
+            $this->versions,
             $this->httpStatusCode
         );
     }
@@ -93,6 +111,7 @@ final class PackagistData
             $this->monthly,
             $this->daily,
             $this->repository,
+            $this->versions,
             $this->httpStatusCode
         );
     }
@@ -112,6 +131,7 @@ final class PackagistData
             $this->monthly,
             $this->daily,
             $this->repository,
+            $this->versions,
             $this->httpStatusCode
         );
     }
@@ -131,6 +151,7 @@ final class PackagistData
             $monthly,
             $this->daily,
             $this->repository,
+            $this->versions,
             $this->httpStatusCode
         );
     }
@@ -150,6 +171,7 @@ final class PackagistData
             $this->monthly,
             $daily,
             $this->repository,
+            $this->versions,
             $this->httpStatusCode
         );
     }
@@ -169,6 +191,33 @@ final class PackagistData
             $this->monthly,
             $this->daily,
             $repository,
+            $this->versions,
+            $this->httpStatusCode
+        );
+    }
+
+    /**
+     * @return list<Version>
+     */
+    public function versions(): array
+    {
+        return $this->versions;
+    }
+
+    /**
+     * @param list<Version> $versions
+     */
+    public function withVersions(array $versions): self
+    {
+        return new self(
+            $this->name,
+            $this->dependents,
+            $this->suggesters,
+            $this->totals,
+            $this->monthly,
+            $this->daily,
+            $this->repository,
+            $versions,
             $this->httpStatusCode
         );
     }
@@ -188,6 +237,7 @@ final class PackagistData
             $this->monthly,
             $this->daily,
             $this->repository,
+            $this->versions,
             $httpStatusCode
         );
     }
@@ -222,6 +272,10 @@ final class PackagistData
             throw new \InvalidArgumentException('Error on "repository": string expected');
         }
 
+        if (! isset($data['versions']) || ! \is_array($data['versions'])) {
+            throw new \InvalidArgumentException('Error on "versions": array expected');
+        }
+
         if (! isset($data['httpStatusCode']) || ! \is_int($data['httpStatusCode'])) {
             throw new \InvalidArgumentException('Error on "httpStatusCode": int expected');
         }
@@ -234,6 +288,7 @@ final class PackagistData
             $data['monthly'],
             $data['daily'],
             $data['repository'],
+            \array_map(fn ($e) => Version::fromArray($e), $data['versions']),
             $data['httpStatusCode'],
         );
     }
@@ -248,6 +303,7 @@ final class PackagistData
             'monthly' => $this->monthly,
             'daily' => $this->daily,
             'repository' => $this->repository,
+            'versions' => \array_map(fn (Version $e) => $e->toArray(), $this->versions),
             'httpStatusCode' => $this->httpStatusCode,
         ];
     }
@@ -286,6 +342,16 @@ final class PackagistData
             return false;
         }
 
+        if (\count($this->versions) !== \count($other->versions)) {
+            return false;
+        }
+
+        foreach ($this->versions as $k => $v) {
+            if (! $v->equals($other->versions[$k])) {
+                return false;
+            }
+        }
+
         if ($this->httpStatusCode !== $other->httpStatusCode) {
             return false;
         }
@@ -306,7 +372,6 @@ final class PackagistData
             'github_watchers' => '333',
             'github_forks' => '444',
             'favers' => '666',
-            'versions' => [],
             'maintainers' => [
                 [
                     'name' => 'anonymous',
@@ -322,8 +387,40 @@ final class PackagistData
         ]);
     }
 
+    public function buildVersions(): array
+    {
+        if (\count($this->versions) === 0) {
+            return [];
+        }
+
+        foreach ($this->versions as $key => $value) {
+            $data = [
+                'name' => $value->name(),
+                'version' => $value->version(),
+                'version_normalized' => $value->version(),
+                // TODO dinamic time
+                'time' => '2021-01-05T12:38:00+00:00',
+                // TODO dinamic license
+                'license' => [
+                    'MIT',
+                ],
+                'source' => [
+                    'type' => 'git',
+                    'url' => 'https://github.com/badges/poser.git',
+                    'reference' => 'b8854ddbd9b3cf2fb127c2541b78403a070ba333',
+                ],
+            ];
+
+            $versions[$value->version()] = $data;
+        }
+
+        return $versions;
+    }
+
     private function getDinamicDataForMockedJson(): array
     {
+        $versions = $this->buildVersions();
+
         return [
             'name' => $this->name,
             'dependents' => $this->dependents,
@@ -334,7 +431,7 @@ final class PackagistData
                 'monthly' => $this->monthly,
                 'daily' => $this->daily,
             ],
-            'versions' => [],
+            'versions' => $versions,
         ];
     }
 }

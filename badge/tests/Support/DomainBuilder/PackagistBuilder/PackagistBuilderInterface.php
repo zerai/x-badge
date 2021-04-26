@@ -21,4 +21,6 @@ interface PackagistBuilderInterface extends Builder, OwnerShipInterface, HttpBui
     public function addGithubAsHostingServiceProvider(): self;
 
     public function addBitbucketAsHostingServiceProvider(): self;
+
+    public function addReleasedVersion(string $version): self;
 }

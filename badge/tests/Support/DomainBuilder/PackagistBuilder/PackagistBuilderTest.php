@@ -195,6 +195,27 @@ final class PackagistBuilderTest extends TestCase
     /**
      * @test
      */
+    public function itShouldAddAReleasedVersion(): void
+    {
+        /** @var PackagistBuilder $builder */
+        $builder = PackagistBuilder::withVendorAndProjectName('vendorname', 'projectname')
+            ->addGithubAsHostingServiceProvider()
+            ->addReleasedVersion('10.0.1')
+            ->addReleasedVersion('20.0.1')
+            ->addReleasedVersion('30.0.1-dev');
+
+        /** @var PackagistData $data */
+        $data = $builder->build(false);
+
+        self::assertNotEmpty($data->versions());
+        self::assertArrayHasKey('10.0.1', $data->buildVersions());
+        self::assertArrayHasKey('20.0.1', $data->buildVersions());
+        self::assertArrayHasKey('30.0.1-dev', $data->buildVersions());
+    }
+
+    /**
+     * @test
+     */
     public function itHas200AsDefaultHttpStatusCode(): void
     {
         $builder = PackagistBuilder::withVendorAndProjectName('vendorname', 'projectname')

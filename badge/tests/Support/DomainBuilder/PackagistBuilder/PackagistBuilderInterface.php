@@ -3,11 +3,10 @@
 namespace Badge\Tests\Support\DomainBuilder\PackagistBuilder;
 
 use Badge\Tests\Support\DomainBuilder\Builder;
-use Badge\Tests\Support\DomainBuilder\GitHostingProviderInterface;
 use Badge\Tests\Support\DomainBuilder\HttpBuilderInterface;
 use Badge\Tests\Support\DomainBuilder\OwnerShipInterface;
 
-interface PackagistBuilderInterface extends Builder, OwnerShipInterface, GitHostingProviderInterface, HttpBuilderInterface
+interface PackagistBuilderInterface extends Builder, OwnerShipInterface, HttpBuilderInterface
 {
     public function addSuggesters(int $suggesters): self;
 
@@ -20,4 +19,8 @@ interface PackagistBuilderInterface extends Builder, OwnerShipInterface, GitHost
     public function addDailyDownloads(int $DailyDownloads): self;
 
     public function addReleasedVersion(string $version): self;
+
+    public function addGithubAsHostingServiceProvider(): self;
+
+    public function addBitbucketAsHostingServiceProvider(): self;
 }

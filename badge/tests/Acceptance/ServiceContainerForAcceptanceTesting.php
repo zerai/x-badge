@@ -2,8 +2,11 @@
 
 namespace Badge\Tests\Acceptance;
 
+use Badge\Adapter\Out\AcceptanceTestCommittedFileChecker;
+use Badge\Adapter\Out\CommittedFileChecker;
 use Badge\Infrastructure\Env;
 use Badge\Infrastructure\ServiceContainer;
+use Badge\Tests\Support\ExtendedGithubClient\ExtendedForTestGithubClient;
 use Bitbucket\Client as BitbucketClient;
 use Github\Client as GithubClient;
 use GuzzleHttp\Client;
@@ -19,6 +22,8 @@ final class ServiceContainerForAcceptanceTesting extends ServiceContainer
     protected ?PackagistClient $packagistClient = null;
 
     protected ?GuzzleHttpClient $httpClient = null;
+
+    protected ?CommittedFileChecker $committedFileChecker = null;
 
     public function __construct(GithubClient $githubClient = null, BitbucketClient $bitbucketClient = null, PackagistClient $packagistClient = null)
     {
@@ -41,7 +46,7 @@ final class ServiceContainerForAcceptanceTesting extends ServiceContainer
     protected function githubApiClient(): GithubClient
     {
         if ($this->githubClient === null) {
-            $this->githubClient = new GithubClient();
+            $this->githubClient = new ExtendedForTestGithubClient(Env::get('API_MOCK_SERVER'));
         }
 
         return $this->githubClient;
@@ -59,9 +64,23 @@ final class ServiceContainerForAcceptanceTesting extends ServiceContainer
     protected function httpClient(): GuzzleHttpClient
     {
         if ($this->httpClient === null) {
-            $this->httpClient = new Client();
+            $this->httpClient = new Client([
+                'base_url' => Env::get('API_MOCK_SERVER'),
+            ]);
         }
 
         return $this->httpClient;
+    }
+
+    protected function committedFileChecker(): CommittedFileChecker
+    {
+        if ($this->committedFileChecker === null) {
+            $this->committedFileChecker = new AcceptanceTestCommittedFileChecker(
+                $this->httpClient(),
+                $this->defaultBranchDetector()
+            );
+        }
+
+        return $this->committedFileChecker;
     }
 }

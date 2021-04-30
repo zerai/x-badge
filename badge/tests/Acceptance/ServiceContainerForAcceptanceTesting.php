@@ -55,7 +55,9 @@ final class ServiceContainerForAcceptanceTesting extends ServiceContainer
     protected function bitbucketApiClient(): BitbucketClient
     {
         if ($this->bitbucketClient === null) {
-            $this->bitbucketClient = new BitbucketClient();
+            $client = new BitbucketClient();
+            $client->setUrl(Env::get('API_MOCK_SERVER'));
+            $this->bitbucketClient = $client;
         }
 
         return $this->bitbucketClient;

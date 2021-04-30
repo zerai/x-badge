@@ -3,6 +3,7 @@
 namespace Badge\Tests\Support\DomainBuilder\ApiMockServer;
 
 use Badge\Infrastructure\Env;
+use Badge\Tests\Support\DomainBuilder\Data\GitDefaultBranchData;
 use Badge\Tests\Support\DomainBuilder\Data\PackagistData;
 use RuntimeException;
 
@@ -17,6 +18,24 @@ class ApiMockServer
         self::loadFixture(
             self::getPackagistEndpointToMockByPackageName($data->name()),
             $data->mockedJson(),
+            $httpStatusCode
+        );
+    }
+
+    public static function loadDefaultBranchFixtureByData(string $mockedEndpoint, GitDefaultBranchData $data, int $httpStatusCode = 200): void
+    {
+        self::loadFixture(
+            $mockedEndpoint,
+            $data->mockedJson(),
+            $httpStatusCode
+        );
+    }
+
+    public static function loadCommittedFileFixtureByData(string $mockedEndpoint, GitDefaultBranchData $data, int $httpStatusCode = 200): void
+    {
+        self::loadFixtureForCommittedFile(
+            $mockedEndpoint,
+            '{}',
             $httpStatusCode
         );
     }
@@ -47,6 +66,49 @@ class ApiMockServer
             {
                 "httpRequest" : {
                     "method" : "GET",
+                    "path" : "%s"
+                },
+                "httpResponse" : {
+                    "statusCode": %s,
+                    "body" : %s
+                }
+            }'
+        ;
+
+        $expectationDataRequest = \trim(\sprintf($expectetionTemplate, $endpointToMock, (string) $httpStatusCode, $jsonResponse));
+
+        $ch = \curl_init();
+
+        \curl_setopt($ch, CURLOPT_URL, self::expectationEndpoint());
+        \curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        \curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+        \curl_setopt($ch, CURLOPT_POSTFIELDS, $expectationDataRequest);
+
+        $headers = [];
+        $headers[] = 'Content-Type: application/x-www-form-urlencoded';
+        \curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+        try {
+            $result = \curl_exec($ch);
+            if (\curl_errno($ch)) {
+                self::reset();
+
+                throw new RuntimeException('ApiMockServer error: ' . \curl_error($ch));
+            }
+            \curl_close($ch);
+        } catch (\Throwable $th) {
+            \curl_close($ch);
+
+            throw $th;
+        }
+    }
+
+    private static function loadFixtureForCommittedFile(string $endpointToMock, string $jsonResponse = '{}', int $httpStatusCode = 200, string $method = 'HEAD'): void
+    {
+        $expectetionTemplate = '
+            {
+                "httpRequest" : {
+                    "method" : "HEAD",
                     "path" : "%s"
                 },
                 "httpResponse" : {

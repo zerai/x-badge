@@ -7,6 +7,9 @@ use Badge\Infrastructure\Env;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
 
+/**
+ * @codeCoverageIgnore
+ */
 class AcceptanceTestCommittedFileChecker extends CommittedFileChecker
 {
     protected ClientInterface $httpClient;

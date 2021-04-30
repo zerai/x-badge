@@ -17,7 +17,6 @@
         "knplabs/github-api": "^2.15",
         "knplabs/packagist-api": "^1.7",
         "php-http/guzzle6-adapter": "^2.0",
-        "prolic/fpp": "dev-master",
         "webmozart/assert": "^1.9"
     },
     "require-dev": {

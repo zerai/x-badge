@@ -2,9 +2,31 @@
 
 namespace Badge\Tests\Acceptance;
 
+use Badge\Application\BadgeImage;
+use Badge\Application\Image;
+use Badge\Tests\Support\DomainBuilder\ApiMockServer\ApiMockServer;
+use Badge\Tests\Support\DomainBuilder\CommittedFileBuilder\CommittedFileBuilder;
+use Badge\Tests\Support\DomainBuilder\PackagistBuilder\PackagistBuilder;
+
 /** @covers \Badge\Application\Usecase\ComposerLockBadgeGenerator */
 final class ComposerLockUseCaseTest extends AcceptanceTestCase
 {
+    private const COLOR_COMMITTED = '#e60073';
+
+    private const COLOR_UNCOMMITTED = '#99004d';
+
+    private const COLOR_ERROR = '#aa0000';
+
+    private const LOCK_COMMITTED = 'committed';
+
+    private const LOCK_UNCOMMITTED = 'uncommitted';
+
+    private const LOCK_ERROR = 'checking';
+
+    private const SUBJECT = '.lock';
+
+    private const SUBJECT_ERROR = 'Error';
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -13,14 +35,111 @@ final class ComposerLockUseCaseTest extends AcceptanceTestCase
     protected function tearDown(): void
     {
         parent::tearDown();
+        ApiMockServer::reset();
     }
 
     /**
      * @test
      */
-    public function canCreateABadge(): void
+    public function createAComposerLockBadgeForCommittedFile(): void
     {
-        self::markTestIncomplete('Configurare Fake Servers Github|bitbucket...');
-        $result = $this->application->createComposerLockBadge('phpunit/phpunit');
+        $builder = CommittedFileBuilder::withVendorAndProjectName('vendorname', 'projectname')
+            ->addGithubAsHostingServiceProvider()
+            ->addDefaultBranch('master')
+            ->addComposerLockFileWithHttpStatusCode(200);
+
+        $builder->build();
+
+        $result = $this->application->createComposerLockBadge('vendorname/projectname');
+
+        self::assertInstanceOf(BadgeImage::class, $result);
+        self::assertFalse(self::isDefaultBadgeImage($result));
+        self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
+    }
+
+    /**
+     * @test
+     */
+    public function createAComposerLockBadgeForUncommittedFile(): void
+    {
+        $builder = CommittedFileBuilder::withVendorAndProjectName('vendorname', 'projectname')
+            ->addGithubAsHostingServiceProvider()
+            ->addDefaultBranch('master')
+            ->addComposerLockFileWithHttpStatusCode(404);
+
+        $builder->build();
+
+        $result = $this->application->createComposerLockBadge('vendorname/projectname');
+
+        self::assertInstanceOf(BadgeImage::class, $result);
+        self::assertFalse(self::isDefaultBadgeImage($result));
+        self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
+    }
+
+    /**
+     * @test
+     */
+    public function createAComposerLockBadgeForErrorChecking(): void
+    {
+        $builder = CommittedFileBuilder::withVendorAndProjectName('vendorname', 'projectname')
+            ->addGithubAsHostingServiceProvider()
+            ->addDefaultBranch('master')
+            ->addComposerLockFileWithHttpStatusCode(500);
+
+        $builder->build();
+
+        $result = $this->application->createComposerLockBadge('vendorname/projectname');
+
+        self::assertInstanceOf(BadgeImage::class, $result);
+        self::assertFalse(self::isDefaultBadgeImage($result));
+        self::assertTrue(self::badgeImageHasSubject(self::SUBJECT_ERROR, $result));
+    }
+
+    /**
+     * @test
+     */
+    public function createDefaultBadgeWhenRetieveAn404HttpErrorFromPackagist(): void
+    {
+        PackagistBuilder::withVendorAndProjectName('notexist', 'unkwown-project')
+            ->addBitbucketAsHostingServiceProvider()
+            ->addDailyDownloads(500)
+            ->addHttpStatusCode(404)
+            ->build();
+
+        $result = $this->application->createComposerLockBadge('notexist/unkwown-project');
+
+        self::assertInstanceOf(BadgeImage::class, $result);
+        self::assertTrue(self::isDefaultBadgeImage($result));
+    }
+
+    public static function isDefaultBadgeImage(Image $value): bool
+    {
+        if ($value->getFileName() === 'default-badge.svg') {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static function badgeImageHasColor(string $color, Image $image): bool
+    {
+        self::assertStringContainsString(
+            $color,
+            $image->getContent(),
+            \sprintf('Error color %s not found in badge image.', $color)
+        );
+
+        return true;
+    }
+
+    public static function badgeImageHasSubject(string $subject, Image $image): bool
+    {
+        self::assertStringContainsString(
+            $subject,
+            $image->getContent(),
+            \sprintf('Error subject %s not found in badge image.', $subject)
+        );
+
+        return true;
     }
 }

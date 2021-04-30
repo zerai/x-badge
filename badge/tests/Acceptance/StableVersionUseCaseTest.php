@@ -23,8 +23,8 @@ final class StableVersionUseCaseTest extends AcceptanceTestCase
 
     protected function tearDown(): void
     {
-        ApiMockServer::reset();
         parent::tearDown();
+        ApiMockServer::reset();
     }
 
     /**

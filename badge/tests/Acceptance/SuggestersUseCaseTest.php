@@ -4,6 +4,7 @@ namespace Badge\Tests\Acceptance;
 
 use Badge\Application\BadgeImage;
 use Badge\Application\Image;
+use Badge\Tests\Support\DomainBuilder\ApiMockServer\ApiMockServer;
 use Badge\Tests\Support\DomainBuilder\PackagistBuilder\PackagistBuilder;
 
 /** @covers \Badge\Application\Usecase\SuggestersBadgeGenerator */
@@ -21,6 +22,7 @@ final class SuggestersUseCaseTest extends AcceptanceTestCase
     protected function tearDown(): void
     {
         parent::tearDown();
+        ApiMockServer::reset();
     }
 
     /**

@@ -16,7 +16,7 @@ class CommittedFileChecker
 
     private const STATUS_ERROR = 500;
 
-    private ClientInterface $httpClient;
+    protected ClientInterface $httpClient;
 
     private DetectableBranch $branchDetector;
 
@@ -57,7 +57,7 @@ class CommittedFileChecker
         return $result;
     }
 
-    private function doRequest(string $url): int
+    protected function doRequest(string $url): int
     {
         $response = $this->httpClient->request(
             'HEAD',

@@ -3,7 +3,7 @@
 namespace Badge\Application\Domain\Model\ContextValue\Common;
 
 use Badge\Application\Domain\Model\ContextualizableValue;
-use Webmozart\Assert\Assert;
+use InvalidArgumentException;
 
 abstract class BaseCount implements ContextualizableValue
 {
@@ -34,7 +34,11 @@ abstract class BaseCount implements ContextualizableValue
 
     private function validate(int $inputData): int
     {
-        Assert::greaterThanEq($inputData, 0);
+        if ($inputData < 0) {
+            throw new InvalidArgumentException(
+                \sprintf('Count value should be greater than or equal to 0. - %s recivied.', $inputData)
+            );
+        }
 
         return $inputData;
     }

@@ -4,7 +4,7 @@ namespace Badge\Application\Domain\Model\ContextValue;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextualizableValue;
-use Webmozart\Assert\Assert;
+use InvalidArgumentException;
 
 final class StableVersion implements ContextualizableValue, BadgeContext
 {
@@ -75,8 +75,13 @@ final class StableVersion implements ContextualizableValue, BadgeContext
     {
         $data = $this->normalize($inputData);
 
-        Assert::stringNotEmpty($data);
-        Assert::minLength($data, self::MIN_LENGTH);
+        if ($data === '') {
+            throw new InvalidArgumentException('Stable Version with empty value is not allowed.');
+        }
+
+        if (\strlen($data) < self::MIN_LENGTH) {
+            throw new InvalidArgumentException('Stable Version value is too short.');
+        }
 
         return $data;
     }

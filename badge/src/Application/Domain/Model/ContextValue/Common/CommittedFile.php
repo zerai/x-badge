@@ -4,7 +4,6 @@ namespace Badge\Application\Domain\Model\ContextValue\Common;
 
 use Badge\Application\Domain\Model\ContextualizableValue;
 use InvalidArgumentException;
-use Webmozart\Assert\Assert;
 
 abstract class CommittedFile implements ContextualizableValue
 {
@@ -65,7 +64,10 @@ abstract class CommittedFile implements ContextualizableValue
     {
         $data = $this->normalize($inputData);
 
-        Assert::stringNotEmpty($data);
+        if ($data === '') {
+            throw new InvalidArgumentException('Empty value is not allowed.');
+        }
+
         if (! \in_array($data, self::ALLOWED_VALUES)) {
             throw new InvalidArgumentException(\sprintf('%s is not a valid value.', $data));
         }

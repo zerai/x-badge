@@ -2,7 +2,7 @@
 
 namespace Badge\Application\Domain\Model;
 
-use Webmozart\Assert\Assert;
+use InvalidArgumentException;
 
 final class RepositoryDetail
 {
@@ -62,9 +62,21 @@ final class RepositoryDetail
 
     private function validate(string $input): string
     {
-        Assert::stringNotEmpty($input);
-        Assert::true($this->isValidGitHostingServiceProvider($input));
-        Assert::regex($input, '/(https)(:\/\/|@)([^\/:]+)[\/:]([^\/:]+)\/(.+)$/', $message = 'Invald repository address.');
+        if ($input === '') {
+            throw new InvalidArgumentException('Empty repository url is not allowed.');
+        }
+
+        if (! $this->isValidGitHostingServiceProvider($input)) {
+            throw new InvalidArgumentException(
+                \sprintf('%s is not a supported githosting service provider.', $input)
+            );
+        }
+
+        if (! \preg_match('/(https)(:\/\/|@)([^\/:]+)[\/:]([^\/:]+)\/(.+)$/', $input)) {
+            throw new InvalidArgumentException(
+                \sprintf('%s is not a valid repository address.', $input)
+            );
+        }
 
         return $input;
     }

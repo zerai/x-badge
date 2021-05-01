@@ -5,6 +5,7 @@ namespace Badge\Application;
 use Badge\Application\PortIn\CreateComposerLockBadge;
 use Badge\Application\PortIn\CreateDailyDownloadsBadge;
 use Badge\Application\PortIn\CreateDependentsBadge;
+use Badge\Application\PortIn\CreateGitattributesBadge;
 use Badge\Application\PortIn\CreateMonthlyDownloadsBadge;
 use Badge\Application\PortIn\CreateStableVersionBadge;
 use Badge\Application\PortIn\CreateSuggestersBadge;
@@ -14,6 +15,8 @@ use Badge\Application\PortIn\CreateUnstableVersionBadge;
 final class BadgeApplication implements BadgeApplicationInterface
 {
     private CreateComposerLockBadge $composerLockUseCase;
+
+    private CreateGitattributesBadge $gitattributesUseCase;
 
     private CreateSuggestersBadge $suggestersUseCase;
 
@@ -31,6 +34,7 @@ final class BadgeApplication implements BadgeApplicationInterface
 
     public function __construct(
         CreateComposerLockBadge $composerLockUseCase,
+        CreateGitattributesBadge $gitattributesUseCase,
         CreateSuggestersBadge $suggestersUseCase,
         CreateDependentsBadge $dependentsUseCase,
         CreateTotalDownloadsBadge $totalDownloadUseCase,
@@ -40,6 +44,7 @@ final class BadgeApplication implements BadgeApplicationInterface
         CreateUnstableVersionBadge $unstableVersionUseCase
     ) {
         $this->composerLockUseCase = $composerLockUseCase;
+        $this->gitattributesUseCase = $gitattributesUseCase;
         $this->suggestersUseCase = $suggestersUseCase;
         $this->dependentsUseCase = $dependentsUseCase;
         $this->totalDownloadUseCase = $totalDownloadUseCase;
@@ -52,6 +57,11 @@ final class BadgeApplication implements BadgeApplicationInterface
     public function createComposerLockBadge(string $packageName): Image
     {
         return $this->composerLockUseCase->createComposerLockBadge($packageName);
+    }
+
+    public function createGitattributesBadge(string $packageName): Image
+    {
+        return $this->gitattributesUseCase->createGitattributesBadge($packageName);
     }
 
     public function createSuggestersBadge(string $packageName): Image

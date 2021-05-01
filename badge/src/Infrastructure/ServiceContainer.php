@@ -96,6 +96,7 @@ abstract class ServiceContainer
         if ($this->application === null) {
             $this->application = new BadgeApplication(
                 $this->composerLockUseCase(),
+                $this->gitattributesUseCase(),
                 $this->suggestersUseCase(),
                 $this->dependentsUseCase(),
                 $this->totalDownloadsUseCase(),

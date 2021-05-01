@@ -12,6 +12,7 @@ use Badge\Application\BadgeApplicationInterface;
 use Badge\Application\Domain\Model\Service\ContextProducer\ComposerLockProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\DailyDownloadsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\DependentsProducer;
+use Badge\Application\Domain\Model\Service\ContextProducer\GitAttributesProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\MonthlyDownloadsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\StableVersionProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer;
@@ -54,6 +55,8 @@ abstract class ServiceContainer
     protected ?ComposerLockProducer $composerLockProducer = null;
 
     protected ?ComposerLockBadgeGenerator $composerLockUseCase = null;
+
+    protected ?GitAttributesProducer $gitattributesProducer = null;
 
     protected ?PackagistContextValueReader $contextValueReader = null;
 
@@ -188,6 +191,17 @@ abstract class ServiceContainer
         }
 
         return $this->composerLockUseCase;
+    }
+
+    protected function gitattributesProducer(): GitAttributesProducer
+    {
+        if ($this->gitattributesProducer === null) {
+            $this->gitattributesProducer = new GitAttributesProducer(
+                $this->committedFileDetector()
+            );
+        }
+
+        return $this->gitattributesProducer;
     }
 
     protected function contextValueReader(): PackagistContextValueReader

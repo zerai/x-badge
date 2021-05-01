@@ -24,6 +24,7 @@ use Badge\Application\ImageFactory;
 use Badge\Application\Usecase\ComposerLockBadgeGenerator;
 use Badge\Application\Usecase\DailyDownloadsBadgeGenerator;
 use Badge\Application\Usecase\DependentsBadgeGenerator;
+use Badge\Application\Usecase\GitattributesBadgeGenerator;
 use Badge\Application\Usecase\MonthlyDownloadsBadgeGenerator;
 use Badge\Application\Usecase\StableVersionBadgeGenerator;
 use Badge\Application\Usecase\SuggestersBadgeGenerator;
@@ -57,6 +58,8 @@ abstract class ServiceContainer
     protected ?ComposerLockBadgeGenerator $composerLockUseCase = null;
 
     protected ?GitAttributesProducer $gitattributesProducer = null;
+
+    protected ?GitattributesBadgeGenerator $gitattributesUseCase = null;
 
     protected ?PackagistContextValueReader $contextValueReader = null;
 
@@ -202,6 +205,18 @@ abstract class ServiceContainer
         }
 
         return $this->gitattributesProducer;
+    }
+
+    protected function gitattributesUseCase(): GitattributesBadgeGenerator
+    {
+        if ($this->gitattributesUseCase === null) {
+            $this->gitattributesUseCase = new GitattributesBadgeGenerator(
+                $this->gitattributesProducer(),
+                $this->imageFactory()
+            );
+        }
+
+        return $this->gitattributesUseCase;
     }
 
     protected function contextValueReader(): PackagistContextValueReader

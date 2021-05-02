@@ -75,8 +75,11 @@ final class CommittedFileBuilderTest extends TestCase
 
         $data = $builder->build(false);
 
+        $defaultBranchData = $data['default-branch-data'];
+
         self::assertEquals('master', $data['default-branch']);
         self::assertEquals('composer.lock', $data['committed-file']);
+        self::assertEquals('composer.lock', $defaultBranchData->committedFile());
         self::assertEquals(200, $data['committed-file-http-status']);
     }
 
@@ -92,8 +95,11 @@ final class CommittedFileBuilderTest extends TestCase
 
         $data = $builder->build(false);
 
+        $defaultBranchData = $data['default-branch-data'];
+
         self::assertEquals('main', $data['default-branch']);
-        self::assertEquals('.gitattribute', $data['committed-file']);
+        self::assertEquals('.gitattributes', $data['committed-file']);
+        self::assertEquals('.gitattributes', $defaultBranchData->committedFile());
         self::assertEquals(200, $data['committed-file-http-status']);
     }
 }

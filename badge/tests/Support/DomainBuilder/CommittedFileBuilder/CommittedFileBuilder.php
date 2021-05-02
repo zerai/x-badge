@@ -13,7 +13,7 @@ final class CommittedFileBuilder implements CommittedFileBuilderInterface
 {
     private const COMPOSER_LOCK_FILE = 'composer.lock';
 
-    private const GITATTRIBUTE_FILE = '.gitattribute';
+    private const GITATTRIBUTE_FILE = '.gitattributes';
 
     private string $defaultBranch = '';
 
@@ -89,7 +89,7 @@ final class CommittedFileBuilder implements CommittedFileBuilderInterface
     {
         $this->preBuildValidation();
 
-        $defaultBranchData = new GitDefaultBranchData($this->getPackagistData()->repository(), $this->getPackagistData()->name(), $this->defaultBranch);
+        $defaultBranchData = new GitDefaultBranchData($this->getPackagistData()->repository(), $this->getPackagistData()->name(), $this->defaultBranch, $this->committedFileHttpStatusCode, 0, $this->committedFile);
 
         if ($useMockedServer) {
 

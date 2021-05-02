@@ -3,13 +3,14 @@
 namespace Badge\Tests\Acceptance;
 
 use Badge\Application\BadgeImage;
-use Badge\Application\Image;
 use Badge\Tests\Support\DomainBuilder\ApiMockServer\ApiMockServer;
 use Badge\Tests\Support\DomainBuilder\PackagistBuilder\PackagistBuilder;
 
 /** @covers \Badge\Application\Usecase\UnstableVersionBadgeGenerator */
 final class UnstableVersionUseCaseTest extends AcceptanceTestCase
 {
+    use BadgeImageAssertionsTrait;
+
     private const COLOR_UNSTABLE = 'e68718';
 
     private const SUBJECT_UNSTABLE = 'unstable';
@@ -95,58 +96,5 @@ final class UnstableVersionUseCaseTest extends AcceptanceTestCase
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT_UNSTABLE, $result));
-    }
-
-    public static function isDefaultBadgeImage(Image $value): bool
-    {
-        if ($value->getFileName() === 'default-badge.svg') {
-            return true;
-        }
-
-        return false;
-    }
-
-    public static function badgeImageHasColor(string $color, Image $image): bool
-    {
-        self::assertStringContainsString(
-            $color,
-            $image->getContent(),
-            \sprintf('Error color %s not found in badge image.', $color)
-        );
-
-        return true;
-    }
-
-    public static function badgeImageHasSubject(string $subject, Image $image): bool
-    {
-        self::assertStringContainsString(
-            $subject,
-            $image->getContent(),
-            \sprintf('Error subject %s not found in badge image.', $subject)
-        );
-
-        return true;
-    }
-
-    public static function badgeImageHasVersion(string $subject, Image $image): bool
-    {
-        self::assertStringContainsString(
-            $subject,
-            $image->getContent(),
-            \sprintf('Image content error:  %s version string not found in badge image.', $subject)
-        );
-
-        return true;
-    }
-
-    public static function badgeImageHasNotVersion(string $subject, Image $image): bool
-    {
-        self::assertStringNotContainsString(
-            $subject,
-            $image->getContent(),
-            \sprintf('Image content error:  %s version string found in badge image.', $subject)
-        );
-
-        return true;
     }
 }

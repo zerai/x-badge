@@ -2,7 +2,6 @@
 
 namespace Badge\Tests\Acceptance;
 
-use Badge\Application\Image;
 use Badge\Tests\Support\DomainBuilder\ApiMockServer\ApiMockServer;
 use Badge\Tests\Support\DomainBuilder\CommittedFileBuilder\CommittedFileBuilder;
 use Badge\Tests\Support\DomainBuilder\PackagistBuilder\PackagistBuilder;
@@ -10,6 +9,8 @@ use Badge\Tests\Support\DomainBuilder\PackagistBuilder\PackagistBuilder;
 /** @covers \Badge\Application\Usecase\ComposerLockBadgeGenerator */
 final class ComposerLockUseCaseTest extends AcceptanceTestCase
 {
+    use BadgeImageAssertionsTrait;
+
     private const COLOR_COMMITTED = '#e60073';
 
     private const COLOR_UNCOMMITTED = '#99004d';
@@ -159,47 +160,5 @@ final class ComposerLockUseCaseTest extends AcceptanceTestCase
         $result = $this->application->createComposerLockBadge('notexist/unkwown-project');
 
         self::assertTrue(self::isDefaultBadgeImage($result));
-    }
-
-    public static function isDefaultBadgeImage(Image $value): bool
-    {
-        if ($value->getFileName() === 'default-badge.svg') {
-            return true;
-        }
-
-        return false;
-    }
-
-    public static function badgeImageHasColor(string $color, Image $image): bool
-    {
-        self::assertStringContainsString(
-            $color,
-            $image->getContent(),
-            \sprintf('Error color %s not found in badge image.', $color)
-        );
-
-        return true;
-    }
-
-    public static function badgeImageHasSubject(string $subject, Image $image): bool
-    {
-        self::assertStringContainsString(
-            $subject,
-            $image->getContent(),
-            \sprintf('Error subject %s not found in badge image.', $subject)
-        );
-
-        return true;
-    }
-
-    public static function badgeImageHasSubjectValue(string $subjectValue, Image $image): bool
-    {
-        self::assertStringContainsString(
-            $subjectValue,
-            $image->getContent(),
-            \sprintf('Error subject-value %s not found in badge image.', $subjectValue)
-        );
-
-        return true;
     }
 }

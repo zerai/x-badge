@@ -3,13 +3,14 @@
 namespace Badge\Tests\Acceptance;
 
 use Badge\Application\BadgeImage;
-use Badge\Application\Image;
 use Badge\Tests\Support\DomainBuilder\ApiMockServer\ApiMockServer;
 use Badge\Tests\Support\DomainBuilder\PackagistBuilder\PackagistBuilder;
 
 /** @covers \Badge\Application\Usecase\MonthlyDownloadsBadgeGenerator */
 final class MonthlyDownloadsUseCaseTest extends AcceptanceTestCase
 {
+    use BadgeImageAssertionsTrait;
+
     private const COLOR = '007ec6';
 
     private const SUBJECT = 'downloads';
@@ -91,47 +92,5 @@ final class MonthlyDownloadsUseCaseTest extends AcceptanceTestCase
         self::assertInstanceOf(BadgeImage::class, $result);
         self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
-    }
-
-    public static function isDefaultBadgeImage(Image $value): bool
-    {
-        if ($value->getFileName() === 'default-badge.svg') {
-            return true;
-        }
-
-        return false;
-    }
-
-    public static function badgeImageHasColor(string $color, Image $image): bool
-    {
-        self::assertStringContainsString(
-            $color,
-            $image->getContent(),
-            \sprintf('Error color %s not found in badge image.', $color)
-        );
-
-        return true;
-    }
-
-    public static function badgeImageHasSubject(string $subject, Image $image): bool
-    {
-        self::assertStringContainsString(
-            $subject,
-            $image->getContent(),
-            \sprintf('Error subject %s not found in badge image.', $subject)
-        );
-
-        return true;
-    }
-
-    public static function badgeImageHasSubjectValue(string $subjectValue, Image $image): bool
-    {
-        self::assertStringContainsString(
-            $subjectValue,
-            $image->getContent(),
-            \sprintf('Error subject-value %s not found in badge image.', $subjectValue)
-        );
-
-        return true;
     }
 }

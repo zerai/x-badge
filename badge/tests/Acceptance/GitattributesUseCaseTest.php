@@ -43,19 +43,17 @@ final class GitattributesUseCaseTest extends AcceptanceTestCase
      */
     public function createAGitattributesBadgeForCommittedFileHostedOnGithub(): void
     {
-        self::markTestSkipped('Fix builder');
-        $builder = CommittedFileBuilder::withVendorAndProjectName('vendorname', 'projectname')
+        CommittedFileBuilder::withVendorAndProjectName('vendorname', 'projectname')
             ->addGithubAsHostingServiceProvider()
             ->addDefaultBranch('master')
-            ->addGitattributeFileWithHttpStatusCode(200);
-
-        $builder->build();
+            ->addGitattributeFileWithHttpStatusCode(200)
+            ->build();
 
         $result = $this->application->createGitattributesBadge('vendorname/projectname');
 
-        self::assertInstanceOf(BadgeImage::class, $result);
-        self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
+        self::assertTrue(self::badgeImageHasColor(self::COLOR_COMMITTED, $result));
+        self::assertTrue(self::badgeImageHasSubjectValue(self::GITATTRIBUTES_COMMITTED, $result));
     }
 
     /**
@@ -63,19 +61,17 @@ final class GitattributesUseCaseTest extends AcceptanceTestCase
      */
     public function createAGitattributesBadgeForCommittedFileHostedOnBitbuket(): void
     {
-        self::markTestSkipped('Fix builder');
-        $builder = CommittedFileBuilder::withVendorAndProjectName('vendorname', 'bitbuket-projectname')
+        CommittedFileBuilder::withVendorAndProjectName('vendorname', 'bitbuket-projectname')
             ->addBitbucketAsHostingServiceProvider()
             ->addDefaultBranch('bitbucketmaster')
-            ->addGitattributeFileWithHttpStatusCode(200);
-
-        $builder->build();
+            ->addGitattributeFileWithHttpStatusCode(200)
+            ->build();
 
         $result = $this->application->createGitattributesBadge('vendorname/bitbuket-projectname');
 
-        self::assertInstanceOf(BadgeImage::class, $result);
-        self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
+        self::assertTrue(self::badgeImageHasColor(self::COLOR_COMMITTED, $result));
+        self::assertTrue(self::badgeImageHasSubjectValue(self::GITATTRIBUTES_COMMITTED, $result));
     }
 
     /**
@@ -83,19 +79,17 @@ final class GitattributesUseCaseTest extends AcceptanceTestCase
      */
     public function createAGitattributesBadgeForUncommittedFileHostedOnGithub(): void
     {
-        self::markTestSkipped('Fix builder');
-        $builder = CommittedFileBuilder::withVendorAndProjectName('vendorname', 'projectname')
+        CommittedFileBuilder::withVendorAndProjectName('vendorname', 'projectname')
             ->addGithubAsHostingServiceProvider()
             ->addDefaultBranch('master')
-            ->addGitattributeFileWithHttpStatusCode(404);
-
-        $builder->build();
+            ->addGitattributeFileWithHttpStatusCode(404)
+            ->build();
 
         $result = $this->application->createGitattributesBadge('vendorname/projectname');
 
-        self::assertInstanceOf(BadgeImage::class, $result);
-        self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
+        self::assertTrue(self::badgeImageHasColor(self::COLOR_UNCOMMITTED, $result));
+        self::assertTrue(self::badgeImageHasSubjectValue(self::GITATTRIBUTES_UNCOMMITTED, $result));
     }
 
     /**
@@ -103,19 +97,17 @@ final class GitattributesUseCaseTest extends AcceptanceTestCase
      */
     public function createAGitattributesBadgeForUncommittedFileHostedOnBitbucket(): void
     {
-        self::markTestSkipped('Fix builder');
-        $builder = CommittedFileBuilder::withVendorAndProjectName('vendorname', 'bitbucket-projectname')
+        CommittedFileBuilder::withVendorAndProjectName('vendorname', 'bitbucket-projectname')
             ->addBitbucketAsHostingServiceProvider()
             ->addDefaultBranch('master')
-            ->addGitattributeFileWithHttpStatusCode(404);
-
-        $builder->build();
+            ->addGitattributeFileWithHttpStatusCode(404)
+            ->build();
 
         $result = $this->application->createGitattributesBadge('vendorname/bitbucket-projectname');
 
-        self::assertInstanceOf(BadgeImage::class, $result);
-        self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
+        self::assertTrue(self::badgeImageHasColor(self::COLOR_UNCOMMITTED, $result));
+        self::assertTrue(self::badgeImageHasSubjectValue(self::GITATTRIBUTES_UNCOMMITTED, $result));
     }
 
     /**
@@ -123,19 +115,17 @@ final class GitattributesUseCaseTest extends AcceptanceTestCase
      */
     public function createAGitattributesBadgeForErrorCheckingHostedOnGithub(): void
     {
-        self::markTestSkipped('Error');
-        $builder = CommittedFileBuilder::withVendorAndProjectName('vendorname', 'projectname-with-error')
+        CommittedFileBuilder::withVendorAndProjectName('vendorname', 'projectname-with-error')
             ->addGithubAsHostingServiceProvider()
             ->addDefaultBranch('master')
-            ->addGitattributeFileWithHttpStatusCode(500);
-
-        $builder->build();
+            ->addGitattributeFileWithHttpStatusCode(500)
+            ->build();
 
         $result = $this->application->createGitattributesBadge('vendorname/projectname-with-error');
 
-        self::assertInstanceOf(BadgeImage::class, $result);
-        self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT_ERROR, $result));
+        self::assertTrue(self::badgeImageHasColor(self::COLOR_ERROR, $result));
+        self::assertTrue(self::badgeImageHasSubjectValue(self::GITATTRIBUTES_ERROR, $result));
     }
 
     /**
@@ -143,19 +133,17 @@ final class GitattributesUseCaseTest extends AcceptanceTestCase
      */
     public function createAGitattributesBadgeForErrorCheckingHostedOnBitbucket(): void
     {
-        self::markTestSkipped('Error');
-        $builder = CommittedFileBuilder::withVendorAndProjectName('vendorname', 'bitbucket-projectname-with-error')
+        CommittedFileBuilder::withVendorAndProjectName('vendorname', 'bitbucket-projectname-with-error')
             ->addBitbucketAsHostingServiceProvider()
             ->addDefaultBranch('bitbucketmaster')
-            ->addGitattributeFileWithHttpStatusCode(500);
-
-        $builder->build();
+            ->addGitattributeFileWithHttpStatusCode(500)
+            ->build();
 
         $result = $this->application->createGitattributesBadge('vendorname/bitbucket-projectname-with-error');
 
-        self::assertInstanceOf(BadgeImage::class, $result);
-        self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT_ERROR, $result));
+        self::assertTrue(self::badgeImageHasColor(self::COLOR_ERROR, $result));
+        self::assertTrue(self::badgeImageHasSubjectValue(self::GITATTRIBUTES_ERROR, $result));
     }
 
     /**
@@ -163,7 +151,6 @@ final class GitattributesUseCaseTest extends AcceptanceTestCase
      */
     public function createDefaultBadgeWhenRetieveAn404HttpErrorFromPackagist(): void
     {
-        self::markTestSkipped('Fix builder');
         PackagistBuilder::withVendorAndProjectName('notexist', 'unkwown-project')
             ->addBitbucketAsHostingServiceProvider()
             ->addDailyDownloads(500)
@@ -202,6 +189,17 @@ final class GitattributesUseCaseTest extends AcceptanceTestCase
             $subject,
             $image->getContent(),
             \sprintf('Error subject %s not found in badge image.', $subject)
+        );
+
+        return true;
+    }
+
+    public static function badgeImageHasSubjectValue(string $subjectValue, Image $image): bool
+    {
+        self::assertStringContainsString(
+            $subjectValue,
+            $image->getContent(),
+            \sprintf('Error subject-value %s not found in badge image.', $subjectValue)
         );
 
         return true;

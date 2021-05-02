@@ -2,7 +2,6 @@
 
 namespace Badge\Tests\Acceptance;
 
-use Badge\Application\BadgeImage;
 use Badge\Application\Image;
 use Badge\Tests\Support\DomainBuilder\ApiMockServer\ApiMockServer;
 use Badge\Tests\Support\DomainBuilder\CommittedFileBuilder\CommittedFileBuilder;
@@ -43,18 +42,17 @@ final class ComposerLockUseCaseTest extends AcceptanceTestCase
      */
     public function createAComposerLockBadgeForCommittedFileHostedOnGithub(): void
     {
-        $builder = CommittedFileBuilder::withVendorAndProjectName('vendorname', 'projectname')
+        CommittedFileBuilder::withVendorAndProjectName('vendorname', 'projectname')
             ->addGithubAsHostingServiceProvider()
             ->addDefaultBranch('master')
-            ->addComposerLockFileWithHttpStatusCode(200);
-
-        $builder->build();
+            ->addComposerLockFileWithHttpStatusCode(200)
+            ->build();
 
         $result = $this->application->createComposerLockBadge('vendorname/projectname');
 
-        self::assertInstanceOf(BadgeImage::class, $result);
-        self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
+        self::assertTrue(self::badgeImageHasColor(self::COLOR_COMMITTED, $result));
+        self::assertTrue(self::badgeImageHasSubjectValue(self::LOCK_COMMITTED, $result));
     }
 
     /**
@@ -62,18 +60,17 @@ final class ComposerLockUseCaseTest extends AcceptanceTestCase
      */
     public function createAComposerLockBadgeForCommittedFileHostedOnBitbuket(): void
     {
-        $builder = CommittedFileBuilder::withVendorAndProjectName('vendorname', 'bitbuket-projectname')
+        CommittedFileBuilder::withVendorAndProjectName('vendorname', 'bitbuket-projectname')
             ->addBitbucketAsHostingServiceProvider()
             ->addDefaultBranch('bitbucketmaster')
-            ->addComposerLockFileWithHttpStatusCode(200);
-
-        $builder->build();
+            ->addComposerLockFileWithHttpStatusCode(200)
+            ->build();
 
         $result = $this->application->createComposerLockBadge('vendorname/bitbuket-projectname');
 
-        self::assertInstanceOf(BadgeImage::class, $result);
-        self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
+        self::assertTrue(self::badgeImageHasColor(self::COLOR_COMMITTED, $result));
+        self::assertTrue(self::badgeImageHasSubjectValue(self::LOCK_COMMITTED, $result));
     }
 
     /**
@@ -81,18 +78,17 @@ final class ComposerLockUseCaseTest extends AcceptanceTestCase
      */
     public function createAComposerLockBadgeForUncommittedFileHostedOnGithub(): void
     {
-        $builder = CommittedFileBuilder::withVendorAndProjectName('vendorname', 'projectname')
+        CommittedFileBuilder::withVendorAndProjectName('vendorname', 'projectname')
             ->addGithubAsHostingServiceProvider()
             ->addDefaultBranch('master')
-            ->addComposerLockFileWithHttpStatusCode(404);
-
-        $builder->build();
+            ->addComposerLockFileWithHttpStatusCode(404)
+            ->build();
 
         $result = $this->application->createComposerLockBadge('vendorname/projectname');
 
-        self::assertInstanceOf(BadgeImage::class, $result);
-        self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
+        self::assertTrue(self::badgeImageHasColor(self::COLOR_UNCOMMITTED, $result));
+        self::assertTrue(self::badgeImageHasSubjectValue(self::LOCK_UNCOMMITTED, $result));
     }
 
     /**
@@ -100,18 +96,17 @@ final class ComposerLockUseCaseTest extends AcceptanceTestCase
      */
     public function createAComposerLockBadgeForUncommittedFileHostedOnBitbucket(): void
     {
-        $builder = CommittedFileBuilder::withVendorAndProjectName('vendorname', 'bitbucket-projectname')
+        CommittedFileBuilder::withVendorAndProjectName('vendorname', 'bitbucket-projectname')
             ->addBitbucketAsHostingServiceProvider()
             ->addDefaultBranch('master')
-            ->addComposerLockFileWithHttpStatusCode(404);
-
-        $builder->build();
+            ->addComposerLockFileWithHttpStatusCode(404)
+            ->build();
 
         $result = $this->application->createComposerLockBadge('vendorname/bitbucket-projectname');
 
-        self::assertInstanceOf(BadgeImage::class, $result);
-        self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
+        self::assertTrue(self::badgeImageHasColor(self::COLOR_UNCOMMITTED, $result));
+        self::assertTrue(self::badgeImageHasSubjectValue(self::LOCK_UNCOMMITTED, $result));
     }
 
     /**
@@ -119,18 +114,17 @@ final class ComposerLockUseCaseTest extends AcceptanceTestCase
      */
     public function createAComposerLockBadgeForErrorCheckingHostedOnGithub(): void
     {
-        $builder = CommittedFileBuilder::withVendorAndProjectName('vendorname', 'projectname')
+        CommittedFileBuilder::withVendorAndProjectName('vendorname', 'projectname')
             ->addGithubAsHostingServiceProvider()
             ->addDefaultBranch('master')
-            ->addComposerLockFileWithHttpStatusCode(500);
-
-        $builder->build();
+            ->addComposerLockFileWithHttpStatusCode(500)
+            ->build();
 
         $result = $this->application->createComposerLockBadge('vendorname/projectname');
 
-        self::assertInstanceOf(BadgeImage::class, $result);
-        self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT_ERROR, $result));
+        self::assertTrue(self::badgeImageHasColor(self::COLOR_ERROR, $result));
+        self::assertTrue(self::badgeImageHasSubjectValue(self::LOCK_ERROR, $result));
     }
 
     /**
@@ -138,18 +132,17 @@ final class ComposerLockUseCaseTest extends AcceptanceTestCase
      */
     public function createAComposerLockBadgeForErrorCheckingHostedOnBitbucket(): void
     {
-        $builder = CommittedFileBuilder::withVendorAndProjectName('vendorname', 'bitbucket-projectname')
+        CommittedFileBuilder::withVendorAndProjectName('vendorname', 'bitbucket-projectname')
             ->addBitbucketAsHostingServiceProvider()
             ->addDefaultBranch('bitbucketmaster')
-            ->addComposerLockFileWithHttpStatusCode(500);
-
-        $builder->build();
+            ->addComposerLockFileWithHttpStatusCode(500)
+            ->build();
 
         $result = $this->application->createComposerLockBadge('vendorname/bitbucket-projectname');
 
-        self::assertInstanceOf(BadgeImage::class, $result);
-        self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT_ERROR, $result));
+        self::assertTrue(self::badgeImageHasColor(self::COLOR_ERROR, $result));
+        self::assertTrue(self::badgeImageHasSubjectValue(self::LOCK_ERROR, $result));
     }
 
     /**
@@ -165,7 +158,6 @@ final class ComposerLockUseCaseTest extends AcceptanceTestCase
 
         $result = $this->application->createComposerLockBadge('notexist/unkwown-project');
 
-        self::assertInstanceOf(BadgeImage::class, $result);
         self::assertTrue(self::isDefaultBadgeImage($result));
     }
 
@@ -195,6 +187,17 @@ final class ComposerLockUseCaseTest extends AcceptanceTestCase
             $subject,
             $image->getContent(),
             \sprintf('Error subject %s not found in badge image.', $subject)
+        );
+
+        return true;
+    }
+
+    public static function badgeImageHasSubjectValue(string $subjectValue, Image $image): bool
+    {
+        self::assertStringContainsString(
+            $subjectValue,
+            $image->getContent(),
+            \sprintf('Error subject-value %s not found in badge image.', $subjectValue)
         );
 
         return true;

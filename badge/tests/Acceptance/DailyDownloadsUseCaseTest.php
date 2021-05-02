@@ -37,11 +37,9 @@ final class DailyDownloadsUseCaseTest extends AcceptanceTestCase
 
         $result = $this->application->createDailyDownloadsBadge('badges/poser');
 
-        self::assertInstanceOf(BadgeImage::class, $result);
-
-        self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasColor(self::COLOR, $result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
+        self::assertTrue(self::badgeImageHasSubjectValue('100', $result));
     }
 
     /**
@@ -121,6 +119,17 @@ final class DailyDownloadsUseCaseTest extends AcceptanceTestCase
             $subject,
             $image->getContent(),
             \sprintf('Error subject %s not found in badge image.', $subject)
+        );
+
+        return true;
+    }
+
+    public static function badgeImageHasSubjectValue(string $subjectValue, Image $image): bool
+    {
+        self::assertStringContainsString(
+            $subjectValue,
+            $image->getContent(),
+            \sprintf('Error subject-value %s not found in badge image.', $subjectValue)
         );
 
         return true;

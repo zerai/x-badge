@@ -32,15 +32,14 @@ final class DependentsUseCaseTest extends AcceptanceTestCase
     {
         PackagistBuilder::withVendorAndProjectName('badges', 'poser')
             ->addBitbucketAsHostingServiceProvider()
-            ->addDependents(500)
+            ->addDependents(555)
             ->build();
 
         $result = $this->application->createDependentsBadge('badges/poser');
 
-        self::assertInstanceOf(BadgeImage::class, $result);
-        self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasColor(self::COLOR, $result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT, $result));
+        self::assertTrue(self::badgeImageHasSubjectValue('555', $result));
     }
 
     /**
@@ -121,6 +120,17 @@ final class DependentsUseCaseTest extends AcceptanceTestCase
             $subject,
             $image->getContent(),
             \sprintf('Error subject %s not found in badge image.', $subject)
+        );
+
+        return true;
+    }
+
+    public static function badgeImageHasSubjectValue(string $subjectValue, Image $image): bool
+    {
+        self::assertStringContainsString(
+            $subjectValue,
+            $image->getContent(),
+            \sprintf('Error subject-value %s not found in badge image.', $subjectValue)
         );
 
         return true;

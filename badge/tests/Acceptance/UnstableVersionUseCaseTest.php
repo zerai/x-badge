@@ -38,8 +38,6 @@ final class UnstableVersionUseCaseTest extends AcceptanceTestCase
 
         $result = $this->application->createUnstableVersionBadge('badges/poser');
 
-        self::assertInstanceOf(BadgeImage::class, $result);
-        self::assertFalse(self::isDefaultBadgeImage($result));
         self::assertTrue(self::badgeImageHasColor(self::COLOR_UNSTABLE, $result));
         self::assertTrue(self::badgeImageHasSubject(self::SUBJECT_UNSTABLE, $result));
         self::assertTrue(self::badgeImageHasVersion('10.0.1-dev', $result));

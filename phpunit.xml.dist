@@ -14,10 +14,6 @@
          verbose="true">
     <php>
         <!-- ###+ fake packagist|github|bitbucket api server ### -->
-        <env name="FAKE_ALL_IN_ONE_API_URI" value="http://127.0.0.1:8082"/>
-        <!-- ###- fake packagist|github|bitbucket api server ### -->
-
-        <!-- ###+ fake packagist|github|bitbucket api server ### -->
         <env name="API_MOCK_SERVER" value="http://127.0.0.1:8888"/>
         <!-- ###- fake packagist|github|bitbucket api server ### -->
     </php>

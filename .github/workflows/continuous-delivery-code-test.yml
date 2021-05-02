@@ -125,10 +125,6 @@ jobs:
         run: ./vendor/bin/phpunit --testsuite support
 
       -
-        name: Run webserver
-        run: symfony server:start --port=8082 --dir=badge/tests/Acceptance/FakeAllInOneApiServer --daemon --no-tls
-
-      -
         name: Run integration test
         run: ./vendor/bin/phpunit --testsuite integration --group io-network
         env:

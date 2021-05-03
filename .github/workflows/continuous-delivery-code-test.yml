@@ -124,7 +124,13 @@ jobs:
 
       -
         name: Run unit test
-        run: ./vendor/bin/phpunit --testsuite unit
+        run: |
+          if [ "$COVERAGE" = '1' ]; then
+            mkdir -p reports/phpunit
+            ./vendor/bin/phpunit --testsuite unit --coverage-clover reports/phpunit/unit-test-clover.xml --log-junit reports/phpunit/unit-test-junit.xml
+          else
+            ./vendor/bin/phpunit --testsuite unit
+          fi
 
       -
         name: Run support test

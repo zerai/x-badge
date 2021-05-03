@@ -124,13 +124,25 @@ jobs:
 
       -
         name: Run unit test
+        id: unit-test
         run: |
           if [ "$COVERAGE" = '1' ]; then
             mkdir -p reports/phpunit
             ./vendor/bin/phpunit --testsuite unit --coverage-clover reports/phpunit/unit-test-clover.xml --log-junit reports/phpunit/unit-test-junit.xml
+            echo "::set-output name=exit_code::$(echo -n "$?")"
           else
             ./vendor/bin/phpunit --testsuite unit
           fi
+
+      -
+        name: Upload unit tests coverage to Codecov
+        if: ${{ (matrix.php == '7.4') && (steps.unit-test.outcome == 'success')}}
+        uses: codecov/codecov-action@v1
+        with:
+          files: ./reports/phpunit/unit-test-clover.xml
+          flags: unit tests
+          name: codecov-php-7.4
+          fail_ci_if_error: true
 
       -
         name: Run support test

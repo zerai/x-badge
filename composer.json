@@ -1,7 +1,7 @@
 {
-    "name": "zerai/badge-sperimentale",
+    "name": "zerai/x-badge",
     "type": "project",
-    "description": "badge sperimentale",
+    "description": "x-badge experimental app.",
     "license": "MIT",
     "authors": [
         {

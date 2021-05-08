@@ -7,6 +7,10 @@ use Badge\Application\PortOut\CommittedFileDetector as CommittedFileDetectorPort
 
 final class CommittedFileDetector implements CommittedFileDetectorPort
 {
+    private const COMPOSERLOCK_FILE = 'composer.lock';
+
+    private const GITATTRIBUTES_FILE = '.gitattributes';
+
     private RepositoryDetailReader $repositoryReader;
 
     private CommittedFileChecker $fileChecker;
@@ -21,13 +25,13 @@ final class CommittedFileDetector implements CommittedFileDetectorPort
     {
         $repositoryDetail = $this->repositoryReader->readRepositoryDetail($packageName);
 
-        return $this->fileChecker->checkFile($repositoryDetail, 'composer.lock');
+        return $this->fileChecker->checkFile($repositoryDetail, self::COMPOSERLOCK_FILE);
     }
 
     public function detectGitAttributes(string $packageName): int
     {
         $repositoryDetail = $this->repositoryReader->readRepositoryDetail($packageName);
 
-        return $this->fileChecker->checkFile($repositoryDetail, '.gitattributes');
+        return $this->fileChecker->checkFile($repositoryDetail, self::GITATTRIBUTES_FILE);
     }
 }

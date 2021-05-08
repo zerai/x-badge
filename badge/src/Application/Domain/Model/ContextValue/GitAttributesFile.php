@@ -48,12 +48,12 @@ final class GitAttributesFile extends CommittedFile implements BadgeContext
         $subject = self::SUBJECT_ERROR;
         $color = self::COLOR_ERROR;
 
-        if ($this->asBadgeValue() === 'committed') {
+        if ($this->asBadgeValue() === self::GITATTRIBUTES_COMMITTED) {
             $subject = self::SUBJECT;
             $color = self::COLOR_COMMITTED;
         }
 
-        if ($this->asBadgeValue() === 'uncommitted') {
+        if ($this->asBadgeValue() === self::GITATTRIBUTES_UNCOMMITTED) {
             $subject = self::SUBJECT;
             $color = self::COLOR_UNCOMMITTED;
         }

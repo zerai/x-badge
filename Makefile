@@ -40,7 +40,7 @@ code-coverage:  ## Collects coverage from running unit tests with phpunit/phpuni
 
 .PHONY: mutation-tests
 mutation-tests: vendor ## Runs mutation tests with infection/infection
-	mkdir -p .var/infection
+	mkdir -p var/infection
 	vendor/bin/infection --configuration=infection.json.dist
 
 .PHONY: clear-cache

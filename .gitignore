@@ -5,6 +5,7 @@
 /tools/*/vendor/
 
 infection.json
+.deptrac.cache
 
 
 

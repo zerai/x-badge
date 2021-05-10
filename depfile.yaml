@@ -1,0 +1,5 @@
+imports:
+    - ./depfile-exagonal.yaml
+paths:
+    - ./badge/src
+exclude_files: ~

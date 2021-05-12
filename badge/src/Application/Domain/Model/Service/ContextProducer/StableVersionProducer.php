@@ -16,10 +16,6 @@ final class StableVersionProducer implements ContextProducer
 
     public function contextFor(string $packageName): BadgeContext
     {
-        try {
-            return StableVersion::fromString($this->stableVersionReader->readStableVersion($packageName));
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        return StableVersion::fromString($this->stableVersionReader->readStableVersion($packageName));
     }
 }

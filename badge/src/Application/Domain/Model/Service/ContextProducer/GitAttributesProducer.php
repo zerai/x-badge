@@ -16,22 +16,18 @@ final class GitAttributesProducer implements ContextProducer
 
     public function contextFor(string $packageName): BadgeContext
     {
-        try {
-            $gitAttributesFileStatusCode = $this->committedFileDetector->detectGitAttributes($packageName);
+        $gitAttributesFileStatusCode = $this->committedFileDetector->detectGitAttributes($packageName);
 
-            return $this->createFromFileStatusCode($gitAttributesFileStatusCode);
-        } catch (\Throwable $exception) {
-            throw $exception;
-        }
+        return $this->createFromCommittedFileStatus($gitAttributesFileStatusCode);
     }
 
-    private function createFromFileStatusCode(int $fileStatusCode): BadgeContext
+    private function createFromCommittedFileStatus(int $committedFileStatus): BadgeContext
     {
-        if ($fileStatusCode === 200) {
+        if ($committedFileStatus === 200) {
             return GitAttributesFile::createAsCommitted();
         }
 
-        if ($fileStatusCode === 404) {
+        if ($committedFileStatus === 404) {
             return GitAttributesFile::createAsUncommitted();
         }
 

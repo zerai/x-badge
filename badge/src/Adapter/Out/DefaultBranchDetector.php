@@ -3,7 +3,7 @@
 namespace Badge\Adapter\Out;
 
 use Badge\Application\Domain\Model\RepositoryDetail;
-use Badge\Application\Domain\Model\Service\DefaultBranchDetector\DetectableBranch;
+use Badge\Application\Domain\Model\Service\DetectableBranch;
 use Bitbucket\Client as BitbucketClient;
 use Github\Client as GithubClient;
 

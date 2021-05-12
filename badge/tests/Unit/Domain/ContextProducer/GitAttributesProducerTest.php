@@ -8,7 +8,7 @@ use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\RepositoryDetail;
 use Badge\Application\Domain\Model\Service\ContextProducer\GitAttributesProducer;
 use Badge\Application\Domain\Model\Service\DetectableBranch;
-use Badge\Application\Domain\Model\Service\RepositoryReader\RepositoryDetailReader;
+use Badge\Application\Domain\Model\Service\RepositoryDetailReader;
 use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use Generator;
 use GuzzleHttp\ClientInterface;

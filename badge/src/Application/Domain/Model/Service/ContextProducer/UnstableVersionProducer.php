@@ -7,10 +7,7 @@ use Badge\Application\Domain\Model\ContextValue\UnstableVersion;
 
 final class UnstableVersionProducer implements ContextProducer
 {
-    /**
-     * @var UnstableVersionReader
-     */
-    private $unstableVersionReader;
+    private UnstableVersionReader $unstableVersionReader;
 
     public function __construct(UnstableVersionReader $unstableVersionReader)
     {
@@ -19,10 +16,6 @@ final class UnstableVersionProducer implements ContextProducer
 
     public function contextFor(string $packageName): BadgeContext
     {
-        try {
-            return UnstableVersion::fromString($this->unstableVersionReader->readUnstableVersion($packageName));
-        } catch (\Exception $e) {
-            throw $e;
-        }
+        return UnstableVersion::fromString($this->unstableVersionReader->readUnstableVersion($packageName));
     }
 }

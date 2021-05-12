@@ -2,7 +2,7 @@
 
 namespace Badge\Adapter\Out;
 
-use Badge\Application\Domain\Model\Service\DefaultBranchDetector\DetectableBranch;
+use Badge\Application\Domain\Model\Service\DetectableBranch;
 use Badge\Infrastructure\Env;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;

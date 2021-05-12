@@ -2,7 +2,7 @@
 
 namespace Badge\Adapter\Out;
 
-use Badge\Application\Domain\Model\Service\RepositoryReader\RepositoryDetailReader;
+use Badge\Application\Domain\Model\Service\RepositoryDetailReader;
 use Badge\Application\PortOut\CommittedFileDetector as CommittedFileDetectorPort;
 
 final class CommittedFileDetector implements CommittedFileDetectorPort

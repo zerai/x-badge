@@ -16,22 +16,18 @@ final class ComposerLockProducer implements ContextProducer
 
     public function contextFor(string $packageName): BadgeContext
     {
-        try {
-            $composerLockFileStatusCode = $this->committedFileDetector->detectComposerLock($packageName);
+        $composerLockFileStatusCode = $this->committedFileDetector->detectComposerLock($packageName);
 
-            return $this->createFromFileStatusCode($composerLockFileStatusCode);
-        } catch (\Throwable $exception) {
-            throw $exception;
-        }
+        return $this->createFromCommittedFileStatus($composerLockFileStatusCode);
     }
 
-    private function createFromFileStatusCode(int $fileStatusCode): BadgeContext
+    private function createFromCommittedFileStatus(int $committedFileStatus): BadgeContext
     {
-        if ($fileStatusCode === 200) {
+        if ($committedFileStatus === 200) {
             return ComposerLockFile::createAsCommitted();
         }
 
-        if ($fileStatusCode === 404) {
+        if ($committedFileStatus === 404) {
             return ComposerLockFile::createAsUncommitted();
         }
 

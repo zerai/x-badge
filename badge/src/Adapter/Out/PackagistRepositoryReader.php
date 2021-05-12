@@ -3,7 +3,7 @@
 namespace Badge\Adapter\Out;
 
 use Badge\Application\Domain\Model\RepositoryDetail;
-use Badge\Application\Domain\Model\Service\RepositoryReader\RepositoryDetailReader;
+use Badge\Application\Domain\Model\Service\RepositoryDetailReader;
 use Packagist\Api\Client as PackagistClient;
 use Packagist\Api\Result\Package;
 

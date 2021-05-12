@@ -16,10 +16,6 @@ final class DependentsProducer implements ContextProducer
 
     public function contextFor(string $packageName): BadgeContext
     {
-        try {
-            return Dependents::withCount($this->dependentsReader->readDependents($packageName));
-        } catch (\Exception $exception) {
-            throw $exception;
-        }
+        return Dependents::withCount($this->dependentsReader->readDependents($packageName));
     }
 }

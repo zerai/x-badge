@@ -4,9 +4,6 @@
             "badge\/src"
         ],
         "excludes": [
-            "Infrastructure\/FakeBitbuketServer",
-            "Infrastructure\/FakeGithubServer",
-            "Infrastructure\/FakePackagistServer",
             "Infrastructure/Env.php"
         ]
     },

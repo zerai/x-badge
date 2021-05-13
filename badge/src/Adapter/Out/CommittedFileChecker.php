@@ -4,11 +4,11 @@ namespace Badge\Adapter\Out;
 
 use Badge\Application\Domain\Model\RepositoryDetail;
 use Badge\Application\Domain\Model\Service\DetectableBranch;
+use Badge\Application\PortOut\CommittedFileChecker as CommittedFileCheckerPort;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
-use RuntimeException;
 
-class CommittedFileChecker
+class CommittedFileChecker implements CommittedFileCheckerPort
 {
     private const STATUS_COMMITTED = 200;
 
@@ -26,10 +26,6 @@ class CommittedFileChecker
         $this->branchDetector = $branchDetector;
     }
 
-    /**
-     * // TODO usare FileCheckerException
-     * @throw RuntimeException
-     */
     public function checkFile(RepositoryDetail $repositoryDetail, string $filePath): int
     {
         $result = self::STATUS_ERROR;

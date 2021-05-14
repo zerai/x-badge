@@ -78,3 +78,5 @@ skip_violations:
         - Badge\Application\Domain\Model\RepositoryDetail
     Badge\Adapter\Out\AcceptanceTestCommittedFileChecker:
         - Badge\Application\Domain\Model\RepositoryDetail
+    Badge\Application\PortOut\CommittedFileChecker:
+        - Badge\Application\Domain\Model\RepositoryDetail

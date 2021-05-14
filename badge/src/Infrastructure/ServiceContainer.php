@@ -3,12 +3,12 @@
 namespace Badge\Infrastructure;
 
 use Badge\Adapter\Out\CommittedFileChecker;
-use Badge\Adapter\Out\CommittedFileDetector;
 use Badge\Adapter\Out\DefaultBranchDetector;
 use Badge\Adapter\Out\PackagistContextValueReader;
 use Badge\Adapter\Out\PackagistRepositoryReader;
 use Badge\Application\BadgeApplication;
 use Badge\Application\BadgeApplicationInterface;
+use Badge\Application\Domain\Model\Service\ContextProducer\CommittedFileDetector;
 use Badge\Application\Domain\Model\Service\ContextProducer\ComposerLockProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\DailyDownloadsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\DependentsProducer;

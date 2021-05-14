@@ -3,9 +3,9 @@
 namespace Badge\Tests\Unit\Domain\ContextProducer;
 
 use Badge\Adapter\Out\CommittedFileChecker;
-use Badge\Adapter\Out\CommittedFileDetector;
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\RepositoryDetail;
+use Badge\Application\Domain\Model\Service\ContextProducer\CommittedFileDetector;
 use Badge\Application\Domain\Model\Service\ContextProducer\ComposerLockProducer;
 use Badge\Application\Domain\Model\Service\DetectableBranch;
 use Badge\Application\Domain\Model\Service\RepositoryDetailReader;
@@ -73,6 +73,7 @@ final class ComposerLockProducerTest extends TestCase
     /**
      * @test
      * @dataProvider composerFileDataProvider
+     * @covers \Badge\Application\Domain\Model\Service\ContextProducer\CommittedFileDetector
      */
     public function shouldProduceAComposerLockBadgeContextForAPackageHostedOnGitHub(int $httpFileStatus = 200, string $assertionToCall): void
     {

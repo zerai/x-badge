@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Adapter\Out;
+namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
 use Badge\Application\Domain\Model\Service\RepositoryDetailReader;
 use Badge\Application\PortOut\CommittedFileChecker;

@@ -2,46 +2,37 @@
 
 namespace Badge\Tests\Unit\Application\UseCase;
 
-use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
-use Badge\Application\Domain\Model\ContextValue\ComposerLockFile;
+//use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
 use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
 use Badge\Application\Image;
 use Badge\Application\ImageFactory;
 use Badge\Application\Usecase\ComposerLockBadgeGenerator;
-use Badge\Infrastructure\PoserImageFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use PUGX\Poser\Poser;
-use PUGX\Poser\Render\SvgFlatRender;
-use PUGX\Poser\Render\SvgFlatSquareRender;
-use PUGX\Poser\Render\SvgPlasticRender;
 use RuntimeException;
 
 /** @covers \Badge\Application\Usecase\ComposerLockBadgeGenerator */
 final class ComposerLockBadgeGeneratorTest extends TestCase
 {
     /**
-     * @var ImageFactory
-     */
-    private $imageFactory;
-
-    /**
      * @var ContextProducer & MockObject
      */
     private $contextProducer;
+
+    /**
+     * @var ImageFactory & MockObject
+     */
+    private $imageFactory;
 
     private ComposerLockBadgeGenerator $useCase;
 
     public function setUp(): void
     {
-        // $this->imageFactory = $this->getMockBuilder(ImageFactory::class)
-        //     ->disableOriginalConstructor()
-        //     ->getMock();
-
-        $this->imageFactory = $this->setUpImageFactory();
-
         $this->contextProducer = $this->getMockBuilder(ContextProducer::class)
-            ->disableOriginalConstructor()
+            ->onlyMethods(['contextFor'])
+            ->getMock();
+
+        $this->imageFactory = $this->getMockBuilder(ImageFactory::class)
             ->getMock();
 
         $this->useCase = new ComposerLockBadgeGenerator($this->contextProducer, $this->imageFactory);
@@ -50,55 +41,44 @@ final class ComposerLockBadgeGeneratorTest extends TestCase
     /**
      * @test
      */
-    public function canGenerateABadgeImage(string $aPackageName = 'foo/bar'): void
+    public function canGenerateAComposerLockBadgeFromPackageName(): void
     {
-        //$aBadgeContext = BadgeContext::fromContextValue(ComposerLockFile::createAsCommitted());
-        $aBadgeContext = ComposerLockFile::createAsCommitted();
+        $packageName = 'irrelevant/irrelevant';
 
-        $this->contextProducer->expects($this->once())
+        $this->contextProducer
+            ->expects($this->once())
             ->method('contextFor')
-            //->with([$aPackageName])
-            ->willReturn($aBadgeContext);
+            ->with($packageName);
 
-        // $this->imageFactory->expects($this->once())
-        //     ->method('createImageFromContext');
+        $this->imageFactory
+            ->expects($this->never())
+            ->method('createImageForDefaultBadge');
 
-        $result = $this->useCase->createComposerLockBadge($aPackageName);
+        $this->imageFactory
+            ->expects($this->once())
+            ->method('createImageFromContext');
+
+        $result = $this->useCase->createComposerLockBadge($packageName);
 
         self::assertInstanceOf(Image::class, $result);
-        self::assertEquals('lock-committed-e60073.svg', $result->getFileName());
     }
 
     /**
      * @test
      */
-    public function canGenerateADefaultBadgeImageOnError(string $aPackageName = 'foo/bar'): void
+    public function canGenerateADefaultBadgeIfError(): void
     {
-        //$aBadgeContext = BadgeContext::fromContextValue(ComposerLockFile::createAsCommitted());
-        $aBadgeContext = ComposerLockFile::createAsCommitted();
-
-        $this->contextProducer->expects($this->once())
+        $this->contextProducer
+            ->expects($this->once())
             ->method('contextFor')
-            //->with([$aPackageName])
-            ->will($this->throwException(new RuntimeException('...')));
+            ->will($this->throwException(new RuntimeException('Network Error.')));
 
-        // $this->imageFactory->expects($this->once())
-        //     ->method('createImageForDefaultBadge');
+        $this->imageFactory
+            ->expects($this->once())
+            ->method('createImageForDefaultBadge');
 
-        $result = $this->useCase->createComposerLockBadge($aPackageName);
+        $result = $this->useCase->createComposerLockBadge('irrelevant/irrelevant');
 
         self::assertInstanceOf(Image::class, $result);
-        self::assertEquals('default-badge.svg', $result->getFileName());
-    }
-
-    private function setUpImageFactory(): PoserImageFactory
-    {
-        $poserGenerator = new Poser([
-            new SvgFlatRender(),
-            new SvgFlatSquareRender(),
-            new SvgPlasticRender(),
-        ]);
-
-        return new PoserImageFactory($poserGenerator);
     }
 }

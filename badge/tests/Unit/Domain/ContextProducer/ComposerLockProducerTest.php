@@ -46,10 +46,7 @@ final class ComposerLockProducerTest extends TestCase
      */
     private $repositoryReader;
 
-    /**
-     * @var ComposerLockProducer
-     */
-    private $badgeContextProducer;
+    private ComposerLockProducer $badgeContextProducer;
 
     protected function setUp(): void
     {

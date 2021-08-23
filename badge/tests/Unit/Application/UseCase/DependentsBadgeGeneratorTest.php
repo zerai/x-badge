@@ -42,15 +42,22 @@ final class DependentsBadgeGeneratorTest extends TestCase
      */
     public function canGenerateADependentsBadgeFromPackageName(): void
     {
+        $packageName = 'irrelevant/irrelevant';
+
         $this->contextProducer
             ->expects($this->once())
-            ->method('contextFor');
+            ->method('contextFor')
+            ->with($packageName);
 
         $this->imageFactory
             ->expects($this->never())
             ->method('createImageForDefaultBadge');
 
-        $result = $this->useCase->createDependentsBadge('irrelevant/irrelevant');
+        $this->imageFactory
+            ->expects($this->once())
+            ->method('createImageFromContext');
+
+        $result = $this->useCase->createDependentsBadge($packageName);
 
         self::assertInstanceOf(Image::class, $result);
     }

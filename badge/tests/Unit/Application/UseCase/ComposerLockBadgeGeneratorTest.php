@@ -2,7 +2,6 @@
 
 namespace Badge\Tests\Unit\Application\UseCase;
 
-//use Badge\Application\Domain\Model\BadgeContext\BadgeContext;
 use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
 use Badge\Application\Image;
 use Badge\Application\ImageFactory;

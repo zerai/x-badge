@@ -40,17 +40,24 @@ final class TotalDownloadsBadgeGeneratorTest extends TestCase
     /**
      * @test
      */
-    public function canGenerateASuggestersBadgeFromPackageName(): void
+    public function canGenerateATotalDownloadsBadgeFromPackageName(): void
     {
+        $packageName = 'irrelevant/irrelevant';
+
         $this->contextProducer
             ->expects($this->once())
-            ->method('contextFor');
+            ->method('contextFor')
+            ->with($packageName);
 
         $this->imageFactory
             ->expects($this->never())
             ->method('createImageForDefaultBadge');
 
-        $result = $this->useCase->createTotalDownloadsBadge('irrelevant/irrelevant');
+        $this->imageFactory
+            ->expects($this->once())
+            ->method('createImageFromContext');
+
+        $result = $this->useCase->createTotalDownloadsBadge($packageName);
 
         self::assertInstanceOf(Image::class, $result);
     }

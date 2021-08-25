@@ -133,4 +133,17 @@ class LoggerApplicationDecorator implements BadgeApplicationInterface
 
         return $badgeImage;
     }
+
+    public function createLicenseBadge(string $packageName): Image
+    {
+        try {
+            $badgeImage = $this->application->createLicenseBadge($packageName);
+        } catch (\Throwable $exception) {
+            $this->logger->info($exception->getMessage());
+
+            throw $exception;
+        }
+
+        return $badgeImage;
+    }
 }

@@ -7,11 +7,16 @@ parameters:
 
 		-
 			message: "#^Parameter \\#1 \\$versions of static method Badge\\\\Infrastructure\\\\ReleasedVersions\\:\\:fromApiData\\(\\) expects array\\<array\\<Packagist\\\\Api\\\\Result\\\\Package\\\\Version\\>\\>, array\\<Packagist\\\\Api\\\\Result\\\\Package\\\\Version\\> given\\.$#"
-			count: 2
+			count: 3
 			path: badge/src/Adapter/Out/PackagistContextValueReader.php
 
 		-
 			message: "#^Method Badge\\\\Adapter\\\\Out\\\\PackagistContextValueReader\\:\\:readUnstableVersion\\(\\) should return string but returns string\\|null\\.$#"
+			count: 1
+			path: badge/src/Adapter/Out/PackagistContextValueReader.php
+
+		-
+			message: "#^Method Badge\\\\Adapter\\\\Out\\\\PackagistContextValueReader\\:\\:readLicense\\(\\) should return string but returns string\\|null\\.$#"
 			count: 1
 			path: badge/src/Adapter/Out/PackagistContextValueReader.php
 

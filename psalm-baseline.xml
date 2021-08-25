@@ -6,15 +6,18 @@
     </MixedArrayAccess>
   </file>
   <file src="badge/src/Adapter/Out/PackagistContextValueReader.php">
-    <InvalidArgument occurrences="2">
+    <InvalidArgument occurrences="3">
+      <code>$package-&gt;getVersions()</code>
       <code>$package-&gt;getVersions()</code>
       <code>$package-&gt;getVersions()</code>
     </InvalidArgument>
-    <InvalidNullableReturnType occurrences="2">
+    <InvalidNullableReturnType occurrences="3">
+      <code>string</code>
       <code>string</code>
       <code>string</code>
     </InvalidNullableReturnType>
-    <NullableReturnStatement occurrences="2">
+    <NullableReturnStatement occurrences="3">
+      <code>ReleasedVersions::fromApiData($package-&gt;getVersions())-&gt;license()</code>
       <code>ReleasedVersions::fromApiData($package-&gt;getVersions())-&gt;stableVersion()</code>
       <code>ReleasedVersions::fromApiData($package-&gt;getVersions())-&gt;unstableVersion()</code>
     </NullableReturnStatement>
@@ -36,12 +39,6 @@
   </file>
   <file src="badge/tests/Acceptance/AcceptanceTestCase.php">
     <PossiblyNullPropertyAssignmentValue occurrences="1">
-      <code>null</code>
-    </PossiblyNullPropertyAssignmentValue>
-  </file>
-  <file src="badge/tests/Integration/GetDefaultBranchFromGithubApiTest.php">
-    <PossiblyNullPropertyAssignmentValue occurrences="2">
-      <code>null</code>
       <code>null</code>
     </PossiblyNullPropertyAssignmentValue>
   </file>

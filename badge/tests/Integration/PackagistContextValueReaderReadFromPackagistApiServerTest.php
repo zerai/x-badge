@@ -117,6 +117,17 @@ final class PackagistContextValueReaderReadFromPackagistApiServerTest extends Te
     }
 
     /**
+     * @test
+     * @dataProvider packageNameDataprovider
+     */
+    public function shouldReadTheLicenseValueFromApiServer(string $packageName): void
+    {
+        $license = $this->reader->readLicense($packageName);
+
+        self::assertNotEmpty($license);
+    }
+
+    /**
      * @return Generator<string, array<int, string>>
      */
     public function packageNameDataprovider(): Generator

@@ -414,7 +414,7 @@ abstract class ServiceContainer
     {
         if ($this->licenseUseCase === null) {
             $this->licenseUseCase = new LicenseBadgeGenerator(
-                $this->unstableVersionProducer(),
+                $this->licenseProducer(),
                 $this->imageFactory()
             );
         }

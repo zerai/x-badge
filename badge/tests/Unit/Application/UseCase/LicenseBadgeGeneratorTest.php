@@ -5,13 +5,14 @@ namespace Badge\Tests\Unit\Application\UseCase;
 use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
 use Badge\Application\Image;
 use Badge\Application\ImageFactory;
-use Badge\Application\Usecase\ComposerLockBadgeGenerator;
+use Badge\Application\Usecase\LicenseBadgeGenerator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use RuntimeException;
 
-/** @covers \Badge\Application\Usecase\ComposerLockBadgeGenerator */
-final class ComposerLockBadgeGeneratorTest extends TestCase
+/**
+ * @covers \Badge\Application\Usecase\LicenseBadgeGenerator
+ */
+class LicenseBadgeGeneratorTest extends TestCase
 {
     /**
      * @var ContextProducer & MockObject
@@ -23,9 +24,9 @@ final class ComposerLockBadgeGeneratorTest extends TestCase
      */
     private $imageFactory;
 
-    private ComposerLockBadgeGenerator $useCase;
+    private LicenseBadgeGenerator $useCase;
 
-    public function setUp(): void
+    protected function setUp(): void
     {
         $this->contextProducer = $this->getMockBuilder(ContextProducer::class)
             ->onlyMethods(['contextFor'])
@@ -34,13 +35,13 @@ final class ComposerLockBadgeGeneratorTest extends TestCase
         $this->imageFactory = $this->getMockBuilder(ImageFactory::class)
             ->getMock();
 
-        $this->useCase = new ComposerLockBadgeGenerator($this->contextProducer, $this->imageFactory);
+        $this->useCase = new LicenseBadgeGenerator($this->contextProducer, $this->imageFactory);
     }
 
     /**
      * @test
      */
-    public function canGenerateAComposerLockBadgeFromPackageName(): void
+    public function canGenerateAnLicenseBadgeFromPackageName(): void
     {
         $packageName = 'irrelevant/irrelevant';
 
@@ -57,26 +58,7 @@ final class ComposerLockBadgeGeneratorTest extends TestCase
             ->expects($this->once())
             ->method('createImageFromContext');
 
-        $result = $this->useCase->createComposerLockBadge($packageName);
-
-        self::assertInstanceOf(Image::class, $result);
-    }
-
-    /**
-     * @test
-     */
-    public function canGenerateADefaultBadgeIfError(): void
-    {
-        $this->contextProducer
-            ->expects($this->once())
-            ->method('contextFor')
-            ->will($this->throwException(new RuntimeException('Network Error.')));
-
-        $this->imageFactory
-            ->expects($this->once())
-            ->method('createImageForDefaultBadge');
-
-        $result = $this->useCase->createComposerLockBadge('irrelevant/irrelevant');
+        $result = $this->useCase->createLicenseBadge($packageName);
 
         self::assertInstanceOf(Image::class, $result);
     }

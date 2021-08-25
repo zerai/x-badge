@@ -36,7 +36,7 @@ final class RepositoryDetailTest extends TestCase
      * @test
      * @dataProvider invalidRepositoryUrlDataProvider
      */
-    public function invalidRepositoryUrlshouldThrowException(string $repositoryUrl): void
+    public function invalidRepositoryUrlShouldThrowException(string $repositoryUrl): void
     {
         self::expectException(InvalidArgumentException::class);
 
@@ -52,8 +52,8 @@ final class RepositoryDetailTest extends TestCase
         yield 'not an url' => ['not an url string'];
         yield 'incomplete github url - only host' => ['https://github.com'];
         yield 'incomplete github url - only host and user' => ['https://github.com/user'];
-        yield 'incomplete bitbucket url - only hosy' => ['https://bitbucket.org'];
-        yield 'incomplete bitbucket url - only hosy and user' => ['https://bitbucket.org/user'];
+        yield 'incomplete bitbucket url - only host' => ['https://bitbucket.org'];
+        yield 'incomplete bitbucket url - only host and user' => ['https://bitbucket.org/user'];
     }
 
     /**
@@ -83,7 +83,7 @@ final class RepositoryDetailTest extends TestCase
     /**
      * @test
      */
-    public function canDetectGithubHositingService(): void
+    public function canDetectGithubHostingService(): void
     {
         $sut = RepositoryDetail::fromRepositoryUrl(self::GITHUB_REPOSITORY_URL);
 
@@ -93,7 +93,7 @@ final class RepositoryDetailTest extends TestCase
     /**
      * @test
      */
-    public function canDetectBitbucketHositingService(): void
+    public function canDetectBitbucketHostingService(): void
     {
         $sut = RepositoryDetail::fromRepositoryUrl(self::BITBUCKET_REPOSITORY_URL);
 

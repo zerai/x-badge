@@ -42,15 +42,22 @@ final class StableVersionBadgeGeneratorTest extends TestCase
      */
     public function canGenerateAStableVersionBadgeFromPackageName(): void
     {
+        $packageName = 'irrelevant/irrelevant';
+
         $this->contextProducer
             ->expects($this->once())
-            ->method('contextFor');
+            ->method('contextFor')
+            ->with($packageName);
 
         $this->imageFactory
             ->expects($this->never())
             ->method('createImageForDefaultBadge');
 
-        $result = $this->useCase->createStableVersionBadge('irrelevant/irrelevant');
+        $this->imageFactory
+            ->expects($this->once())
+            ->method('createImageFromContext');
+
+        $result = $this->useCase->createStableVersionBadge($packageName);
 
         self::assertInstanceOf(Image::class, $result);
     }

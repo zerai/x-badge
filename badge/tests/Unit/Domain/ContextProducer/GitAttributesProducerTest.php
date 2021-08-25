@@ -46,10 +46,7 @@ final class GitAttributesProducerTest extends TestCase
      */
     private $repositoryReader;
 
-    /**
-     * @var GitAttributesProducer
-     */
-    private $badgeContextProducer;
+    private GitAttributesProducer $badgeContextProducer;
 
     protected function setUp(): void
     {

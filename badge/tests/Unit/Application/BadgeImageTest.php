@@ -49,9 +49,9 @@ final class BadgeImageTest extends TestCase
     {
         yield 'empty file name' => ['', 'a-content'];
         yield 'empty content' => ['a-filename.svg', ''];
-        yield 'invald extension in file name' => ['invalid-extension.txt', 'a-content'];
-        yield 'invald char (.) in file name' => ['invalid.extension.svg', 'a-content'];
-        yield 'invald char (#) in file name' => ['invalid#extension.svg', 'a-content'];
-        yield 'invald char (_) in file name' => ['invalid_extension.svg', 'a-content'];
+        yield 'invalid extension in file name' => ['invalid-extension.txt', 'a-content'];
+        yield 'invalid char (.) in file name' => ['invalid.extension.svg', 'a-content'];
+        yield 'invalid char (#) in file name' => ['invalid#extension.svg', 'a-content'];
+        yield 'invalid char (_) in file name' => ['invalid_extension.svg', 'a-content'];
     }
 }

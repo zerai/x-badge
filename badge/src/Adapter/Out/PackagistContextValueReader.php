@@ -77,4 +77,12 @@ final class PackagistContextValueReader implements ContextValueReader
 
         return ReleasedVersions::fromApiData($package->getVersions())->unstableVersion();
     }
+
+    public function readLicense(string $packageName): string
+    {
+        /** @var Package $package */
+        $package = $this->packagistClient->get($packageName);
+
+        return ReleasedVersions::fromApiData($package->getVersions())->license();
+    }
 }

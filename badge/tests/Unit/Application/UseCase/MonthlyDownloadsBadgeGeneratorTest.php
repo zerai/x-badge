@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Tests\Unit\UseCase;
+namespace Badge\Tests\Unit\Application\UseCase;
 
 use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
 use Badge\Application\Image;
@@ -40,17 +40,24 @@ final class MonthlyDownloadsBadgeGeneratorTest extends TestCase
     /**
      * @test
      */
-    public function canGenerateASuggestersBadgeFromPackageName(): void
+    public function canGenerateAMonthlyDownloadBadgeFromPackageName(): void
     {
+        $packageName = 'irrelevant/irrelevant';
+
         $this->contextProducer
             ->expects($this->once())
-            ->method('contextFor');
+            ->method('contextFor')
+            ->with($packageName);
 
         $this->imageFactory
             ->expects($this->never())
             ->method('createImageForDefaultBadge');
 
-        $result = $this->useCase->createMonthlyDownloadsBadge('irrelevant/irrelevant');
+        $this->imageFactory
+            ->expects($this->once())
+            ->method('createImageFromContext');
+
+        $result = $this->useCase->createMonthlyDownloadsBadge($packageName);
 
         self::assertInstanceOf(Image::class, $result);
     }

@@ -6,6 +6,7 @@ use Badge\Application\PortIn\CreateComposerLockBadge;
 use Badge\Application\PortIn\CreateDailyDownloadsBadge;
 use Badge\Application\PortIn\CreateDependentsBadge;
 use Badge\Application\PortIn\CreateGitattributesBadge;
+use Badge\Application\PortIn\CreateLicenseBadge;
 use Badge\Application\PortIn\CreateMonthlyDownloadsBadge;
 use Badge\Application\PortIn\CreateStableVersionBadge;
 use Badge\Application\PortIn\CreateSuggestersBadge;
@@ -32,6 +33,8 @@ final class BadgeApplication implements BadgeApplicationInterface
 
     private CreateUnstableVersionBadge $unstableVersionUseCase;
 
+    private CreateLicenseBadge $licenseUseCase;
+
     public function __construct(
         CreateComposerLockBadge $composerLockUseCase,
         CreateGitattributesBadge $gitattributesUseCase,
@@ -41,7 +44,8 @@ final class BadgeApplication implements BadgeApplicationInterface
         CreateMonthlyDownloadsBadge $monthlyDownloadsUseCase,
         CreateDailyDownloadsBadge $dailyDownloadsUseCase,
         CreateStableVersionBadge $stableVersionUseCase,
-        CreateUnstableVersionBadge $unstableVersionUseCase
+        CreateUnstableVersionBadge $unstableVersionUseCase,
+        CreateLicenseBadge $licenseUseCase
     ) {
         $this->composerLockUseCase = $composerLockUseCase;
         $this->gitattributesUseCase = $gitattributesUseCase;
@@ -52,6 +56,7 @@ final class BadgeApplication implements BadgeApplicationInterface
         $this->dailyDownloadsUseCase = $dailyDownloadsUseCase;
         $this->stableVersionUseCase = $stableVersionUseCase;
         $this->unstableVersionUseCase = $unstableVersionUseCase;
+        $this->licenseUseCase = $licenseUseCase;
     }
 
     public function createComposerLockBadge(string $packageName): Image
@@ -97,5 +102,10 @@ final class BadgeApplication implements BadgeApplicationInterface
     public function CreateUnstableVersionBadge(string $packageName): Image
     {
         return $this->unstableVersionUseCase->CreateUnstableVersionBadge($packageName);
+    }
+
+    public function createLicenseBadge(string $packageName): Image
+    {
+        return $this->licenseUseCase->createLicenseBadge($packageName);
     }
 }

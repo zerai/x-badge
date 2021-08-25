@@ -13,6 +13,7 @@ use Badge\Application\Domain\Model\Service\ContextProducer\ComposerLockProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\DailyDownloadsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\DependentsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\GitAttributesProducer;
+use Badge\Application\Domain\Model\Service\ContextProducer\LicenseProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\MonthlyDownloadsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\StableVersionProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer;
@@ -25,6 +26,7 @@ use Badge\Application\Usecase\ComposerLockBadgeGenerator;
 use Badge\Application\Usecase\DailyDownloadsBadgeGenerator;
 use Badge\Application\Usecase\DependentsBadgeGenerator;
 use Badge\Application\Usecase\GitattributesBadgeGenerator;
+use Badge\Application\Usecase\LicenseBadgeGenerator;
 use Badge\Application\Usecase\MonthlyDownloadsBadgeGenerator;
 use Badge\Application\Usecase\StableVersionBadgeGenerator;
 use Badge\Application\Usecase\SuggestersBadgeGenerator;
@@ -91,6 +93,10 @@ abstract class ServiceContainer
 
     protected ?UnstableVersionBadgeGenerator $unstableVersionUseCase = null;
 
+    protected ?LicenseProducer $licenseProducer = null;
+
+    protected ?LicenseBadgeGenerator $licenseUseCase = null;
+
     public function application(): BadgeApplicationInterface
     {
         if ($this->application === null) {
@@ -103,7 +109,8 @@ abstract class ServiceContainer
                 $this->monthlyDownloadsUseCase(),
                 $this->dailyDownloadsUseCase(),
                 $this->stableVersionUseCase(),
-                $this->unstableVersionUseCase()
+                $this->unstableVersionUseCase(),
+                $this->licenseUseCase(),
             );
         }
 
@@ -390,6 +397,29 @@ abstract class ServiceContainer
         }
 
         return $this->unstableVersionUseCase;
+    }
+
+    protected function licenseProducer(): LicenseProducer
+    {
+        if ($this->licenseProducer === null) {
+            $this->licenseProducer = new LicenseProducer(
+                $this->contextValueReader()
+            );
+        }
+
+        return $this->licenseProducer;
+    }
+
+    protected function licenseUseCase(): LicenseBadgeGenerator
+    {
+        if ($this->licenseUseCase === null) {
+            $this->licenseUseCase = new LicenseBadgeGenerator(
+                $this->unstableVersionProducer(),
+                $this->imageFactory()
+            );
+        }
+
+        return $this->licenseUseCase;
     }
 
     abstract protected function packagistApiClient(): PackagistClient;

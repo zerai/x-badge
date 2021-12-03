@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^7.4 || ^8.0",
         "badges/poser": "^2.0",
         "bitbucket/client": "^3.2",
         "http-interop/http-factory-guzzle": "^1.0",

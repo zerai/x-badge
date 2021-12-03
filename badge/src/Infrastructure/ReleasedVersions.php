@@ -69,6 +69,7 @@ final class ReleasedVersions
     {
         $versions = $this->versions;
 
+        /** @psalm-suppress InvalidArgument */
         usort($versions, [$this, 'comparator']);
 
         /** @var Version $version */

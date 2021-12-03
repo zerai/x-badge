@@ -288,7 +288,7 @@ final class PackagistData
             $data['monthly'],
             $data['daily'],
             $data['repository'],
-            \array_map(fn ($e) => Version::fromArray($e), $data['versions']),
+            array_map(fn ($e) => Version::fromArray($e), $data['versions']),
             $data['httpStatusCode'],
         );
     }
@@ -303,7 +303,7 @@ final class PackagistData
             'monthly' => $this->monthly,
             'daily' => $this->daily,
             'repository' => $this->repository,
-            'versions' => \array_map(fn (Version $e) => $e->toArray(), $this->versions),
+            'versions' => array_map(fn (Version $e) => $e->toArray(), $this->versions),
             'httpStatusCode' => $this->httpStatusCode,
         ];
     }
@@ -382,7 +382,7 @@ final class PackagistData
 
         $data = $dynamicData + $staticData;
 
-        return \json_encode([
+        return json_encode([
             'package' => $data,
         ]);
     }

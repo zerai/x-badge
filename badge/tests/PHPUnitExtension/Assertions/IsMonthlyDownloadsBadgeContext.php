@@ -31,7 +31,7 @@ final class IsMonthlyDownloadsBadgeContext extends Constraint
             return false;
         }
 
-        if (\substr($other['subject-value'], -11) !== self::SUFFIX) {
+        if (substr($other['subject-value'], -11) !== self::SUFFIX) {
             return false;
         }
 

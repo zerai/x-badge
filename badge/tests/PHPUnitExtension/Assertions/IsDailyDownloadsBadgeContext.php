@@ -31,7 +31,7 @@ final class IsDailyDownloadsBadgeContext extends Constraint
             return false;
         }
 
-        if (\substr($other['subject-value'], -6) !== self::SUFFIX) {
+        if (substr($other['subject-value'], -6) !== self::SUFFIX) {
             return false;
         }
 

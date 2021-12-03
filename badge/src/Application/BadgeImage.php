@@ -48,8 +48,8 @@ class BadgeImage implements Image
         if ($content === '') {
             throw new InvalidArgumentException('Error: image with empty content not allowed');
         }
-        if (! \preg_match('/^[a-zA-Z0-9-]+\.svg$/', $name)) {
-            throw new InvalidArgumentException(\sprintf('Error: %s is not a valid filename', $name));
+        if (! preg_match('/^[a-zA-Z0-9-]+\.svg$/', $name)) {
+            throw new InvalidArgumentException(sprintf('Error: %s is not a valid filename', $name));
         }
     }
 }

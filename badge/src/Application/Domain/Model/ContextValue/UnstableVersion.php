@@ -57,7 +57,7 @@ final class UnstableVersion implements ContextualizableValue, BadgeContext
 
     private function normalize(string $inputData): string
     {
-        return \strtolower(\trim($inputData));
+        return strtolower(trim($inputData));
     }
 
     private function validate(string $inputData): string

@@ -57,7 +57,7 @@ abstract class CommittedFile implements ContextualizableValue
 
     private function normalize(string $inputData): string
     {
-        return \strtolower(\trim($inputData));
+        return strtolower(trim($inputData));
     }
 
     private function validate(string $inputData): string
@@ -69,7 +69,7 @@ abstract class CommittedFile implements ContextualizableValue
         }
 
         if (! \in_array($data, self::ALLOWED_VALUES)) {
-            throw new InvalidArgumentException(\sprintf('%s is not a valid value.', $data));
+            throw new InvalidArgumentException(sprintf('%s is not a valid value.', $data));
         }
 
         return $data;

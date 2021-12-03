@@ -232,11 +232,11 @@ final class GitDefaultBranchData
     public function mockedEndPointForDefaultBranchRequest(): string
     {
         if ($this->isGitHub($this->repository)) {
-            $endpoint = \sprintf('/repos/%s', $this->repositoryName);
+            $endpoint = sprintf('/repos/%s', $this->repositoryName);
         }
 
         if ($this->isBitbucket($this->repository)) {
-            $endpoint = \sprintf('/2.0/repositories/%s', $this->repositoryName);
+            $endpoint = sprintf('/2.0/repositories/%s', $this->repositoryName);
         }
 
         return $endpoint;
@@ -245,7 +245,7 @@ final class GitDefaultBranchData
     public function mockedEndPointForCommittedFileRequest(): string
     {
         if ($this->isGitHub($this->repository)) {
-            $endpoint = \sprintf(
+            $endpoint = sprintf(
                 '/%s/%s/%s/%s',
                 $this->repositoryName(),
                 $this->repositoryPrefix(),
@@ -254,7 +254,7 @@ final class GitDefaultBranchData
             );
         }
         if ($this->isBitbucket($this->repository)) {
-            $endpoint = \sprintf(
+            $endpoint = sprintf(
                 '/%s/%s/%s/%s',
                 $this->repositoryName(),
                 $this->repositoryPrefix(),
@@ -285,17 +285,17 @@ final class GitDefaultBranchData
 
         $data = $dynamicData + $staticData;
 
-        return \json_encode($data);
+        return json_encode($data);
     }
 
     public function isGitHub(): bool
     {
-        return \parse_url($this->repository, \PHP_URL_HOST) === self::GITHUB_SOURCE;
+        return parse_url($this->repository, \PHP_URL_HOST) === self::GITHUB_SOURCE;
     }
 
     public function isBitbucket(): bool
     {
-        return \parse_url($this->repository, \PHP_URL_HOST) === self::BITBUCKET_SOURCE;
+        return parse_url($this->repository, \PHP_URL_HOST) === self::BITBUCKET_SOURCE;
     }
 
     public function getGithubResponseDinamicData(): array

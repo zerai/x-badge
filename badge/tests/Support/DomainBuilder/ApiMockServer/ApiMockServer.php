@@ -42,22 +42,22 @@ class ApiMockServer
 
     public static function reset(): void
     {
-        $ch = \curl_init();
+        $ch = curl_init();
 
-        \curl_setopt($ch, CURLOPT_URL, self::resetEndpoint());
-        \curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        \curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($ch, CURLOPT_URL, self::resetEndpoint());
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
 
-        $result = \curl_exec($ch);
-        if (\curl_errno($ch)) {
-            echo 'Error:' . \curl_error($ch);
+        $result = curl_exec($ch);
+        if (curl_errno($ch)) {
+            echo 'Error:' . curl_error($ch);
         }
-        \curl_close($ch);
+        curl_close($ch);
     }
 
     private static function getPackagistEndpointToMockByPackageName(string $packageName): string
     {
-        return \sprintf('/packages/%s.json', $packageName);
+        return sprintf('/packages/%s.json', $packageName);
     }
 
     private static function loadFixture(string $endpointToMock, string $jsonResponse, int $httpStatusCode = 200): void
@@ -75,29 +75,29 @@ class ApiMockServer
             }'
         ;
 
-        $expectationDataRequest = \trim(\sprintf($expectetionTemplate, $endpointToMock, (string) $httpStatusCode, $jsonResponse));
+        $expectationDataRequest = trim(sprintf($expectetionTemplate, $endpointToMock, (string) $httpStatusCode, $jsonResponse));
 
-        $ch = \curl_init();
+        $ch = curl_init();
 
-        \curl_setopt($ch, CURLOPT_URL, self::expectationEndpoint());
-        \curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        \curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-        \curl_setopt($ch, CURLOPT_POSTFIELDS, $expectationDataRequest);
+        curl_setopt($ch, CURLOPT_URL, self::expectationEndpoint());
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $expectationDataRequest);
 
         $headers = [];
         $headers[] = 'Content-Type: application/x-www-form-urlencoded';
-        \curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         try {
-            $result = \curl_exec($ch);
-            if (\curl_errno($ch)) {
+            $result = curl_exec($ch);
+            if (curl_errno($ch)) {
                 self::reset();
 
-                throw new RuntimeException('ApiMockServer error: ' . \curl_error($ch));
+                throw new RuntimeException('ApiMockServer error: ' . curl_error($ch));
             }
-            \curl_close($ch);
+            curl_close($ch);
         } catch (\Throwable $th) {
-            \curl_close($ch);
+            curl_close($ch);
 
             throw $th;
         }
@@ -118,29 +118,29 @@ class ApiMockServer
             }'
         ;
 
-        $expectationDataRequest = \trim(\sprintf($expectetionTemplate, $endpointToMock, (string) $httpStatusCode, $jsonResponse));
+        $expectationDataRequest = trim(sprintf($expectetionTemplate, $endpointToMock, (string) $httpStatusCode, $jsonResponse));
 
-        $ch = \curl_init();
+        $ch = curl_init();
 
-        \curl_setopt($ch, CURLOPT_URL, self::expectationEndpoint());
-        \curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        \curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
-        \curl_setopt($ch, CURLOPT_POSTFIELDS, $expectationDataRequest);
+        curl_setopt($ch, CURLOPT_URL, self::expectationEndpoint());
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $expectationDataRequest);
 
         $headers = [];
         $headers[] = 'Content-Type: application/x-www-form-urlencoded';
-        \curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         try {
-            $result = \curl_exec($ch);
-            if (\curl_errno($ch)) {
+            $result = curl_exec($ch);
+            if (curl_errno($ch)) {
                 self::reset();
 
-                throw new RuntimeException('ApiMockServer error: ' . \curl_error($ch));
+                throw new RuntimeException('ApiMockServer error: ' . curl_error($ch));
             }
-            \curl_close($ch);
+            curl_close($ch);
         } catch (\Throwable $th) {
-            \curl_close($ch);
+            curl_close($ch);
 
             throw $th;
         }

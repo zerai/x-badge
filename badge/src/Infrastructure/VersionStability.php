@@ -26,13 +26,13 @@ final class VersionStability
 
     public function detect(): string
     {
-        $version = \preg_replace('{#.+$}i', '', $this->version) ?? '';
+        $version = preg_replace('{#.+$}i', '', $this->version) ?? '';
 
-        if (\substr($version, 0, 4) === 'dev-' || \substr($version, -4) === '-dev') {
+        if (substr($version, 0, 4) === 'dev-' || substr($version, -4) === '-dev') {
             return self::UNSTABLE;
         }
 
-        \preg_match('{' . self::MODIFIER_REGEX . '$}i', \strtolower($version), $match);
+        preg_match('{' . self::MODIFIER_REGEX . '$}i', strtolower($version), $match);
         if (! empty($match[3])) {
             return self::UNSTABLE;
         }

@@ -85,27 +85,27 @@ final class ReleasedVersionsTest extends TestCase
         $string_data = '';
         switch ($packageName) {
             case 'badges/poser':
-                $string_data = (string) \file_get_contents(
+                $string_data = (string) file_get_contents(
                     \dirname(__DIR__) . '/ReleasedVersions/serialized-versions-for-package-badges-poser.txt'
                 ); break;
             case 'doctrine/collections':
-                $string_data = (string) \file_get_contents(
+                $string_data = (string) file_get_contents(
                     \dirname(__DIR__) . '/ReleasedVersions/serialized-versions-for-package-doctrine-collections.txt'
                 );
                 break;
             case 'symfony/contracts':
-                $string_data = (string) \file_get_contents(
+                $string_data = (string) file_get_contents(
                     \dirname(__DIR__) . '/ReleasedVersions/serialized-versions-for-package-symfony-contracts.txt'
                 );
                 break;
             case 'ramsey/uuid':
-                $string_data = (string) \file_get_contents(
+                $string_data = (string) file_get_contents(
                     \dirname(__DIR__) . '/ReleasedVersions/serialized-versions-for-package-ramsey-uuid.txt'
                 );
                 break;
 
         }
         /** @psalm-suppress all */
-        return \unserialize($string_data);
+        return unserialize($string_data);
     }
 }

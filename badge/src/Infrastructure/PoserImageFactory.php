@@ -34,7 +34,7 @@ final class PoserImageFactory implements ImageFactory
         $poserImage = $this->generator->generate(
             $renderingProperties['subject'],
             $renderingProperties['subject-value'],
-            \trim($renderingProperties['color'], '#'),
+            trim($renderingProperties['color'], '#'),
             self::DEFAULT_STYLE,
             self::DEFAULT_FORMAT
         );
@@ -47,7 +47,7 @@ final class PoserImageFactory implements ImageFactory
         $poserImage = $this->generator->generate(
             self::DEFAULT_BADGE_SUBJECT,
             self::DEFAULT_BADGE_SUBJECT_VALUE,
-            \trim(self::DEFAULT_BADGE_COLOR, '#'),
+            trim(self::DEFAULT_BADGE_COLOR, '#'),
             self::DEFAULT_STYLE,
             self::DEFAULT_FORMAT
         );
@@ -63,19 +63,19 @@ final class PoserImageFactory implements ImageFactory
 
         $renderingProperties = $badgeContext->renderingProperties();
 
-        return \sprintf(
+        return sprintf(
             '%s-%s-%s.%s',
-            \trim($renderingProperties['subject'], '.'),
+            trim($renderingProperties['subject'], '.'),
             $this->cleanName($renderingProperties['subject-value']),
-            \trim($renderingProperties['color'], '#'),
+            trim($renderingProperties['color'], '#'),
             self::DEFAULT_FORMAT
         );
     }
 
     private function cleanName(string $value): string
     {
-        $value = \str_replace('.', '-', $value);
+        $value = str_replace('.', '-', $value);
 
-        return \str_replace(' ', '-', $value);
+        return str_replace(' ', '-', $value);
     }
 }

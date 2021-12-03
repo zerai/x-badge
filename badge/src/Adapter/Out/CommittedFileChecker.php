@@ -36,7 +36,7 @@ class CommittedFileChecker implements CommittedFileCheckerPort
             return self::STATUS_ERROR;
         }
 
-        $targetFileUrl = \sprintf(
+        $targetFileUrl = sprintf(
             '%s/%s/%s/%s',
             $repositoryDetail->repositoryUrl(),
             $repositoryDetail->repositoryPrefix(),

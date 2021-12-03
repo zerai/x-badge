@@ -20,7 +20,7 @@ trait BadgeImageAssertionsTrait
         self::assertStringContainsString(
             $color,
             $image->getContent(),
-            \sprintf('Badge image error: color %s not found in badge image.', $color)
+            sprintf('Badge image error: color %s not found in badge image.', $color)
         );
 
         return true;
@@ -31,7 +31,7 @@ trait BadgeImageAssertionsTrait
         self::assertStringContainsString(
             $subject,
             $image->getContent(),
-            \sprintf('Badge image error: subject %s not found in badge image.', $subject)
+            sprintf('Badge image error: subject %s not found in badge image.', $subject)
         );
 
         return true;
@@ -42,7 +42,7 @@ trait BadgeImageAssertionsTrait
         self::assertStringContainsString(
             $subjectValue,
             $image->getContent(),
-            \sprintf('Badge image error: subject-value %s not found in badge image.', $subjectValue)
+            sprintf('Badge image error: subject-value %s not found in badge image.', $subjectValue)
         );
 
         return true;
@@ -53,7 +53,7 @@ trait BadgeImageAssertionsTrait
         self::assertStringContainsString(
             $subject,
             $image->getContent(),
-            \sprintf('Badge image error: %s version string not found in badge image.', $subject)
+            sprintf('Badge image error: %s version string not found in badge image.', $subject)
         );
 
         return true;
@@ -64,7 +64,7 @@ trait BadgeImageAssertionsTrait
         self::assertStringNotContainsString(
             $subject,
             $image->getContent(),
-            \sprintf('Badge image error: %s version string found in badge image.', $subject)
+            sprintf('Badge image error: %s version string found in badge image.', $subject)
         );
 
         return true;

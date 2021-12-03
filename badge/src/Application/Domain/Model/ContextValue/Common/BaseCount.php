@@ -29,14 +29,14 @@ abstract class BaseCount implements ContextualizableValue
     public function asBadgeValue(): string
     {
         /** @psalm-suppress PossiblyNullArgument */
-        return \trim(\sprintf('%s %s', $this->normalize($this->value), $this->suffix));
+        return trim(sprintf('%s %s', $this->normalize($this->value), $this->suffix));
     }
 
     private function validate(int $inputData): int
     {
         if ($inputData < 0) {
             throw new InvalidArgumentException(
-                \sprintf('Count value should be greater than or equal to 0. - %s recivied.', $inputData)
+                sprintf('Count value should be greater than or equal to 0. - %s recivied.', $inputData)
             );
         }
 

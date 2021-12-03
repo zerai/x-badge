@@ -59,7 +59,7 @@ class License implements ContextualizableValue, BadgeContext
 
     private function normalize(string $inputData): string
     {
-        return \trim($inputData);
+        return trim($inputData);
     }
 
     private function validate(string $inputData): string

@@ -22,7 +22,7 @@ class AcceptanceTestCommittedFileChecker extends CommittedFileChecker
 
     protected function doRequest(string $url): int
     {
-        $url = Env::get('API_MOCK_SERVER') . \parse_url($url, PHP_URL_PATH);
+        $url = Env::get('API_MOCK_SERVER') . parse_url($url, PHP_URL_PATH);
 
         $response = $this->httpClient->request(
             'HEAD',

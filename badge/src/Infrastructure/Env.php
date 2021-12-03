@@ -8,7 +8,7 @@ final class Env
 {
     public static function get(string $key, ?string $default = null): string
     {
-        $value = \getenv($key);
+        $value = getenv($key);
 
         if ($value === false) {
             if ($default !== null) {
@@ -16,7 +16,7 @@ final class Env
             }
 
             throw new RuntimeException(
-                \sprintf(
+                sprintf(
                     'Required environment variable "%s" is undefined',
                     $key
                 )

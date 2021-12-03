@@ -77,7 +77,7 @@ final class GitAttributesProducerTest extends TestCase
         $aBranchName = 'mybranch';
         $aPackageUrl = 'https://github.com/irrelevantvendor/irrelevantpackagename';
 
-        $expectedTargetCommittedFileUrl = \sprintf('%s/%s/%s/%s', $aPackageUrl, self::GITHUB_REPOSITORY_PREFIX, $aBranchName, '.gitattributes');
+        $expectedTargetCommittedFileUrl = sprintf('%s/%s/%s/%s', $aPackageUrl, self::GITHUB_REPOSITORY_PREFIX, $aBranchName, '.gitattributes');
         $aFakeRepositoryDetail = RepositoryDetail::fromRepositoryUrl($aPackageUrl);
 
         $this->repositoryReader
@@ -120,7 +120,7 @@ final class GitAttributesProducerTest extends TestCase
         $aBranchName = 'mybranch';
         $aPackageUrl = 'https://bitbucket.org/irrelevantvendor/irrelevantpackagename';
 
-        $expectedTargetCommittedFileUrl = \sprintf('%s/%s/%s/%s', $aPackageUrl, self::BITBUCKET_REPOSITORY_PREFIX, $aBranchName, '.gitattributes');
+        $expectedTargetCommittedFileUrl = sprintf('%s/%s/%s/%s', $aPackageUrl, self::BITBUCKET_REPOSITORY_PREFIX, $aBranchName, '.gitattributes');
         $aFakeRepositoryDetail = RepositoryDetail::fromRepositoryUrl($aPackageUrl);
 
         $this->repositoryReader

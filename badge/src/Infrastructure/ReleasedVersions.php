@@ -69,7 +69,7 @@ final class ReleasedVersions
     {
         $versions = $this->versions;
 
-        \usort($versions, [$this, 'comparator']);
+        usort($versions, [$this, 'comparator']);
 
         /** @var Version $version */
         foreach ($versions as $name => $version) {
@@ -99,7 +99,7 @@ final class ReleasedVersions
              * END CODICE AGGIUNTO:
              */
 
-            if (\version_compare($versionNormalized, $this->{'getLatest' . $functionName . 'VersionNormalized'}()) > 0) {
+            if (version_compare($versionNormalized, $this->{'getLatest' . $functionName . 'VersionNormalized'}()) > 0) {
                 $this->{'setLatest' . $functionName . 'Version'}($currentVersionName);
                 $this->{'setLatest' . $functionName . 'VersionNormalized'}($versionNormalized);
                 /** @var string|string[] $license */
@@ -142,7 +142,7 @@ final class ReleasedVersions
         }
 
         if (\count($licenseData) > 0) {
-            return \implode(',', $licenseData);
+            return implode(',', $licenseData);
         }
 
         return '';

@@ -19,7 +19,7 @@ final class PackagistBuilder implements PackagistBuilderInterface
 
     public static function withVendorAndProjectName(string $vendorName, string $projectName): PackagistBuilderInterface
     {
-        $name = \sprintf('%s/%s', $vendorName, $projectName);
+        $name = sprintf('%s/%s', $vendorName, $projectName);
 
         $data = new PackagistData($name);
 
@@ -66,7 +66,7 @@ final class PackagistBuilder implements PackagistBuilderInterface
         $this->packagistData =
             $this->packagistData
                 ->withRepository(
-                    \sprintf('https://github.com/%s', $this->packagistData->name())
+                    sprintf('https://github.com/%s', $this->packagistData->name())
                 );
 
         return new self($this->packagistData);
@@ -77,7 +77,7 @@ final class PackagistBuilder implements PackagistBuilderInterface
         $this->packagistData =
             $this->packagistData
                 ->withRepository(
-                    \sprintf('https://bitbucket.org/%s', $this->packagistData->name())
+                    sprintf('https://bitbucket.org/%s', $this->packagistData->name())
                 );
 
         return new self($this->packagistData);

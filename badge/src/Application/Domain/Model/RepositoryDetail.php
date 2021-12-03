@@ -33,17 +33,17 @@ final class RepositoryDetail
 
     public function isGitHub(): bool
     {
-        return \parse_url($this->value, \PHP_URL_HOST) === self::GITHUB_SOURCE;
+        return parse_url($this->value, \PHP_URL_HOST) === self::GITHUB_SOURCE;
     }
 
     public function isBitbucket(): bool
     {
-        return \parse_url($this->value, \PHP_URL_HOST) === self::BITBUCKET_SOURCE;
+        return parse_url($this->value, \PHP_URL_HOST) === self::BITBUCKET_SOURCE;
     }
 
     public function repositoryOwner(): string
     {
-        \preg_match('/(https)(:\/\/|@)([^\/:]+)[\/:]([^\/:]+)\/(.+)$/', $this->value, $matches);
+        preg_match('/(https)(:\/\/|@)([^\/:]+)[\/:]([^\/:]+)\/(.+)$/', $this->value, $matches);
 
         return $matches[4];
     }
@@ -55,7 +55,7 @@ final class RepositoryDetail
 
     public function repositoryName(): string
     {
-        \preg_match('/(https)(:\/\/|@)([^\/:]+)[\/:]([^\/:]+)\/(.+)$/', $this->value, $matches);
+        preg_match('/(https)(:\/\/|@)([^\/:]+)[\/:]([^\/:]+)\/(.+)$/', $this->value, $matches);
 
         return $matches[5];
     }
@@ -68,13 +68,13 @@ final class RepositoryDetail
 
         if (! $this->isValidGitHostingServiceProvider($input)) {
             throw new InvalidArgumentException(
-                \sprintf('%s is not a supported githosting service provider.', $input)
+                sprintf('%s is not a supported githosting service provider.', $input)
             );
         }
 
-        if (! \preg_match('/(https)(:\/\/|@)([^\/:]+)[\/:]([^\/:]+)\/(.+)$/', $input)) {
+        if (! preg_match('/(https)(:\/\/|@)([^\/:]+)[\/:]([^\/:]+)\/(.+)$/', $input)) {
             throw new InvalidArgumentException(
-                \sprintf('%s is not a valid repository address.', $input)
+                sprintf('%s is not a valid repository address.', $input)
             );
         }
 

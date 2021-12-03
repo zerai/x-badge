@@ -129,11 +129,11 @@ final class GetDefaultBranchFromGithubApiTest extends TestCase
 
     private static function getFixtureContent(string $fixtureFile): string
     {
-        if (! \file_exists($fixtureFile)) {
-            throw new RuntimeException(\sprintf('Fixture file: %s not found.', $fixtureFile));
+        if (! file_exists($fixtureFile)) {
+            throw new RuntimeException(sprintf('Fixture file: %s not found.', $fixtureFile));
         }
 
         /** @phpstan-ignore-next-line */
-        return \file_get_contents($fixtureFile);
+        return file_get_contents($fixtureFile);
     }
 }

@@ -14,8 +14,8 @@ function generateFileFixtureForpackage(string $packageName, string $filename): v
     /** @phpstan-ignore-next-line */ /** @psalm-suppress all */
     $version = $packagistClient->get($packageName)->getVersions();
 
-    $string_data = \serialize($version);
-    \file_put_contents($filename, $string_data);
+    $string_data = serialize($version);
+    file_put_contents($filename, $string_data);
 }
 
 //generateFileFixtureForpackage('badges/poser', 'serialized-versions-for-package-badges-poser.txt');

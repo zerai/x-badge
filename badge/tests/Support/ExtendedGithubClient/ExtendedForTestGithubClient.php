@@ -50,7 +50,7 @@ class ExtendedForTestGithubClient extends Client
         ]));
 
         $this->apiVersion = $apiVersion ?: 'v3';
-        $builder->addHeaderValue('Accept', \sprintf('application/vnd.github.%s+json', $this->apiVersion));
+        $builder->addHeaderValue('Accept', sprintf('application/vnd.github.%s+json', $this->apiVersion));
 
         if ($enterpriseUrl) {
             /** @phpstan-ignore-next-line */ /** @psalm-suppress UndefinedMagicMethod */

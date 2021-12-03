@@ -155,11 +155,11 @@ final class PackagistContextValueReaderReadFromPackagistApiServerTest extends Te
 
     private static function getFixtureContent(string $fixtureFile): string
     {
-        if (! \file_exists($fixtureFile)) {
+        if (! file_exists($fixtureFile)) {
             throw new RuntimeException('Fixture file not found.');
         }
 
         /** @phpstan-ignore-next-line */
-        return \file_get_contents($fixtureFile);
+        return file_get_contents($fixtureFile);
     }
 }

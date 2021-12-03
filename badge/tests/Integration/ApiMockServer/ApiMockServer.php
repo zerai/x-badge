@@ -40,7 +40,7 @@ class ApiMockServer
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         try {
-            $result = curl_exec($ch);
+            curl_exec($ch);
             if (curl_errno($ch)) {
                 self::reset();
 
@@ -83,7 +83,7 @@ class ApiMockServer
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
         try {
-            $result = curl_exec($ch);
+            curl_exec($ch);
             if (curl_errno($ch)) {
                 self::reset();
 
@@ -105,7 +105,7 @@ class ApiMockServer
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
 
-        $result = curl_exec($ch);
+        curl_exec($ch);
         if (curl_errno($ch)) {
             echo 'Error:' . curl_error($ch);
         }

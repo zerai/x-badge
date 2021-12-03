@@ -32,7 +32,6 @@ class DefaultBranchDetector implements DetectableBranch
         }
 
         if ($repositoryDetail->isBitbucket()) {
-            /** @var array<mixed> $repoBitbucketData */
             $repoBitbucketData = $this->bitbucketClient
                 ->repositories()
                 ->workspaces($repositoryDetail->repositoryOwner())

@@ -73,7 +73,7 @@ final class ReleasedVersions
         usort($versions, [$this, 'comparator']);
 
         /** @var Version $version */
-        foreach ($versions as $name => $version) {
+        foreach ($versions as $version) {
             $currentVersionName = $version->getVersion();
             $versionNormalized = $version->getVersionNormalized();
 

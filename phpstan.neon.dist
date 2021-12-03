@@ -4,9 +4,13 @@ includes:
 
 parameters:
 	level: 8
+
 	paths:
 		- badge/src
 		- badge/tests
+
+	tmpDir: var/cache/phpstan
+
 	excludePaths:
 		- badge/tests/Discovery/*
 		- badge/tests/PHPUnitExtension/*

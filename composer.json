@@ -10,11 +10,11 @@
         }
     ],
     "require": {
-        "php": ">=7.4",
+        "php": "^7.4 || ^8.0",
         "badges/poser": "^2.0",
         "bitbucket/client": "^3.2",
         "http-interop/http-factory-guzzle": "^1.0",
-        "knplabs/github-api": "^2.15",
+        "knplabs/github-api": "^2.15 || ^3",
         "knplabs/packagist-api": "^1.7",
         "php-http/guzzle6-adapter": "^2.0",
         "psr/log": "^1.1"

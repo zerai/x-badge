@@ -125,7 +125,7 @@ jobs:
 
             - name: Install Composer dependencies
               run: |
-                composer install --prefer-dist --no-progress --no-suggest --ansi --no-scripts
+                composer install --prefer-dist --no-progress --ansi --no-scripts
                 composer bin ecs install --no-progress --ansi --no-scripts
 
             - name: Run Ecs
@@ -184,8 +184,8 @@ jobs:
 
             - name: Install Composer dependencies
               run: |
-                composer install --prefer-dist --no-progress --no-suggest --ansi --no-scripts
-                composer bin phpstan install --no-progress --no-suggest --ansi --no-scripts
+                composer install --prefer-dist --no-progress --ansi --no-scripts
+                composer bin phpstan install --no-progress --ansi --no-scripts
 
             - name: Cache PHPStan results
               uses: actions/cache@v2.1.7
@@ -252,8 +252,8 @@ jobs:
 
             - name: Install Composer dependencies
               run: |
-                composer install --prefer-dist --no-progress --no-suggest --ansi --no-scripts
-                composer bin psalm install --no-progress --no-suggest --ansi --no-scripts
+                composer install --prefer-dist --no-progress --ansi --no-scripts
+                composer bin psalm install --no-progress --ansi --no-scripts
 
             - name: Cache Psalm results
               uses: actions/cache@v2.1.7
@@ -284,6 +284,7 @@ jobs:
             matrix:
                 php:
                     - '7.4'
+                    - '8.0'
                 include:
                     - php: '7.4'
                       coverage: true

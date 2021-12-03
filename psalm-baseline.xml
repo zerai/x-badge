@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="4.6.2@bca09d74adc704c4eaee36a3c3e9d379e290fc3b">
+<files psalm-version="4.13.1@5cf660f63b548ccd4a56f62d916ee4d6028e01a3">
   <file src="badge/src/Adapter/Out/DefaultBranchDetector.php">
     <MixedArrayAccess occurrences="1">
       <code>$repoBitbucketData['mainbranch']['name']</code>
     </MixedArrayAccess>
+    <UnnecessaryVarAnnotation occurrences="1">
+      <code>array&lt;mixed&gt;</code>
+    </UnnecessaryVarAnnotation>
   </file>
   <file src="badge/src/Adapter/Out/PackagistContextValueReader.php">
     <InvalidArgument occurrences="3">
@@ -22,10 +25,12 @@
       <code>ReleasedVersions::fromApiData($package-&gt;getVersions())-&gt;unstableVersion()</code>
     </NullableReturnStatement>
   </file>
+  <file src="badge/src/Application/Domain/Model/RepositoryDetail.php">
+    <UnusedVariable occurrences="1">
+      <code>$repositoryPrefix</code>
+    </UnusedVariable>
+  </file>
   <file src="badge/src/Infrastructure/ReleasedVersions.php">
-    <InvalidArgument occurrences="1">
-      <code>\usort($versions, [$this, 'comparator'])</code>
-    </InvalidArgument>
     <MixedArgument occurrences="1">
       <code>$this-&gt;{'getLatest' . $functionName . 'VersionNormalized'}()</code>
     </MixedArgument>
@@ -36,11 +41,28 @@
     <RedundantConditionGivenDocblockType occurrences="1">
       <code>$extra !== null</code>
     </RedundantConditionGivenDocblockType>
+    <UnusedVariable occurrences="1">
+      <code>$name</code>
+    </UnusedVariable>
   </file>
   <file src="badge/tests/Acceptance/AcceptanceTestCase.php">
     <PossiblyNullPropertyAssignmentValue occurrences="1">
       <code>null</code>
     </PossiblyNullPropertyAssignmentValue>
+  </file>
+  <file src="badge/tests/Integration/ApiMockServer/ApiMockServer.php">
+    <UnusedVariable occurrences="3">
+      <code>$result</code>
+      <code>$result</code>
+      <code>$result</code>
+    </UnusedVariable>
+  </file>
+  <file src="badge/tests/Support/ExtendedGithubClient/ApiMockServer/ApiMockServer.php">
+    <UnusedVariable occurrences="3">
+      <code>$result</code>
+      <code>$result</code>
+      <code>$result</code>
+    </UnusedVariable>
   </file>
   <file src="badge/tests/Unit/Adapter/DefaultBranchDetectorTest.php">
     <DeprecatedMethod occurrences="1">

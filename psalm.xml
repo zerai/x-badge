@@ -6,11 +6,12 @@
     xmlns="https://getpsalm.org/schema/config"
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
     errorBaseline="psalm-baseline.xml"
+    cacheDirectory="var/cache/psalm"
 >
     <projectFiles>
         <directory name="badge/src"/>
         <directory name="badge/tests"/>
-        
+
         <ignoreFiles>
             <directory name="vendor"/>
             <directory name="badge/tests/Discovery"/>
@@ -18,7 +19,7 @@
             <directory name="badge/tests/Support/DomainBuilder"/>
         </ignoreFiles>
     </projectFiles>
-    
+
     <plugins>
         <pluginClass class="Psalm\PhpUnitPlugin\Plugin"/>
     </plugins>

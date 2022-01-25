@@ -96,27 +96,27 @@
         },
         {
             "name": "bitbucket/client",
-            "version": "v4.0.1",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BitbucketPHP/Client.git",
-                "reference": "f4ff14f1d2cb4974bd17b64a58fbc83ccf0ad2f4"
+                "reference": "c8a6e24ec71e987dde37207d4bd0810989c7a8b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BitbucketPHP/Client/zipball/f4ff14f1d2cb4974bd17b64a58fbc83ccf0ad2f4",
-                "reference": "f4ff14f1d2cb4974bd17b64a58fbc83ccf0ad2f4",
+                "url": "https://api.github.com/repos/BitbucketPHP/Client/zipball/c8a6e24ec71e987dde37207d4bd0810989c7a8b8",
+                "reference": "c8a6e24ec71e987dde37207d4bd0810989c7a8b8",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "php": "^7.2.5 || ^8.0",
-                "php-http/cache-plugin": "^1.7.1",
-                "php-http/client-common": "^2.3",
-                "php-http/discovery": "^1.12",
+                "php-http/cache-plugin": "^1.7.5",
+                "php-http/client-common": "^2.5",
+                "php-http/discovery": "^1.14",
                 "php-http/httplug": "^2.2",
-                "php-http/multipart-stream-builder": "^1.1.2",
-                "psr/cache": "^1.0",
+                "php-http/multipart-stream-builder": "^1.2",
+                "psr/cache": "^1.0 || ^2.0 || ^3.0",
                 "psr/http-client-implementation": "^1.0",
                 "psr/http-factory-implementation": "^1.0",
                 "psr/http-message": "^1.0",
@@ -124,9 +124,9 @@
             },
             "require-dev": {
                 "bamarni/composer-bin-plugin": "^1.4.1",
-                "guzzlehttp/guzzle": "^7.2",
+                "guzzlehttp/guzzle": "^7.4",
                 "http-interop/http-factory-guzzle": "^1.0",
-                "php-http/mock-client": "^1.4.1"
+                "php-http/mock-client": "^1.5"
             },
             "type": "library",
             "autoload": {
@@ -141,7 +141,8 @@
             "authors": [
                 {
                     "name": "Graham Campbell",
-                    "email": "graham@alt-three.com"
+                    "email": "hello@gjcampbell.co.uk",
+                    "homepage": "https://github.com/GrahamCampbell"
                 }
             ],
             "description": "Bitbucket API 2.0 client for PHP",
@@ -156,7 +157,7 @@
             ],
             "support": {
                 "issues": "https://github.com/BitbucketPHP/Client/issues",
-                "source": "https://github.com/BitbucketPHP/Client/tree/v4.0.1"
+                "source": "https://github.com/BitbucketPHP/Client/tree/v4.1.0"
             },
             "funding": [
                 {
@@ -168,7 +169,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-03-14T20:01:45+00:00"
+            "time": "2022-01-23T19:14:04+00:00"
         },
         {
             "name": "clue/stream-filter",
@@ -763,23 +764,23 @@
         },
         {
             "name": "php-http/cache-plugin",
-            "version": "1.7.4",
+            "version": "1.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/cache-plugin.git",
-                "reference": "2c00b4c6d41c0c9cad4d901adaf1a7db55f98744"
+                "reference": "63bc3f7242825c9a817db8f78e4c9703b0c471e2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/cache-plugin/zipball/2c00b4c6d41c0c9cad4d901adaf1a7db55f98744",
-                "reference": "2c00b4c6d41c0c9cad4d901adaf1a7db55f98744",
+                "url": "https://api.github.com/repos/php-http/cache-plugin/zipball/63bc3f7242825c9a817db8f78e4c9703b0c471e2",
+                "reference": "63bc3f7242825c9a817db8f78e4c9703b0c471e2",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1 || ^8.0",
                 "php-http/client-common": "^1.9 || ^2.0",
                 "php-http/message-factory": "^1.0",
-                "psr/cache": "^1.0 || ^2.0",
+                "psr/cache": "^1.0 || ^2.0 || ^3.0",
                 "symfony/options-resolver": "^2.6 || ^3.0 || ^4.0 || ^5.0 || ^6.0"
             },
             "require-dev": {
@@ -816,9 +817,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/cache-plugin/issues",
-                "source": "https://github.com/php-http/cache-plugin/tree/1.7.4"
+                "source": "https://github.com/php-http/cache-plugin/tree/1.7.5"
             },
-            "time": "2021-11-30T07:06:42+00:00"
+            "time": "2022-01-18T12:24:56+00:00"
         },
         {
             "name": "php-http/client-common",

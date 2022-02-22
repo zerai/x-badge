@@ -8,28 +8,29 @@
     "packages": [
         {
             "name": "badges/poser",
-            "version": "v2.2.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/badges/poser.git",
-                "reference": "49e91ea72d514ee431c5c185855a16e50a2d2030"
+                "reference": "13f4ae7998700568fe1d07c8964492ea845e675c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/badges/poser/zipball/49e91ea72d514ee431c5c185855a16e50a2d2030",
-                "reference": "49e91ea72d514ee431c5c185855a16e50a2d2030",
+                "url": "https://api.github.com/repos/badges/poser/zipball/13f4ae7998700568fe1d07c8964492ea845e675c",
+                "reference": "13f4ae7998700568fe1d07c8964492ea845e675c",
                 "shasum": ""
             },
             "require": {
                 "ext-gd": "*",
                 "ext-simplexml": "*",
+                "kartsims/easysvg": "^2.4",
                 "php": ">=7.4",
                 "symfony/console": "^4.0|^5.0|^6.0"
             },
             "require-dev": {
                 "behat/behat": "^3.8",
                 "friends-of-phpspec/phpspec-code-coverage": "^6.0",
-                "friendsofphp/php-cs-fixer": "^2.17",
+                "friendsofphp/php-cs-fixer": "^3.5",
                 "moave/phpspec-data-provider-extension": "dev-feat/add-compatibility-to-php80",
                 "phpspec/phpspec": "^7.0",
                 "vimeo/psalm": "^4.3"
@@ -76,7 +77,7 @@
             ],
             "support": {
                 "issues": "https://github.com/badges/poser/issues",
-                "source": "https://github.com/badges/poser/tree/v2.2.0"
+                "source": "https://github.com/badges/poser/tree/v2.3.1"
             },
             "funding": [
                 {
@@ -92,7 +93,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-01-10T08:41:38+00:00"
+            "time": "2022-02-21T09:52:41+00:00"
         },
         {
             "name": "bitbucket/client",
@@ -625,6 +626,52 @@
                 "source": "https://github.com/http-interop/http-factory-guzzle/tree/1.2.0"
             },
             "time": "2021-07-21T13:50:14+00:00"
+        },
+        {
+            "name": "kartsims/easysvg",
+            "version": "2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartsims/easysvg.git",
+                "reference": "c105955d9da6226a681120bcce7cdcc0e6c1d8e3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartsims/easysvg/zipball/c105955d9da6226a681120bcce7cdcc0e6c1d8e3",
+                "reference": "c105955d9da6226a681120bcce7cdcc0e6c1d8e3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-simplexml": "*",
+                "ext-xmlreader": "*",
+                "php": ">=7.4.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.5"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Tarchichi",
+                    "email": "kartsims@gmail.com"
+                }
+            ],
+            "description": "PHP library to generate SVG XML",
+            "homepage": "https://github.com/kartsims/easysvg",
+            "support": {
+                "issues": "https://github.com/kartsims/easysvg/issues",
+                "source": "https://github.com/kartsims/easysvg/tree/master"
+            },
+            "time": "2022-02-21T09:22:32+00:00"
         },
         {
             "name": "knplabs/github-api",
@@ -1693,16 +1740,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v5.4.2",
+            "version": "v5.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "a2c6b7ced2eb7799a35375fb9022519282b5405e"
+                "reference": "a2a86ec353d825c75856c6fd14fac416a7bdb6b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/a2c6b7ced2eb7799a35375fb9022519282b5405e",
-                "reference": "a2c6b7ced2eb7799a35375fb9022519282b5405e",
+                "url": "https://api.github.com/repos/symfony/console/zipball/a2a86ec353d825c75856c6fd14fac416a7bdb6b8",
+                "reference": "a2a86ec353d825c75856c6fd14fac416a7bdb6b8",
                 "shasum": ""
             },
             "require": {
@@ -1772,7 +1819,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v5.4.2"
+                "source": "https://github.com/symfony/console/tree/v5.4.3"
             },
             "funding": [
                 {
@@ -1788,7 +1835,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-20T16:11:12+00:00"
+            "time": "2022-01-26T16:28:35+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -2039,12 +2086,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Intl\\Grapheme\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Intl\\Grapheme\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2207,12 +2254,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Intl\\Normalizer\\": ""
-                },
                 "files": [
                     "bootstrap.php"
                 ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Intl\\Normalizer\\": ""
+                },
                 "classmap": [
                     "Resources/stubs"
                 ]
@@ -2294,12 +2341,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Mbstring\\": ""
-                },
                 "files": [
                     "bootstrap.php"
-                ]
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Mbstring\\": ""
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2447,12 +2494,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php73\\": ""
-                },
                 "files": [
                     "bootstrap.php"
                 ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php73\\": ""
+                },
                 "classmap": [
                     "Resources/stubs"
                 ]
@@ -2526,12 +2573,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php80\\": ""
-                },
                 "files": [
                     "bootstrap.php"
                 ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php80\\": ""
+                },
                 "classmap": [
                     "Resources/stubs"
                 ]
@@ -2666,16 +2713,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v5.4.2",
+            "version": "v5.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "e6a5d5ecf6589c5247d18e0e74e30b11dfd51a3d"
+                "reference": "92043b7d8383e48104e411bc9434b260dbeb5a10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/e6a5d5ecf6589c5247d18e0e74e30b11dfd51a3d",
-                "reference": "e6a5d5ecf6589c5247d18e0e74e30b11dfd51a3d",
+                "url": "https://api.github.com/repos/symfony/string/zipball/92043b7d8383e48104e411bc9434b260dbeb5a10",
+                "reference": "92043b7d8383e48104e411bc9434b260dbeb5a10",
                 "shasum": ""
             },
             "require": {
@@ -2732,7 +2779,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v5.4.2"
+                "source": "https://github.com/symfony/string/tree/v5.4.3"
             },
             "funding": [
                 {
@@ -2748,7 +2795,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-12-16T21:52:00+00:00"
+            "time": "2022-01-02T09:53:40+00:00"
         }
     ],
     "packages-dev": [

@@ -48,3 +48,15 @@ clear-cache:  ## Clean all cache (phpunit)
 	rm -fR var/.phpunit.cache
 	vendor/bin/phpstan clear-result-cache
 	vendor/bin/psalm --clear-cache
+
+.PHONY: up
+up:  ## Start docker environment
+	docker-compose up -d
+
+.PHONY: status
+status:  ## Show docker containers status
+	docker-compose ps
+
+.PHONY: down
+down:  ## Stop docker environment
+	docker-compose down -v --remove-orphans

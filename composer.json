@@ -24,6 +24,9 @@
         "phpunit/phpunit": "^9.5"
     },
     "config": {
+        "allow-plugins": {
+            "bamarni/composer-bin-plugin": true
+        },
         "bin-dir": "vendor/bin",
         "preferred-install": {
             "*": "dist"

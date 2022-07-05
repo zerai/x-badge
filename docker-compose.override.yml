@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+
+  app:
+    image: webdevops/php-dev:7.4
+    working_dir: /app
+    container_name: app
+    depends_on:
+        - api_mock_server
+    volumes:
+        -   ./:/app
+    environment:
+        API_MOCK_SERVER: 'api_mock_server:8888'
+

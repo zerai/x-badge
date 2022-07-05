@@ -13,74 +13,68 @@ use PhpCsFixer\Fixer\PhpTag\BlankLineAfterOpeningTagFixer;
 use PhpCsFixer\Fixer\Strict\DeclareStrictTypesFixer;
 use PhpCsFixer\Fixer\Strict\StrictComparisonFixer;
 use PhpCsFixer\Fixer\Whitespace\BlankLineBeforeStatementFixer;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
-use Symplify\EasyCodingStandard\ValueObject\Option;
+use Symplify\EasyCodingStandard\Config\ECSConfig;
 use Symplify\EasyCodingStandard\ValueObject\Set\SetList;
 
-return static function (ContainerConfigurator $containerConfigurator): void {
-    $services = $containerConfigurator->services();
-
-    $services->set(DeclareStrictTypesFixer::class);
-
-    $services->set(FullyQualifiedStrictTypesFixer::class);
-
-    $services->set(NativeFunctionInvocationFixer::class);
-
-    $services->set(NoUnusedImportsFixer::class);
-
-    $services->set(BlankLineAfterNamespaceFixer::class);
-
-    $services->set(StrictComparisonFixer::class);
-
-    $services->set(ArraySyntaxFixer::class)
-        ->call('configure', [[
-            'syntax' => 'short',
-        ]]);
-
-    $services
-        ->set(BlankLineBeforeStatementFixer::class)
-        ->call(
-            'configure',
-            [
-                [
-                    'statements' => ['continue', 'declare', 'return', 'throw', 'try'],
-                ],
-            ],
-        );
-
-    $services
-        ->set(OrderedImportsFixer::class)
-        ->call(
-            'configure',
-            [
-                [
-                    'imports_order' => ['class', 'function', 'const'],
-                ],
-            ],
-        );
-
-    // $services
-    //     ->set(PhpdocLineSpanFixer::class)
-    //     ->call(
-    //         'configure',
-    //         [
-    //             [
-    //                 'const' => 'single',
-    //                 'method' => 'single',
-    //                 'property' => 'single',
-    //             ],
-    //         ],
-    //     );
-
-    $parameters = $containerConfigurator->parameters();
-
-    $parameters->set(Option::PATHS, [
+return static function (EcsConfig $ecsConfig): void {
+    $ecsConfig->paths([
         __DIR__ . '/badge/src',
         __DIR__ . '/badge/tests',
         __DIR__ . '/ecs.php',
     ]);
 
-    $parameters->set(Option::SETS, [
+    $ecsConfig->skip(
+        [
+            BlankLineAfterOpeningTagFixer::class,
+        ]
+    );
+
+    $ecsConfig->rule(DeclareStrictTypesFixer::class);
+
+    $ecsConfig->rule(FullyQualifiedStrictTypesFixer::class);
+
+    $ecsConfig->rule(NativeFunctionInvocationFixer::class);
+
+    $ecsConfig->rule(NoUnusedImportsFixer::class);
+
+    $ecsConfig->rule(BlankLineAfterNamespaceFixer::class);
+
+    $ecsConfig->rule(StrictComparisonFixer::class);
+
+    $ecsConfig->ruleWithConfiguration(
+        ArraySyntaxFixer::class,
+        [
+            'syntax' => 'short',
+        ]
+    );
+
+    $ecsConfig->ruleWithConfiguration(
+        BlankLineBeforeStatementFixer::class,
+        [
+            'statements' => ['continue', 'declare', 'return', 'throw', 'try'],
+        ],
+    );
+
+    $ecsConfig->ruleWithConfiguration(
+        OrderedImportsFixer::class,
+        [
+            'imports_order' => ['class', 'function', 'const'],
+        ]
+    );
+
+    $ecsConfig->ruleWithConfiguration(
+        PhpdocLineSpanFixer::class,
+        [
+            [
+                'const' => 'single',
+                'method' => 'single',
+                'property' => 'single',
+            ],
+
+        ]
+    );
+
+    $ecsConfig->sets([
         SetList::SPACES,
         SetList::ARRAY,
         SetList::DOCBLOCK,
@@ -89,11 +83,4 @@ return static function (ContainerConfigurator $containerConfigurator): void {
         SetList::CLEAN_CODE,
         SetList::PSR_12,
     ]);
-
-    $parameters->set(
-        'skip',
-        [
-            BlankLineAfterOpeningTagFixer::class,
-        ]
-    );
 };

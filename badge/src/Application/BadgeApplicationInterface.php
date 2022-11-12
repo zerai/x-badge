@@ -14,15 +14,15 @@ use Badge\Application\PortIn\CreateTotalDownloadsBadge;
 use Badge\Application\PortIn\CreateUnstableVersionBadge;
 
 interface BadgeApplicationInterface extends
-CreateComposerLockBadge,
-CreateGitattributesBadge,
-CreateSuggestersBadge,
-CreateDependentsBadge,
-CreateTotalDownloadsBadge,
-CreateMonthlyDownloadsBadge,
-CreateDailyDownloadsBadge,
-CreateStableVersionBadge,
-CreateUnstableVersionBadge,
-CreateLicenseBadge
+    CreateComposerLockBadge,
+    CreateGitattributesBadge,
+    CreateSuggestersBadge,
+    CreateDependentsBadge,
+    CreateTotalDownloadsBadge,
+    CreateMonthlyDownloadsBadge,
+    CreateDailyDownloadsBadge,
+    CreateStableVersionBadge,
+    CreateUnstableVersionBadge,
+    CreateLicenseBadge
 {
 }

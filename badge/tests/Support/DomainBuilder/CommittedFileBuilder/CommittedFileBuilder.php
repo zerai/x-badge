@@ -92,7 +92,6 @@ final class CommittedFileBuilder implements CommittedFileBuilderInterface
         $defaultBranchData = new GitDefaultBranchData($this->getPackagistData()->repository(), $this->getPackagistData()->name(), $this->defaultBranch, $this->committedFileHttpStatusCode, 0, $this->committedFile);
 
         if ($useMockedServer) {
-
             // create and populate fixuter request for get packagst data ()
             //ApiMockServer::loadPackagistFixtureByData($this->packagistData, $this->packagistData->httpStatusCode());
 

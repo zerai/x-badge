@@ -104,7 +104,7 @@ final class ReleasedVersions
                 $this->{'setLatest' . $functionName . 'Version'}($currentVersionName);
                 $this->{'setLatest' . $functionName . 'VersionNormalized'}($versionNormalized);
                 /** @var string|string[] $license */
-                $license = $version->getLicense();
+                $license = $version->getLicenses();
 
                 $this->setLicense($this->normalizeLicense($license));
             }
@@ -121,7 +121,7 @@ final class ReleasedVersions
     private function getBranchAliases(Version $version): ?array
     {
         $extra = $version->getExtra();
-        if ($extra !== null && isset($extra['branch-alias']) && \is_array($extra['branch-alias'])) {
+        if (isset($extra['branch-alias']) && \is_array($extra['branch-alias'])) {
             return $extra['branch-alias'];
         }
 

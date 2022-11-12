@@ -43,7 +43,10 @@ final class PackagistContextValueReader implements ContextValueReader
         /** @var Package $package */
         $package = $this->packagistClient->get($packageName);
 
-        return $package->getDownloads()->getTotal();
+        /** @var Package\Downloads $downloads */
+        $downloads = $package->getDownloads();
+
+        return $downloads->getTotal();
     }
 
     public function readMonthlyDownloads(string $packageName): int
@@ -51,7 +54,10 @@ final class PackagistContextValueReader implements ContextValueReader
         /** @var Package $package */
         $package = $this->packagistClient->get($packageName);
 
-        return $package->getDownloads()->getMonthly();
+        /** @var Package\Downloads $downloads */
+        $downloads = $package->getDownloads();
+
+        return $downloads->getMonthly();
     }
 
     public function readDailyDownloads(string $packageName): int
@@ -59,7 +65,10 @@ final class PackagistContextValueReader implements ContextValueReader
         /** @var Package $package */
         $package = $this->packagistClient->get($packageName);
 
-        return $package->getDownloads()->getDaily();
+        /** @var Package\Downloads $downloads */
+        $downloads = $package->getDownloads();
+
+        return $downloads->getDaily();
     }
 
     public function readStableVersion(string $packageName): string

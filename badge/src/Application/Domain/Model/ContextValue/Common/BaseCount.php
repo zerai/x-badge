@@ -7,7 +7,7 @@ use InvalidArgumentException;
 
 abstract class BaseCount implements ContextualizableValue
 {
-    use  CountNormalizerTrait;
+    use CountNormalizerTrait;
 
     private int $value;
 

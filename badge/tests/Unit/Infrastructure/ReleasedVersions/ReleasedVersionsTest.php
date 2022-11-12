@@ -87,7 +87,8 @@ final class ReleasedVersionsTest extends TestCase
             case 'badges/poser':
                 $string_data = (string) file_get_contents(
                     \dirname(__DIR__) . '/ReleasedVersions/serialized-versions-for-package-badges-poser.txt'
-                ); break;
+                );
+                break;
             case 'doctrine/collections':
                 $string_data = (string) file_get_contents(
                     \dirname(__DIR__) . '/ReleasedVersions/serialized-versions-for-package-doctrine-collections.txt'
@@ -103,7 +104,6 @@ final class ReleasedVersionsTest extends TestCase
                     \dirname(__DIR__) . '/ReleasedVersions/serialized-versions-for-package-ramsey-uuid.txt'
                 );
                 break;
-
         }
         /** @psalm-suppress all */
         return unserialize($string_data);

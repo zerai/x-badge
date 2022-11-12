@@ -15,7 +15,7 @@ env:
 
 jobs:
     lint-composer:
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-20.04
         timeout-minutes: 5
         strategy:
             matrix:
@@ -53,7 +53,7 @@ jobs:
 
             - name: Get Composer Cache Directory
               id: composer-cache
-              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
               uses: actions/cache@v3.0.11
@@ -76,7 +76,7 @@ jobs:
 
     easy-coding-standard:
         name: Coding standard check
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-20.04
         timeout-minutes: 5
         strategy:
             matrix:
@@ -113,7 +113,7 @@ jobs:
 
             - name: Get Composer Cache Directory
               id: composer-cache
-              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
               uses: actions/cache@v3.0.11
@@ -135,7 +135,7 @@ jobs:
 
     php-stan:
         name: Static Analysis check (phpstan)
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-20.04
         timeout-minutes: 5
         strategy:
             matrix:
@@ -172,7 +172,7 @@ jobs:
 
             - name: Get Composer Cache Directory
               id: composer-cache
-              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
               uses: actions/cache@v3.0.11
@@ -203,7 +203,7 @@ jobs:
 
     psalm:
         name: Static Analysis check (psalm)
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-20.04
         timeout-minutes: 5
         strategy:
             matrix:
@@ -240,7 +240,7 @@ jobs:
 
             - name: Get Composer Cache Directory
               id: composer-cache
-              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
               uses: actions/cache@v3.0.11
@@ -272,7 +272,7 @@ jobs:
 
     phpunit:
         name: Code tests (PHP ${{ matrix.php }})
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-20.04
         timeout-minutes: 5
         services:
             api-mock-server:
@@ -321,7 +321,7 @@ jobs:
 
             - name: Get Composer Cache Directory
               id: composer-cache
-              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
               uses: actions/cache@v3.0.11
@@ -357,7 +357,7 @@ jobs:
                 if [ "$COVERAGE" = '1' ]; then
                     mkdir -p reports/phpunit
                     ./vendor/bin/phpunit --testsuite unit --coverage-clover reports/phpunit/unit-test-clover.xml --log-junit reports/phpunit/unit-test-junit.xml
-                    echo "::set-output name=exit_code::$(echo -n "$?")"
+                    echo "exit_code=$(echo -n "$?")" >> $GITHUB_OUTPUT
                 else
                     ./vendor/bin/phpunit --testsuite unit
                 fi

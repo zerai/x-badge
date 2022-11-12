@@ -15,7 +15,7 @@ env:
 
 jobs:
     lint-composer:
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-20.04
         timeout-minutes: 5
         strategy:
             matrix:
@@ -36,14 +36,14 @@ jobs:
                   key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
             - name: Cache PHP extensions
-              uses: actions/cache@v3.0.4
+              uses: actions/cache@v3.0.11
               with:
                   path: ${{ steps.cache-php-extensions.outputs.dir }}
                   key: ${{ steps.cache-php-extensions.outputs.key }}
                   restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 
             - name: Setup PHP
-              uses: shivammathur/setup-php@2.20.1
+              uses: shivammathur/setup-php@2.22.0
               with:
                   php-version: ${{ matrix.php }}
                   extensions: ${{ env.PHP_EXTENSIONS }}
@@ -53,10 +53,10 @@ jobs:
 
             - name: Get Composer Cache Directory
               id: composer-cache
-              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
-              uses: actions/cache@v3.0.4
+              uses: actions/cache@v3.0.11
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-php${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -76,7 +76,7 @@ jobs:
 
     easy-coding-standard:
         name: Coding standard check
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-20.04
         timeout-minutes: 5
         strategy:
             matrix:
@@ -97,14 +97,14 @@ jobs:
                 key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
             - name: Cache PHP extensions
-              uses: actions/cache@v3.0.4
+              uses: actions/cache@v3.0.11
               with:
                 path: ${{ steps.cache-php-extensions.outputs.dir }}
                 key: ${{ steps.cache-php-extensions.outputs.key }}
                 restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 
             - name: Setup PHP
-              uses: shivammathur/setup-php@2.20.1
+              uses: shivammathur/setup-php@2.22.0
               with:
                 php-version: ${{ matrix.php }}
                 extensions: ${{ env.PHP_EXTENSIONS }}
@@ -113,10 +113,10 @@ jobs:
 
             - name: Get Composer Cache Directory
               id: composer-cache
-              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
-              uses: actions/cache@v3.0.4
+              uses: actions/cache@v3.0.11
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-php${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -135,7 +135,7 @@ jobs:
 
     php-stan:
         name: Static Analysis check (phpstan)
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-20.04
         timeout-minutes: 5
         strategy:
             matrix:
@@ -156,14 +156,14 @@ jobs:
                 key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
             - name: Cache PHP extensions
-              uses: actions/cache@v3.0.4
+              uses: actions/cache@v3.0.11
               with:
                 path: ${{ steps.cache-php-extensions.outputs.dir }}
                 key: ${{ steps.cache-php-extensions.outputs.key }}
                 restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 
             - name: Setup PHP
-              uses: shivammathur/setup-php@2.20.1
+              uses: shivammathur/setup-php@2.22.0
               with:
                 php-version: ${{ matrix.php }}
                 extensions: ${{ env.PHP_EXTENSIONS }}
@@ -172,10 +172,10 @@ jobs:
 
             - name: Get Composer Cache Directory
               id: composer-cache
-              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
-              uses: actions/cache@v3.0.4
+              uses: actions/cache@v3.0.11
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-php${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -188,7 +188,7 @@ jobs:
                 composer bin phpstan install --no-progress --ansi --no-scripts
 
             - name: Cache PHPStan results
-              uses: actions/cache@v3.0.4
+              uses: actions/cache@v3.0.11
               with:
                   path: var/cache/phpstan
                   key: phpstan-php${{ matrix.php }}-${{ github.sha }}
@@ -203,7 +203,7 @@ jobs:
 
     psalm:
         name: Static Analysis check (psalm)
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-20.04
         timeout-minutes: 5
         strategy:
             matrix:
@@ -224,14 +224,14 @@ jobs:
                 key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
             - name: Cache PHP extensions
-              uses: actions/cache@v3.0.4
+              uses: actions/cache@v3.0.11
               with:
                 path: ${{ steps.cache-php-extensions.outputs.dir }}
                 key: ${{ steps.cache-php-extensions.outputs.key }}
                 restore-keys: ${{ steps.cache-php-extensions.outputs.key }}
 
             - name: Setup PHP
-              uses: shivammathur/setup-php@2.20.1
+              uses: shivammathur/setup-php@2.22.0
               with:
                 php-version: ${{ matrix.php }}
                 extensions: ${{ env.PHP_EXTENSIONS }}
@@ -240,10 +240,10 @@ jobs:
 
             - name: Get Composer Cache Directory
               id: composer-cache
-              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
-              uses: actions/cache@v3.0.4
+              uses: actions/cache@v3.0.11
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-php${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -256,7 +256,7 @@ jobs:
                 composer bin psalm install --no-progress --ansi --no-scripts
 
             - name: Cache Psalm results
-              uses: actions/cache@v3.0.4
+              uses: actions/cache@v3.0.11
               with:
                   path: var/cache/psalm
                   key: psalm-php${{ matrix.php }}-${{ github.sha }}
@@ -272,7 +272,7 @@ jobs:
 
     phpunit:
         name: Code tests (PHP ${{ matrix.php }})
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-20.04
         timeout-minutes: 5
         services:
             api-mock-server:
@@ -303,7 +303,7 @@ jobs:
                     key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
             - name: Cache PHP extensions
-              uses: actions/cache@v3.0.4
+              uses: actions/cache@v3.0.11
               with:
                     path: ${{ steps.cache-php-extensions.outputs.dir }}
                     key: ${{ steps.cache-php-extensions.outputs.key }}
@@ -311,7 +311,7 @@ jobs:
 
             - name: setup-php
               id: setup-php
-              uses: shivammathur/setup-php@2.20.1
+              uses: shivammathur/setup-php@2.22.0
               with:
                     php-version: ${{ matrix.php }}
                     extensions: ${{ env.PHP_EXTENSIONS }}
@@ -321,10 +321,10 @@ jobs:
 
             - name: Get Composer Cache Directory
               id: composer-cache
-              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
-              uses: actions/cache@v3.0.4
+              uses: actions/cache@v3.0.11
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-php${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -335,7 +335,7 @@ jobs:
               run: composer install --prefer-dist --no-progress --ansi --no-scripts
 
             - name: Cache Phpunit results
-              uses: actions/cache@v3.0.4
+              uses: actions/cache@v3.0.11
               with:
                   path: var/cache/phpunit
                   key: phpunit-php${{ matrix.php }}-${{ github.sha }}
@@ -357,7 +357,7 @@ jobs:
                 if [ "$COVERAGE" = '1' ]; then
                     mkdir -p reports/phpunit
                     ./vendor/bin/phpunit --testsuite unit --coverage-clover reports/phpunit/unit-test-clover.xml --log-junit reports/phpunit/unit-test-junit.xml
-                    echo "::set-output name=exit_code::$(echo -n "$?")"
+                    echo "exit_code=$(echo -n "$?")" >> $GITHUB_OUTPUT
                 else
                     ./vendor/bin/phpunit --testsuite unit
                 fi

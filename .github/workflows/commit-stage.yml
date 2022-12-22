@@ -36,7 +36,7 @@ jobs:
                   key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
             - name: Cache PHP extensions
-              uses: actions/cache@v3.0.11
+              uses: actions/cache@v3.2.0
               with:
                   path: ${{ steps.cache-php-extensions.outputs.dir }}
                   key: ${{ steps.cache-php-extensions.outputs.key }}
@@ -56,7 +56,7 @@ jobs:
               run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
-              uses: actions/cache@v3.0.11
+              uses: actions/cache@v3.2.0
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-php${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -97,7 +97,7 @@ jobs:
                 key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
             - name: Cache PHP extensions
-              uses: actions/cache@v3.0.11
+              uses: actions/cache@v3.2.0
               with:
                 path: ${{ steps.cache-php-extensions.outputs.dir }}
                 key: ${{ steps.cache-php-extensions.outputs.key }}
@@ -116,7 +116,7 @@ jobs:
               run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
-              uses: actions/cache@v3.0.11
+              uses: actions/cache@v3.2.0
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-php${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -156,7 +156,7 @@ jobs:
                 key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
             - name: Cache PHP extensions
-              uses: actions/cache@v3.0.11
+              uses: actions/cache@v3.2.0
               with:
                 path: ${{ steps.cache-php-extensions.outputs.dir }}
                 key: ${{ steps.cache-php-extensions.outputs.key }}
@@ -175,7 +175,7 @@ jobs:
               run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
-              uses: actions/cache@v3.0.11
+              uses: actions/cache@v3.2.0
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-php${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -188,7 +188,7 @@ jobs:
                 composer bin phpstan install --no-progress --ansi --no-scripts
 
             - name: Cache PHPStan results
-              uses: actions/cache@v3.0.11
+              uses: actions/cache@v3.2.0
               with:
                   path: var/cache/phpstan
                   key: phpstan-php${{ matrix.php }}-${{ github.sha }}
@@ -224,7 +224,7 @@ jobs:
                 key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
             - name: Cache PHP extensions
-              uses: actions/cache@v3.0.11
+              uses: actions/cache@v3.2.0
               with:
                 path: ${{ steps.cache-php-extensions.outputs.dir }}
                 key: ${{ steps.cache-php-extensions.outputs.key }}
@@ -243,7 +243,7 @@ jobs:
               run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
-              uses: actions/cache@v3.0.11
+              uses: actions/cache@v3.2.0
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-php${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -256,7 +256,7 @@ jobs:
                 composer bin psalm install --no-progress --ansi --no-scripts
 
             - name: Cache Psalm results
-              uses: actions/cache@v3.0.11
+              uses: actions/cache@v3.2.0
               with:
                   path: var/cache/psalm
                   key: psalm-php${{ matrix.php }}-${{ github.sha }}
@@ -303,7 +303,7 @@ jobs:
                     key: ${{ env.PHP_EXTENSIONS_CACHE_KEY }}
 
             - name: Cache PHP extensions
-              uses: actions/cache@v3.0.11
+              uses: actions/cache@v3.2.0
               with:
                     path: ${{ steps.cache-php-extensions.outputs.dir }}
                     key: ${{ steps.cache-php-extensions.outputs.key }}
@@ -324,7 +324,7 @@ jobs:
               run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
             - name: Cache composer dependencies
-              uses: actions/cache@v3.0.11
+              uses: actions/cache@v3.2.0
               with:
                   path: ${{ steps.composer-cache.outputs.dir }}
                   key: ${{ runner.os }}-php${{ matrix.php }}-composer-${{ hashFiles('**/composer.lock') }}
@@ -335,7 +335,7 @@ jobs:
               run: composer install --prefer-dist --no-progress --ansi --no-scripts
 
             - name: Cache Phpunit results
-              uses: actions/cache@v3.0.11
+              uses: actions/cache@v3.2.0
               with:
                   path: var/cache/phpunit
                   key: phpunit-php${{ matrix.php }}-${{ github.sha }}

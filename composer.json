@@ -35,6 +35,8 @@
     },
     "extra": {
         "bamarni-bin": {
+            "bin-links": true,
+            "forward-command": false,
             "target-directory": "tools"
         }
     },

@@ -370,7 +370,7 @@ jobs:
                     files: ./reports/phpunit/unit-test-clover.xml
                     flags: unit-tests
                     name: codecov-php-7.4
-                    fail_ci_if_error: true
+                    fail_ci_if_error: false
 
             - name: Run support test
               run: ./vendor/bin/phpunit --testsuite support

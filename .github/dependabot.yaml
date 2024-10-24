@@ -17,6 +17,9 @@ updates:
           prefix: "composer"
       labels:
           - "php dependency"
+      ignore:
+          - dependency-name: "*"
+            update-types: ["version-update:semver-major", "version-update:semver-minor" ]
 
 
     #

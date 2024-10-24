@@ -39,6 +39,9 @@ updates:
           prefix: "composer"
       labels:
           - "tool dependency"
+      ignore:
+          - dependency-name: "*"
+            update-types: ["version-update:semver-major" ]
 
 
     - package-ecosystem: "composer"
@@ -55,6 +58,9 @@ updates:
           prefix: "composer"
       labels:
           - "tool dependency"
+      ignore:
+          - dependency-name: "*"
+            update-types: ["version-update:semver-major" ]
 
 
     - package-ecosystem: "composer"
@@ -71,6 +77,9 @@ updates:
           prefix: "composer"
       labels:
           - "tool dependency"
+      ignore:
+          - dependency-name: "*"
+            update-types: ["version-update:semver-major" ]
 
 
     #

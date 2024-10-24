@@ -366,6 +366,7 @@ jobs:
               if: ${{ (matrix.php == '7.4') && (steps.unit-test.outcome == 'success')}}
               uses: codecov/codecov-action@v3
               with:
+                    token: ${{ secrets.CODECOV_TOKEN }}
                     files: ./reports/phpunit/unit-test-clover.xml
                     flags: unit-tests
                     name: codecov-php-7.4

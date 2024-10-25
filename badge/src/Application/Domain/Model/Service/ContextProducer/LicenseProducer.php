@@ -7,9 +7,9 @@ use Badge\Application\Domain\Model\ContextValue\License;
 
 class LicenseProducer implements ContextProducer
 {
-    private LicenseReader $licenseReader;
+    private ForReadingLicense $licenseReader;
 
-    public function __construct(LicenseReader $licenseReader)
+    public function __construct(ForReadingLicense $licenseReader)
     {
         $this->licenseReader = $licenseReader;
     }

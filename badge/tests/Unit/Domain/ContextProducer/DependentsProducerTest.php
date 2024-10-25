@@ -4,7 +4,7 @@ namespace Badge\Tests\Unit\Domain\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\Service\ContextProducer\DependentsProducer;
-use Badge\Application\Domain\Model\Service\ContextProducer\DependentsReader;
+use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingDependents;
 use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -15,7 +15,7 @@ final class DependentsProducerTest extends TestCase
     use BadgeContextAssertionsTrait;
 
     /**
-     * @var DependentsReader & MockObject
+     * @var ForReadingDependents & MockObject
      */
     private $contextReader;
 
@@ -23,7 +23,7 @@ final class DependentsProducerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->contextReader = $this->getMockBuilder(DependentsReader::class)->getMock();
+        $this->contextReader = $this->getMockBuilder(ForReadingDependents::class)->getMock();
 
         $this->producer = new DependentsProducer(
             $this->contextReader

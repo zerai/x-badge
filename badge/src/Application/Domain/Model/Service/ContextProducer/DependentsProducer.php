@@ -7,9 +7,9 @@ use Badge\Application\Domain\Model\ContextValue\Dependents;
 
 final class DependentsProducer implements ContextProducer
 {
-    private DependentsReader $dependentsReader;
+    private ForReadingDependents $dependentsReader;
 
-    public function __construct(DependentsReader $dependentsReader)
+    public function __construct(ForReadingDependents $dependentsReader)
     {
         $this->dependentsReader = $dependentsReader;
     }

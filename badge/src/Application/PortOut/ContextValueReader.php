@@ -7,12 +7,12 @@ use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingDependents;
 use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingLicense;
 use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingMonthlyDownloads;
 use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingStableVersion;
-use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersReader;
+use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingSuggesters;
 use Badge\Application\Domain\Model\Service\ContextProducer\TotalDownloadsReader;
 use Badge\Application\Domain\Model\Service\ContextProducer\UnstableVersionReader;
 
 interface ContextValueReader extends
-    SuggestersReader,
+    ForReadingSuggesters,
     ForReadingDependents,
     TotalDownloadsReader,
     ForReadingMonthlyDownloads,

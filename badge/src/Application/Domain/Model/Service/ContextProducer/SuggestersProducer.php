@@ -7,9 +7,9 @@ use Badge\Application\Domain\Model\ContextValue\Suggesters;
 
 final class SuggestersProducer implements ContextProducer
 {
-    private SuggestersReader $suggestersReader;
+    private ForReadingSuggesters $suggestersReader;
 
-    public function __construct(SuggestersReader $suggestersReader)
+    public function __construct(ForReadingSuggesters $suggestersReader)
     {
         $this->suggestersReader = $suggestersReader;
     }

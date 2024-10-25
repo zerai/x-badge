@@ -4,7 +4,7 @@ namespace Badge\Tests\Unit\Domain\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\Service\ContextProducer\StableVersionProducer;
-use Badge\Application\Domain\Model\Service\ContextProducer\StableVersionReader;
+use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingStableVersion;
 use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -15,7 +15,7 @@ final class StableVersionProducerTest extends TestCase
     use BadgeContextAssertionsTrait;
 
     /**
-     * @var StableVersionReader & MockObject
+     * @var ForReadingStableVersion & MockObject
      */
     private $contextReader;
 
@@ -23,7 +23,7 @@ final class StableVersionProducerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->contextReader = $this->getMockBuilder(StableVersionReader::class)->getMock();
+        $this->contextReader = $this->getMockBuilder(ForReadingStableVersion::class)->getMock();
 
         $this->producer = new StableVersionProducer(
             $this->contextReader

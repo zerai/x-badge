@@ -7,9 +7,9 @@ use Badge\Application\Domain\Model\ContextValue\StableVersion;
 
 final class StableVersionProducer implements ContextProducer
 {
-    private StableVersionReader $stableVersionReader;
+    private ForReadingStableVersion $stableVersionReader;
 
-    public function __construct(StableVersionReader $stableVersionReader)
+    public function __construct(ForReadingStableVersion $stableVersionReader)
     {
         $this->stableVersionReader = $stableVersionReader;
     }

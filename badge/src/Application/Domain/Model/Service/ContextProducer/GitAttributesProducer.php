@@ -7,9 +7,9 @@ use Badge\Application\Domain\Model\ContextValue\GitAttributesFile;
 
 final class GitAttributesProducer implements ContextProducer
 {
-    private DetectableGitAttributes $committedFileDetector;
+    private ForDetectingGitAttributesFile $committedFileDetector;
 
-    public function __construct(DetectableGitAttributes $committedFileDetector)
+    public function __construct(ForDetectingGitAttributesFile $committedFileDetector)
     {
         $this->committedFileDetector = $committedFileDetector;
     }

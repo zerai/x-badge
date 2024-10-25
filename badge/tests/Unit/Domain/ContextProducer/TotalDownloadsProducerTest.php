@@ -3,8 +3,8 @@
 namespace Badge\Tests\Unit\Domain\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\Service\ContextProducer\TotalDownloadsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingTotalDownloads;
+use Badge\Application\Domain\Model\Service\ContextProducer\TotalDownloadsProducer;
 use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

@@ -7,9 +7,9 @@ use Badge\Application\Domain\Model\ContextValue\UnstableVersion;
 
 final class UnstableVersionProducer implements ContextProducer
 {
-    private UnstableVersionReader $unstableVersionReader;
+    private ForReadingUnstableVersion $unstableVersionReader;
 
-    public function __construct(UnstableVersionReader $unstableVersionReader)
+    public function __construct(ForReadingUnstableVersion $unstableVersionReader)
     {
         $this->unstableVersionReader = $unstableVersionReader;
     }

@@ -2,7 +2,7 @@
 
 namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
-interface UnstableVersionReader
+interface ForReadingUnstableVersion
 {
     /**
      * @param string $packageName full package name "[vendor]/[package]"

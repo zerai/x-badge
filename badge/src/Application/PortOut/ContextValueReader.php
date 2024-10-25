@@ -9,7 +9,7 @@ use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingMonthlyDown
 use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingStableVersion;
 use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingSuggesters;
 use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingTotalDownloads;
-use Badge\Application\Domain\Model\Service\ContextProducer\UnstableVersionReader;
+use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingUnstableVersion;
 
 interface ContextValueReader extends
     ForReadingSuggesters,
@@ -18,7 +18,7 @@ interface ContextValueReader extends
     ForReadingMonthlyDownloads,
     ForReadingDailyDownloads,
     ForReadingStableVersion,
-    UnstableVersionReader,
+    ForReadingUnstableVersion,
     ForReadingLicense
 {
 }

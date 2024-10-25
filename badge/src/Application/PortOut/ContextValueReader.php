@@ -8,13 +8,13 @@ use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingLicense;
 use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingMonthlyDownloads;
 use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingStableVersion;
 use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingSuggesters;
-use Badge\Application\Domain\Model\Service\ContextProducer\TotalDownloadsReader;
+use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingTotalDownloads;
 use Badge\Application\Domain\Model\Service\ContextProducer\UnstableVersionReader;
 
 interface ContextValueReader extends
     ForReadingSuggesters,
     ForReadingDependents,
-    TotalDownloadsReader,
+    ForReadingTotalDownloads,
     ForReadingMonthlyDownloads,
     ForReadingDailyDownloads,
     ForReadingStableVersion,

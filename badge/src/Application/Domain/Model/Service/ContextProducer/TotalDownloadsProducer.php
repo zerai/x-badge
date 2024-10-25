@@ -7,9 +7,9 @@ use Badge\Application\Domain\Model\ContextValue\TotalDownloads;
 
 final class TotalDownloadsProducer implements ContextProducer
 {
-    private TotalDownloadsReader $totalDownloadReader;
+    private ForReadingTotalDownloads $totalDownloadReader;
 
-    public function __construct(TotalDownloadsReader $totalDownloadReader)
+    public function __construct(ForReadingTotalDownloads $totalDownloadReader)
     {
         $this->totalDownloadReader = $totalDownloadReader;
     }

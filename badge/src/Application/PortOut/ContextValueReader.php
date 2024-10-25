@@ -2,7 +2,7 @@
 
 namespace Badge\Application\PortOut;
 
-use Badge\Application\Domain\Model\Service\ContextProducer\DailyDownloadsReader;
+use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingDailyDownloads;
 use Badge\Application\Domain\Model\Service\ContextProducer\DependentsReader;
 use Badge\Application\Domain\Model\Service\ContextProducer\LicenseReader;
 use Badge\Application\Domain\Model\Service\ContextProducer\MonthlyDownloadsReader;
@@ -16,7 +16,7 @@ interface ContextValueReader extends
     DependentsReader,
     TotalDownloadsReader,
     MonthlyDownloadsReader,
-    DailyDownloadsReader,
+    ForReadingDailyDownloads,
     StableVersionReader,
     UnstableVersionReader,
     LicenseReader

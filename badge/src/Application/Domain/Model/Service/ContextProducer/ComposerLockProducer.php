@@ -7,9 +7,9 @@ use Badge\Application\Domain\Model\ContextValue\ComposerLockFile;
 
 final class ComposerLockProducer implements ContextProducer
 {
-    private DetectableComposerLock $committedFileDetector;
+    private ForDetectingComposerLockFile $committedFileDetector;
 
-    public function __construct(DetectableComposerLock $committedFileDetector)
+    public function __construct(ForDetectingComposerLockFile $committedFileDetector)
     {
         $this->committedFileDetector = $committedFileDetector;
     }

@@ -4,7 +4,8 @@ namespace Badge\Tests\Unit\Domain\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\Service\ContextProducer\DailyDownloadsProducer;
-use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingDailyDownloads;
+
+use Badge\Application\Port\Driven\ForReadingDailyDownloads;
 use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

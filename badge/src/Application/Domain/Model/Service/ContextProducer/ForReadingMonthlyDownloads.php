@@ -2,7 +2,7 @@
 
 namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
-interface MonthlyDownloadsReader
+interface ForReadingMonthlyDownloads
 {
     /**
      * @param string $packageName full package name "[vendor]/[package]"

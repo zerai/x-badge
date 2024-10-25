@@ -7,9 +7,9 @@ use Badge\Application\Domain\Model\ContextValue\MonthlyDownloads;
 
 final class MonthlyDownloadsProducer implements ContextProducer
 {
-    private MonthlyDownloadsReader $monthlyDownloadsReader;
+    private ForReadingMonthlyDownloads $monthlyDownloadsReader;
 
-    public function __construct(MonthlyDownloadsReader $monthlyDownloadsReader)
+    public function __construct(ForReadingMonthlyDownloads $monthlyDownloadsReader)
     {
         $this->monthlyDownloadsReader = $monthlyDownloadsReader;
     }

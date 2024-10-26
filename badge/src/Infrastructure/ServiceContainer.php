@@ -5,7 +5,8 @@ namespace Badge\Infrastructure;
 use Badge\Adapter\Out\CommittedFileChecker;
 use Badge\Adapter\Out\DefaultBranchDetector;
 use Badge\Adapter\Out\PackagistContextValueReader;
-use Badge\Adapter\Out\PackagistRepositoryReader;
+
+use Badge\AdapterForReadingRepositoryDetail\PackagistRepositoryReader;
 use Badge\Application\BadgeApplication;
 use Badge\Application\BadgeApplicationInterface;
 use Badge\Application\Domain\Model\Service\ContextProducer\CommittedFileDetector;

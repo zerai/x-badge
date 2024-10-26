@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Adapter\Out;
+namespace Badge\AdapterForReadingRepositoryDetail;
 
 use Badge\Application\Domain\Model\RepositoryDetail;
 use Badge\Application\Port\Driven\ForReadingRepositoryDetail\ForReadingRepositoryDetail;

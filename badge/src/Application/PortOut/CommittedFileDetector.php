@@ -2,8 +2,8 @@
 
 namespace Badge\Application\PortOut;
 
-use Badge\Application\Domain\Model\Service\ContextProducer\ForDetectingComposerLockFile;
 use Badge\Application\Domain\Model\Service\ContextProducer\ForDetectingGitAttributesFile;
+use Badge\Application\Port\Driven\ForDetectingComposerLockFile;
 
 interface CommittedFileDetector extends ForDetectingComposerLockFile, ForDetectingGitAttributesFile
 {

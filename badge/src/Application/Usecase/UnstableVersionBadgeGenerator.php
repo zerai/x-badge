@@ -5,7 +5,7 @@ namespace Badge\Application\Usecase;
 use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
 use Badge\Application\Image;
 use Badge\Application\ImageFactory;
-use Badge\Application\PortIn\CreateUnstableVersionBadge;
+use Badge\Application\Port\Driving\CreateUnstableVersionBadge;
 
 final class UnstableVersionBadgeGenerator implements CreateUnstableVersionBadge
 {

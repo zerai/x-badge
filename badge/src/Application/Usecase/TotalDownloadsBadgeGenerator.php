@@ -5,7 +5,7 @@ namespace Badge\Application\Usecase;
 use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
 use Badge\Application\Image;
 use Badge\Application\ImageFactory;
-use Badge\Application\PortIn\CreateTotalDownloadsBadge;
+use Badge\Application\Port\Driving\CreateTotalDownloadsBadge;
 
 final class TotalDownloadsBadgeGenerator implements CreateTotalDownloadsBadge
 {

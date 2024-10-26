@@ -8,7 +8,7 @@ use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingLicense
 use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingMonthlyDownloads;
 use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingStableVersion;
 use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingSuggesters;
-use Badge\Application\Port\Driven\ForReadingTotalDownloads;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingTotalDownloads;
 use Badge\Application\Port\Driven\ForReadingUnstableVersion;
 
 interface ContextValueReader extends

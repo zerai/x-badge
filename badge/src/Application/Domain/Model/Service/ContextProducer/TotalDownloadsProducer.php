@@ -4,7 +4,7 @@ namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\TotalDownloads;
-use Badge\Application\Port\Driven\ForReadingTotalDownloads;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingTotalDownloads;
 
 final class TotalDownloadsProducer implements ContextProducer
 {

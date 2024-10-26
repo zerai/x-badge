@@ -2,9 +2,9 @@
 
 namespace Badge\Infrastructure;
 
-use Badge\Adapter\Out\PackagistContextValueReader;
 use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\CommittedFileChecker;
 use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\DefaultBranchDetector;
+use Badge\AdapterForReadingBadgeContextValues\PackagistContextValueReader;
 use Badge\AdapterForReadingRepositoryDetail\PackagistRepositoryReader;
 use Badge\Application\BadgeApplication;
 use Badge\Application\BadgeApplicationInterface;

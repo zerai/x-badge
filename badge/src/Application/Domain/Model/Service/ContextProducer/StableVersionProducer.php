@@ -4,7 +4,7 @@ namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\StableVersion;
-use Badge\Application\Port\Driven\ForReadingStableVersion;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingStableVersion;
 
 final class StableVersionProducer implements ContextProducer
 {

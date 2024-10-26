@@ -6,7 +6,7 @@ use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingDailyDo
 use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingDependents;
 use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingLicense;
 use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingMonthlyDownloads;
-use Badge\Application\Port\Driven\ForReadingStableVersion;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingStableVersion;
 use Badge\Application\Port\Driven\ForReadingSuggesters;
 use Badge\Application\Port\Driven\ForReadingTotalDownloads;
 use Badge\Application\Port\Driven\ForReadingUnstableVersion;

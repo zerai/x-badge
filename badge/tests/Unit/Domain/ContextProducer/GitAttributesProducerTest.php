@@ -7,7 +7,7 @@ use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\RepositoryDetail;
 use Badge\Application\Domain\Model\Service\ContextProducer\CommittedFileDetector;
 use Badge\Application\Domain\Model\Service\ContextProducer\GitAttributesProducer;
-use Badge\Application\Domain\Model\Service\DetectableBranch;
+use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingRepositoryBranch;
 use Badge\Application\Port\Driven\ForReadingRepositoryDetail\ForReadingRepositoryDetail;
 use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use Generator;
@@ -37,7 +37,7 @@ final class GitAttributesProducerTest extends TestCase
     private $httpClient;
 
     /**
-     * @var DetectableBranch & MockObject
+     * @var ForDetectingRepositoryBranch & MockObject
      */
     private $defaultBranchDetector;
 
@@ -53,7 +53,7 @@ final class GitAttributesProducerTest extends TestCase
         $this->httpClient = $this->getMockBuilder(ClientInterface::class)
             ->getMock();
 
-        $this->defaultBranchDetector = $this->getMockBuilder(DetectableBranch::class)
+        $this->defaultBranchDetector = $this->getMockBuilder(ForDetectingRepositoryBranch::class)
             ->disableOriginalConstructor()
             ->getMock();
 

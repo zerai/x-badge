@@ -20,8 +20,8 @@ use Badge\Application\Domain\Model\Service\ContextProducer\StableVersionProducer
 use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\TotalDownloadsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\UnstableVersionProducer;
-use Badge\Application\Domain\Model\Service\DetectableBranch;
 use Badge\Application\ImageFactory;
+use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingRepositoryBranch;
 use Badge\Application\Port\Driven\ForReadingRepositoryDetail\ForReadingRepositoryDetail;
 use Badge\Application\Usecase\ComposerLockBadgeGenerator;
 use Badge\Application\Usecase\DailyDownloadsBadgeGenerator;
@@ -50,7 +50,7 @@ abstract class ServiceContainer
 
     protected ?ForReadingRepositoryDetail $repositoryDetailReader = null;
 
-    protected ?DetectableBranch $defaultBranchDetector = null;
+    protected ?ForDetectingRepositoryBranch $defaultBranchDetector = null;
 
     protected ?CommittedFileChecker $committedFileChecker = null;
 
@@ -146,7 +146,7 @@ abstract class ServiceContainer
         return $this->repositoryDetailReader;
     }
 
-    protected function defaultBranchDetector(): DetectableBranch
+    protected function defaultBranchDetector(): ForDetectingRepositoryBranch
     {
         if ($this->defaultBranchDetector === null) {
             $this->defaultBranchDetector = new DefaultBranchDetector(

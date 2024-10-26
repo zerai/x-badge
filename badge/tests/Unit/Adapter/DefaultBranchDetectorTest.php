@@ -2,7 +2,7 @@
 
 namespace Badge\Tests\Unit\Adapter;
 
-use Badge\Adapter\Out\DefaultBranchDetector;
+use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\DefaultBranchDetector;
 use Badge\Application\Domain\Model\RepositoryDetail;
 use Bitbucket\Api\Workspaces;
 use Bitbucket\Client as BitbucketClient;
@@ -12,7 +12,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Badge\Adapter\Out\DefaultBranchDetector
+ * @covers \Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\DefaultBranchDetector
  */
 final class DefaultBranchDetectorTest extends TestCase
 {

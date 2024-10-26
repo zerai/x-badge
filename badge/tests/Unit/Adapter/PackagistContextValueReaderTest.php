@@ -2,7 +2,7 @@
 
 namespace Badge\Tests\Unit\Adapter;
 
-use Badge\Adapter\Out\PackagistContextValueReader;
+use Badge\AdapterForReadingBadgeContextValues\PackagistContextValueReader;
 use Packagist\Api\Client;
 use Packagist\Api\Result\Package;
 use Packagist\Api\Result\Package\Downloads;
@@ -10,7 +10,7 @@ use Packagist\Api\Result\Package\Version;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Adapter\Out\PackagistContextValueReader */
+/** @covers \Badge\AdapterForReadingBadgeContextValues\PackagistContextValueReader */
 final class PackagistContextValueReaderTest extends TestCase
 {
     /**

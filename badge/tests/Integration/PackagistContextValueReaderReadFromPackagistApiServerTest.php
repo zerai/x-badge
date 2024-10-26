@@ -2,7 +2,7 @@
 
 namespace Badge\Tests\Integration;
 
-use Badge\Adapter\Out\PackagistContextValueReader;
+use Badge\AdapterForReadingBadgeContextValues\PackagistContextValueReader;
 use Badge\Infrastructure\Env;
 use Badge\Tests\Integration\ApiMockServer\ApiMockServer;
 use Generator;
@@ -12,7 +12,7 @@ use RuntimeException;
 
 /**
  * @group io-network
- * @covers \Badge\Adapter\Out\PackagistContextValueReader
+ * @covers \Badge\AdapterForReadingBadgeContextValues\PackagistContextValueReader
  */
 final class PackagistContextValueReaderReadFromPackagistApiServerTest extends TestCase
 {

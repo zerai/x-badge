@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Adapter\Out;
+namespace Badge\AdapterForObtainingBadgeContextValuesForCommittedFile;
 
-use Badge\Application\Domain\Model\Service\DetectableBranch;
+use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingRepositoryBranch;
 use Badge\Infrastructure\Env;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
@@ -14,7 +14,7 @@ class AcceptanceTestCommittedFileChecker extends CommittedFileChecker
 {
     protected ClientInterface $httpClient;
 
-    public function __construct(ClientInterface $httpClient, DetectableBranch $branchDetector)
+    public function __construct(ClientInterface $httpClient, ForDetectingRepositoryBranch $branchDetector)
     {
         parent::__construct($httpClient, $branchDetector);
         $this->httpClient = $httpClient;

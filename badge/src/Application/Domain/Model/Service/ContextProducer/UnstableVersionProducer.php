@@ -4,12 +4,13 @@ namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\UnstableVersion;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingUnstableVersion;
 
 final class UnstableVersionProducer implements ContextProducer
 {
-    private UnstableVersionReader $unstableVersionReader;
+    private ForReadingUnstableVersion $unstableVersionReader;
 
-    public function __construct(UnstableVersionReader $unstableVersionReader)
+    public function __construct(ForReadingUnstableVersion $unstableVersionReader)
     {
         $this->unstableVersionReader = $unstableVersionReader;
     }

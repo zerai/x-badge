@@ -4,12 +4,13 @@ namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\StableVersion;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingStableVersion;
 
 final class StableVersionProducer implements ContextProducer
 {
-    private StableVersionReader $stableVersionReader;
+    private ForReadingStableVersion $stableVersionReader;
 
-    public function __construct(StableVersionReader $stableVersionReader)
+    public function __construct(ForReadingStableVersion $stableVersionReader)
     {
         $this->stableVersionReader = $stableVersionReader;
     }

@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Application\Domain\Model\Service\ContextProducer;
+namespace Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile;
 
-interface DetectableGitAttributes
+interface ForDetectingGitAttributesFile
 {
     /**
      * @param string $packageName full package name "[vendor]/[package]"

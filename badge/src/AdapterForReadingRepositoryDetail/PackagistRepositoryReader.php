@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Adapter\Out;
+namespace Badge\AdapterForReadingRepositoryDetail;
 
 use Badge\Application\Domain\Model\RepositoryDetail;
-use Badge\Application\Domain\Model\Service\RepositoryDetailReader;
+use Badge\Application\Port\Driven\ForReadingRepositoryDetail\ForReadingRepositoryDetail;
 use Packagist\Api\Client as PackagistClient;
 use Packagist\Api\Result\Package;
 
-final class PackagistRepositoryReader implements RepositoryDetailReader
+final class PackagistRepositoryReader implements ForReadingRepositoryDetail
 {
     private PackagistClient $packagistClient;
 

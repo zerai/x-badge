@@ -4,7 +4,7 @@ namespace Badge\Tests\Unit\Domain\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\Service\ContextProducer\TotalDownloadsProducer;
-use Badge\Application\Domain\Model\Service\ContextProducer\TotalDownloadsReader;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingTotalDownloads;
 use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -15,7 +15,7 @@ final class TotalDownloadsProducerTest extends TestCase
     use BadgeContextAssertionsTrait;
 
     /**
-     * @var TotalDownloadsReader & MockObject
+     * @var ForReadingTotalDownloads & MockObject
      */
     private $contextReader;
 
@@ -23,7 +23,7 @@ final class TotalDownloadsProducerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->contextReader = $this->getMockBuilder(TotalDownloadsReader::class)->getMock();
+        $this->contextReader = $this->getMockBuilder(ForReadingTotalDownloads::class)->getMock();
 
         $this->producer = new TotalDownloadsProducer(
             $this->contextReader

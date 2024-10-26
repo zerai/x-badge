@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Adapter\Out;
+namespace Badge\AdapterForObtainingBadgeContextValuesForCommittedFile;
 
 use Badge\Application\Domain\Model\RepositoryDetail;
-use Badge\Application\Domain\Model\Service\DetectableBranch;
+use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingRepositoryBranch;
 use Bitbucket\Client as BitbucketClient;
 use Github\Client as GithubClient;
 
-class DefaultBranchDetector implements DetectableBranch
+class DefaultBranchDetector implements ForDetectingRepositoryBranch
 {
     private GithubClient $githubClient;
 

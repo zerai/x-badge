@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Adapter\Out;
+namespace Badge\AdapterForReadingBadgeContextValues;
 
-use Badge\Application\PortOut\ContextValueReader;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ContextValueReader;
 use Badge\Infrastructure\ReleasedVersions;
 use Packagist\Api\Client;
 use Packagist\Api\Result\Package;

@@ -4,12 +4,13 @@ namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\DailyDownloads;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingDailyDownloads;
 
 final class DailyDownloadsProducer implements ContextProducer
 {
-    private DailyDownloadsReader $dailyDownloadsReader;
+    private ForReadingDailyDownloads $dailyDownloadsReader;
 
-    public function __construct(DailyDownloadsReader $dailyDownloadsReader)
+    public function __construct(ForReadingDailyDownloads $dailyDownloadsReader)
     {
         $this->dailyDownloadsReader = $dailyDownloadsReader;
     }

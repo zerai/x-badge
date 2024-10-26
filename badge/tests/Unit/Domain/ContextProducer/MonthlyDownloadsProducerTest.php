@@ -4,7 +4,7 @@ namespace Badge\Tests\Unit\Domain\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\Service\ContextProducer\MonthlyDownloadsProducer;
-use Badge\Application\Domain\Model\Service\ContextProducer\MonthlyDownloadsReader;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingMonthlyDownloads;
 use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -15,7 +15,7 @@ final class MonthlyDownloadsProducerTest extends TestCase
     use BadgeContextAssertionsTrait;
 
     /**
-     * @var MonthlyDownloadsReader & MockObject
+     * @var ForReadingMonthlyDownloads & MockObject
      */
     private $contextReader;
 
@@ -23,7 +23,7 @@ final class MonthlyDownloadsProducerTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->contextReader = $this->getMockBuilder(MonthlyDownloadsReader::class)->getMock();
+        $this->contextReader = $this->getMockBuilder(ForReadingMonthlyDownloads::class)->getMock();
 
         $this->producer = new MonthlyDownloadsProducer(
             $this->contextReader

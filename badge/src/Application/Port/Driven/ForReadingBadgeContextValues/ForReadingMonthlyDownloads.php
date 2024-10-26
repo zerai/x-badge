@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Application\Domain\Model\Service\ContextProducer;
+namespace Badge\Application\Port\Driven\ForReadingBadgeContextValues;
 
-interface MonthlyDownloadsReader
+interface ForReadingMonthlyDownloads
 {
     /**
      * @param string $packageName full package name "[vendor]/[package]"

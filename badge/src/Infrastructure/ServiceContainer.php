@@ -2,10 +2,10 @@
 
 namespace Badge\Infrastructure;
 
-use Badge\Adapter\Out\CommittedFileChecker;
-use Badge\Adapter\Out\DefaultBranchDetector;
-use Badge\Adapter\Out\PackagistContextValueReader;
-use Badge\Adapter\Out\PackagistRepositoryReader;
+use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\CommittedFileChecker;
+use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\DefaultBranchDetector;
+use Badge\AdapterForReadingBadgeContextValues\PackagistContextValueReader;
+use Badge\AdapterForReadingRepositoryDetail\PackagistRepositoryReader;
 use Badge\Application\BadgeApplication;
 use Badge\Application\BadgeApplicationInterface;
 use Badge\Application\Domain\Model\Service\ContextProducer\CommittedFileDetector;
@@ -19,9 +19,9 @@ use Badge\Application\Domain\Model\Service\ContextProducer\StableVersionProducer
 use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\TotalDownloadsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\UnstableVersionProducer;
-use Badge\Application\Domain\Model\Service\DetectableBranch;
-use Badge\Application\Domain\Model\Service\RepositoryDetailReader;
 use Badge\Application\ImageFactory;
+use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingRepositoryBranch;
+use Badge\Application\Port\Driven\ForReadingRepositoryDetail\ForReadingRepositoryDetail;
 use Badge\Application\Usecase\ComposerLockBadgeGenerator;
 use Badge\Application\Usecase\DailyDownloadsBadgeGenerator;
 use Badge\Application\Usecase\DependentsBadgeGenerator;
@@ -47,9 +47,9 @@ abstract class ServiceContainer
 
     protected ?ImageFactory $imageFactory = null;
 
-    protected ?RepositoryDetailReader $repositoryDetailReader = null;
+    protected ?ForReadingRepositoryDetail $repositoryDetailReader = null;
 
-    protected ?DetectableBranch $defaultBranchDetector = null;
+    protected ?ForDetectingRepositoryBranch $defaultBranchDetector = null;
 
     protected ?CommittedFileChecker $committedFileChecker = null;
 
@@ -134,7 +134,7 @@ abstract class ServiceContainer
         return $this->imageFactory;
     }
 
-    protected function repositoryDetailReader(): RepositoryDetailReader
+    protected function repositoryDetailReader(): ForReadingRepositoryDetail
     {
         if ($this->repositoryDetailReader === null) {
             $this->repositoryDetailReader = new PackagistRepositoryReader(
@@ -145,7 +145,7 @@ abstract class ServiceContainer
         return $this->repositoryDetailReader;
     }
 
-    protected function defaultBranchDetector(): DetectableBranch
+    protected function defaultBranchDetector(): ForDetectingRepositoryBranch
     {
         if ($this->defaultBranchDetector === null) {
             $this->defaultBranchDetector = new DefaultBranchDetector(

@@ -2,9 +2,10 @@
 
 namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
-use Badge\Application\Domain\Model\Service\RepositoryDetailReader;
-use Badge\Application\PortOut\CommittedFileChecker;
-use Badge\Application\PortOut\CommittedFileDetector as CommittedFileDetectorPort;
+use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\CommittedFileChecker;
+use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\CommittedFileDetector as CommittedFileDetectorPort;
+
+use Badge\Application\Port\Driven\ForReadingRepositoryDetail\ForReadingRepositoryDetail;
 
 final class CommittedFileDetector implements CommittedFileDetectorPort
 {
@@ -12,11 +13,11 @@ final class CommittedFileDetector implements CommittedFileDetectorPort
 
     private const GITATTRIBUTES_FILE = '.gitattributes';
 
-    private RepositoryDetailReader $repositoryReader;
+    private ForReadingRepositoryDetail $repositoryReader;
 
     private CommittedFileChecker $fileChecker;
 
-    public function __construct(RepositoryDetailReader $repositoryReader, CommittedFileChecker $fileChecker)
+    public function __construct(ForReadingRepositoryDetail $repositoryReader, CommittedFileChecker $fileChecker)
     {
         $this->repositoryReader = $repositoryReader;
         $this->fileChecker = $fileChecker;

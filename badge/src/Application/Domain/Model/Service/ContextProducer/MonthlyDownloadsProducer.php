@@ -4,12 +4,13 @@ namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\MonthlyDownloads;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingMonthlyDownloads;
 
 final class MonthlyDownloadsProducer implements ContextProducer
 {
-    private MonthlyDownloadsReader $monthlyDownloadsReader;
+    private ForReadingMonthlyDownloads $monthlyDownloadsReader;
 
-    public function __construct(MonthlyDownloadsReader $monthlyDownloadsReader)
+    public function __construct(ForReadingMonthlyDownloads $monthlyDownloadsReader)
     {
         $this->monthlyDownloadsReader = $monthlyDownloadsReader;
     }

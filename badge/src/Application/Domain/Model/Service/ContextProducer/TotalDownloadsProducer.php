@@ -4,12 +4,13 @@ namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\TotalDownloads;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingTotalDownloads;
 
 final class TotalDownloadsProducer implements ContextProducer
 {
-    private TotalDownloadsReader $totalDownloadReader;
+    private ForReadingTotalDownloads $totalDownloadReader;
 
-    public function __construct(TotalDownloadsReader $totalDownloadReader)
+    public function __construct(ForReadingTotalDownloads $totalDownloadReader)
     {
         $this->totalDownloadReader = $totalDownloadReader;
     }

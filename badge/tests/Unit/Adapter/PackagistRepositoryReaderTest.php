@@ -2,14 +2,14 @@
 
 namespace Badge\Tests\Unit\Adapter;
 
-use Badge\Adapter\Out\PackagistRepositoryReader;
+use Badge\AdapterForReadingRepositoryDetail\PackagistRepositoryReader;
 use Badge\Application\Domain\Model\RepositoryDetail;
 use Packagist\Api\Client as PackagistClient;
 use Packagist\Api\Result\Package;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Adapter\Out\PackagistRepositoryReader */
+/** @covers \Badge\AdapterForReadingRepositoryDetail\PackagistRepositoryReader */
 final class PackagistRepositoryReaderTest extends TestCase
 {
     /**

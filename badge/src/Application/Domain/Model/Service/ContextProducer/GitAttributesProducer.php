@@ -4,12 +4,13 @@ namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\GitAttributesFile;
+use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingGitAttributesFile;
 
 final class GitAttributesProducer implements ContextProducer
 {
-    private DetectableGitAttributes $committedFileDetector;
+    private ForDetectingGitAttributesFile $committedFileDetector;
 
-    public function __construct(DetectableGitAttributes $committedFileDetector)
+    public function __construct(ForDetectingGitAttributesFile $committedFileDetector)
     {
         $this->committedFileDetector = $committedFileDetector;
     }

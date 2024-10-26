@@ -4,12 +4,13 @@ namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\Suggesters;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingSuggesters;
 
 final class SuggestersProducer implements ContextProducer
 {
-    private SuggestersReader $suggestersReader;
+    private ForReadingSuggesters $suggestersReader;
 
-    public function __construct(SuggestersReader $suggestersReader)
+    public function __construct(ForReadingSuggesters $suggestersReader)
     {
         $this->suggestersReader = $suggestersReader;
     }

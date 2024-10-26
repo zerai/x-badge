@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Adapter\Out;
+namespace Badge\AdapterForObtainingBadgeContextValuesForCommittedFile;
 
 use Badge\Application\Domain\Model\RepositoryDetail;
-use Badge\Application\Domain\Model\Service\DetectableBranch;
-use Badge\Application\PortOut\CommittedFileChecker as CommittedFileCheckerPort;
+use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\CommittedFileChecker as CommittedFileCheckerPort;
+use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingRepositoryBranch;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
 
@@ -18,9 +18,9 @@ class CommittedFileChecker implements CommittedFileCheckerPort
 
     protected ClientInterface $httpClient;
 
-    private DetectableBranch $branchDetector;
+    private ForDetectingRepositoryBranch $branchDetector;
 
-    public function __construct(ClientInterface $httpClient, DetectableBranch $branchDetector)
+    public function __construct(ClientInterface $httpClient, ForDetectingRepositoryBranch $branchDetector)
     {
         $this->httpClient = $httpClient;
         $this->branchDetector = $branchDetector;

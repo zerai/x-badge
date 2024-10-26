@@ -2,8 +2,8 @@
 
 namespace Badge\Tests\Unit\Adapter;
 
-use Badge\Adapter\Out\CommittedFileChecker;
-use Badge\Adapter\Out\DefaultBranchDetector;
+use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\CommittedFileChecker;
+use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\DefaultBranchDetector;
 use Badge\Application\Domain\Model\RepositoryDetail;
 use GuzzleHttp\ClientInterface;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -12,7 +12,7 @@ use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
 
 /**
- * @covers \Badge\Adapter\Out\CommittedFileChecker
+ * @covers \Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\CommittedFileChecker
  */
 final class CommittedFileCheckerTest extends TestCase
 {

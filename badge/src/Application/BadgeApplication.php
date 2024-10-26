@@ -2,16 +2,16 @@
 
 namespace Badge\Application;
 
-use Badge\Application\PortIn\CreateComposerLockBadge;
-use Badge\Application\PortIn\CreateDailyDownloadsBadge;
-use Badge\Application\PortIn\CreateDependentsBadge;
-use Badge\Application\PortIn\CreateGitattributesBadge;
-use Badge\Application\PortIn\CreateLicenseBadge;
-use Badge\Application\PortIn\CreateMonthlyDownloadsBadge;
-use Badge\Application\PortIn\CreateStableVersionBadge;
-use Badge\Application\PortIn\CreateSuggestersBadge;
-use Badge\Application\PortIn\CreateTotalDownloadsBadge;
-use Badge\Application\PortIn\CreateUnstableVersionBadge;
+use Badge\Application\Port\Driving\CreateComposerLockBadge;
+use Badge\Application\Port\Driving\CreateDailyDownloadsBadge;
+use Badge\Application\Port\Driving\CreateDependentsBadge;
+use Badge\Application\Port\Driving\CreateGitattributesBadge;
+use Badge\Application\Port\Driving\CreateLicenseBadge;
+use Badge\Application\Port\Driving\CreateMonthlyDownloadsBadge;
+use Badge\Application\Port\Driving\CreateStableVersionBadge;
+use Badge\Application\Port\Driving\CreateSuggestersBadge;
+use Badge\Application\Port\Driving\CreateTotalDownloadsBadge;
+use Badge\Application\Port\Driving\CreateUnstableVersionBadge;
 
 final class BadgeApplication implements BadgeApplicationInterface
 {

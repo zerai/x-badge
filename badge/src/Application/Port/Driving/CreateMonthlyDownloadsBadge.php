@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Application\PortIn;
+namespace Badge\Application\Port\Driving;
 
 use Badge\Application\Image;
 

@@ -5,7 +5,7 @@ namespace Badge\Application\Usecase;
 use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
 use Badge\Application\Image;
 use Badge\Application\ImageFactory;
-use Badge\Application\PortIn\CreateComposerLockBadge;
+use Badge\Application\Port\Driving\CreateComposerLockBadge;
 
 final class ComposerLockBadgeGenerator implements CreateComposerLockBadge
 {

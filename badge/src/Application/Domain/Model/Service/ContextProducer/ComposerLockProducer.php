@@ -6,7 +6,6 @@ use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\ComposerLockFile;
 use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingComposerLockFile;
 
-
 final class ComposerLockProducer implements ContextProducer
 {
     private ForDetectingComposerLockFile $committedFileDetector;

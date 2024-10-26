@@ -3,9 +3,9 @@
 namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
 use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\CommittedFileChecker;
-use Badge\Application\Port\Driven\ForReadingRepositoryDetail\ForReadingRepositoryDetail;
+use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\CommittedFileDetector as CommittedFileDetectorPort;
 
-use Badge\Application\PortOut\CommittedFileDetector as CommittedFileDetectorPort;
+use Badge\Application\Port\Driven\ForReadingRepositoryDetail\ForReadingRepositoryDetail;
 
 final class CommittedFileDetector implements CommittedFileDetectorPort
 {

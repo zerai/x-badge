@@ -4,7 +4,7 @@ namespace Badge\Tests\Unit\Domain\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\Service\ContextProducer\UnstableVersionProducer;
-use Badge\Application\Port\Driven\ForReadingUnstableVersion;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingUnstableVersion;
 use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

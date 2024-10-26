@@ -4,6 +4,7 @@ namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\GitAttributesFile;
+use Badge\Application\Port\Driven\ForDetectingGitAttributesFile;
 
 final class GitAttributesProducer implements ContextProducer
 {

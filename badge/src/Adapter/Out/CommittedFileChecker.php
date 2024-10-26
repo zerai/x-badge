@@ -4,7 +4,7 @@ namespace Badge\Adapter\Out;
 
 use Badge\Application\Domain\Model\RepositoryDetail;
 use Badge\Application\Domain\Model\Service\DetectableBranch;
-use Badge\Application\PortOut\CommittedFileChecker as CommittedFileCheckerPort;
+use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\CommittedFileChecker as CommittedFileCheckerPort;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
 

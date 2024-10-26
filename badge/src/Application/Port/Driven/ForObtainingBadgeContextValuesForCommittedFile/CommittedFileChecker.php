@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Application\PortOut;
+namespace Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile;
 
 use Badge\Application\Domain\Model\RepositoryDetail;
 

@@ -3,7 +3,7 @@
 namespace Badge\Application\PortOut;
 
 use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingDailyDownloads;
-use Badge\Application\Port\Driven\ForReadingDependents;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingDependents;
 use Badge\Application\Port\Driven\ForReadingLicense;
 use Badge\Application\Port\Driven\ForReadingMonthlyDownloads;
 use Badge\Application\Port\Driven\ForReadingStableVersion;

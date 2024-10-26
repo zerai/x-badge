@@ -4,7 +4,7 @@ namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\ContextValue\Dependents;
-use Badge\Application\Port\Driven\ForReadingDependents;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingDependents;
 
 final class DependentsProducer implements ContextProducer
 {

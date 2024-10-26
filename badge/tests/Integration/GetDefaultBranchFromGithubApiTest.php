@@ -2,7 +2,7 @@
 
 namespace Badge\Tests\Integration;
 
-use Badge\Adapter\Out\DefaultBranchDetector;
+use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\DefaultBranchDetector;
 use Badge\Application\Domain\Model\RepositoryDetail;
 use Badge\Infrastructure\Env;
 use Badge\Tests\Integration\ApiMockServer\ApiMockServer;
@@ -15,7 +15,7 @@ use RuntimeException;
 
 /**
  * @group io-network
- * @covers \Badge\Adapter\Out\DefaultBranchDetector
+ * @covers \Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\DefaultBranchDetector
  */
 final class GetDefaultBranchFromGithubApiTest extends TestCase
 {

@@ -20,7 +20,7 @@ use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\TotalDownloadsProducer;
 use Badge\Application\Domain\Model\Service\ContextProducer\UnstableVersionProducer;
 use Badge\Application\Domain\Model\Service\DetectableBranch;
-use Badge\Application\Domain\Model\Service\RepositoryDetailReader;
+use Badge\Application\Domain\Model\Service\ForReadingRepositoryDetail;
 use Badge\Application\ImageFactory;
 use Badge\Application\Usecase\ComposerLockBadgeGenerator;
 use Badge\Application\Usecase\DailyDownloadsBadgeGenerator;
@@ -47,7 +47,7 @@ abstract class ServiceContainer
 
     protected ?ImageFactory $imageFactory = null;
 
-    protected ?RepositoryDetailReader $repositoryDetailReader = null;
+    protected ?ForReadingRepositoryDetail $repositoryDetailReader = null;
 
     protected ?DetectableBranch $defaultBranchDetector = null;
 
@@ -134,7 +134,7 @@ abstract class ServiceContainer
         return $this->imageFactory;
     }
 
-    protected function repositoryDetailReader(): RepositoryDetailReader
+    protected function repositoryDetailReader(): ForReadingRepositoryDetail
     {
         if ($this->repositoryDetailReader === null) {
             $this->repositoryDetailReader = new PackagistRepositoryReader(

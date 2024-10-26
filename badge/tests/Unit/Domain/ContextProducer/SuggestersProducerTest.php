@@ -4,7 +4,7 @@ namespace Badge\Tests\Unit\Domain\ContextProducer;
 
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer;
-use Badge\Application\Port\Driven\ForReadingSuggesters;
+use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingSuggesters;
 use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -15,7 +15,7 @@ final class SuggestersProducerTest extends TestCase
     use BadgeContextAssertionsTrait;
 
     /**
-     * @var ForReadingSuggesters & MockObject
+     * @var \Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingSuggesters & MockObject
      */
     private $contextReader;
 

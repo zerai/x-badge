@@ -9,7 +9,7 @@ use Packagist\Api\Result\Package;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Adapter\Out\PackagistRepositoryReader */
+/** @covers \Badge\AdapterForReadingRepositoryDetail\PackagistRepositoryReader */
 final class PackagistRepositoryReaderTest extends TestCase
 {
     /**

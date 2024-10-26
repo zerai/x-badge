@@ -3,7 +3,7 @@
 namespace Badge\Tests\Acceptance;
 
 use Badge\Adapter\Out\AcceptanceTestCommittedFileChecker;
-use Badge\Adapter\Out\CommittedFileChecker;
+use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\CommittedFileChecker;
 use Badge\Infrastructure\Env;
 use Badge\Infrastructure\ServiceContainer;
 use Badge\Tests\Support\ExtendedGithubClient\ExtendedForTestGithubClient;

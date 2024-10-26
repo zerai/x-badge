@@ -2,7 +2,7 @@
 
 namespace Badge\Tests\Unit\Domain\ContextProducer;
 
-use Badge\Adapter\Out\CommittedFileChecker;
+use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\CommittedFileChecker;
 use Badge\Application\Domain\Model\BadgeContext;
 use Badge\Application\Domain\Model\RepositoryDetail;
 use Badge\Application\Domain\Model\Service\ContextProducer\CommittedFileDetector;

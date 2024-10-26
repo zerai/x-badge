@@ -2,7 +2,6 @@
 
 namespace Badge\Application\PortOut;
 
-use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingStableVersion;
 use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingSuggesters;
 use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingTotalDownloads;
 use Badge\Application\Domain\Model\Service\ContextProducer\ForReadingUnstableVersion;
@@ -10,6 +9,7 @@ use Badge\Application\Port\Driven\ForReadingDailyDownloads;
 use Badge\Application\Port\Driven\ForReadingDependents;
 use Badge\Application\Port\Driven\ForReadingLicense;
 use Badge\Application\Port\Driven\ForReadingMonthlyDownloads;
+use Badge\Application\Port\Driven\ForReadingStableVersion;
 
 interface ContextValueReader extends
     ForReadingSuggesters,

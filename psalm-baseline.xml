@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <files psalm-version="4.30.0@d0bc6e25d89f649e4f36a534f330f8bb4643dd69">
-  <file src="badge/src/Adapter/Out/PackagistContextValueReader.php">
+  <file src="badge/src/AdapterForObtainingBadgeContextValuesForCommittedFile/DefaultBranchDetector.php">
+    <MixedArrayAccess occurrences="1">
+      <code>$repoBitbucketData['mainbranch']['name']</code>
+    </MixedArrayAccess>
+  </file>
+  <file src="badge/src/AdapterForReadingBadgeContextValues/PackagistContextValueReader.php">
     <InvalidArgument occurrences="3">
       <code>$package-&gt;getVersions()</code>
       <code>$package-&gt;getVersions()</code>
@@ -16,11 +21,6 @@
       <code>ReleasedVersions::fromApiData($package-&gt;getVersions())-&gt;stableVersion()</code>
       <code>ReleasedVersions::fromApiData($package-&gt;getVersions())-&gt;unstableVersion()</code>
     </NullableReturnStatement>
-  </file>
-  <file src="badge/src/AdapterForObtainingBadgeContextValuesForCommittedFile/DefaultBranchDetector.php">
-    <MixedArrayAccess occurrences="1">
-      <code>$repoBitbucketData['mainbranch']['name']</code>
-    </MixedArrayAccess>
   </file>
   <file src="badge/src/Infrastructure/ReleasedVersions.php">
     <MixedArgument occurrences="1">

@@ -1,24 +1,24 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method Badge\\\\Adapter\\\\Out\\\\PackagistContextValueReader\\:\\:readStableVersion\\(\\) should return string but returns string\\|null\\.$#"
+			message: "#^Method Badge\\\\AdapterForReadingBadgeContextValues\\\\PackagistContextValueReader\\:\\:readLicense\\(\\) should return string but returns string\\|null\\.$#"
 			count: 1
-			path: badge/src/Adapter/Out/PackagistContextValueReader.php
+			path: badge/src/AdapterForReadingBadgeContextValues/PackagistContextValueReader.php
+
+		-
+			message: "#^Method Badge\\\\AdapterForReadingBadgeContextValues\\\\PackagistContextValueReader\\:\\:readStableVersion\\(\\) should return string but returns string\\|null\\.$#"
+			count: 1
+			path: badge/src/AdapterForReadingBadgeContextValues/PackagistContextValueReader.php
+
+		-
+			message: "#^Method Badge\\\\AdapterForReadingBadgeContextValues\\\\PackagistContextValueReader\\:\\:readUnstableVersion\\(\\) should return string but returns string\\|null\\.$#"
+			count: 1
+			path: badge/src/AdapterForReadingBadgeContextValues/PackagistContextValueReader.php
 
 		-
 			message: "#^Parameter \\#1 \\$versions of static method Badge\\\\Infrastructure\\\\ReleasedVersions\\:\\:fromApiData\\(\\) expects array\\<array\\<Packagist\\\\Api\\\\Result\\\\Package\\\\Version\\>\\>, array\\<Packagist\\\\Api\\\\Result\\\\Package\\\\Version\\> given\\.$#"
 			count: 3
-			path: badge/src/Adapter/Out/PackagistContextValueReader.php
-
-		-
-			message: "#^Method Badge\\\\Adapter\\\\Out\\\\PackagistContextValueReader\\:\\:readUnstableVersion\\(\\) should return string but returns string\\|null\\.$#"
-			count: 1
-			path: badge/src/Adapter/Out/PackagistContextValueReader.php
-
-		-
-			message: "#^Method Badge\\\\Adapter\\\\Out\\\\PackagistContextValueReader\\:\\:readLicense\\(\\) should return string but returns string\\|null\\.$#"
-			count: 1
-			path: badge/src/Adapter/Out/PackagistContextValueReader.php
+			path: badge/src/AdapterForReadingBadgeContextValues/PackagistContextValueReader.php
 
 		-
 			message: "#^Property Badge\\\\Tests\\\\Acceptance\\\\AcceptanceTestCase\\:\\:\\$application \\(Badge\\\\Application\\\\BadgeApplicationInterface\\) does not accept null\\.$#"
@@ -46,7 +46,7 @@ parameters:
 			path: badge/tests/Unit/Adapter/DefaultBranchDetectorTest.php
 
 		-
-			message: "#^Property Badge\\\\Tests\\\\Unit\\\\Domain\\\\CountNormalizerTraitTest\\:\\:\\$countNormalizerTrait has invalid type Badge\\\\Application\\\\Domain\\\\Model\\\\ContextValue\\\\Common\\\\CountNormalizerTrait\\.$#"
+			message: "#^Call to method normalize\\(\\) on an unknown class Badge\\\\Application\\\\Domain\\\\Model\\\\ContextValue\\\\Common\\\\CountNormalizerTrait\\.$#"
 			count: 1
 			path: badge/tests/Unit/Domain/CountNormalizerTraitTest.php
 
@@ -56,7 +56,7 @@ parameters:
 			path: badge/tests/Unit/Domain/CountNormalizerTraitTest.php
 
 		-
-			message: "#^Call to method normalize\\(\\) on an unknown class Badge\\\\Application\\\\Domain\\\\Model\\\\ContextValue\\\\Common\\\\CountNormalizerTrait\\.$#"
+			message: "#^Property Badge\\\\Tests\\\\Unit\\\\Domain\\\\CountNormalizerTraitTest\\:\\:\\$countNormalizerTrait has invalid type Badge\\\\Application\\\\Domain\\\\Model\\\\ContextValue\\\\Common\\\\CountNormalizerTrait\\.$#"
 			count: 1
 			path: badge/tests/Unit/Domain/CountNormalizerTraitTest.php
 

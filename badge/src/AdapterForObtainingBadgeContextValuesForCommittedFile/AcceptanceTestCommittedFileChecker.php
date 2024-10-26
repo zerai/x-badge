@@ -1,8 +1,7 @@
 <?php declare(strict_types=1);
 
-namespace Badge\Adapter\Out;
+namespace Badge\AdapterForObtainingBadgeContextValuesForCommittedFile;
 
-use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\CommittedFileChecker;
 use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingRepositoryBranch;
 use Badge\Infrastructure\Env;
 use GuzzleHttp\ClientInterface;

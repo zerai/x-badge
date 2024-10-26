@@ -2,7 +2,7 @@
 
 namespace Badge\Tests\Acceptance;
 
-use Badge\Adapter\Out\AcceptanceTestCommittedFileChecker;
+use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\AcceptanceTestCommittedFileChecker;
 use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\CommittedFileChecker;
 use Badge\Infrastructure\Env;
 use Badge\Infrastructure\ServiceContainer;

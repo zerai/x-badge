@@ -2,7 +2,7 @@
 
 namespace Badge\Application\Domain\Model\Service\ContextProducer;
 
-use Badge\Application\Domain\Model\Service\ForReadingRepositoryDetail;
+use Badge\Application\Port\Driven\ForReadingRepositoryDetail\ForReadingRepositoryDetail;
 use Badge\Application\PortOut\CommittedFileChecker;
 use Badge\Application\PortOut\CommittedFileDetector as CommittedFileDetectorPort;
 

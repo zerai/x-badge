@@ -8,7 +8,7 @@ use Badge\Application\Domain\Model\RepositoryDetail;
 use Badge\Application\Domain\Model\Service\ContextProducer\CommittedFileDetector;
 use Badge\Application\Domain\Model\Service\ContextProducer\GitAttributesProducer;
 use Badge\Application\Domain\Model\Service\DetectableBranch;
-use Badge\Application\Domain\Model\Service\ForReadingRepositoryDetail;
+use Badge\Application\Port\Driven\ForReadingRepositoryDetail\ForReadingRepositoryDetail;
 use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use Generator;
 use GuzzleHttp\ClientInterface;

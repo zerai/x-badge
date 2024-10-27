@@ -1,7 +1,7 @@
 {
     "require-dev": {
-        "phpstan/phpstan": "^0.12.80",
-        "phpstan/phpstan-phpunit": "^0.12.17"
+        "phpstan/phpstan": "^1.4",
+        "phpstan/phpstan-phpunit": "^1.4"
     },
     "config": {
         "preferred-install": {

@@ -2,7 +2,7 @@
 
 namespace Badge\Tests\Acceptance;
 
-use Badge\Application\BadgeApplicationInterface;
+use Badge\Core\BadgeApplicationInterface;
 use PHPUnit\Framework\TestCase;
 
 abstract class AcceptanceTestCase extends TestCase
@@ -23,7 +23,7 @@ abstract class AcceptanceTestCase extends TestCase
     }
 
     /**
-     * Creates a Application.
+     * Creates a Core.
      *
      * @return BadgeApplicationInterface A BadgeApplication instance
      */

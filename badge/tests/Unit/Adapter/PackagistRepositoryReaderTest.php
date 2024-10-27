@@ -3,7 +3,7 @@
 namespace Badge\Tests\Unit\Adapter;
 
 use Badge\AdapterForReadingRepositoryDetail\PackagistRepositoryReader;
-use Badge\Application\Domain\Model\RepositoryDetail;
+use Badge\Core\Domain\Model\RepositoryDetail;
 use Packagist\Api\Client as PackagistClient;
 use Packagist\Api\Result\Package;
 use PHPUnit\Framework\MockObject\MockObject;

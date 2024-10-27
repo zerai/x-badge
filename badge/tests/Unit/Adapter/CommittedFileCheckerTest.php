@@ -4,7 +4,7 @@ namespace Badge\Tests\Unit\Adapter;
 
 use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\CommittedFileChecker;
 use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\DefaultBranchDetector;
-use Badge\Application\Domain\Model\RepositoryDetail;
+use Badge\Core\Domain\Model\RepositoryDetail;
 use GuzzleHttp\ClientInterface;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;

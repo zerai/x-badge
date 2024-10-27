@@ -2,20 +2,20 @@
 
 namespace Badge\Tests\Unit\Domain\ContextProducer;
 
-use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\Service\ContextProducer\StableVersionProducer;
-use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingStableVersion;
+use Badge\Core\Domain\Model\BadgeContext;
+use Badge\Core\Domain\Model\Service\ContextProducer\StableVersionProducer;
+use Badge\Core\Port\Driven\ForReadingBadgeContextValues\ForReadingStableVersion;
 use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Application\Domain\Model\Service\ContextProducer\StableVersionProducer */
+/** @covers \Badge\Core\Domain\Model\Service\ContextProducer\StableVersionProducer */
 final class StableVersionProducerTest extends TestCase
 {
     use BadgeContextAssertionsTrait;
 
     /**
-     * @var \Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingStableVersion & MockObject
+     * @var \Badge\Core\Port\Driven\ForReadingBadgeContextValues\ForReadingStableVersion & MockObject
      */
     private $contextReader;
 

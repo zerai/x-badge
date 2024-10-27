@@ -2,7 +2,7 @@
 
 namespace Badge\Tests\Acceptance;
 
-use Badge\Application\Image;
+use Badge\Core\Image;
 
 trait BadgeImageAssertionsTrait
 {

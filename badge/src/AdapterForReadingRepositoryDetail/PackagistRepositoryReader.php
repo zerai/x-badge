@@ -2,8 +2,8 @@
 
 namespace Badge\AdapterForReadingRepositoryDetail;
 
-use Badge\Application\Domain\Model\RepositoryDetail;
-use Badge\Application\Port\Driven\ForReadingRepositoryDetail\ForReadingRepositoryDetail;
+use Badge\Core\Domain\Model\RepositoryDetail;
+use Badge\Core\Port\Driven\ForReadingRepositoryDetail\ForReadingRepositoryDetail;
 use Packagist\Api\Client as PackagistClient;
 use Packagist\Api\Result\Package;
 

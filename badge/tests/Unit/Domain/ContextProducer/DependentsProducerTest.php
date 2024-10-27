@@ -2,20 +2,20 @@
 
 namespace Badge\Tests\Unit\Domain\ContextProducer;
 
-use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\Service\ContextProducer\DependentsProducer;
-use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingDependents;
+use Badge\Core\Domain\Model\BadgeContext;
+use Badge\Core\Domain\Model\Service\ContextProducer\DependentsProducer;
+use Badge\Core\Port\Driven\ForReadingBadgeContextValues\ForReadingDependents;
 use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Application\Domain\Model\Service\ContextProducer\DependentsProducer */
+/** @covers \Badge\Core\Domain\Model\Service\ContextProducer\DependentsProducer */
 final class DependentsProducerTest extends TestCase
 {
     use BadgeContextAssertionsTrait;
 
     /**
-     * @var \Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingDependents & MockObject
+     * @var \Badge\Core\Port\Driven\ForReadingBadgeContextValues\ForReadingDependents & MockObject
      */
     private $contextReader;
 

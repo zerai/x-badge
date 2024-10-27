@@ -23,12 +23,12 @@ parameters:
 		-
 			message: "#^Offset 4 does not exist on array\\{0\\?\\: string, 1\\?\\: 'https', 2\\?\\: '\\://'\\|'@', 3\\?\\: non\\-empty\\-string, 4\\?\\: non\\-empty\\-string, 5\\?\\: non\\-empty\\-string\\}\\.$#"
 			count: 1
-			path: badge/src/Application/Domain/Model/RepositoryDetail.php
+			path: badge/src/Core/Domain/Model/RepositoryDetail.php
 
 		-
 			message: "#^Offset 5 does not exist on array\\{0\\?\\: string, 1\\?\\: 'https', 2\\?\\: '\\://'\\|'@', 3\\?\\: non\\-empty\\-string, 4\\?\\: non\\-empty\\-string, 5\\?\\: non\\-empty\\-string\\}\\.$#"
 			count: 1
-			path: badge/src/Application/Domain/Model/RepositoryDetail.php
+			path: badge/src/Core/Domain/Model/RepositoryDetail.php
 
 		-
 			message: "#^Static property Badge\\\\Infrastructure\\\\ReleasedVersions\\:\\:\\$modifierRegex is never read, only written\\.$#"
@@ -36,7 +36,7 @@ parameters:
 			path: badge/src/Infrastructure/ReleasedVersions.php
 
 		-
-			message: "#^Property Badge\\\\Tests\\\\Acceptance\\\\AcceptanceTestCase\\:\\:\\$application \\(Badge\\\\Application\\\\BadgeApplicationInterface\\) does not accept null\\.$#"
+			message: "#^Property Badge\\\\Tests\\\\Acceptance\\\\AcceptanceTestCase\\:\\:\\$application \\(Badge\\\\Core\\\\BadgeApplicationInterface\\) does not accept null\\.$#"
 			count: 1
 			path: badge/tests/Acceptance/AcceptanceTestCase.php
 

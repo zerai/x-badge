@@ -2,14 +2,14 @@
 
 namespace Badge\Tests\Unit\Domain\ContextValue;
 
-use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\ContextualizableValue;
-use Badge\Application\Domain\Model\ContextValue\Common\BaseCount;
-use Badge\Application\Domain\Model\ContextValue\TotalDownloads;
+use Badge\Core\Domain\Model\BadgeContext;
+use Badge\Core\Domain\Model\ContextualizableValue;
+use Badge\Core\Domain\Model\ContextValue\Common\BaseCount;
+use Badge\Core\Domain\Model\ContextValue\TotalDownloads;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Application\Domain\Model\ContextValue\TotalDownloads */
+/** @covers \Badge\Core\Domain\Model\ContextValue\TotalDownloads */
 final class TotalDownloadsTest extends TestCase
 {
     private const COLOR = '007ec6';

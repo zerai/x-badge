@@ -2,12 +2,12 @@
 
 namespace Badge\Tests\Unit\Application;
 
-use Badge\Application\BadgeImage;
+use Badge\Core\BadgeImage;
 use Generator;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Application\BadgeImage */
+/** @covers \Badge\Core\BadgeImage */
 final class BadgeImageTest extends TestCase
 {
     /**

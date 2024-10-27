@@ -2,8 +2,8 @@
 
 namespace Badge\Tests\Unit\Application;
 
-use Badge\Application\BadgeApplicationInterface;
-use Badge\Application\LoggerApplicationDecorator;
+use Badge\Core\BadgeApplicationInterface;
+use Badge\Core\LoggerApplicationDecorator;
 use InvalidArgumentException;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -11,7 +11,7 @@ use Psr\Log\LoggerInterface;
 
 use function PHPUnit\Framework\once;
 
-/** @covers \Badge\Application\LoggerApplicationDecorator */
+/** @covers \Badge\Core\LoggerApplicationDecorator */
 final class LoggerCapabilityTest extends TestCase
 {
     /**

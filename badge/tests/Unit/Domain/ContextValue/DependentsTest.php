@@ -2,14 +2,14 @@
 
 namespace Badge\Tests\Unit\Domain\ContextValue;
 
-use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\ContextualizableValue;
-use Badge\Application\Domain\Model\ContextValue\Common\BaseCount;
-use Badge\Application\Domain\Model\ContextValue\Dependents;
+use Badge\Core\Domain\Model\BadgeContext;
+use Badge\Core\Domain\Model\ContextualizableValue;
+use Badge\Core\Domain\Model\ContextValue\Common\BaseCount;
+use Badge\Core\Domain\Model\ContextValue\Dependents;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Application\Domain\Model\ContextValue\Dependents */
+/** @covers \Badge\Core\Domain\Model\ContextValue\Dependents */
 final class DependentsTest extends TestCase
 {
     private const COLOR = '007ec6';
@@ -18,8 +18,8 @@ final class DependentsTest extends TestCase
 
     /**
      * @test
-     * @covers \Badge\Application\Domain\Model\ContextValue\Common\BaseCount::__construct
-     * @covers \Badge\Application\Domain\Model\ContextValue\Common\BaseCount::validate
+     * @covers \Badge\Core\Domain\Model\ContextValue\Common\BaseCount::__construct
+     * @covers \Badge\Core\Domain\Model\ContextValue\Common\BaseCount::validate
      */
     public function canBeCreated(): void
     {
@@ -35,7 +35,7 @@ final class DependentsTest extends TestCase
 
     /**
      * @test
-     * @covers \Badge\Application\Domain\Model\ContextValue\Common\BaseCount::validate
+     * @covers \Badge\Core\Domain\Model\ContextValue\Common\BaseCount::validate
      */
     public function negativeNumbersShouldThrowException(): void
     {
@@ -48,7 +48,7 @@ final class DependentsTest extends TestCase
 
     /**
      * @test
-     * @covers \Badge\Application\Domain\Model\ContextValue\Common\BaseCount::asBadgeValue
+     * @covers \Badge\Core\Domain\Model\ContextValue\Common\BaseCount::asBadgeValue
      */
     public function shouldReturnValueAsBadgeContext(): void
     {

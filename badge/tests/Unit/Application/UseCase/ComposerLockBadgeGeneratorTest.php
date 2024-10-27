@@ -2,15 +2,15 @@
 
 namespace Badge\Tests\Unit\Application\UseCase;
 
-use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
-use Badge\Application\Image;
-use Badge\Application\ImageFactory;
-use Badge\Application\Usecase\ComposerLockBadgeGenerator;
+use Badge\Core\Domain\Model\Service\ContextProducer\ContextProducer;
+use Badge\Core\Image;
+use Badge\Core\ImageFactory;
+use Badge\Core\Usecase\ComposerLockBadgeGenerator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
-/** @covers \Badge\Application\Usecase\ComposerLockBadgeGenerator */
+/** @covers \Badge\Core\Usecase\ComposerLockBadgeGenerator */
 final class ComposerLockBadgeGeneratorTest extends TestCase
 {
     /**

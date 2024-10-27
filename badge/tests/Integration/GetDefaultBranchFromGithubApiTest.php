@@ -3,7 +3,7 @@
 namespace Badge\Tests\Integration;
 
 use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\DefaultBranchDetector;
-use Badge\Application\Domain\Model\RepositoryDetail;
+use Badge\Core\Domain\Model\RepositoryDetail;
 use Badge\Infrastructure\Env;
 use Badge\Tests\Integration\ApiMockServer\ApiMockServer;
 use Badge\Tests\Support\ExtendedGithubClient\ExtendedForTestGithubClient;

@@ -2,15 +2,15 @@
 
 namespace Badge\Tests\Unit\Domain\ContextValue;
 
-use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\ContextualizableValue;
-use Badge\Application\Domain\Model\ContextValue\License;
+use Badge\Core\Domain\Model\BadgeContext;
+use Badge\Core\Domain\Model\ContextualizableValue;
+use Badge\Core\Domain\Model\ContextValue\License;
 use Generator;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Badge\Application\Domain\Model\ContextValue\License
+ * @covers \Badge\Core\Domain\Model\ContextValue\License
  */
 class LicenseTest extends TestCase
 {

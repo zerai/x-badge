@@ -2,10 +2,10 @@
 
 namespace Badge\Infrastructure;
 
-use Badge\Application\BadgeImage;
-use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Image;
-use Badge\Application\ImageFactory;
+use Badge\Core\BadgeImage;
+use Badge\Core\Domain\Model\BadgeContext;
+use Badge\Core\Image;
+use Badge\Core\ImageFactory;
 use PUGX\Poser\Poser;
 
 final class PoserImageFactory implements ImageFactory

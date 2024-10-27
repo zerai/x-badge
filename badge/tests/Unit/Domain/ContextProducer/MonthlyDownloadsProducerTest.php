@@ -2,14 +2,14 @@
 
 namespace Badge\Tests\Unit\Domain\ContextProducer;
 
-use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\Service\ContextProducer\MonthlyDownloadsProducer;
-use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingMonthlyDownloads;
+use Badge\Core\Domain\Model\BadgeContext;
+use Badge\Core\Domain\Model\Service\ContextProducer\MonthlyDownloadsProducer;
+use Badge\Core\Port\Driven\ForReadingBadgeContextValues\ForReadingMonthlyDownloads;
 use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Application\Domain\Model\Service\ContextProducer\MonthlyDownloadsProducer */
+/** @covers \Badge\Core\Domain\Model\Service\ContextProducer\MonthlyDownloadsProducer */
 final class MonthlyDownloadsProducerTest extends TestCase
 {
     use BadgeContextAssertionsTrait;

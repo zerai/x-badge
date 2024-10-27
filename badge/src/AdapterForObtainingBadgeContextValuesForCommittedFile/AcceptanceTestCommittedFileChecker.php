@@ -2,7 +2,7 @@
 
 namespace Badge\AdapterForObtainingBadgeContextValuesForCommittedFile;
 
-use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingRepositoryBranch;
+use Badge\Core\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingRepositoryBranch;
 use Badge\Infrastructure\Env;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;

@@ -2,12 +2,12 @@
 
 namespace Badge\Tests\Unit\Domain\ContextValue;
 
-use Badge\Application\Domain\Model\ContextualizableValue;
-use Badge\Application\Domain\Model\ContextValue\Common\CommittedFile;
-use Badge\Application\Domain\Model\ContextValue\GitAttributesFile;
+use Badge\Core\Domain\Model\ContextualizableValue;
+use Badge\Core\Domain\Model\ContextValue\Common\CommittedFile;
+use Badge\Core\Domain\Model\ContextValue\GitAttributesFile;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Application\Domain\Model\ContextValue\GitAttributesFile */
+/** @covers \Badge\Core\Domain\Model\ContextValue\GitAttributesFile */
 final class GitAttributesFileTest extends TestCase
 {
     private const COLOR_COMMITTED = '#96d490';

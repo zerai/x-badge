@@ -2,8 +2,8 @@
 
 namespace Badge\AdapterForObtainingBadgeContextValuesForCommittedFile;
 
-use Badge\Application\Domain\Model\RepositoryDetail;
-use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingRepositoryBranch;
+use Badge\Core\Domain\Model\RepositoryDetail;
+use Badge\Core\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingRepositoryBranch;
 use Bitbucket\Client as BitbucketClient;
 use Github\Client as GithubClient;
 

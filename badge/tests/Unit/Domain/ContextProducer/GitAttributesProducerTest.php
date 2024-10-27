@@ -3,12 +3,12 @@
 namespace Badge\Tests\Unit\Domain\ContextProducer;
 
 use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\CommittedFileChecker;
-use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\RepositoryDetail;
-use Badge\Application\Domain\Model\Service\ContextProducer\CommittedFileDetector;
-use Badge\Application\Domain\Model\Service\ContextProducer\GitAttributesProducer;
-use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingRepositoryBranch;
-use Badge\Application\Port\Driven\ForReadingRepositoryDetail\ForReadingRepositoryDetail;
+use Badge\Core\Domain\Model\BadgeContext;
+use Badge\Core\Domain\Model\RepositoryDetail;
+use Badge\Core\Domain\Model\Service\ContextProducer\CommittedFileDetector;
+use Badge\Core\Domain\Model\Service\ContextProducer\GitAttributesProducer;
+use Badge\Core\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingRepositoryBranch;
+use Badge\Core\Port\Driven\ForReadingRepositoryDetail\ForReadingRepositoryDetail;
 use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use Generator;
 use GuzzleHttp\ClientInterface;
@@ -16,7 +16,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 
-/** @covers \Badge\Application\Domain\Model\Service\ContextProducer\GitAttributesProducer */
+/** @covers \Badge\Core\Domain\Model\Service\ContextProducer\GitAttributesProducer */
 final class GitAttributesProducerTest extends TestCase
 {
     use BadgeContextAssertionsTrait;
@@ -70,7 +70,7 @@ final class GitAttributesProducerTest extends TestCase
     /**
      * @test
      * @dataProvider gitattributesFileDataProvider
-     * @covers \Badge\Application\Domain\Model\Service\ContextProducer\CommittedFileDetector
+     * @covers \Badge\Core\Domain\Model\Service\ContextProducer\CommittedFileDetector
      */
     public function shouldProduceAGitattributesBadgeContextForAPackageHostedOnGitHub(int $httpFileStatus, string $assertionToCall): void
     {

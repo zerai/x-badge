@@ -2,15 +2,15 @@
 
 namespace Badge\Tests\Unit\Application\UseCase;
 
-use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
-use Badge\Application\Image;
-use Badge\Application\ImageFactory;
-use Badge\Application\Usecase\UnstableVersionBadgeGenerator;
+use Badge\Core\Domain\Model\Service\ContextProducer\ContextProducer;
+use Badge\Core\Image;
+use Badge\Core\ImageFactory;
+use Badge\Core\Usecase\UnstableVersionBadgeGenerator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
-/** @covers \Badge\Application\Usecase\UnstableVersionBadgeGenerator */
+/** @covers \Badge\Core\Usecase\UnstableVersionBadgeGenerator */
 final class UnstableVersionBadgeGeneratorTest extends TestCase
 {
     /**

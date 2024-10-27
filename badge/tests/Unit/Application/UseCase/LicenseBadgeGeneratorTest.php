@@ -2,15 +2,15 @@
 
 namespace Badge\Tests\Unit\Application\UseCase;
 
-use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
-use Badge\Application\Image;
-use Badge\Application\ImageFactory;
-use Badge\Application\Usecase\LicenseBadgeGenerator;
+use Badge\Core\Domain\Model\Service\ContextProducer\ContextProducer;
+use Badge\Core\Image;
+use Badge\Core\ImageFactory;
+use Badge\Core\Usecase\LicenseBadgeGenerator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \Badge\Application\Usecase\LicenseBadgeGenerator
+ * @covers \Badge\Core\Usecase\LicenseBadgeGenerator
  */
 class LicenseBadgeGeneratorTest extends TestCase
 {

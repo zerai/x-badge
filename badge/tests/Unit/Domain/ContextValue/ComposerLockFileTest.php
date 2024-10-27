@@ -2,12 +2,12 @@
 
 namespace Badge\Tests\Unit\Domain\ContextValue;
 
-use Badge\Application\Domain\Model\ContextualizableValue;
-use Badge\Application\Domain\Model\ContextValue\Common\CommittedFile;
-use Badge\Application\Domain\Model\ContextValue\ComposerLockFile;
+use Badge\Core\Domain\Model\ContextualizableValue;
+use Badge\Core\Domain\Model\ContextValue\Common\CommittedFile;
+use Badge\Core\Domain\Model\ContextValue\ComposerLockFile;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Application\Domain\Model\ContextValue\ComposerLockFile */
+/** @covers \Badge\Core\Domain\Model\ContextValue\ComposerLockFile */
 final class ComposerLockFileTest extends TestCase
 {
     private const COLOR_COMMITTED = '#e60073';

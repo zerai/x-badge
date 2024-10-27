@@ -2,7 +2,7 @@
 
 namespace Badge\Tests\Unit\Domain\ContextValue;
 
-use Badge\Application\Domain\Model\ContextValue\Common\CommittedFile;
+use Badge\Core\Domain\Model\ContextValue\Common\CommittedFile;
 
 class DummyCommittedFile extends CommittedFile
 {

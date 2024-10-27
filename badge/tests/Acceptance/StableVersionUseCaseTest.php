@@ -2,11 +2,11 @@
 
 namespace Badge\Tests\Acceptance;
 
-use Badge\Application\BadgeImage;
+use Badge\Core\BadgeImage;
 use Badge\Tests\Support\DomainBuilder\ApiMockServer\ApiMockServer;
 use Badge\Tests\Support\DomainBuilder\PackagistBuilder\PackagistBuilder;
 
-/** @covers \Badge\Application\Usecase\StableVersionBadgeGenerator */
+/** @covers \Badge\Core\Usecase\StableVersionBadgeGenerator */
 final class StableVersionUseCaseTest extends AcceptanceTestCase
 {
     use BadgeImageAssertionsTrait;

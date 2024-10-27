@@ -2,7 +2,7 @@
 
 namespace Badge\Tests\Unit\Infrastructure\ServiceContainer;
 
-use Badge\Application\BadgeApplicationInterface;
+use Badge\Core\BadgeApplicationInterface;
 use Badge\Infrastructure\ProductionServiceContainer;
 use PHPUnit\Framework\TestCase;
 

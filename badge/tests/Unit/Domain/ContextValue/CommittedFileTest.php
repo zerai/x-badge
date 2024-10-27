@@ -2,12 +2,12 @@
 
 namespace Badge\Tests\Unit\Domain\ContextValue;
 
-use Badge\Application\Domain\Model\ContextualizableValue;
+use Badge\Core\Domain\Model\ContextualizableValue;
 use Generator;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Application\Domain\Model\ContextValue\Common\CommittedFile */
+/** @covers \Badge\Core\Domain\Model\ContextValue\Common\CommittedFile */
 final class CommittedFileTest extends TestCase
 {
     /**

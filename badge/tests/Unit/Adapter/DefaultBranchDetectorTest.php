@@ -3,7 +3,7 @@
 namespace Badge\Tests\Unit\Adapter;
 
 use Badge\AdapterForObtainingBadgeContextValuesForCommittedFile\DefaultBranchDetector;
-use Badge\Application\Domain\Model\RepositoryDetail;
+use Badge\Core\Domain\Model\RepositoryDetail;
 use Bitbucket\Api\Workspaces;
 use Bitbucket\Client as BitbucketClient;
 use Github\Api\Repo;

@@ -2,15 +2,15 @@
 
 namespace Badge\Tests\Unit\Application\UseCase;
 
-use Badge\Application\Domain\Model\Service\ContextProducer\ContextProducer;
-use Badge\Application\Image;
-use Badge\Application\ImageFactory;
-use Badge\Application\Usecase\TotalDownloadsBadgeGenerator;
+use Badge\Core\Domain\Model\Service\ContextProducer\ContextProducer;
+use Badge\Core\Image;
+use Badge\Core\ImageFactory;
+use Badge\Core\Usecase\TotalDownloadsBadgeGenerator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use RuntimeException;
 
-/** @covers \Badge\Application\Usecase\TotalDownloadsBadgeGenerator */
+/** @covers \Badge\Core\Usecase\TotalDownloadsBadgeGenerator */
 final class TotalDownloadsBadgeGeneratorTest extends TestCase
 {
     /**

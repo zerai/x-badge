@@ -2,9 +2,9 @@
 
 namespace Badge\AdapterForObtainingBadgeContextValuesForCommittedFile;
 
-use Badge\Application\Domain\Model\RepositoryDetail;
-use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\CommittedFileChecker as CommittedFileCheckerPort;
-use Badge\Application\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingRepositoryBranch;
+use Badge\Core\Domain\Model\RepositoryDetail;
+use Badge\Core\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\CommittedFileChecker as CommittedFileCheckerPort;
+use Badge\Core\Port\Driven\ForObtainingBadgeContextValuesForCommittedFile\ForDetectingRepositoryBranch;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\RequestOptions;
 

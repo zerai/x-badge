@@ -2,14 +2,14 @@
 
 namespace Badge\Tests\Unit\Domain\ContextValue;
 
-use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\ContextualizableValue;
-use Badge\Application\Domain\Model\ContextValue\StableVersion;
+use Badge\Core\Domain\Model\BadgeContext;
+use Badge\Core\Domain\Model\ContextualizableValue;
+use Badge\Core\Domain\Model\ContextValue\StableVersion;
 use Generator;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Application\Domain\Model\ContextValue\StableVersion */
+/** @covers \Badge\Core\Domain\Model\ContextValue\StableVersion */
 final class StableVersionTest extends TestCase
 {
     private const COLOR_STABLE = '28a3df';

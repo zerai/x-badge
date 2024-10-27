@@ -2,12 +2,12 @@
 
 namespace Badge\Tests\Acceptance;
 
-use Badge\Application\BadgeImage;
+use Badge\Core\BadgeImage;
 use Badge\Tests\Support\DomainBuilder\ApiMockServer\ApiMockServer;
 use Badge\Tests\Support\DomainBuilder\CommittedFileBuilder\CommittedFileBuilder;
 use Badge\Tests\Support\DomainBuilder\PackagistBuilder\PackagistBuilder;
 
-/** @covers \Badge\Application\Usecase\GitattributesBadgeGenerator */
+/** @covers \Badge\Core\Usecase\GitattributesBadgeGenerator */
 final class GitattributesUseCaseTest extends AcceptanceTestCase
 {
     use BadgeImageAssertionsTrait;

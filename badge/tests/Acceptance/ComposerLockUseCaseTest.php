@@ -6,7 +6,7 @@ use Badge\Tests\Support\DomainBuilder\ApiMockServer\ApiMockServer;
 use Badge\Tests\Support\DomainBuilder\CommittedFileBuilder\CommittedFileBuilder;
 use Badge\Tests\Support\DomainBuilder\PackagistBuilder\PackagistBuilder;
 
-/** @covers \Badge\Application\Usecase\ComposerLockBadgeGenerator */
+/** @covers \Badge\Core\Usecase\ComposerLockBadgeGenerator */
 final class ComposerLockUseCaseTest extends AcceptanceTestCase
 {
     use BadgeImageAssertionsTrait;

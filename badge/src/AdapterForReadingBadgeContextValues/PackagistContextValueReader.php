@@ -2,7 +2,7 @@
 
 namespace Badge\AdapterForReadingBadgeContextValues;
 
-use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ContextValueReader;
+use Badge\Core\Port\Driven\ForReadingBadgeContextValues\ContextValueReader;
 use Badge\Infrastructure\ReleasedVersions;
 use Packagist\Api\Client;
 use Packagist\Api\Result\Package;

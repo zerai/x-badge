@@ -2,17 +2,17 @@
 
 namespace Badge\Tests\Unit\Infrastructure;
 
-use Badge\Application\BadgeImage;
-use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\ContextValue\ComposerLockFile;
-use Badge\Application\Domain\Model\ContextValue\DailyDownloads;
-use Badge\Application\Domain\Model\ContextValue\Dependents;
-use Badge\Application\Domain\Model\ContextValue\GitAttributesFile;
-use Badge\Application\Domain\Model\ContextValue\MonthlyDownloads;
-use Badge\Application\Domain\Model\ContextValue\StableVersion;
-use Badge\Application\Domain\Model\ContextValue\Suggesters;
-use Badge\Application\Domain\Model\ContextValue\TotalDownloads;
-use Badge\Application\Image;
+use Badge\Core\BadgeImage;
+use Badge\Core\Domain\Model\BadgeContext;
+use Badge\Core\Domain\Model\ContextValue\ComposerLockFile;
+use Badge\Core\Domain\Model\ContextValue\DailyDownloads;
+use Badge\Core\Domain\Model\ContextValue\Dependents;
+use Badge\Core\Domain\Model\ContextValue\GitAttributesFile;
+use Badge\Core\Domain\Model\ContextValue\MonthlyDownloads;
+use Badge\Core\Domain\Model\ContextValue\StableVersion;
+use Badge\Core\Domain\Model\ContextValue\Suggesters;
+use Badge\Core\Domain\Model\ContextValue\TotalDownloads;
+use Badge\Core\Image;
 use Badge\Infrastructure\PoserImageFactory;
 use Generator;
 use PHPUnit\Framework\TestCase;

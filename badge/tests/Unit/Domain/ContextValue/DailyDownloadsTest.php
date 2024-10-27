@@ -2,13 +2,13 @@
 
 namespace Badge\Tests\Unit\Domain\ContextValue;
 
-use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\ContextualizableValue;
-use Badge\Application\Domain\Model\ContextValue\DailyDownloads;
+use Badge\Core\Domain\Model\BadgeContext;
+use Badge\Core\Domain\Model\ContextualizableValue;
+use Badge\Core\Domain\Model\ContextValue\DailyDownloads;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Application\Domain\Model\ContextValue\DailyDownloads */
+/** @covers \Badge\Core\Domain\Model\ContextValue\DailyDownloads */
 final class DailyDownloadsTest extends TestCase
 {
     private const COLOR = '007ec6';
@@ -43,7 +43,7 @@ final class DailyDownloadsTest extends TestCase
 
     /**
      * @test
-     * @covers \Badge\Application\Domain\Model\ContextValue\Common\BaseCount::asBadgeValue
+     * @covers \Badge\Core\Domain\Model\ContextValue\Common\BaseCount::asBadgeValue
      */
     public function shouldReturnValueAsBadgeContext(): void
     {

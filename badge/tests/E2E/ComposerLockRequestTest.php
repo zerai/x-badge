@@ -2,7 +2,7 @@
 
 namespace Badge\Tests\E2E;
 
-use Badge\Application\BadgeApplicationInterface;
+use Badge\Core\BadgeApplicationInterface;
 use Badge\Infrastructure\ProductionServiceContainer;
 use Generator;
 use PHPUnit\Framework\TestCase;

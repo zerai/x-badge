@@ -3,21 +3,21 @@ paths:
 exclude_files: ~
 
 layers:
-    - name: Application
+    - name: Core
       collectors:
           - type: bool
             must:
                 - type: directory
-                  regex: src/Application/.*
+                  regex: src/Core/.*
             must_not:
                 - type: directory
-                  regex: src/Application/PortIn/.*
+                  regex: src/Core/PortIn/.*
                 - type: directory
-                  regex: src/Application/PortOut/.*
+                  regex: src/Core/PortOut/.*
                 - type: className
-                  regex: .*Application\\Image
+                  regex: .*Core\\Image
                 - type: directory
-                  regex: badge/src/Application/Domain/Model/Service/ContextProducer/.*Reader.*
+                  regex: badge/src/Core/Domain/Model/Service/ContextProducer/.*Reader.*
                 - type: className
                   regex: .*DetectableComposerLock.*
                 - type: className
@@ -32,9 +32,9 @@ layers:
           - type: bool
             must:
                 - type: className
-                  regex: .*Application\\Image
+                  regex: .*Core\\Image
                 - type: directory
-                  regex: badge/src/Application/Domain/Model/Service/ContextProducer/.*Reader.*
+                  regex: badge/src/Core/Domain/Model/Service/ContextProducer/.*Reader.*
                 - type: className
                   regex: .*DetectableComposerLock.*
                 - type: className
@@ -45,14 +45,14 @@ layers:
                   regex: .*RepositoryDetailReader.*
             must_not:
                 - type: className
-                  regex: .*Application\\ImageFactory
+                  regex: .*Core\\ImageFactory
 
     - name: Port
       collectors:
           - type: directory
-            regex: src/Application/PortIn/.*
+            regex: src/Core/PortIn/.*
           - type: directory
-            regex: src/Application/PortOut/.*
+            regex: src/Core/PortOut/.*
 
     - name: Adapter
       collectors:

@@ -2,20 +2,20 @@
 
 namespace Badge\Tests\Unit\Domain\ContextProducer;
 
-use Badge\Application\Domain\Model\BadgeContext;
-use Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer;
-use Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingSuggesters;
+use Badge\Core\Domain\Model\BadgeContext;
+use Badge\Core\Domain\Model\Service\ContextProducer\SuggestersProducer;
+use Badge\Core\Port\Driven\ForReadingBadgeContextValues\ForReadingSuggesters;
 use Badge\Tests\PHPUnitExtension\BadgeContextAssertionsTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Application\Domain\Model\Service\ContextProducer\SuggestersProducer */
+/** @covers \Badge\Core\Domain\Model\Service\ContextProducer\SuggestersProducer */
 final class SuggestersProducerTest extends TestCase
 {
     use BadgeContextAssertionsTrait;
 
     /**
-     * @var \Badge\Application\Port\Driven\ForReadingBadgeContextValues\ForReadingSuggesters & MockObject
+     * @var \Badge\Core\Port\Driven\ForReadingBadgeContextValues\ForReadingSuggesters & MockObject
      */
     private $contextReader;
 

@@ -2,11 +2,11 @@
 
 namespace Badge\Tests\Unit\Domain;
 
-use Badge\Application\Domain\Model\ContextValue\Common\CountNormalizerTrait;
+use Badge\Core\Domain\Model\ContextValue\Common\CountNormalizerTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-/** @covers \Badge\Application\Domain\Model\ContextValue\Common\CountNormalizerTrait */
+/** @covers \Badge\Core\Domain\Model\ContextValue\Common\CountNormalizerTrait */
 final class CountNormalizerTraitTest extends TestCase
 {
     /**
